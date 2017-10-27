@@ -1,16 +1,57 @@
+﻿import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-
+import { FormsModule } from '@angular/forms';
+import { HttpModule } from '@angular/http';
+import { GaugeModule } from 'ng2-gauge';
 import { AppComponent } from './app.component';
-
+import { routing } from './app.routing';
+import { AgmCoreModule } from '@agm/core';
+import { customHttpProvider } from './_helpers/index';
+import { AlertComponent } from './_directives/index';
+import { AuthGuard } from './_guards/index';
+import { AlertService, AuthenticationService, UserService,NavbarService } from './_services/index';
+import { HomeComponent } from './home/index';
+import { LoginComponent } from './login/index';
+import { RegisterComponent } from './register/index';
+import { HeaderComponent } from './header/header.component';
+import { DashboardComponent } from './dashboard/index';
+import { FooterComponent } from './footer/footer.component';
+import { GaugecomponentComponent } from './gaugecomponent/gaugecomponent.component';
+import { Ng2GoogleChartsModule } from 'ng2-google-charts';
+import { GoogleGaugesComponent } from './google-gauges/google-gauges.component';
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
-  imports: [
-    BrowserModule
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+    imports: [
+        BrowserModule,
+        FormsModule,
+        HttpModule,
+        AgmCoreModule.forRoot({
+        apiKey: 'AIzaSyCJ8L3mMI-DQ_3xoh6DR78Os7qtUsVuT1k'
+        }),
+        GaugeModule,
+        routing,
+        Ng2GoogleChartsModule
+    ],
+    declarations: [
+        AppComponent,
+        AlertComponent,
+        HomeComponent,
+        LoginComponent,
+        RegisterComponent,
+        HeaderComponent,
+        DashboardComponent,
+        FooterComponent,
+        GaugecomponentComponent,
+        GoogleGaugesComponent
+    ],
+    providers: [
+        customHttpProvider,
+        AuthGuard,
+        AlertService,
+        AuthenticationService,
+        UserService,
+        NavbarService
+    ],
+    bootstrap: [AppComponent]
 })
+
 export class AppModule { }

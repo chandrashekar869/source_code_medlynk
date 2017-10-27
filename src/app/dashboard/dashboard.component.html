@@ -1,0 +1,36 @@
+<app-header></app-header>
+<div class="container">
+
+<div>
+    <select [(ngModel)]="selected" (ngModelChange)="onSelected(selected)">
+ <option disabled hidden [value]="selectUndefinedOptionValue">Select Device Id ---</option>
+        <option *ngFor="let deviceId of someData"
+                [value]="deviceId.label"> 
+                {{ deviceId.label}}
+        </option>
+   </select>
+
+    <select  [(ngModel)]="select" (ngModelChange)="onSelect(select)">
+        <option disabled hidden [value]="selectUndefinedOptionValue">Select Device Status --</option>
+        <option *ngFor="let option of options"
+                [value]="option"> 
+                {{ option }}
+        </option>
+   </select>
+</div>
+
+<agm-map  [latitude]="lat" [longitude]="lng" [minZoom]="14" >
+  <agm-marker *ngFor="let m of selectedData; let i = index"
+          [latitude]="m.lat"
+          [longitude]="m.lng"
+
+          (markerClick)="clickedMarker(m, i)"
+          [iconUrl]="m.iconUrl"
+          (mouseOver)="mouseOver(infoWindow,m)"
+          (mouseOut)="mouseOut(infoWindow,m)">           
+          <agm-info-window #infoWindow>{{m.label}}
+          </agm-info-window>
+  </agm-marker>
+</agm-map>
+
+</div>

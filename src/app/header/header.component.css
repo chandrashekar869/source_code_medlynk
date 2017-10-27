@@ -1,0 +1,20 @@
+.navbar {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.98);
+}
+.navbar-toggler-right {
+    position: absolute;
+    right: 0rem;
+}
+.navbar-toggler-icon {
+  color:white !important;
+}
+a {
+    font-size: medium;
+}
+img.navbar-brand {
+    float: left;
+    /* height: 50px; */
+    /* padding: 15px 15px; */
+    font-size: 18px;
+    line-height: 20px;
+}

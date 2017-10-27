@@ -1,0 +1,12 @@
+angular-gauge{
+    position: relative;
+    width: 100px;
+}
+
+#gauge_chart {
+    height: 100%;
+    width: 100%;
+}
+svg > g > text[text-anchor=middle]{
+    font-size:9px;
+}
