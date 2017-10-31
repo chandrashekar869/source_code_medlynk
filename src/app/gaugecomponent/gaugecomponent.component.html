@@ -1,29 +1,38 @@
 <app-header></app-header>
 <div *ngIf="isDataAvailable">
 <div class="container" style="border: 1px solid;">
-<google-chart [data]="pieChartData"></google-chart>
-
+<!--<google-chart [data]="pieChartData"></google-chart> -->
 <div class="row">
-  <div class="col-sm-4 col-lg-offset-1"
-       id="gauge_chart" 
-       [chartData]="pie_ChartData" 
-       [chartOptions]= "pie_ChartOptions" 
-       chartType="Gauge" GoogleChart>
+  <div class="col-sm-4 ">
+      <div class="row">
+        <div class="center-block">
+          <div id="gauge_chart" 
+           [chartData]="pie_ChartData" 
+           [chartOptions]= "pie_ChartOptions" 
+           chartType="Gauge" GoogleChart>
+          </div>
+        </div>
+      </div>
   </div>
 
-  <div class="col-sm-3" style="border-right: 3px solid #4784ee;" 
-       id="gauge_chart1" 
-       [chartData]="pie_ChartData1" 
-       [chartOptions]= "pie_ChartOptions1" 
-       chartType="Gauge" GoogleChart>
+  <div class="col-sm-4" style="border-right: 3px solid #4784ee;" >
+      <div class="row">
+        <div class="center-block">  
+          <div id="gauge_chart1" 
+          [chartData]="pie_ChartData1" 
+          [chartOptions]= "pie_ChartOptions1" 
+          chartType="Gauge" GoogleChart>
+          </div>
+        </div>
+      </div>
   </div>
-    <div class="col-sm-4" style="border-bottom:3px solid #4784ee;">
+  <div class="col-sm-4" style="border-bottom:3px solid #4784ee;">
       <div class="row text-center center-block" style="margin-bottom: 5%;margin-top: 5%">
         <div class="col-sm-12 col-lg-offset-3">
             <img class="navbar-brand" style="padding: 0%; max-width: 280px;max-height: 80px;" src="../../assets/alarms.jpg">
         </div>
       </div>
-        <div class="row text-center" style="margin-bottom: 5%;">
+      <div class="row text-center" style="margin-bottom: 5%;">
             <div class="col center-block">
                   <img class="navbar-brand page-scroll" style="height:0%;padding: 0%; max-width: 280px;max-height: 80px;" src="../../assets/beacon.jpg">
             </div>
@@ -38,34 +47,201 @@
         <div class="col">
               <img [src]="imgBeacon" style="cursor:pointer"></div>
       </div>
-        <div class="row text-center" style="margin-bottom: 5%;">
+      <div class="row text-center" style="margin-bottom: 5%;">
             <div class="col center-block">
                <img class="navbar-brand page-scroll" style="height:0%;padding: 0%; max-width: 280px;max-height: 80px;" src="../../assets/supply.jpg">
             </div>
             <div class="col center-block">
-              <div class="progress" style="margin-bottom: 0px">
-                 <div class="progress-bar bg-success" [style.width.%]="powerSupply" role="progressbar" style="height: 100%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"><b>{{powerSupply}}%</b>
-              </div>
-              </div>
+              <meter min="0" low="30" high="60" max="100" optimum="90" value={{powerSupply}} style="width:150px;height:25px"> </meter><div style="position: absolute;margin-top: -11%;margin-left: 7%;"><b>{{powerSupply}}%</b></div>
             </div>
         </div>
-    </div>
+  </div>
 </div>
 
   <div class="row">
-      <div class="col-sm-4 col-lg-offset-1"
-           id="gauge_chart2" 
-           [chartData]="pie_ChartData2" 
-           [chartOptions]= "pie_ChartOptions2" 
-           chartType="Gauge" GoogleChart>
-      </div>
-      <div class="col-sm-3" style="border-right: 3px solid #4784ee;" 
-           id="gauge_chart3" 
-           [chartData]="pie_ChartData3" 
-           [chartOptions]= "pie_ChartOptions3" 
-           chartType="Gauge" GoogleChart>
+      <div class="col-sm-4">
+       <div class="row">
+       <div class="center-block">
+          <div id="gauge_chart2" 
+               [chartData]="pie_ChartData2" 
+               [chartOptions]= "pie_ChartOptions2" 
+               chartType="Gauge" GoogleChart>
+          </div>
+          </div>
+       </div>
+       <div class="row align-items-start">
+          <div class="col-sm-6">
+              <div class='svg-container' style="align:center;width:100%">
+              <svg
+              xmlns="http://www.w3.org/2000/svg"
+               xmlns:xlink="http://www.w3.org/1999/xlink"  viewBox="0 0 1140 510" preserveAspectRatio="xMidYMid meet"  >
+               <defs id="svgEditorDefs"><linearGradient gradientUnits="objectBoundingBox" id="lgrd2-black-white" spreadMethod="pad" x1="0%" x2="100%" y1="0%" y2="100%">
+               <stop offset="0%" stop-color="black"/>
+               <stop offset="100%" stop-color="white"/>
+               </linearGradient>
+               <radialGradient cx="60%" cy="60%" fx="75%" fy="75%" gradientUnits="objectBoundingBox" id="rgrd6-a" r="45%">
+               <stop offset="0%" stop-color="#a595d8"/>
+               <stop offset="20%" stop-color="#a595d8"/>
+               <stop offset="40%" stop-color="#8979ba"/>
+               <stop offset="60%" stop-color="#7363a5"/>
+               <stop offset="80%" stop-color="#605091"/>
+               <stop offset="100%" stop-color="#3e3168"/>
+               </radialGradient>
+               </defs>
+               <rect id="svgEditorBackground" x="0" y="0" width="1140" height="510" style="fill: none; stroke: none;"/>
+               <rect x="238.9505571140536" y="104" style="fill:url(#lgrd2-black-white);stroke:black;stroke-width:1px;fill-opacity:0.7;" id="e1_rectangle" width="562" height="214" ry="0" rx="0" transform="matrix(1.35567 0 0 1 -80.3814 0)"/>
+               <rect x="303" y="139" style="fill:black;stroke:black;stroke-width:1px;fill-opacity:0.65;" id="e2_rectangle" width="76" height="150"/>
+               <rect x="384" y="139" style="fill:black;stroke:black;stroke-width:1px;fill-opacity:0.66;" id="e3_rectangle" width="76" height="150"/>
+               <rect x="465" y="139" style="fill:black;stroke:black;stroke-width:1px;fill-opacity:0.66;" id="e4_rectangle" width="76" height="150"/>
+               <rect x="546" y="139" style="fill:black;stroke:black;stroke-width:1px;fill-opacity:0.65;" id="e5_rectangle" width="76" height="150"/>
+               <rect x="627" y="139" style="fill:black;stroke:black;stroke-width:1px;fill-opacity:0.65;" id="e6_rectangle" width="76" height="150"/>
+               <rect x="708" y="139" style="fill:black;stroke:black;stroke-width:1px;fill-opacity:0.65;" id="e7_rectangle" width="76" height="150"/><rect x="789" y="139" style="fill:black;stroke:black;stroke-width:1px;fill-opacity:0.65;" id="e8_rectangle" width="76" height="150"/>
+               <rect x="870" y="139" style="fill:black;stroke:black;stroke-width:1px;fill-opacity:0.65;" id="e9_rectangle" width="76" height="150"/>
+               <text style="fill:white;font-family:Comic Sans;font-size:54px;font-style:normal;font-weight:bold;" x="816" y="215" id="e4_texte" >{{value}}</text>
+               <text style="fill:white;font-family:Comic Sans;font-size:54px;font-style:normal;font-weight:bold;" x="735" y="215" id="e1_texte" >2</text>
+               <text style="fill:white;font-family:Comic Sans;font-size:54px;font-style:normal;font-weight:bold;" x="653" y="215" id="e2_texte" >1</text>
+               <text style="fill:white;font-family:Comic Sans;font-size:54px;font-style:normal;font-weight:bold;" x="573" y="215" id="e3_texte" >1</text>
+               <text style="fill:white;font-family:Comic Sans;font-size:54px;font-style:normal;font-weight:bold;" x="492" y="215" id="e5_texte" >1</text>
+               <text style="fill:white;font-family:Comic Sans;font-size:54px;font-style:normal;font-weight:bold;" x="896" y="215" id="e6_texte" >1</text>
+               <text style="fill:white;font-family:Comic Sans;font-size:54px;font-style:normal;font-weight:bold;" x="411" y="215" id="e7_texte" >1</text>
+               <text style="fill:white;font-family:Comic Sans;font-size:54px;font-style:normal;font-weight:bold;" x="330" y="215" id="e8_texte" >1</text>
+               </svg>
+              </div>
+              <div >Gas Meter 1</div>
+          </div>
+    <div class="col-sm-6">
+              <div class='svg-container' style="align:center;width:100%">
+              <svg
+              xmlns="http://www.w3.org/2000/svg"
+               xmlns:xlink="http://www.w3.org/1999/xlink"  viewBox="0 0 1140 510" preserveAspectRatio="xMidYMid meet"  >
+               <defs id="svgEditorDefs"><linearGradient gradientUnits="objectBoundingBox" id="lgrd2-black-white" spreadMethod="pad" x1="0%" x2="100%" y1="0%" y2="100%">
+               <stop offset="0%" stop-color="black"/>
+               <stop offset="100%" stop-color="white"/>
+               </linearGradient>
+               <radialGradient cx="60%" cy="60%" fx="75%" fy="75%" gradientUnits="objectBoundingBox" id="rgrd6-a" r="45%">
+               <stop offset="0%" stop-color="#a595d8"/>
+               <stop offset="20%" stop-color="#a595d8"/>
+               <stop offset="40%" stop-color="#8979ba"/>
+               <stop offset="60%" stop-color="#7363a5"/>
+               <stop offset="80%" stop-color="#605091"/>
+               <stop offset="100%" stop-color="#3e3168"/>
+               </radialGradient>
+               </defs>
+               <rect id="svgEditorBackground" x="0" y="0" width="1140" height="510" style="fill: none; stroke: none;"/>
+               <rect x="238.9505571140536" y="104" style="fill:url(#lgrd2-black-white);stroke:black;stroke-width:1px;fill-opacity:0.7;" id="e1_rectangle" width="562" height="214" ry="0" rx="0" transform="matrix(1.35567 0 0 1 -80.3814 0)"/>
+               <rect x="303" y="139" style="fill:black;stroke:black;stroke-width:1px;fill-opacity:0.65;" id="e2_rectangle" width="76" height="150"/>
+               <rect x="384" y="139" style="fill:black;stroke:black;stroke-width:1px;fill-opacity:0.66;" id="e3_rectangle" width="76" height="150"/>
+               <rect x="465" y="139" style="fill:black;stroke:black;stroke-width:1px;fill-opacity:0.66;" id="e4_rectangle" width="76" height="150"/>
+               <rect x="546" y="139" style="fill:black;stroke:black;stroke-width:1px;fill-opacity:0.65;" id="e5_rectangle" width="76" height="150"/>
+               <rect x="627" y="139" style="fill:black;stroke:black;stroke-width:1px;fill-opacity:0.65;" id="e6_rectangle" width="76" height="150"/>
+               <rect x="708" y="139" style="fill:black;stroke:black;stroke-width:1px;fill-opacity:0.65;" id="e7_rectangle" width="76" height="150"/><rect x="789" y="139" style="fill:black;stroke:black;stroke-width:1px;fill-opacity:0.65;" id="e8_rectangle" width="76" height="150"/>
+               <rect x="870" y="139" style="fill:black;stroke:black;stroke-width:1px;fill-opacity:0.65;" id="e9_rectangle" width="76" height="150"/>
+               <text style="fill:white;font-family:Comic Sans;font-size:54px;font-style:normal;font-weight:bold;" x="816" y="215" id="e4_texte" >{{value}}</text>
+               <text style="fill:white;font-family:Comic Sans;font-size:54px;font-style:normal;font-weight:bold;" x="735" y="215" id="e1_texte" >2</text>
+               <text style="fill:white;font-family:Comic Sans;font-size:54px;font-style:normal;font-weight:bold;" x="653" y="215" id="e2_texte" >1</text>
+               <text style="fill:white;font-family:Comic Sans;font-size:54px;font-style:normal;font-weight:bold;" x="573" y="215" id="e3_texte" >1</text>
+               <text style="fill:white;font-family:Comic Sans;font-size:54px;font-style:normal;font-weight:bold;" x="492" y="215" id="e5_texte" >1</text>
+               <text style="fill:white;font-family:Comic Sans;font-size:54px;font-style:normal;font-weight:bold;" x="896" y="215" id="e6_texte" >1</text>
+               <text style="fill:white;font-family:Comic Sans;font-size:54px;font-style:normal;font-weight:bold;" x="411" y="215" id="e7_texte" >1</text>
+               <text style="fill:white;font-family:Comic Sans;font-size:54px;font-style:normal;font-weight:bold;" x="330" y="215" id="e8_texte" >1</text>
+               </svg>
+              </div>
+          </div>
+       </div>
       </div>
 
+    <div class="col-sm-4" style="border-right: 3px solid #4784ee;" >
+      <div class="row">
+        <div class="center-block">
+          <div id="gauge_chart3" 
+               [chartData]="pie_ChartData3" 
+               [chartOptions]= "pie_ChartOptions3" 
+               chartType="Gauge" GoogleChart>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+
+       <div class="col-sm-6">
+              <div class='svg-container' style="align:center;width:100%">
+              <svg
+              xmlns="http://www.w3.org/2000/svg"
+               xmlns:xlink="http://www.w3.org/1999/xlink"  viewBox="0 0 1140 510" preserveAspectRatio="xMidYMid meet"  >
+               <defs id="svgEditorDefs"><linearGradient gradientUnits="objectBoundingBox" id="lgrd2-black-white" spreadMethod="pad" x1="0%" x2="100%" y1="0%" y2="100%">
+               <stop offset="0%" stop-color="black"/>
+               <stop offset="100%" stop-color="white"/>
+               </linearGradient>
+               <radialGradient cx="60%" cy="60%" fx="75%" fy="75%" gradientUnits="objectBoundingBox" id="rgrd6-a" r="45%">
+               <stop offset="0%" stop-color="#a595d8"/>
+               <stop offset="20%" stop-color="#a595d8"/>
+               <stop offset="40%" stop-color="#8979ba"/>
+               <stop offset="60%" stop-color="#7363a5"/>
+               <stop offset="80%" stop-color="#605091"/>
+               <stop offset="100%" stop-color="#3e3168"/>
+               </radialGradient>
+               </defs>
+               <rect id="svgEditorBackground" x="0" y="0" width="1140" height="510" style="fill: none; stroke: none;"/>
+               <rect x="238.9505571140536" y="104" style="fill:url(#lgrd2-black-white);stroke:black;stroke-width:1px;fill-opacity:0.7;" id="e1_rectangle" width="562" height="214" ry="0" rx="0" transform="matrix(1.35567 0 0 1 -80.3814 0)"/>
+               <rect x="303" y="139" style="fill:black;stroke:black;stroke-width:1px;fill-opacity:0.65;" id="e2_rectangle" width="76" height="150"/>
+               <rect x="384" y="139" style="fill:black;stroke:black;stroke-width:1px;fill-opacity:0.66;" id="e3_rectangle" width="76" height="150"/>
+               <rect x="465" y="139" style="fill:black;stroke:black;stroke-width:1px;fill-opacity:0.66;" id="e4_rectangle" width="76" height="150"/>
+               <rect x="546" y="139" style="fill:black;stroke:black;stroke-width:1px;fill-opacity:0.65;" id="e5_rectangle" width="76" height="150"/>
+               <rect x="627" y="139" style="fill:black;stroke:black;stroke-width:1px;fill-opacity:0.65;" id="e6_rectangle" width="76" height="150"/>
+               <rect x="708" y="139" style="fill:black;stroke:black;stroke-width:1px;fill-opacity:0.65;" id="e7_rectangle" width="76" height="150"/><rect x="789" y="139" style="fill:black;stroke:black;stroke-width:1px;fill-opacity:0.65;" id="e8_rectangle" width="76" height="150"/>
+               <rect x="870" y="139" style="fill:black;stroke:black;stroke-width:1px;fill-opacity:0.65;" id="e9_rectangle" width="76" height="150"/>
+               <text style="fill:white;font-family:Comic Sans;font-size:54px;font-style:normal;font-weight:bold;" x="816" y="215" id="e4_texte" >{{value}}</text>
+               <text style="fill:white;font-family:Comic Sans;font-size:54px;font-style:normal;font-weight:bold;" x="735" y="215" id="e1_texte" >2</text>
+               <text style="fill:white;font-family:Comic Sans;font-size:54px;font-style:normal;font-weight:bold;" x="653" y="215" id="e2_texte" >1</text>
+               <text style="fill:white;font-family:Comic Sans;font-size:54px;font-style:normal;font-weight:bold;" x="573" y="215" id="e3_texte" >1</text>
+               <text style="fill:white;font-family:Comic Sans;font-size:54px;font-style:normal;font-weight:bold;" x="492" y="215" id="e5_texte" >1</text>
+               <text style="fill:white;font-family:Comic Sans;font-size:54px;font-style:normal;font-weight:bold;" x="896" y="215" id="e6_texte" >1</text>
+               <text style="fill:white;font-family:Comic Sans;font-size:54px;font-style:normal;font-weight:bold;" x="411" y="215" id="e7_texte" >1</text>
+               <text style="fill:white;font-family:Comic Sans;font-size:54px;font-style:normal;font-weight:bold;" x="330" y="215" id="e8_texte" >1</text>
+               </svg>
+              </div>   
+       </div>
+
+       <div class="col-sm-6 ">
+              <div class='svg-container' style="align:center;width:100%">
+              <svg
+              xmlns="http://www.w3.org/2000/svg"
+               xmlns:xlink="http://www.w3.org/1999/xlink"  viewBox="0 0 1140 510" preserveAspectRatio="xMidYMid meet"  >
+               <defs id="svgEditorDefs"><linearGradient gradientUnits="objectBoundingBox" id="lgrd2-black-white" spreadMethod="pad" x1="0%" x2="100%" y1="0%" y2="100%">
+               <stop offset="0%" stop-color="black"/>
+               <stop offset="100%" stop-color="white"/>
+               </linearGradient>
+               <radialGradient cx="60%" cy="60%" fx="75%" fy="75%" gradientUnits="objectBoundingBox" id="rgrd6-a" r="45%">
+               <stop offset="0%" stop-color="#a595d8"/>
+               <stop offset="20%" stop-color="#a595d8"/>
+               <stop offset="40%" stop-color="#8979ba"/>
+               <stop offset="60%" stop-color="#7363a5"/>
+               <stop offset="80%" stop-color="#605091"/>
+               <stop offset="100%" stop-color="#3e3168"/>
+               </radialGradient>
+               </defs>
+               <rect id="svgEditorBackground" x="0" y="0" width="1140" height="510" style="fill: none; stroke: none;"/>
+               <rect x="238.9505571140536" y="104" style="fill:url(#lgrd2-black-white);stroke:black;stroke-width:1px;fill-opacity:0.7;" id="e1_rectangle" width="562" height="214" ry="0" rx="0" transform="matrix(1.35567 0 0 1 -80.3814 0)"/>
+               <rect x="303" y="139" style="fill:black;stroke:black;stroke-width:1px;fill-opacity:0.65;" id="e2_rectangle" width="76" height="150"/>
+               <rect x="384" y="139" style="fill:black;stroke:black;stroke-width:1px;fill-opacity:0.66;" id="e3_rectangle" width="76" height="150"/>
+               <rect x="465" y="139" style="fill:black;stroke:black;stroke-width:1px;fill-opacity:0.66;" id="e4_rectangle" width="76" height="150"/>
+               <rect x="546" y="139" style="fill:black;stroke:black;stroke-width:1px;fill-opacity:0.65;" id="e5_rectangle" width="76" height="150"/>
+               <rect x="627" y="139" style="fill:black;stroke:black;stroke-width:1px;fill-opacity:0.65;" id="e6_rectangle" width="76" height="150"/>
+               <rect x="708" y="139" style="fill:black;stroke:black;stroke-width:1px;fill-opacity:0.65;" id="e7_rectangle" width="76" height="150"/><rect x="789" y="139" style="fill:black;stroke:black;stroke-width:1px;fill-opacity:0.65;" id="e8_rectangle" width="76" height="150"/>
+               <rect x="870" y="139" style="fill:black;stroke:black;stroke-width:1px;fill-opacity:0.65;" id="e9_rectangle" width="76" height="150"/>
+               <text style="fill:white;font-family:Comic Sans;font-size:54px;font-style:normal;font-weight:bold;" x="816" y="215" id="e4_texte" >{{value}}</text>
+               <text style="fill:white;font-family:Comic Sans;font-size:54px;font-style:normal;font-weight:bold;" x="735" y="215" id="e1_texte" >2</text>
+               <text style="fill:white;font-family:Comic Sans;font-size:54px;font-style:normal;font-weight:bold;" x="653" y="215" id="e2_texte" >1</text>
+               <text style="fill:white;font-family:Comic Sans;font-size:54px;font-style:normal;font-weight:bold;" x="573" y="215" id="e3_texte" >1</text>
+               <text style="fill:white;font-family:Comic Sans;font-size:54px;font-style:normal;font-weight:bold;" x="492" y="215" id="e5_texte" >1</text>
+               <text style="fill:white;font-family:Comic Sans;font-size:54px;font-style:normal;font-weight:bold;" x="896" y="215" id="e6_texte" >1</text>
+               <text style="fill:white;font-family:Comic Sans;font-size:54px;font-style:normal;font-weight:bold;" x="411" y="215" id="e7_texte" >1</text>
+               <text style="fill:white;font-family:Comic Sans;font-size:54px;font-style:normal;font-weight:bold;" x="330" y="215" id="e8_texte" >1</text>
+               </svg>
+              </div>     
+       </div>   
+      </div>
+    </div>
       <div class="col-sm-4" style="border-bottom:3px solid #4784ee;">
         <div class="row text-center center-block" style="margin-bottom: 5%">
           <div class="col-sm-12 col-lg-offset-3">
@@ -74,7 +250,7 @@
         </div>
         <div class="row">
         <div class="col"> 
-          <img class="navbar-brand" style="width: 100%;height: 100%;" src="../../assets/solenoid1.jpg">
+          <img class="navbar-brand" style="width: 100%;height: 100%;"src="../../assets/solenoid1.jpg">
         </div>
          <div class="col">
               <div class="onoffswitch">
@@ -150,6 +326,8 @@
   </div> 
 </div>
 </div>
+
 </div>
+
 
 

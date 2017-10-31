@@ -2,7 +2,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-import { GaugeModule } from 'ng2-gauge';
 import { AppComponent } from './app.component';
 import { routing } from './app.routing';
 import { AgmCoreModule } from '@agm/core';
@@ -17,7 +16,6 @@ import { HeaderComponent } from './header/header.component';
 import { DashboardComponent } from './dashboard/index';
 import { FooterComponent } from './footer/footer.component';
 import { GaugecomponentComponent } from './gaugecomponent/gaugecomponent.component';
-import { Ng2GoogleChartsModule } from 'ng2-google-charts';
 import { GoogleGaugesComponent } from './google-gauges/google-gauges.component';
 @NgModule({
     imports: [
@@ -27,9 +25,7 @@ import { GoogleGaugesComponent } from './google-gauges/google-gauges.component';
         AgmCoreModule.forRoot({
         apiKey: 'AIzaSyCJ8L3mMI-DQ_3xoh6DR78Os7qtUsVuT1k'
         }),
-        GaugeModule,
-        routing,
-        Ng2GoogleChartsModule
+        routing
     ],
     declarations: [
         AppComponent,

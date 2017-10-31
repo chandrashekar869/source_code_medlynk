@@ -24,6 +24,7 @@ export class GaugecomponentComponent implements OnInit {
   public _element:any;
   imgAlarm:string;
   imgBeacon:string;
+  value:string='0';
 
 
   constructor(private route:ActivatedRoute,public nav: NavbarService,public http: Http) { 
