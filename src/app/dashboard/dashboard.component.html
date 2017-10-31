@@ -19,11 +19,10 @@
    </select>
 </div>
 
-<agm-map  [latitude]="lat" [longitude]="lng" [minZoom]="14" >
+<agm-map  [latitude]="lat" [longitude]="lng" [minZoom]="0" [maxZoom]="15" >
   <agm-marker *ngFor="let m of selectedData; let i = index"
           [latitude]="m.lat"
           [longitude]="m.lng"
-
           (markerClick)="clickedMarker(m, i)"
           [iconUrl]="m.iconUrl"
           (mouseOver)="mouseOver(infoWindow,m)"

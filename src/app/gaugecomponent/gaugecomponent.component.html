@@ -4,37 +4,152 @@
 <google-chart [data]="pieChartData"></google-chart>
 
 <div class="row">
-  <div class="col-sm-3 col-lg-offset-1"
+  <div class="col-sm-4 col-lg-offset-1"
        id="gauge_chart" 
        [chartData]="pie_ChartData" 
        [chartOptions]= "pie_ChartOptions" 
        chartType="Gauge" GoogleChart>
-
   </div>
+
   <div class="col-sm-3" style="border-right: 3px solid #4784ee;" 
        id="gauge_chart1" 
        [chartData]="pie_ChartData1" 
        [chartOptions]= "pie_ChartOptions1" 
        chartType="Gauge" GoogleChart>
   </div>
+    <div class="col-sm-4" style="border-bottom:3px solid #4784ee;">
+      <div class="row text-center center-block" style="margin-bottom: 5%;margin-top: 5%">
+        <div class="col-sm-12 col-lg-offset-3">
+            <img class="navbar-brand" style="padding: 0%; max-width: 280px;max-height: 80px;" src="../../assets/alarms.jpg">
+        </div>
+      </div>
+        <div class="row text-center" style="margin-bottom: 5%;">
+            <div class="col center-block">
+                  <img class="navbar-brand page-scroll" style="height:0%;padding: 0%; max-width: 280px;max-height: 80px;" src="../../assets/beacon.jpg">
+            </div>
+            <div class="col">
+                <img [src]="imgAlarm" style="cursor:pointer">
+            </div>
+        </div>
+      <div class="row text-center" style="margin-bottom: 5%;">
+          <div class="col center-block">
+                <img class="navbar-brand page-scroll" style="height:0%;padding: 0%; max-width: 280px;max-height: 80px;" src="../../assets/lowgas.jpg">
+          </div>
+        <div class="col">
+              <img [src]="imgBeacon" style="cursor:pointer"></div>
+      </div>
+        <div class="row text-center" style="margin-bottom: 5%;">
+            <div class="col center-block">
+               <img class="navbar-brand page-scroll" style="height:0%;padding: 0%; max-width: 280px;max-height: 80px;" src="../../assets/supply.jpg">
+            </div>
+            <div class="col center-block">
+              <div class="progress" style="margin-bottom: 0px">
+                 <div class="progress-bar bg-success" [style.width.%]="powerSupply" role="progressbar" style="height: 100%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"><b>{{powerSupply}}%</b>
+              </div>
+              </div>
+            </div>
+        </div>
+    </div>
 </div>
 
-<div class="row">
-  <div class="col-sm-3 col-lg-offset-1"
-       id="gauge_chart2" 
-       [chartData]="pie_ChartData2" 
-       [chartOptions]= "pie_ChartOptions2" 
-       chartType="Gauge" GoogleChart>
+  <div class="row">
+      <div class="col-sm-4 col-lg-offset-1"
+           id="gauge_chart2" 
+           [chartData]="pie_ChartData2" 
+           [chartOptions]= "pie_ChartOptions2" 
+           chartType="Gauge" GoogleChart>
+      </div>
+      <div class="col-sm-3" style="border-right: 3px solid #4784ee;" 
+           id="gauge_chart3" 
+           [chartData]="pie_ChartData3" 
+           [chartOptions]= "pie_ChartOptions3" 
+           chartType="Gauge" GoogleChart>
+      </div>
 
-  </div>
-  <div class="col-sm-3" style="border-right: 3px solid #4784ee;" 
-       id="gauge_chart3" 
-       [chartData]="pie_ChartData3" 
-       [chartOptions]= "pie_ChartOptions3" 
-       chartType="Gauge" GoogleChart>
-
-  </div>
-</div> 
+      <div class="col-sm-4" style="border-bottom:3px solid #4784ee;">
+        <div class="row text-center center-block" style="margin-bottom: 5%">
+          <div class="col-sm-12 col-lg-offset-3">
+           <img class="navbar-brand" style="padding: 0%; max-width: 280px;max-height: 80px;" src="../../assets/controls.jpg">
+          </div>
+        </div>
+        <div class="row">
+        <div class="col"> 
+          <img class="navbar-brand" style="width: 100%;height: 100%;" src="../../assets/solenoid1.jpg">
+        </div>
+         <div class="col">
+              <div class="onoffswitch">
+                <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox"
+              [checked]="element" (change)="handleChange(element, 0)" id="myonoffswitch1" checked>
+                <label class="onoffswitch-label" for="myonoffswitch1">
+                   <span class="onoffswitch-inner"></span>
+                   <span class="onoffswitch-switch"></span>
+                </label>
+              </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col"> 
+          <img class="navbar-brand" style="width: 100%;height: 100%;" src="../../assets/solenoid2.jpg">
+        </div>
+         <div class="col">
+              <div class="onoffswitch">
+                   <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox"
+                    [checked]="element" (change)="handleChange(element, 1)" id="myonoffswitch2" >
+                   <label class="onoffswitch-label" for="myonoffswitch2">
+                       <span class="onoffswitch-inner"></span>
+                       <span class="onoffswitch-switch"></span>
+                   </label>
+              </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col"> 
+          <img class="navbar-brand" style="width: 100%;height: 100%;"src="../../assets/solenoid3.jpg">
+        </div>
+         <div class="col">
+              <div class="onoffswitch" >
+                   <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" 
+                    [checked]="element" (change)="handleChange(element, 2)"id="myonoffswitch3" checked>
+                   <label class="onoffswitch-label" for="myonoffswitch3">
+                       <span class="onoffswitch-inner"></span>
+                       <span class="onoffswitch-switch"></span>
+                   </label>
+              </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col"> 
+          <img class="navbar-brand" style="width: 100%;height: 100%;" src="../../assets/solenoid4.jpg">
+        </div>
+         <div class="col">
+              <div class="onoffswitch">
+                   <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox"
+                    [checked]="element" (change)="handleChange(element, 3)" id="myonoffswitch4" checked>
+                   <label class="onoffswitch-label" for="myonoffswitch4">
+                       <span class="onoffswitch-inner"></span>
+                       <span class="onoffswitch-switch"></span>
+                   </label>
+              </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col"> 
+          <img class="navbar-brand" style="width: 100%;height: 100%;"src="../../assets/vaporizer.jpg">
+        </div>
+         <div class="col">
+              <div class="onoffswitch">
+                   <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" 
+                    [checked]="true" (change)="handleChange(element, 4)"id="myonoffswitch5" checked>
+                   <label class="onoffswitch-label" for="myonoffswitch5">
+                       <span class="onoffswitch-inner"></span>
+                       <span class="onoffswitch-switch"></span>
+                   </label>
+              </div>
+        </div>
+      </div>
+  </div> 
 </div>
 </div>
+</div>
+
 

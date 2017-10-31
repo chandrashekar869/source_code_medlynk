@@ -12,14 +12,15 @@ public _element:any;
   @Input('chartData') public chartData: Object;
   constructor(public element: ElementRef) {
     this._element = this.element.nativeElement;
+    console.log("containerId is :"+ this._element);
   }
   ngOnInit() {
     setInterval(() =>{
       google.charts.load('current', {'packages':['corechart']});
         setInterval(() =>{
           this.drawGraph(this.chartOptions,this.chartType,this.chartData,this._element)
-        },10);
-      },10
+        },0);
+      },0
     );
   }
   drawGraph (chartOptions,chartType,chartData,ele) {
@@ -35,5 +36,7 @@ public _element:any;
       wrapper.draw();
     }
   }
+
+
 
 }
