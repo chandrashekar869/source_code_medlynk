@@ -63,3 +63,12 @@ svg > g > text[text-anchor=middle]{
 .onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-switch {
     right: 0px; 
 }
+.metercss{
+    text-align: center;
+    background-color: #99CC00;
+}
+.headercss{
+background-color: #fecc01;
+    width: 86%;
+    margin-bottom: 5%;
+}

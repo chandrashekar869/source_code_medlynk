@@ -24,7 +24,13 @@ export class GaugecomponentComponent implements OnInit {
   public _element:any;
   imgAlarm:string;
   imgBeacon:string;
-  value:string='0';
+  imgConnect:string;
+  meter1:any;
+  meter2:any;
+  meter3:any;
+  meter4:any;
+  solenoidArray:any;
+  solenoid:any;
 
 
   constructor(private route:ActivatedRoute,public nav: NavbarService,public http: Http) { 
@@ -43,6 +49,7 @@ export class GaugecomponentComponent implements OnInit {
       this.getGaugeValue(this.deviceId); 
       this.imgAlarm='../../assets/offRed.jpg';
       this.imgBeacon='../../assets/offgaslow.jpg';
+      this.imgConnect='../../assets/connected.jpg';
 
     }
 
@@ -120,8 +127,6 @@ export class GaugecomponentComponent implements OnInit {
             this.GasLeak = Number(gasLeakA);
             //this.tankPressure= tankPressureA ;
             console.log("Tank pressure : "+this.tankPressure);
-
-
             this.isDataAvailable = true;
 
             this.pie_ChartData = [
@@ -181,7 +186,28 @@ export class GaugecomponentComponent implements OnInit {
             if(Number(data[i].beacon)==1)
                 this.imgBeacon='../../assets/lowgas.gif'; 
             //set powr supply %
-            this.powerSupply=Number(data[i].power_level);           
+            this.powerSupply=Number(data[i].power_level);  
+            this.meter1 = data[i].meter1.split(""); 
+            this.meter2 = data[i].meter2.split(""); 
+            this.meter3 = data[i].meter3.split(""); 
+            this.meter4 = data[i].meter4.split(""); 
+            this.solenoidArray = data[i].solenoid.split("");
+            this.solenoid = this.solenoidArray.map(Number);
+            console.log(this.solenoid[0]);
+
+            var today = new Date();
+            //converting the log date in date formate
+            var date2 = new Date(data[i].log_time);
+            console.log(data[i].log_time);
+            //get the difference between the date in days
+            var diff = today.valueOf() - date2.valueOf();
+            var diffDays = Math.ceil(diff / (1000 * 3600 * 24)); 
+
+            if(diffDays>2){
+            this.imgConnect='../../assets/disconnected.jpg';  
+            }
+            console.log(diffDays);
+
          } //for loop
         }, error => {
           console.log("Oooops!"+error);

@@ -5,6 +5,8 @@
 <div class="row">
   <div class="col-sm-4 ">
       <div class="row">
+       <div class="headercss"><h3><b> User Name:</b> {{value}} </h3></div><br>
+       <div class="headercss"><h3><b> Customer Name:</b> {{value}} </h3></div>
         <div class="center-block">
           <div id="gauge_chart" 
            [chartData]="pie_ChartData" 
@@ -17,6 +19,8 @@
 
   <div class="col-sm-4" style="border-right: 3px solid #4784ee;" >
       <div class="row">
+       <div class="headercss"><h3><b> Device Id</b> {{deviceId}} </h3></div><br>
+       <div class="headercss"><h3><b> Date Updated:</b> {{value}} </h3></div>
         <div class="center-block">  
           <div id="gauge_chart1" 
           [chartData]="pie_ChartData1" 
@@ -32,7 +36,7 @@
             <img class="navbar-brand" style="padding: 0%; max-width: 280px;max-height: 80px;" src="../../assets/alarms.jpg">
         </div>
       </div>
-      <div class="row text-center" style="margin-bottom: 5%;">
+      <div class="row text-center" style="margin-bottom: 3%;">
             <div class="col center-block">
                   <img class="navbar-brand page-scroll" style="height:0%;padding: 0%; max-width: 280px;max-height: 80px;" src="../../assets/beacon.jpg">
             </div>
@@ -40,19 +44,27 @@
                 <img [src]="imgAlarm" style="cursor:pointer">
             </div>
         </div>
-      <div class="row text-center" style="margin-bottom: 5%;">
+      <div class="row text-center" style="margin-bottom: 3%;">
           <div class="col center-block">
                 <img class="navbar-brand page-scroll" style="height:0%;padding: 0%; max-width: 280px;max-height: 80px;" src="../../assets/lowgas.jpg">
           </div>
         <div class="col">
               <img [src]="imgBeacon" style="cursor:pointer"></div>
       </div>
-      <div class="row text-center" style="margin-bottom: 5%;">
+      <div class="row text-center" style="margin-bottom: 3%;">
             <div class="col center-block">
                <img class="navbar-brand page-scroll" style="height:0%;padding: 0%; max-width: 280px;max-height: 80px;" src="../../assets/supply.jpg">
             </div>
             <div class="col center-block">
               <meter min="0" low="30" high="60" max="100" optimum="90" value={{powerSupply}} style="width:150px;height:25px"> </meter><div style="position: absolute;margin-top: -11%;margin-left: 7%;"><b>{{powerSupply}}%</b></div>
+            </div>
+        </div>
+        <div class="row text-center" style="margin-bottom: 3%;">
+            <div class="col center-block">
+               <img class="navbar-brand page-scroll" style="height:0%;padding: 0%; max-width: 280px;max-height: 80px;" src="../../assets/Connection status.jpg">
+            </div>
+            <div class="col ">
+               <img [src]="imgConnect" style="cursor:pointer">
             </div>
         </div>
   </div>
@@ -97,22 +109,21 @@
                <rect x="627" y="139" style="fill:black;stroke:black;stroke-width:1px;fill-opacity:0.65;" id="e6_rectangle" width="76" height="150"/>
                <rect x="708" y="139" style="fill:black;stroke:black;stroke-width:1px;fill-opacity:0.65;" id="e7_rectangle" width="76" height="150"/><rect x="789" y="139" style="fill:black;stroke:black;stroke-width:1px;fill-opacity:0.65;" id="e8_rectangle" width="76" height="150"/>
                <rect x="870" y="139" style="fill:black;stroke:black;stroke-width:1px;fill-opacity:0.65;" id="e9_rectangle" width="76" height="150"/>
-               <text style="fill:white;font-family:Comic Sans;font-size:54px;font-style:normal;font-weight:bold;" x="816" y="215" id="e4_texte" >{{value}}</text>
-               <text style="fill:white;font-family:Comic Sans;font-size:54px;font-style:normal;font-weight:bold;" x="735" y="215" id="e1_texte" >2</text>
-               <text style="fill:white;font-family:Comic Sans;font-size:54px;font-style:normal;font-weight:bold;" x="653" y="215" id="e2_texte" >1</text>
-               <text style="fill:white;font-family:Comic Sans;font-size:54px;font-style:normal;font-weight:bold;" x="573" y="215" id="e3_texte" >1</text>
-               <text style="fill:white;font-family:Comic Sans;font-size:54px;font-style:normal;font-weight:bold;" x="492" y="215" id="e5_texte" >1</text>
-               <text style="fill:white;font-family:Comic Sans;font-size:54px;font-style:normal;font-weight:bold;" x="896" y="215" id="e6_texte" >1</text>
-               <text style="fill:white;font-family:Comic Sans;font-size:54px;font-style:normal;font-weight:bold;" x="411" y="215" id="e7_texte" >1</text>
-               <text style="fill:white;font-family:Comic Sans;font-size:54px;font-style:normal;font-weight:bold;" x="330" y="215" id="e8_texte" >1</text>
+                <text style="fill:white;font-family:Comic Sans;font-size:54px;font-style:normal;font-weight:bold;" x="896" y="215" id="e6_texte" >{{meter1[7]}}</text>
+               <text style="fill:white;font-family:Comic Sans;font-size:54px;font-style:normal;font-weight:bold;" x="816" y="215" id="e4_texte" >{{meter1[6]}}</text>
+               <text style="fill:white;font-family:Comic Sans;font-size:54px;font-style:normal;font-weight:bold;" x="735" y="215" id="e1_texte" >{{meter1[5]}}</text>
+               <text style="fill:white;font-family:Comic Sans;font-size:54px;font-style:normal;font-weight:bold;" x="653" y="215" id="e2_texte" >{{meter1[4]}}</text>
+               <text style="fill:white;font-family:Comic Sans;font-size:54px;font-style:normal;font-weight:bold;" x="573" y="215" id="e3_texte" >{{meter1[3]}}</text>
+               <text style="fill:white;font-family:Comic Sans;font-size:54px;font-style:normal;font-weight:bold;" x="492" y="215" id="e5_texte" >{{meter1[2]}}</text>
+               <text style="fill:white;font-family:Comic Sans;font-size:54px;font-style:normal;font-weight:bold;" x="411" y="215" id="e7_texte" >{{meter1[1]}}</text>
+               <text style="fill:white;font-family:Comic Sans;font-size:54px;font-style:normal;font-weight:bold;" x="330" y="215" id="e8_texte" >{{meter1[0]}}</text>
                </svg>
               </div>
-              <div >Gas Meter 1</div>
+              <div  class="metercss"><h2><b>Gas Meter 1</b></h2></div>
           </div>
     <div class="col-sm-6">
               <div class='svg-container' style="align:center;width:100%">
-              <svg
-              xmlns="http://www.w3.org/2000/svg"
+              <svg xmlns="http://www.w3.org/2000/svg"
                xmlns:xlink="http://www.w3.org/1999/xlink"  viewBox="0 0 1140 510" preserveAspectRatio="xMidYMid meet"  >
                <defs id="svgEditorDefs"><linearGradient gradientUnits="objectBoundingBox" id="lgrd2-black-white" spreadMethod="pad" x1="0%" x2="100%" y1="0%" y2="100%">
                <stop offset="0%" stop-color="black"/>
@@ -136,16 +147,17 @@
                <rect x="627" y="139" style="fill:black;stroke:black;stroke-width:1px;fill-opacity:0.65;" id="e6_rectangle" width="76" height="150"/>
                <rect x="708" y="139" style="fill:black;stroke:black;stroke-width:1px;fill-opacity:0.65;" id="e7_rectangle" width="76" height="150"/><rect x="789" y="139" style="fill:black;stroke:black;stroke-width:1px;fill-opacity:0.65;" id="e8_rectangle" width="76" height="150"/>
                <rect x="870" y="139" style="fill:black;stroke:black;stroke-width:1px;fill-opacity:0.65;" id="e9_rectangle" width="76" height="150"/>
-               <text style="fill:white;font-family:Comic Sans;font-size:54px;font-style:normal;font-weight:bold;" x="816" y="215" id="e4_texte" >{{value}}</text>
-               <text style="fill:white;font-family:Comic Sans;font-size:54px;font-style:normal;font-weight:bold;" x="735" y="215" id="e1_texte" >2</text>
-               <text style="fill:white;font-family:Comic Sans;font-size:54px;font-style:normal;font-weight:bold;" x="653" y="215" id="e2_texte" >1</text>
-               <text style="fill:white;font-family:Comic Sans;font-size:54px;font-style:normal;font-weight:bold;" x="573" y="215" id="e3_texte" >1</text>
-               <text style="fill:white;font-family:Comic Sans;font-size:54px;font-style:normal;font-weight:bold;" x="492" y="215" id="e5_texte" >1</text>
-               <text style="fill:white;font-family:Comic Sans;font-size:54px;font-style:normal;font-weight:bold;" x="896" y="215" id="e6_texte" >1</text>
-               <text style="fill:white;font-family:Comic Sans;font-size:54px;font-style:normal;font-weight:bold;" x="411" y="215" id="e7_texte" >1</text>
-               <text style="fill:white;font-family:Comic Sans;font-size:54px;font-style:normal;font-weight:bold;" x="330" y="215" id="e8_texte" >1</text>
+               <text style="fill:white;font-family:Comic Sans;font-size:54px;font-style:normal;font-weight:bold;" x="896" y="215" id="e6_texte" >{{meter2[7]}}</text>
+               <text style="fill:white;font-family:Comic Sans;font-size:54px;font-style:normal;font-weight:bold;" x="816" y="215" id="e4_texte" >{{meter3[6]}}</text>
+               <text style="fill:white;font-family:Comic Sans;font-size:54px;font-style:normal;font-weight:bold;" x="735" y="215" id="e1_texte" >{{meter2[5]}}</text>
+               <text style="fill:white;font-family:Comic Sans;font-size:54px;font-style:normal;font-weight:bold;" x="653" y="215" id="e2_texte" >{{meter2[4]}}</text>
+               <text style="fill:white;font-family:Comic Sans;font-size:54px;font-style:normal;font-weight:bold;" x="573" y="215" id="e3_texte" >{{meter2[3]}}</text>
+               <text style="fill:white;font-family:Comic Sans;font-size:54px;font-style:normal;font-weight:bold;" x="492" y="215" id="e5_texte" >{{meter2[2]}}</text>
+               <text style="fill:white;font-family:Comic Sans;font-size:54px;font-style:normal;font-weight:bold;" x="411" y="215" id="e7_texte" >{{meter2[1]}}</text>
+               <text style="fill:white;font-family:Comic Sans;font-size:54px;font-style:normal;font-weight:bold;" x="330" y="215" id="e8_texte" >{{meter2[0]}}</text>
                </svg>
               </div>
+                <div  class="metercss"><h2><b>Gas Meter 2</b></h2></div>
           </div>
        </div>
       </div>
@@ -190,16 +202,17 @@
                <rect x="627" y="139" style="fill:black;stroke:black;stroke-width:1px;fill-opacity:0.65;" id="e6_rectangle" width="76" height="150"/>
                <rect x="708" y="139" style="fill:black;stroke:black;stroke-width:1px;fill-opacity:0.65;" id="e7_rectangle" width="76" height="150"/><rect x="789" y="139" style="fill:black;stroke:black;stroke-width:1px;fill-opacity:0.65;" id="e8_rectangle" width="76" height="150"/>
                <rect x="870" y="139" style="fill:black;stroke:black;stroke-width:1px;fill-opacity:0.65;" id="e9_rectangle" width="76" height="150"/>
-               <text style="fill:white;font-family:Comic Sans;font-size:54px;font-style:normal;font-weight:bold;" x="816" y="215" id="e4_texte" >{{value}}</text>
-               <text style="fill:white;font-family:Comic Sans;font-size:54px;font-style:normal;font-weight:bold;" x="735" y="215" id="e1_texte" >2</text>
-               <text style="fill:white;font-family:Comic Sans;font-size:54px;font-style:normal;font-weight:bold;" x="653" y="215" id="e2_texte" >1</text>
-               <text style="fill:white;font-family:Comic Sans;font-size:54px;font-style:normal;font-weight:bold;" x="573" y="215" id="e3_texte" >1</text>
-               <text style="fill:white;font-family:Comic Sans;font-size:54px;font-style:normal;font-weight:bold;" x="492" y="215" id="e5_texte" >1</text>
-               <text style="fill:white;font-family:Comic Sans;font-size:54px;font-style:normal;font-weight:bold;" x="896" y="215" id="e6_texte" >1</text>
-               <text style="fill:white;font-family:Comic Sans;font-size:54px;font-style:normal;font-weight:bold;" x="411" y="215" id="e7_texte" >1</text>
-               <text style="fill:white;font-family:Comic Sans;font-size:54px;font-style:normal;font-weight:bold;" x="330" y="215" id="e8_texte" >1</text>
+              <text style="fill:white;font-family:Comic Sans;font-size:54px;font-style:normal;font-weight:bold;" x="896" y="215" id="e6_texte" >{{meter3[7]}}</text>
+               <text style="fill:white;font-family:Comic Sans;font-size:54px;font-style:normal;font-weight:bold;" x="816" y="215" id="e4_texte" >{{meter3[6]}}</text>
+               <text style="fill:white;font-family:Comic Sans;font-size:54px;font-style:normal;font-weight:bold;" x="735" y="215" id="e1_texte" >{{meter3[5]}}</text>
+               <text style="fill:white;font-family:Comic Sans;font-size:54px;font-style:normal;font-weight:bold;" x="653" y="215" id="e2_texte" >{{meter3[4]}}</text>
+               <text style="fill:white;font-family:Comic Sans;font-size:54px;font-style:normal;font-weight:bold;" x="573" y="215" id="e3_texte" >{{meter3[3]}}</text>
+               <text style="fill:white;font-family:Comic Sans;font-size:54px;font-style:normal;font-weight:bold;" x="492" y="215" id="e5_texte" >{{meter3[2]}}</text>
+               <text style="fill:white;font-family:Comic Sans;font-size:54px;font-style:normal;font-weight:bold;" x="411" y="215" id="e7_texte" >{{meter3[1]}}</text>
+               <text style="fill:white;font-family:Comic Sans;font-size:54px;font-style:normal;font-weight:bold;" x="330" y="215" id="e8_texte" >{{meter3[0]}}</text>
                </svg>
               </div>   
+                <div  class="metercss"><h2><b>Gas Meter 3</b></h2></div>
        </div>
 
        <div class="col-sm-6 ">
@@ -229,16 +242,17 @@
                <rect x="627" y="139" style="fill:black;stroke:black;stroke-width:1px;fill-opacity:0.65;" id="e6_rectangle" width="76" height="150"/>
                <rect x="708" y="139" style="fill:black;stroke:black;stroke-width:1px;fill-opacity:0.65;" id="e7_rectangle" width="76" height="150"/><rect x="789" y="139" style="fill:black;stroke:black;stroke-width:1px;fill-opacity:0.65;" id="e8_rectangle" width="76" height="150"/>
                <rect x="870" y="139" style="fill:black;stroke:black;stroke-width:1px;fill-opacity:0.65;" id="e9_rectangle" width="76" height="150"/>
-               <text style="fill:white;font-family:Comic Sans;font-size:54px;font-style:normal;font-weight:bold;" x="816" y="215" id="e4_texte" >{{value}}</text>
-               <text style="fill:white;font-family:Comic Sans;font-size:54px;font-style:normal;font-weight:bold;" x="735" y="215" id="e1_texte" >2</text>
-               <text style="fill:white;font-family:Comic Sans;font-size:54px;font-style:normal;font-weight:bold;" x="653" y="215" id="e2_texte" >1</text>
-               <text style="fill:white;font-family:Comic Sans;font-size:54px;font-style:normal;font-weight:bold;" x="573" y="215" id="e3_texte" >1</text>
-               <text style="fill:white;font-family:Comic Sans;font-size:54px;font-style:normal;font-weight:bold;" x="492" y="215" id="e5_texte" >1</text>
-               <text style="fill:white;font-family:Comic Sans;font-size:54px;font-style:normal;font-weight:bold;" x="896" y="215" id="e6_texte" >1</text>
-               <text style="fill:white;font-family:Comic Sans;font-size:54px;font-style:normal;font-weight:bold;" x="411" y="215" id="e7_texte" >1</text>
-               <text style="fill:white;font-family:Comic Sans;font-size:54px;font-style:normal;font-weight:bold;" x="330" y="215" id="e8_texte" >1</text>
+              <text style="fill:white;font-family:Comic Sans;font-size:54px;font-style:normal;font-weight:bold;" x="896" y="215" id="e6_texte" >{{meter4[7]}}</text>
+               <text style="fill:white;font-family:Comic Sans;font-size:54px;font-style:normal;font-weight:bold;" x="816" y="215" id="e4_texte" >{{meter4[6]}}</text>
+               <text style="fill:white;font-family:Comic Sans;font-size:54px;font-style:normal;font-weight:bold;" x="735" y="215" id="e1_texte" >{{meter4[5]}}</text>
+               <text style="fill:white;font-family:Comic Sans;font-size:54px;font-style:normal;font-weight:bold;" x="653" y="215" id="e2_texte" >{{meter4[4]}}</text>
+               <text style="fill:white;font-family:Comic Sans;font-size:54px;font-style:normal;font-weight:bold;" x="573" y="215" id="e3_texte" >{{meter4[3]}}</text>
+               <text style="fill:white;font-family:Comic Sans;font-size:54px;font-style:normal;font-weight:bold;" x="492" y="215" id="e5_texte" >{{meter4[2]}}</text>
+               <text style="fill:white;font-family:Comic Sans;font-size:54px;font-style:normal;font-weight:bold;" x="411" y="215" id="e7_texte" >{{meter4[1]}}</text>
+               <text style="fill:white;font-family:Comic Sans;font-size:54px;font-style:normal;font-weight:bold;" x="330" y="215" id="e8_texte" >{{meter4[0]}}</text>
                </svg>
-              </div>     
+              </div>   
+                <div  class="metercss"><h2><b>Gas Meter 4</b></h2></div>  
        </div>   
       </div>
     </div>
@@ -254,8 +268,8 @@
         </div>
          <div class="col">
               <div class="onoffswitch">
-                <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox"
-              [checked]="element" (change)="handleChange(element, 0)" id="myonoffswitch1" checked>
+                <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox " disabled="0"
+              [checked]="solenoid[0]" (change)="handleChange(element, 0)" id="myonoffswitch1">
                 <label class="onoffswitch-label" for="myonoffswitch1">
                    <span class="onoffswitch-inner"></span>
                    <span class="onoffswitch-switch"></span>
@@ -270,7 +284,7 @@
          <div class="col">
               <div class="onoffswitch">
                    <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox"
-                    [checked]="element" (change)="handleChange(element, 1)" id="myonoffswitch2" >
+                    [checked]="solenoid[1]" (change)="handleChange(element, 1)" id="myonoffswitch2" >
                    <label class="onoffswitch-label" for="myonoffswitch2">
                        <span class="onoffswitch-inner"></span>
                        <span class="onoffswitch-switch"></span>
@@ -285,7 +299,7 @@
          <div class="col">
               <div class="onoffswitch" >
                    <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" 
-                    [checked]="element" (change)="handleChange(element, 2)"id="myonoffswitch3" checked>
+                    [checked]="solenoid[2]" (change)="handleChange(element, 2)"id="myonoffswitch3" >
                    <label class="onoffswitch-label" for="myonoffswitch3">
                        <span class="onoffswitch-inner"></span>
                        <span class="onoffswitch-switch"></span>
@@ -300,7 +314,7 @@
          <div class="col">
               <div class="onoffswitch">
                    <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox"
-                    [checked]="element" (change)="handleChange(element, 3)" id="myonoffswitch4" checked>
+                    [checked]="solenoid[3]" (change)="handleChange(element, 3)" id="myonoffswitch4" >
                    <label class="onoffswitch-label" for="myonoffswitch4">
                        <span class="onoffswitch-inner"></span>
                        <span class="onoffswitch-switch"></span>
@@ -315,7 +329,7 @@
          <div class="col">
               <div class="onoffswitch">
                    <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" 
-                    [checked]="true" (change)="handleChange(element, 4)"id="myonoffswitch5" checked>
+                    [checked]="solenoid[4]" (change)="handleChange(element, 4)"id="myonoffswitch5" >
                    <label class="onoffswitch-label" for="myonoffswitch5">
                        <span class="onoffswitch-inner"></span>
                        <span class="onoffswitch-switch"></span>
