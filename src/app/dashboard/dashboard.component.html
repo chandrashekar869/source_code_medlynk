@@ -18,7 +18,6 @@
         </option>
    </select>
 </div>
-
 <agm-map  [latitude]="lat" [longitude]="lng"  [zoom]="15"   >
   <agm-marker *ngFor="let m of selectedData; let i = index"
           [latitude]="m.lat"
