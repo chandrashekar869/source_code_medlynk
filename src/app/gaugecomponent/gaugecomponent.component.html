@@ -5,8 +5,9 @@
 <div class="row">
   <div class="col-sm-4 ">
       <div class="row">
-       <div class="headercss"><h3><b> User Name:</b> {{value}} </h3></div><br>
-       <div class="headercss"><h3><b> Customer Name:</b> {{value}} </h3></div>
+       <div class="headercss"><h4 style="margin-left: 2%"><b> User Name:</b> Sejal kumari Das </h4></div><br>
+       <div class="headercss"><h4 style="margin-left: 2%"><b> Customer Name:</b> {{cus_name}}</h4></div>
+
         <div class="center-block">
           <div id="gauge_chart" 
            [chartData]="pie_ChartData" 
@@ -19,8 +20,8 @@
 
   <div class="col-sm-4" style="border-right: 3px solid #4784ee;" >
       <div class="row">
-       <div class="headercss"><h3><b> Device Id</b> {{deviceId}} </h3></div><br>
-       <div class="headercss"><h3><b> Date Updated:</b> {{value}} </h3></div>
+       <div class="headercss"><h4 style="margin-left: 2%"><b> Device Id</b> {{deviceId}} </h4></div><br>
+       <div class="headercss"><h4 style="margin-left: 2%"><b> Date Updated:</b> {{log_date}} </h4></div>
         <div class="center-block">  
           <div id="gauge_chart1" 
           [chartData]="pie_ChartData1" 
@@ -38,7 +39,7 @@
       </div>
       <div class="row text-center" style="margin-bottom: 3%;">
             <div class="col center-block">
-                  <img class="navbar-brand page-scroll" style="height:0%;padding: 0%; max-width: 280px;max-height: 80px;" src="../../assets/beacon.jpg">
+                  <img class="navbar-brand page-scroll" style="height:0%;padding: 0%; max-width: 280px;max-height: 80px;" src="../../assets/gasLeak.png">
             </div>
             <div class="col">
                 <img [src]="imgAlarm" style="cursor:pointer">
@@ -46,14 +47,14 @@
         </div>
       <div class="row text-center" style="margin-bottom: 3%;">
           <div class="col center-block">
-                <img class="navbar-brand page-scroll" style="height:0%;padding: 0%; max-width: 280px;max-height: 80px;" src="../../assets/lowgas.jpg">
+                <img class="navbar-brand page-scroll" style="height:0%;padding: 0%; max-width: 280px;max-height: 80px;" src="../../assets/lowgas.png">
           </div>
         <div class="col">
               <img [src]="imgBeacon" style="cursor:pointer"></div>
       </div>
       <div class="row text-center" style="margin-bottom: 3%;">
             <div class="col center-block">
-               <img class="navbar-brand page-scroll" style="height:0%;padding: 0%; max-width: 280px;max-height: 80px;" src="../../assets/supply.jpg">
+               <img class="navbar-brand page-scroll" style="height:0%;padding: 0%; max-width: 280px;max-height: 80px;" src="../../assets/supply.png">
             </div>
             <div class="col center-block">
               <meter min="0" low="30" high="60" max="100" optimum="90" value={{powerSupply}} style="width:150px;height:25px"> </meter><div style="position: absolute;margin-top: -11%;margin-left: 7%;"><b>{{powerSupply}}%</b></div>
@@ -61,7 +62,7 @@
         </div>
         <div class="row text-center" style="margin-bottom: 3%;">
             <div class="col center-block">
-               <img class="navbar-brand page-scroll" style="height:0%;padding: 0%; max-width: 280px;max-height: 80px;" src="../../assets/Connection status.jpg">
+               <img class="navbar-brand page-scroll" style="height:0%;padding: 0%; max-width: 280px;max-height: 80px;" src="../../assets/connection.png">
             </div>
             <div class="col ">
                <img [src]="imgConnect" style="cursor:pointer">
@@ -83,10 +84,10 @@
        </div>
        <div class="row align-items-start">
           <div class="col-sm-6">
-              <div class='svg-container' style="align:center;width:100%">
+              <div class='svg-container' style="width:125%">
               <svg
               xmlns="http://www.w3.org/2000/svg"
-               xmlns:xlink="http://www.w3.org/1999/xlink"  viewBox="0 0 1140 510" preserveAspectRatio="xMidYMid meet"  >
+               xmlns:xlink="http://www.w3.org/1999/xlink"  viewBox="300 30 0800 300" preserveAspectRatio="xMidYMid meet"  >
                <defs id="svgEditorDefs"><linearGradient gradientUnits="objectBoundingBox" id="lgrd2-black-white" spreadMethod="pad" x1="0%" x2="100%" y1="0%" y2="100%">
                <stop offset="0%" stop-color="black"/>
                <stop offset="100%" stop-color="white"/>
@@ -100,31 +101,33 @@
                <stop offset="100%" stop-color="#3e3168"/>
                </radialGradient>
                </defs>
-               <rect id="svgEditorBackground" x="0" y="0" width="1140" height="510" style="fill: none; stroke: none;"/>
-               <rect x="238.9505571140536" y="104" style="fill:url(#lgrd2-black-white);stroke:black;stroke-width:1px;fill-opacity:0.7;" id="e1_rectangle" width="562" height="214" ry="0" rx="0" transform="matrix(1.35567 0 0 1 -80.3814 0)"/>
-               <rect x="303" y="139" style="fill:black;stroke:black;stroke-width:1px;fill-opacity:0.65;" id="e2_rectangle" width="76" height="150"/>
-               <rect x="384" y="139" style="fill:black;stroke:black;stroke-width:1px;fill-opacity:0.66;" id="e3_rectangle" width="76" height="150"/>
-               <rect x="465" y="139" style="fill:black;stroke:black;stroke-width:1px;fill-opacity:0.66;" id="e4_rectangle" width="76" height="150"/>
-               <rect x="546" y="139" style="fill:black;stroke:black;stroke-width:1px;fill-opacity:0.65;" id="e5_rectangle" width="76" height="150"/>
-               <rect x="627" y="139" style="fill:black;stroke:black;stroke-width:1px;fill-opacity:0.65;" id="e6_rectangle" width="76" height="150"/>
-               <rect x="708" y="139" style="fill:black;stroke:black;stroke-width:1px;fill-opacity:0.65;" id="e7_rectangle" width="76" height="150"/><rect x="789" y="139" style="fill:black;stroke:black;stroke-width:1px;fill-opacity:0.65;" id="e8_rectangle" width="76" height="150"/>
-               <rect x="870" y="139" style="fill:black;stroke:black;stroke-width:1px;fill-opacity:0.65;" id="e9_rectangle" width="76" height="150"/>
-                <text style="fill:white;font-family:Comic Sans;font-size:54px;font-style:normal;font-weight:bold;" x="896" y="215" id="e6_texte" >{{meter1[7]}}</text>
-               <text style="fill:white;font-family:Comic Sans;font-size:54px;font-style:normal;font-weight:bold;" x="816" y="215" id="e4_texte" >{{meter1[6]}}</text>
-               <text style="fill:white;font-family:Comic Sans;font-size:54px;font-style:normal;font-weight:bold;" x="735" y="215" id="e1_texte" >{{meter1[5]}}</text>
-               <text style="fill:white;font-family:Comic Sans;font-size:54px;font-style:normal;font-weight:bold;" x="653" y="215" id="e2_texte" >{{meter1[4]}}</text>
-               <text style="fill:white;font-family:Comic Sans;font-size:54px;font-style:normal;font-weight:bold;" x="573" y="215" id="e3_texte" >{{meter1[3]}}</text>
-               <text style="fill:white;font-family:Comic Sans;font-size:54px;font-style:normal;font-weight:bold;" x="492" y="215" id="e5_texte" >{{meter1[2]}}</text>
-               <text style="fill:white;font-family:Comic Sans;font-size:54px;font-style:normal;font-weight:bold;" x="411" y="215" id="e7_texte" >{{meter1[1]}}</text>
-               <text style="fill:white;font-family:Comic Sans;font-size:54px;font-style:normal;font-weight:bold;" x="330" y="215" id="e8_texte" >{{meter1[0]}}</text>
+               
+              <rect id="svgEditorBackground" x="0" y="0" width="1140" height="510" style="fill: none; stroke: none;"/>
+              <rect x="272.5" y="129" style="fill:white;stroke:black;stroke-width:1px;fill-opacity:0.7;" id="e1_rectangle" width="495" height="170" ry="0" rx="0" transform="matrix(1.35567 0 0 1 -80.3814 0)"/>
+              <rect x="303" y="139" style="fill:black;stroke:black;stroke-width:1px;fill-opacity:0.65;" id="e2_rectangle" width="76" height="150"/>
+              <rect x="384" y="139" style="fill:black;stroke:black;stroke-width:1px;fill-opacity:0.66;" id="e3_rectangle" width="76" height="150"/>
+              <rect x="465" y="139" style="fill:black;stroke:black;stroke-width:1px;fill-opacity:0.66;" id="e4_rectangle" width="76" height="150"/>
+              <rect x="546" y="139" style="fill:black;stroke:black;stroke-width:1px;fill-opacity:0.65;" id="e5_rectangle" width="76" height="150"/>
+              <rect x="627" y="139" style="fill:black;stroke:black;stroke-width:1px;fill-opacity:0.65;" id="e6_rectangle" width="76" height="150"/>
+              <rect x="708" y="139" style="fill:red;stroke:black;stroke-width:1px;fill-opacity:0.65;" id="e7_rectangle" width="76" height="150"/>
+              <rect x="789" y="139" style="fill:red;stroke:black;stroke-width:1px;fill-opacity:0.65;" id="e8_rectangle" width="76" height="150"/>
+              <rect x="870" y="139" style="fill:red;stroke:black;stroke-width:1px;fill-opacity:0.65;" id="e9_rectangle" width="76" height="150"/>
+              <text style="fill:white;font-family:Comic Sans;font-size:82px;font-style:normal;font-weight:bold;" x="891" y="240" id="e6_texte" >{{meter1[7]}}</text>
+              <text style="fill:white;font-family:Comic Sans;font-size:82px;font-style:normal;font-weight:bold;" x="811" y="240" id="e4_texte" >{{meter1[6]}}</text>
+              <text style="font-family: &quot;Comic Sans&quot;; font-size:82px; font-style: normal; font-weight: bold;fill:white;" x="730" y="240" id="e1_texte" >{{meter1[5]}}</text>
+              <text style="fill:white;font-family:Comic Sans;font-size:82px;font-style:normal;font-weight:bold;" x="648" y="240" id="e2_texte" >{{meter1[4]}}</text>
+              <text style="fill:white;font-family:Comic Sans;font-size:82px;font-style:normal;font-weight:bold;" x="568" y="240" id="e3_texte" >{{meter1[3]}}</text>
+              <text style="fill:white;font-family:Comic Sans;font-size:82px;font-style:normal;font-weight:bold;" x="487" y="240" id="e5_texte" >{{meter1[2]}}</text>
+              <text style="fill:white;font-family:Comic Sans;font-size:82px;font-style:normal;font-weight:bold;" x="406" y="240" id="e7_texte" >{{meter1[1]}}</text>
+              <text style="fill:white;font-family:Comic Sans;font-size:82px;font-style:normal;font-weight:bold;" x="325" y="240" id="e8_texte" >{{meter1[0]}}</text>
                </svg>
               </div>
               <div  class="metercss"><h2><b>Gas Meter 1</b></h2></div>
           </div>
     <div class="col-sm-6">
-              <div class='svg-container' style="align:center;width:100%">
+              <div class='svg-container' style="width:125%">
               <svg xmlns="http://www.w3.org/2000/svg"
-               xmlns:xlink="http://www.w3.org/1999/xlink"  viewBox="0 0 1140 510" preserveAspectRatio="xMidYMid meet"  >
+               xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="300 30 0800 300" preserveAspectRatio="xMidYMid meet"  >
                <defs id="svgEditorDefs"><linearGradient gradientUnits="objectBoundingBox" id="lgrd2-black-white" spreadMethod="pad" x1="0%" x2="100%" y1="0%" y2="100%">
                <stop offset="0%" stop-color="black"/>
                <stop offset="100%" stop-color="white"/>
@@ -138,23 +141,24 @@
                <stop offset="100%" stop-color="#3e3168"/>
                </radialGradient>
                </defs>
-               <rect id="svgEditorBackground" x="0" y="0" width="1140" height="510" style="fill: none; stroke: none;"/>
-               <rect x="238.9505571140536" y="104" style="fill:url(#lgrd2-black-white);stroke:black;stroke-width:1px;fill-opacity:0.7;" id="e1_rectangle" width="562" height="214" ry="0" rx="0" transform="matrix(1.35567 0 0 1 -80.3814 0)"/>
-               <rect x="303" y="139" style="fill:black;stroke:black;stroke-width:1px;fill-opacity:0.65;" id="e2_rectangle" width="76" height="150"/>
-               <rect x="384" y="139" style="fill:black;stroke:black;stroke-width:1px;fill-opacity:0.66;" id="e3_rectangle" width="76" height="150"/>
-               <rect x="465" y="139" style="fill:black;stroke:black;stroke-width:1px;fill-opacity:0.66;" id="e4_rectangle" width="76" height="150"/>
-               <rect x="546" y="139" style="fill:black;stroke:black;stroke-width:1px;fill-opacity:0.65;" id="e5_rectangle" width="76" height="150"/>
-               <rect x="627" y="139" style="fill:black;stroke:black;stroke-width:1px;fill-opacity:0.65;" id="e6_rectangle" width="76" height="150"/>
-               <rect x="708" y="139" style="fill:black;stroke:black;stroke-width:1px;fill-opacity:0.65;" id="e7_rectangle" width="76" height="150"/><rect x="789" y="139" style="fill:black;stroke:black;stroke-width:1px;fill-opacity:0.65;" id="e8_rectangle" width="76" height="150"/>
-               <rect x="870" y="139" style="fill:black;stroke:black;stroke-width:1px;fill-opacity:0.65;" id="e9_rectangle" width="76" height="150"/>
-               <text style="fill:white;font-family:Comic Sans;font-size:54px;font-style:normal;font-weight:bold;" x="896" y="215" id="e6_texte" >{{meter2[7]}}</text>
-               <text style="fill:white;font-family:Comic Sans;font-size:54px;font-style:normal;font-weight:bold;" x="816" y="215" id="e4_texte" >{{meter3[6]}}</text>
-               <text style="fill:white;font-family:Comic Sans;font-size:54px;font-style:normal;font-weight:bold;" x="735" y="215" id="e1_texte" >{{meter2[5]}}</text>
-               <text style="fill:white;font-family:Comic Sans;font-size:54px;font-style:normal;font-weight:bold;" x="653" y="215" id="e2_texte" >{{meter2[4]}}</text>
-               <text style="fill:white;font-family:Comic Sans;font-size:54px;font-style:normal;font-weight:bold;" x="573" y="215" id="e3_texte" >{{meter2[3]}}</text>
-               <text style="fill:white;font-family:Comic Sans;font-size:54px;font-style:normal;font-weight:bold;" x="492" y="215" id="e5_texte" >{{meter2[2]}}</text>
-               <text style="fill:white;font-family:Comic Sans;font-size:54px;font-style:normal;font-weight:bold;" x="411" y="215" id="e7_texte" >{{meter2[1]}}</text>
-               <text style="fill:white;font-family:Comic Sans;font-size:54px;font-style:normal;font-weight:bold;" x="330" y="215" id="e8_texte" >{{meter2[0]}}</text>
+              <rect id="svgEditorBackground" x="0" y="0" width="1140" height="510" style="fill: none; stroke: none;"/>
+              <rect x="272.5" y="129" style="fill:white;stroke:black;stroke-width:1px;fill-opacity:0.7;" id="e1_rectangle" width="495" height="170" ry="0" rx="0" transform="matrix(1.35567 0 0 1 -80.3814 0)"/>
+              <rect x="303" y="139" style="fill:black;stroke:black;stroke-width:1px;fill-opacity:0.65;" id="e2_rectangle" width="76" height="150"/>
+              <rect x="384" y="139" style="fill:black;stroke:black;stroke-width:1px;fill-opacity:0.66;" id="e3_rectangle" width="76" height="150"/>
+              <rect x="465" y="139" style="fill:black;stroke:black;stroke-width:1px;fill-opacity:0.66;" id="e4_rectangle" width="76" height="150"/>
+              <rect x="546" y="139" style="fill:black;stroke:black;stroke-width:1px;fill-opacity:0.65;" id="e5_rectangle" width="76" height="150"/>
+              <rect x="627" y="139" style="fill:black;stroke:black;stroke-width:1px;fill-opacity:0.65;" id="e6_rectangle" width="76" height="150"/>
+              <rect x="708" y="139" style="fill:red;stroke:black;stroke-width:1px;fill-opacity:0.65;" id="e7_rectangle" width="76" height="150"/>
+              <rect x="789" y="139" style="fill:red;stroke:black;stroke-width:1px;fill-opacity:0.65;" id="e8_rectangle" width="76" height="150"/>
+              <rect x="870" y="139" style="fill:red;stroke:black;stroke-width:1px;fill-opacity:0.65;" id="e9_rectangle" width="76" height="150"/>
+              <text style="fill:white;font-family:Comic Sans;font-size:82px;font-style:normal;font-weight:bold;" x="891" y="240" id="e6_texte" >{{meter2[7]}}</text>
+              <text style="fill:white;font-family:Comic Sans;font-size:82px;font-style:normal;font-weight:bold;" x="811" y="240" id="e4_texte" >{{meter2[6]}}</text>
+              <text style="font-family: &quot;Comic Sans&quot;; font-size:82px; font-style: normal; font-weight: bold;fill:white;" x="730" y="240" id="e1_texte" >{{meter2[5]}}</text>
+              <text style="fill:white;font-family:Comic Sans;font-size:82px;font-style:normal;font-weight:bold;" x="648" y="240" id="e2_texte" >{{meter2[4]}}</text>
+              <text style="fill:white;font-family:Comic Sans;font-size:82px;font-style:normal;font-weight:bold;" x="568" y="240" id="e3_texte" >{{meter2[3]}}</text>
+              <text style="fill:white;font-family:Comic Sans;font-size:82px;font-style:normal;font-weight:bold;" x="487" y="240" id="e5_texte" >{{meter2[2]}}</text>
+              <text style="fill:white;font-family:Comic Sans;font-size:82px;font-style:normal;font-weight:bold;" x="406" y="240" id="e7_texte" >{{meter2[1]}}</text>
+              <text style="fill:white;font-family:Comic Sans;font-size:82px;font-style:normal;font-weight:bold;" x="325" y="240" id="e8_texte" >{{meter2[0]}}</text>
                </svg>
               </div>
                 <div  class="metercss"><h2><b>Gas Meter 2</b></h2></div>
@@ -176,10 +180,10 @@
       <div class="row">
 
        <div class="col-sm-6">
-              <div class='svg-container' style="align:center;width:100%">
+              <div class='svg-container' style="width:125%">
               <svg
               xmlns="http://www.w3.org/2000/svg"
-               xmlns:xlink="http://www.w3.org/1999/xlink"  viewBox="0 0 1140 510" preserveAspectRatio="xMidYMid meet"  >
+               xmlns:xlink="http://www.w3.org/1999/xlink"  viewBox="300 30 0800 300" preserveAspectRatio="xMidYMid meet"  >
                <defs id="svgEditorDefs"><linearGradient gradientUnits="objectBoundingBox" id="lgrd2-black-white" spreadMethod="pad" x1="0%" x2="100%" y1="0%" y2="100%">
                <stop offset="0%" stop-color="black"/>
                <stop offset="100%" stop-color="white"/>
@@ -193,33 +197,34 @@
                <stop offset="100%" stop-color="#3e3168"/>
                </radialGradient>
                </defs>
-               <rect id="svgEditorBackground" x="0" y="0" width="1140" height="510" style="fill: none; stroke: none;"/>
-               <rect x="238.9505571140536" y="104" style="fill:url(#lgrd2-black-white);stroke:black;stroke-width:1px;fill-opacity:0.7;" id="e1_rectangle" width="562" height="214" ry="0" rx="0" transform="matrix(1.35567 0 0 1 -80.3814 0)"/>
-               <rect x="303" y="139" style="fill:black;stroke:black;stroke-width:1px;fill-opacity:0.65;" id="e2_rectangle" width="76" height="150"/>
-               <rect x="384" y="139" style="fill:black;stroke:black;stroke-width:1px;fill-opacity:0.66;" id="e3_rectangle" width="76" height="150"/>
-               <rect x="465" y="139" style="fill:black;stroke:black;stroke-width:1px;fill-opacity:0.66;" id="e4_rectangle" width="76" height="150"/>
-               <rect x="546" y="139" style="fill:black;stroke:black;stroke-width:1px;fill-opacity:0.65;" id="e5_rectangle" width="76" height="150"/>
-               <rect x="627" y="139" style="fill:black;stroke:black;stroke-width:1px;fill-opacity:0.65;" id="e6_rectangle" width="76" height="150"/>
-               <rect x="708" y="139" style="fill:black;stroke:black;stroke-width:1px;fill-opacity:0.65;" id="e7_rectangle" width="76" height="150"/><rect x="789" y="139" style="fill:black;stroke:black;stroke-width:1px;fill-opacity:0.65;" id="e8_rectangle" width="76" height="150"/>
-               <rect x="870" y="139" style="fill:black;stroke:black;stroke-width:1px;fill-opacity:0.65;" id="e9_rectangle" width="76" height="150"/>
-              <text style="fill:white;font-family:Comic Sans;font-size:54px;font-style:normal;font-weight:bold;" x="896" y="215" id="e6_texte" >{{meter3[7]}}</text>
-               <text style="fill:white;font-family:Comic Sans;font-size:54px;font-style:normal;font-weight:bold;" x="816" y="215" id="e4_texte" >{{meter3[6]}}</text>
-               <text style="fill:white;font-family:Comic Sans;font-size:54px;font-style:normal;font-weight:bold;" x="735" y="215" id="e1_texte" >{{meter3[5]}}</text>
-               <text style="fill:white;font-family:Comic Sans;font-size:54px;font-style:normal;font-weight:bold;" x="653" y="215" id="e2_texte" >{{meter3[4]}}</text>
-               <text style="fill:white;font-family:Comic Sans;font-size:54px;font-style:normal;font-weight:bold;" x="573" y="215" id="e3_texte" >{{meter3[3]}}</text>
-               <text style="fill:white;font-family:Comic Sans;font-size:54px;font-style:normal;font-weight:bold;" x="492" y="215" id="e5_texte" >{{meter3[2]}}</text>
-               <text style="fill:white;font-family:Comic Sans;font-size:54px;font-style:normal;font-weight:bold;" x="411" y="215" id="e7_texte" >{{meter3[1]}}</text>
-               <text style="fill:white;font-family:Comic Sans;font-size:54px;font-style:normal;font-weight:bold;" x="330" y="215" id="e8_texte" >{{meter3[0]}}</text>
+              <rect id="svgEditorBackground" x="0" y="0" width="1140" height="510" style="fill: none; stroke: none;"/>
+              <rect x="272.5" y="129" style="fill:white;stroke:black;stroke-width:1px;fill-opacity:0.7;" id="e1_rectangle" width="495" height="170" ry="0" rx="0" transform="matrix(1.35567 0 0 1 -80.3814 0)"/>
+              <rect x="303" y="139" style="fill:black;stroke:black;stroke-width:1px;fill-opacity:0.65;" id="e2_rectangle" width="76" height="150"/>
+              <rect x="384" y="139" style="fill:black;stroke:black;stroke-width:1px;fill-opacity:0.66;" id="e3_rectangle" width="76" height="150"/>
+              <rect x="465" y="139" style="fill:black;stroke:black;stroke-width:1px;fill-opacity:0.66;" id="e4_rectangle" width="76" height="150"/>
+              <rect x="546" y="139" style="fill:black;stroke:black;stroke-width:1px;fill-opacity:0.65;" id="e5_rectangle" width="76" height="150"/>
+              <rect x="627" y="139" style="fill:black;stroke:black;stroke-width:1px;fill-opacity:0.65;" id="e6_rectangle" width="76" height="150"/>
+              <rect x="708" y="139" style="fill:red;stroke:black;stroke-width:1px;fill-opacity:0.65;" id="e7_rectangle" width="76" height="150"/>
+              <rect x="789" y="139" style="fill:red;stroke:black;stroke-width:1px;fill-opacity:0.65;" id="e8_rectangle" width="76" height="150"/>
+              <rect x="870" y="139" style="fill:red;stroke:black;stroke-width:1px;fill-opacity:0.65;" id="e9_rectangle" width="76" height="150"/>
+              <text style="fill:white;font-family:Comic Sans;font-size:82px;font-style:normal;font-weight:bold;" x="891" y="240" id="e6_texte" >{{meter3[7]}}</text>
+              <text style="fill:white;font-family:Comic Sans;font-size:82px;font-style:normal;font-weight:bold;" x="811" y="240" id="e4_texte" >{{meter3[6]}}</text>
+              <text style="font-family: &quot;Comic Sans&quot;; font-size:82px; font-style: normal; font-weight: bold;fill:white;" x="730" y="240" id="e1_texte" >{{meter3[5]}}</text>
+              <text style="fill:white;font-family:Comic Sans;font-size:82px;font-style:normal;font-weight:bold;" x="648" y="240" id="e2_texte" >{{meter3[4]}}</text>
+              <text style="fill:white;font-family:Comic Sans;font-size:82px;font-style:normal;font-weight:bold;" x="568" y="240" id="e3_texte" >{{meter3[3]}}</text>
+              <text style="fill:white;font-family:Comic Sans;font-size:82px;font-style:normal;font-weight:bold;" x="487" y="240" id="e5_texte" >{{meter3[2]}}</text>
+              <text style="fill:white;font-family:Comic Sans;font-size:82px;font-style:normal;font-weight:bold;" x="406" y="240" id="e7_texte" >{{meter3[1]}}</text>
+              <text style="fill:white;font-family:Comic Sans;font-size:82px;font-style:normal;font-weight:bold;" x="325" y="240" id="e8_texte" >{{meter3[0]}}</text>
                </svg>
               </div>   
                 <div  class="metercss"><h2><b>Gas Meter 3</b></h2></div>
        </div>
 
        <div class="col-sm-6 ">
-              <div class='svg-container' style="align:center;width:100%">
+              <div class='svg-container' style="width:125%">
               <svg
               xmlns="http://www.w3.org/2000/svg"
-               xmlns:xlink="http://www.w3.org/1999/xlink"  viewBox="0 0 1140 510" preserveAspectRatio="xMidYMid meet"  >
+               xmlns:xlink="http://www.w3.org/1999/xlink"  viewBox="300 30 0800 300" preserveAspectRatio="xMidYMid meet"  >
                <defs id="svgEditorDefs"><linearGradient gradientUnits="objectBoundingBox" id="lgrd2-black-white" spreadMethod="pad" x1="0%" x2="100%" y1="0%" y2="100%">
                <stop offset="0%" stop-color="black"/>
                <stop offset="100%" stop-color="white"/>
@@ -233,23 +238,24 @@
                <stop offset="100%" stop-color="#3e3168"/>
                </radialGradient>
                </defs>
-               <rect id="svgEditorBackground" x="0" y="0" width="1140" height="510" style="fill: none; stroke: none;"/>
-               <rect x="238.9505571140536" y="104" style="fill:url(#lgrd2-black-white);stroke:black;stroke-width:1px;fill-opacity:0.7;" id="e1_rectangle" width="562" height="214" ry="0" rx="0" transform="matrix(1.35567 0 0 1 -80.3814 0)"/>
-               <rect x="303" y="139" style="fill:black;stroke:black;stroke-width:1px;fill-opacity:0.65;" id="e2_rectangle" width="76" height="150"/>
-               <rect x="384" y="139" style="fill:black;stroke:black;stroke-width:1px;fill-opacity:0.66;" id="e3_rectangle" width="76" height="150"/>
-               <rect x="465" y="139" style="fill:black;stroke:black;stroke-width:1px;fill-opacity:0.66;" id="e4_rectangle" width="76" height="150"/>
-               <rect x="546" y="139" style="fill:black;stroke:black;stroke-width:1px;fill-opacity:0.65;" id="e5_rectangle" width="76" height="150"/>
-               <rect x="627" y="139" style="fill:black;stroke:black;stroke-width:1px;fill-opacity:0.65;" id="e6_rectangle" width="76" height="150"/>
-               <rect x="708" y="139" style="fill:black;stroke:black;stroke-width:1px;fill-opacity:0.65;" id="e7_rectangle" width="76" height="150"/><rect x="789" y="139" style="fill:black;stroke:black;stroke-width:1px;fill-opacity:0.65;" id="e8_rectangle" width="76" height="150"/>
-               <rect x="870" y="139" style="fill:black;stroke:black;stroke-width:1px;fill-opacity:0.65;" id="e9_rectangle" width="76" height="150"/>
-              <text style="fill:white;font-family:Comic Sans;font-size:54px;font-style:normal;font-weight:bold;" x="896" y="215" id="e6_texte" >{{meter4[7]}}</text>
-               <text style="fill:white;font-family:Comic Sans;font-size:54px;font-style:normal;font-weight:bold;" x="816" y="215" id="e4_texte" >{{meter4[6]}}</text>
-               <text style="fill:white;font-family:Comic Sans;font-size:54px;font-style:normal;font-weight:bold;" x="735" y="215" id="e1_texte" >{{meter4[5]}}</text>
-               <text style="fill:white;font-family:Comic Sans;font-size:54px;font-style:normal;font-weight:bold;" x="653" y="215" id="e2_texte" >{{meter4[4]}}</text>
-               <text style="fill:white;font-family:Comic Sans;font-size:54px;font-style:normal;font-weight:bold;" x="573" y="215" id="e3_texte" >{{meter4[3]}}</text>
-               <text style="fill:white;font-family:Comic Sans;font-size:54px;font-style:normal;font-weight:bold;" x="492" y="215" id="e5_texte" >{{meter4[2]}}</text>
-               <text style="fill:white;font-family:Comic Sans;font-size:54px;font-style:normal;font-weight:bold;" x="411" y="215" id="e7_texte" >{{meter4[1]}}</text>
-               <text style="fill:white;font-family:Comic Sans;font-size:54px;font-style:normal;font-weight:bold;" x="330" y="215" id="e8_texte" >{{meter4[0]}}</text>
+              <rect id="svgEditorBackground" x="0" y="0" width="1140" height="510" style="fill: none; stroke: none;"/>
+              <rect x="272.5" y="129" style="fill:white;stroke:black;stroke-width:1px;fill-opacity:0.7;" id="e1_rectangle" width="495" height="170" ry="0" rx="0" transform="matrix(1.35567 0 0 1 -80.3814 0)"/>
+              <rect x="303" y="139" style="fill:black;stroke:black;stroke-width:1px;fill-opacity:0.65;" id="e2_rectangle" width="76" height="150"/>
+              <rect x="384" y="139" style="fill:black;stroke:black;stroke-width:1px;fill-opacity:0.66;" id="e3_rectangle" width="76" height="150"/>
+              <rect x="465" y="139" style="fill:black;stroke:black;stroke-width:1px;fill-opacity:0.66;" id="e4_rectangle" width="76" height="150"/>
+              <rect x="546" y="139" style="fill:black;stroke:black;stroke-width:1px;fill-opacity:0.65;" id="e5_rectangle" width="76" height="150"/>
+              <rect x="627" y="139" style="fill:black;stroke:black;stroke-width:1px;fill-opacity:0.65;" id="e6_rectangle" width="76" height="150"/>
+              <rect x="708" y="139" style="fill:red;stroke:black;stroke-width:1px;fill-opacity:0.65;" id="e7_rectangle" width="76" height="150"/>
+              <rect x="789" y="139" style="fill:red;stroke:black;stroke-width:1px;fill-opacity:0.65;" id="e8_rectangle" width="76" height="150"/>
+              <rect x="870" y="139" style="fill:red;stroke:black;stroke-width:1px;fill-opacity:0.65;" id="e9_rectangle" width="76" height="150"/>
+              <text style="fill:white;font-family:Comic Sans;font-size:82px;font-style:normal;font-weight:bold;" x="891" y="240" id="e6_texte" >{{meter4[7]}}</text>
+              <text style="fill:white;font-family:Comic Sans;font-size:82px;font-style:normal;font-weight:bold;" x="811" y="240" id="e4_texte" >{{meter4[6]}}</text>
+              <text style="font-family: &quot;Comic Sans&quot;; font-size:82px; font-style: normal; font-weight: bold;fill:white;" x="730" y="240" id="e1_texte" >{{meter4[5]}}</text>
+              <text style="fill:white;font-family:Comic Sans;font-size:82px;font-style:normal;font-weight:bold;" x="648" y="240" id="e2_texte" >{{meter4[4]}}</text>
+              <text style="fill:white;font-family:Comic Sans;font-size:82px;font-style:normal;font-weight:bold;" x="568" y="240" id="e3_texte" >{{meter4[3]}}</text>
+              <text style="fill:white;font-family:Comic Sans;font-size:82px;font-style:normal;font-weight:bold;" x="487" y="240" id="e5_texte" >{{meter4[2]}}</text>
+              <text style="fill:white;font-family:Comic Sans;font-size:82px;font-style:normal;font-weight:bold;" x="406" y="240" id="e7_texte" >{{meter4[1]}}</text>
+              <text style="fill:white;font-family:Comic Sans;font-size:82px;font-style:normal;font-weight:bold;" x="325" y="240" id="e8_texte" >{{meter4[0]}}</text>
                </svg>
               </div>   
                 <div  class="metercss"><h2><b>Gas Meter 4</b></h2></div>  
@@ -257,7 +263,7 @@
       </div>
     </div>
       <div class="col-sm-4" style="border-bottom:3px solid #4784ee;">
-        <div class="row text-center center-block" style="margin-bottom: 5%">
+        <div class="row text-center center-block" style="margin-top: 3%;margin-bottom: 2%">
           <div class="col-sm-12 col-lg-offset-3">
            <img class="navbar-brand" style="padding: 0%; max-width: 280px;max-height: 80px;" src="../../assets/controls.jpg">
           </div>
@@ -269,7 +275,7 @@
          <div class="col">
               <div class="onoffswitch">
                 <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox " disabled="0"
-              [checked]="solenoid[0]" (change)="handleChange(element, 0)" id="myonoffswitch1">
+              [checked]="solenoid[4]" (change)="handleChange(element, 0)" id="myonoffswitch1">
                 <label class="onoffswitch-label" for="myonoffswitch1">
                    <span class="onoffswitch-inner"></span>
                    <span class="onoffswitch-switch"></span>
@@ -281,10 +287,10 @@
         <div class="col"> 
           <img class="navbar-brand" style="width: 100%;height: 100%;" src="../../assets/solenoid2.jpg">
         </div>
-         <div class="col">
+         <div class="col center-block">
               <div class="onoffswitch">
                    <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox"
-                    [checked]="solenoid[1]" (change)="handleChange(element, 1)" id="myonoffswitch2" >
+                    [checked]="solenoid[3]" (change)="handleChange(element, 1)" id="myonoffswitch2" >
                    <label class="onoffswitch-label" for="myonoffswitch2">
                        <span class="onoffswitch-inner"></span>
                        <span class="onoffswitch-switch"></span>
@@ -296,7 +302,7 @@
         <div class="col"> 
           <img class="navbar-brand" style="width: 100%;height: 100%;"src="../../assets/solenoid3.jpg">
         </div>
-         <div class="col">
+         <div class="col center-block">
               <div class="onoffswitch" >
                    <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" 
                     [checked]="solenoid[2]" (change)="handleChange(element, 2)"id="myonoffswitch3" >
@@ -311,10 +317,10 @@
         <div class="col"> 
           <img class="navbar-brand" style="width: 100%;height: 100%;" src="../../assets/solenoid4.jpg">
         </div>
-         <div class="col">
+         <div class="col center-block">
               <div class="onoffswitch">
                    <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox"
-                    [checked]="solenoid[3]" (change)="handleChange(element, 3)" id="myonoffswitch4" >
+                    [checked]="solenoid[1]" (change)="handleChange(element, 3)" id="myonoffswitch4" >
                    <label class="onoffswitch-label" for="myonoffswitch4">
                        <span class="onoffswitch-inner"></span>
                        <span class="onoffswitch-switch"></span>
@@ -322,14 +328,14 @@
               </div>
         </div>
       </div>
-      <div class="row">
+      <div class="row text-center ">
         <div class="col"> 
           <img class="navbar-brand" style="width: 100%;height: 100%;"src="../../assets/vaporizer.jpg">
         </div>
-         <div class="col">
+         <div class="col center-block">
               <div class="onoffswitch">
                    <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" 
-                    [checked]="solenoid[4]" (change)="handleChange(element, 4)"id="myonoffswitch5" >
+                    [checked]="solenoid[0]" (change)="handleChange(element, 4)"id="myonoffswitch5" >
                    <label class="onoffswitch-label" for="myonoffswitch5">
                        <span class="onoffswitch-inner"></span>
                        <span class="onoffswitch-switch"></span>
@@ -337,6 +343,11 @@
               </div>
         </div>
       </div>
+      <div class="row text-center center-block" style="margin-top: 3%;margin-bottom: 2%">
+          <div class="col-sm-12 col-lg-offset-3">
+           <img class="navbar-brand" style="padding: 0%; max-width: 280px;max-height: 80px;" src="../../assets/submit.jpg">
+          </div>
+        </div>
   </div> 
 </div>
 </div>

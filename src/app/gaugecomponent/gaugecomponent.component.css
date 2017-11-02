@@ -21,6 +21,7 @@ svg > g > text[text-anchor=middle]{
  .onoffswitch {
     position: relative; width: 90px;
     -webkit-user-select:none; -moz-user-select:none; -ms-user-select: none;
+    
 }
 .onoffswitch-checkbox {
     display: none;
@@ -53,7 +54,7 @@ svg > g > text[text-anchor=middle]{
     display: block; width: 27px; margin: 0px;
     background: #FFFFFF;
     position: absolute; top: 0; bottom: 0;
-    right: 59px;
+    right: 62px;
     border: 2px solid #999999; border-radius: 20px;
     transition: all 0.3s ease-in 0s; 
 }
@@ -70,5 +71,7 @@ svg > g > text[text-anchor=middle]{
 .headercss{
 background-color: #fecc01;
     width: 86%;
-    margin-bottom: 5%;
+    margin-top: 2%;
+    margin-left: 5%;
+    border: 1px solid black;
 }

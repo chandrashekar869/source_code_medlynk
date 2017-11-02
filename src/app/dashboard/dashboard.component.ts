@@ -55,7 +55,7 @@ export class DashboardComponent implements OnInit {
     console.log(this.levelNum);
   }
 
-	options =['RED', 'YELLOW', 'GREEN','DISC','ALL']
+	options =['Red', 'Yellow', 'Green','Disconnected','All']
 	selected;
 	selectedData;
 
@@ -83,7 +83,7 @@ onSelected(val){
     }
 
     getTestAttributes(id:any){
-    var link = '/users/authenticate';
+    var link = '/users/deviceList';
     var jsonObject =[];
     //var data = JSON.stringify();
     this.http.post(link, {user_id:id})
@@ -114,20 +114,20 @@ onSelected(val){
       //check all conditions if alarm is 1 set value as RED like vice  and for 
       //disconnected check with log_time and current date time
       if(data[i].alarm == 1){
-        value="RED";
+        value="Red";
         iconUrl='../../assets/red-pin.png';
       } 
       else if(data[i].beacon == 1){
-        value="YELLOW";
+        value="Yellow";
         iconUrl='../../assets/yellow-pin.png';
       }
       else{
-        value="GREEN";
+        value="Green";
         iconUrl='../../assets/green-pin.png';
       }
       //if the diff of current date time and log time is more than 2 days set status as 
       if(diffDays>2){
-        value="DISC";
+        value="Disconnected";
         iconUrl='../../assets/redcrossmarker.png'; 	
       }
 

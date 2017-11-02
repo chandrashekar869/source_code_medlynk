@@ -31,6 +31,8 @@ export class GaugecomponentComponent implements OnInit {
   meter4:any;
   solenoidArray:any;
   solenoid:any;
+  log_date:any;
+  cus_name:any;
 
 
   constructor(private route:ActivatedRoute,public nav: NavbarService,public http: Http) { 
@@ -46,11 +48,14 @@ export class GaugecomponentComponent implements OnInit {
       console.log(this.deviceId);
       //check user role and then alter the header
       this.nav.show();
-      this.getGaugeValue(this.deviceId); 
+      this.getGaugeValue(this.deviceId)
       this.imgAlarm='../../assets/offRed.jpg';
       this.imgBeacon='../../assets/offgaslow.jpg';
       this.imgConnect='../../assets/connected.jpg';
-
+      /*
+      setInterval(() =>{
+           this.getGaugeValue(this.deviceId)
+        },5000); */
     }
 
    // Gaues values in to put
@@ -106,7 +111,7 @@ export class GaugecomponentComponent implements OnInit {
         minorTicks: 5
     };
     getGaugeValue(id:any){
-      var link = '/device/gauesInfo';
+      var link = '/device/gaugesInfo';
       var jsonObject =[];
     //var data = JSON.stringify();
       this.http.post(link, {device_id:id})
@@ -161,10 +166,10 @@ export class GaugecomponentComponent implements OnInit {
           this.pie_ChartOptions2 = {
               width: 400, 
               height: 220,
-              redFrom: 90,
-              redTo: 100,
-              yellowFrom: 75, 
-              yellowTo: 90,
+              redFrom: 0,
+              redTo: 10,
+              yellowFrom: 10, 
+              yellowTo: 20,
               minorTicks: 5
            };
           this.pie_ChartData3 = [
@@ -199,14 +204,16 @@ export class GaugecomponentComponent implements OnInit {
             //converting the log date in date formate
             var date2 = new Date(data[i].log_time);
             console.log(data[i].log_time);
+            this.log_date=date2.toLocaleString(); 
             //get the difference between the date in days
             var diff = today.valueOf() - date2.valueOf();
             var diffDays = Math.ceil(diff / (1000 * 3600 * 24)); 
-
+            
             if(diffDays>2){
-            this.imgConnect='../../assets/disconnected.jpg';  
+            this.imgConnect='../../assets/disconnected.png';  
             }
             console.log(diffDays);
+            this.cus_name = data[i].customer_name;
 
          } //for loop
         }, error => {
