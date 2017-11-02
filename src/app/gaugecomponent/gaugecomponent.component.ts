@@ -120,8 +120,8 @@ export class GaugecomponentComponent implements OnInit {
       // this.data.response = data;
       console.log(data); 
             for (var i = 0; i < data.length; i++){
-            var tankPressureA =data[i].gas_pressureA;
-            var linePressureA = data[i].gas_pressureB;
+            var tankPressureA =data[i].tank_pressure;
+            var linePressureA = data[i].line_pressure;
             var tankLevelA = data[i].gas_level;
             var gasLeakA = data[i].gas_detector; 
             //var tankPressureA =9;

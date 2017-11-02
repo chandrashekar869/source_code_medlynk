@@ -86,6 +86,7 @@ onSelected(val){
     var link = '/users/deviceList';
     var jsonObject =[];
     //var data = JSON.stringify();
+    console.log("id : "+id);
     this.http.post(link, {user_id:id})
     .map(res => res.json())
     .subscribe(data => {
