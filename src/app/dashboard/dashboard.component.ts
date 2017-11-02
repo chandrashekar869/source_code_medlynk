@@ -18,7 +18,7 @@ export class DashboardComponent implements OnInit {
 	lng: number = 77.59287357;
 	levelNum:number;
 	mapID: string = 'TERRAIN';
-  User_Id:any;
+  User_Id:string;
   userId:string = '12345';
 
 	ngOnInit(){
@@ -82,7 +82,7 @@ onSelected(val){
       }
     }
 
-    getTestAttributes(id:any){
+    getTestAttributes(id:string){
     var link = '/users/deviceList';
     var jsonObject =[];
     //var data = JSON.stringify();
@@ -113,11 +113,11 @@ onSelected(val){
       var iconUrl;
       //check all conditions if alarm is 1 set value as RED like vice  and for 
       //disconnected check with log_time and current date time
-      if(data[i].alarm == 1){
+      if(data[i].gas_leak == 1){
         value="Red";
         iconUrl='../../assets/red-pin.png';
       } 
-      else if(data[i].beacon == 1){
+      else if(data[i].low_gas == 1){
         value="Yellow";
         iconUrl='../../assets/yellow-pin.png';
       }

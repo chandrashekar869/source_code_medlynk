@@ -110,7 +110,7 @@ export class GaugecomponentComponent implements OnInit {
         yellowTo: 90,
         minorTicks: 5
     };
-    getGaugeValue(id:any){
+    getGaugeValue(id:string){
       var link = '/device/gaugesInfo';
       var jsonObject =[];
     //var data = JSON.stringify();
