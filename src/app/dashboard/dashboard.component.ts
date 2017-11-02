@@ -63,7 +63,7 @@ export class DashboardComponent implements OnInit {
 onSelect(val){
   console.log(val);
   this.selectedData = this.someData.filter(x => x.value == val)
-  if(val=='ALL')
+  if(val=='All')
   {
    this.selectedData = this.someData;
   }
