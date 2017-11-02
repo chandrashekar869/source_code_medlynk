@@ -186,9 +186,9 @@ export class GaugecomponentComponent implements OnInit {
           };
             //this.drawGraph(this.chartOptions,this.chartType,this.chartData,this._element)
             //check for alarm and becon values
-            if(Number(data[i].alarm)==1)
+            if(Number(data[i].gas_leak)==1)
                 this.imgAlarm = '../../assets/beaconflashing.gif';
-            if(Number(data[i].beacon)==1)
+            if(Number(data[i].low_gas)==1)
                 this.imgBeacon='../../assets/lowgas.gif'; 
             //set powr supply %
             this.powerSupply=Number(data[i].power_level);  
