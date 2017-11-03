@@ -60,17 +60,17 @@ export class DashboardComponent implements OnInit {
 	selectedData;
 
 //onSelect whch map to be shown on map by default its All
-onSelect(val){
-  console.log(val);
-  this.selectedData = this.someData.filter(x => x.value == val)
-  if(val=='All')
-  {
-   this.selectedData = this.someData;
+  onSelect(val){
+    console.log(val);
+    this.selectedData = this.someData.filter(x => x.value == val)
+    if(val=='All')
+    {
+     this.selectedData = this.someData;
+    }
   }
-}
 
 //on select of device , center the tip point and show the info window 
-onSelected(val){
+  onSelected(val){
     console.log(val);
     for (var i = 0; i < this.someData.length; i++){
     // look for the entry with a matching `code` value
@@ -92,64 +92,66 @@ onSelected(val){
     .subscribe(data => {
     // this.data.response = data;
     console.log(data); 
-
     for (var i = 0; i < data.length; i++){
-      var item = {};
-      console.log(data[i].alarm);
-      console.log(data[i].device_id);
-      var today = new Date();
+        var item = {};
 
-      //converting the log date in date formate
-      var date2 = new Date(data[i].log_time);
+        console.log(data[i].alarm);
+        console.log(data[i].device_id);
+        var today = new Date();
+        //converting the log date in date formate
+        var date2 = new Date(data[i].log_time);
+        //get the difference between the date in days
+        var diff = today.valueOf() - date2.valueOf();
+        var diffDays = Math.ceil(diff / (1000 * 3600 * 24)); 
+        //comment the console.log after done with testing
+        console.log("Differe in days is "+ diffDays);
+        //deivce id
+        var device_id = data[i].device_id;
+        var value ;
+        var iconUrl;
+        //check all conditions if alarm is 1 set value as RED like vice  and for 
+        //disconnected check with log_time and current date time
+        if(data[i].gas_leak == 1){
+          value="Red";
+          iconUrl='../../assets/red-pin.png';
+        } 
+        else if(data[i].low_gas == 1){
+          value="Yellow";
+          iconUrl='../../assets/yellow-pin.png';
+        }
+        else{
+          value="Green";
+          iconUrl='../../assets/green-pin.png';
+        }
+        //if the diff of current date time and log time is more than 2 days set status as 
+        if(diffDays>2){
+          value="Disconnected";
+          iconUrl='../../assets/redcrossmarker.png'; 	
+        }
 
-      //get the difference between the date in days
-      var diff = today.valueOf() - date2.valueOf();
-      var diffDays = Math.ceil(diff / (1000 * 3600 * 24)); 
-      
-      //comment the console.log after done with testing
-      console.log("Differe in days is "+ diffDays);
-      //deivce id
-      var device_id = data[i].device_id;
-      var value ;
-      var iconUrl;
-      //check all conditions if alarm is 1 set value as RED like vice  and for 
-      //disconnected check with log_time and current date time
-      if(data[i].gas_leak == 1){
-        value="Red";
-        iconUrl='../../assets/red-pin.png';
-      } 
-      else if(data[i].low_gas == 1){
-        value="Yellow";
-        iconUrl='../../assets/yellow-pin.png';
-      }
-      else{
-        value="Green";
-        iconUrl='../../assets/green-pin.png';
-      }
-      //if the diff of current date time and log time is more than 2 days set status as 
-      if(diffDays>2){
-        value="Disconnected";
-        iconUrl='../../assets/redcrossmarker.png'; 	
-      }
+        var coordinates = data[i].coordinates;
+        var coordinates = coordinates.split(",");
+        var lat = coordinates[0];
+        var lang = coordinates[1];
+        console.log("lat"+lat+"lang"+lang);
+        item["lat"] = Number(lat);
+        item["lng"] = Number(lang);
+        item["label"] = device_id;
+        item["value"] = value;
+        item["iconUrl"] = iconUrl;
+        jsonObject.push(item);
 
-      var coordinates = data[i].coordinates;
-      var coordinates = coordinates.split(",");
-      var lat = coordinates[0];
-      var lang = coordinates[1];
-      console.log("lat"+lat+"lang"+lang);
-      item["lat"] = Number(lat);
-      item["lng"] = Number(lang);
-      item["label"] = device_id;
-      item["value"] = value;
-      item["iconUrl"] = iconUrl;
-      jsonObject.push(item);
-    }
-    console.log("JSON OBJECT:"+jsonObject);
-    var json = JSON.stringify(jsonObject);
-    console.log("JSON OBJECT:"+json);
-    //set json for map loc
-    this.someData =JSON.parse(JSON.stringify(jsonObject))
-    this.selectedData = this.someData;
+        if(i==0){
+         this.lat = Number(lat);
+         this.lng = Number(lang);      
+        }
+      }
+      console.log("JSON OBJECT:"+jsonObject);
+      var json = JSON.stringify(jsonObject);
+      console.log("JSON OBJECT:"+json);
+      //set json for map loc
+      this.someData =JSON.parse(JSON.stringify(jsonObject))
+      this.selectedData = this.someData;
 
     }, error => {
      console.log("Oooops!"+error);

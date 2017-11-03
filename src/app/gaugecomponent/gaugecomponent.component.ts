@@ -52,10 +52,10 @@ export class GaugecomponentComponent implements OnInit {
       this.imgAlarm='../../assets/offRed.jpg';
       this.imgBeacon='../../assets/offgaslow.jpg';
       this.imgConnect='../../assets/connected.jpg';
-      /*
+      
       setInterval(() =>{
            this.getGaugeValue(this.deviceId)
-        },5000); */
+        },5000); 
     }
 
    // Gaues values in to put
@@ -126,8 +126,8 @@ export class GaugecomponentComponent implements OnInit {
             var gasLeakA = data[i].gas_detector; 
             //var tankPressureA =9;
             console.log(tankPressureA);
-            this.tankPressure= Number(tankPressureA) ;
-            this.linePressure = Number(linePressureA);
+            this.tankPressure= Number(tankPressureA)*4 ;
+            this.linePressure = Number(linePressureA)*4;
             this.tankLevel = Number(tankLevelA);
             this.GasLeak = Number(gasLeakA);
             //this.tankPressure= tankPressureA ;

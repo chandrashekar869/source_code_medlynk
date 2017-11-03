@@ -1,6 +1,5 @@
 <app-header></app-header>
-<div class="container" style=" margin-top: -1%;">
-
+<div class="container">
 <div>
     <select [(ngModel)]="selected" (ngModelChange)="onSelected(selected)">
  <option disabled hidden [value]="selectUndefinedOptionValue">Select Device Id ---</option>
@@ -17,8 +16,9 @@
                 {{ option }}
         </option>
    </select>
+   <button> Road</button>
 </div>
-<agm-map  [latitude]="lat" [longitude]="lng"  [zoom]="15"   >
+<agm-map  [latitude]="lat" [longitude]="lng"  [zoom]="12"   >
   <agm-marker *ngFor="let m of selectedData; let i = index"
           [latitude]="m.lat"
           [longitude]="m.lng"
@@ -30,5 +30,4 @@
           </agm-info-window>
   </agm-marker>
 </agm-map>
-
 </div>
