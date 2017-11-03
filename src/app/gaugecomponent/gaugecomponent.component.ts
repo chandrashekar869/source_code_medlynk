@@ -210,8 +210,12 @@ export class GaugecomponentComponent implements OnInit {
             var diffDays = Math.ceil(diff / (1000 * 3600 * 24)); 
             
             if(diffDays>2){
-            this.imgConnect='../../assets/disconnected.png';  
+            this.imgConnect='../../assets/disconnected.jpg';  
             }
+            else{
+              this.imgConnect='../../assets/connected.jpg';
+            }
+            
             console.log(diffDays);
             this.cus_name = data[i].customer_name;
 
