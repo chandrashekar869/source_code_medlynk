@@ -8,7 +8,7 @@
        <div class="headercss"><h4 style="margin-left: 2%"><b> User Name:</b> Sejal kumari Das </h4></div><br>
        <div class="headercss"><h4 style="margin-left: 2%"><b> Customer Name:</b> {{cus_name}}</h4></div>
 
-        <div class="center-block">
+        <div class="center-block" style="margin-top: 8%" >
           <div id="gauge_chart" 
            [chartData]="pie_ChartData" 
            [chartOptions]= "pie_ChartOptions" 
@@ -22,7 +22,7 @@
       <div class="row">
        <div class="headercss"><h4 style="margin-left: 2%"><b> Device Id</b> {{deviceId}} </h4></div><br>
        <div class="headercss"><h4 style="margin-left: 2%"><b> Date Updated:</b> {{log_date}} </h4></div>
-        <div class="center-block">  
+        <div class="center-block" style="margin-top: 8%">  
           <div id="gauge_chart1" 
           [chartData]="pie_ChartData1" 
           [chartOptions]= "pie_ChartOptions1" 
@@ -38,31 +38,31 @@
         </div>
       </div>
       <div class="row text-center" style="margin-bottom: 3%;">
-            <div class="col center-block">
-                  <img class="navbar-brand page-scroll" style="height:0%;padding: 0%; max-width: 280px;max-height: 80px;" src="../../assets/gasLeak.png">
+            <div class="col">
+                  <img class="navbar-brand page-scroll" style="max-width: 280px;max-height: 80px;" src="../../assets/gasLeak.png">
             </div>
             <div class="col">
                 <img [src]="imgAlarm" style="cursor:pointer">
             </div>
         </div>
       <div class="row text-center" style="margin-bottom: 3%;">
-          <div class="col center-block">
-                <img class="navbar-brand page-scroll" style="height:0%;padding: 0%; max-width: 280px;max-height: 80px;" src="../../assets/lowgas.png">
+          <div class="col">
+                <img class="navbar-brand page-scroll" style="max-width: 280px;max-height: 80px;" src="../../assets/lowgas.png">
           </div>
         <div class="col">
               <img [src]="imgBeacon" style="cursor:pointer"></div>
       </div>
       <div class="row text-center" style="margin-bottom: 3%;">
-            <div class="col center-block">
-               <img class="navbar-brand page-scroll" style="height:0%;padding: 0%; max-width: 280px;max-height: 80px;" src="../../assets/supply.png">
+            <div class="col">
+               <img class="navbar-brand page-scroll" style="max-width: 280px;max-height: 80px;" src="../../assets/supply.png">
             </div>
             <div class="col center-block">
               <meter min="0" low="30" high="60" max="100" optimum="90" value={{powerSupply}} style="width:150px;height:25px"> </meter><div style="position: absolute;margin-top: -11%;margin-left: 7%;"><b><h4>{{powerSupply}}%</h4></b></div>
             </div>
         </div>
         <div class="row text-center" style="margin-bottom: 3%;">
-            <div class="col center-block">
-               <img class="navbar-brand page-scroll" style="height:0%;padding: 0%; max-width: 280px;max-height: 80px;" src="../../assets/connection.png">
+            <div class="col">
+               <img class="navbar-brand page-scroll" style="max-width: 280px;max-height: 80px;" src="../../assets/connection.png">
             </div>
             <div class="col ">
                <img [src]="imgConnect" style="cursor:pointer">
