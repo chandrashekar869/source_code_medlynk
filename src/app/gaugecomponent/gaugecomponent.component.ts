@@ -52,10 +52,10 @@ export class GaugecomponentComponent implements OnInit {
       this.imgAlarm='../../assets/offRed.jpg';
       this.imgBeacon='../../assets/offgaslow.jpg';
       this.imgConnect='../../assets/connected.jpg';
-      /*
+      
       setInterval(() =>{
            this.getGaugeValue(this.deviceId)
-        },15000);  */
+        },15000);  
     }
 
    // Gaues values in to put
@@ -215,7 +215,7 @@ export class GaugecomponentComponent implements OnInit {
             else{
               this.imgConnect='../../assets/connected.jpg';
             }
-            
+
             console.log(diffDays);
             this.cus_name = data[i].customer_name;
 
