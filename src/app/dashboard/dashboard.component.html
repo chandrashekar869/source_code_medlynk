@@ -18,7 +18,10 @@
    </select>
    <button> Road</button>
 </div>
-<agm-map  [latitude]="lat" [longitude]="lng"  [zoom]="12"   >
+<agm-map  [latitude]="lat" [longitude]="lng"  [zoom]="12" [mapTypeId]="'hybrid'"  >
+  
+
+
   <agm-marker *ngFor="let m of selectedData; let i = index"
           [latitude]="m.lat"
           [longitude]="m.lng"

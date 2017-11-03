@@ -55,7 +55,7 @@ export class GaugecomponentComponent implements OnInit {
       
       setInterval(() =>{
            this.getGaugeValue(this.deviceId)
-        },5000); 
+        },15000); 
     }
 
    // Gaues values in to put
