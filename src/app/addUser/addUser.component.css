@@ -1,0 +1,22 @@
+label{
+    margin: 1% 0% 1% 0%;
+    font-size: 1.5em;
+    vertical-align: center;
+}
+h1{
+    font-family: monospace,Cambria, Cochin, Georgia, Times, Times New Roman, serif;
+    text-align:center;
+    color: #000000;
+    font-size: 3em;
+    padding: 20px 0px 30px 0px;
+}
+button{
+margin: 1% 40% 0% 0%;
+}
+input{
+    max-height: 80%;
+}
+select{
+    max-height: 100%;
+    margin: 1% 0% 4% 0%;
+}

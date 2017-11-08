@@ -1,0 +1,31 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<app-header></app-header>
+<script src="https://use.fontawesome.com/00e43ab5a9.js"></script>
+<div class="container">
+    <div>
+        <div class="col-xs-10"><h1><b>User Management</b></h1></div>  
+        <div><button onclick="location.href='./addUser'" class="btn btn-primary col-xs-2 " style="font-size:15px">ADD<i class="fa fa-plus" aria-hidden="true"></i></button>
+    </div>
+      <div class="table-responsive tableprop">
+          
+<table  style="width:100%" border="1" >
+  <tr>
+  <th class="col-xs-3">Name</th>
+  <th class="col-xs-3">EmailId</th>
+  <th class="col-xs-2">Phone</th>
+  <th class="col-xs-2">Type</th>
+  <th>Actions</th>
+  </tr>
+  <tr  [class]="tablerow"  *ngFor="let item of results">
+    <td>{{item.user_name}}</td>
+    <td>{{item.email_id}}</td>
+    <td>{{item.contact_no}}</td>
+    <td>{{item.role}}</td>
+    <td>
+      <div class="col-xs-6" style="text-align:right"><img style="min-width:20px" width="40%" src="./../../assets/edit.png"  alt="Settings"></div>
+      <div class="col-xs-6" style="text-align:left"><img style="min-width:20px" width="40%" src="./../../assets/delete.png" alt="Settings"></div>
+    </td>
+  </tr>
+</table>
+  </div>
+</div>
