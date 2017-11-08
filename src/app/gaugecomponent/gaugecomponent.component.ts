@@ -33,8 +33,9 @@ export class GaugecomponentComponent implements OnInit {
   solenoid:any;
   log_date:any;
   cus_name:any;
-
-
+  display='none';
+  model: any = {};
+  
   constructor(private route:ActivatedRoute,public nav: NavbarService,public http: Http) { 
      //this._element = this.element.nativeElement;
     //  google.charts.load('current', {'packages':['corechart']});
@@ -55,7 +56,7 @@ export class GaugecomponentComponent implements OnInit {
       
       setInterval(() =>{
            this.getGaugeValue(this.deviceId)
-        },15000);  
+        },150000);  
     }
 
    // Gaues values in to put
@@ -186,20 +187,32 @@ export class GaugecomponentComponent implements OnInit {
           };
             //this.drawGraph(this.chartOptions,this.chartType,this.chartData,this._element)
             //check for alarm and becon values
-            if(Number(data[i].gas_leak)==1)
-                this.imgAlarm = '../../assets/beaconflashing.gif';
-            if(Number(data[i].low_gas)==1)
-                this.imgBeacon='../../assets/lowgas.gif'; 
+            if(Number(data[i].gas_leak)==1){
+                this.imgAlarm = '../../assets/beaconflashing.gif';}
+            else{ 
+                this.imgAlarm='../../assets/offRed.jpg';}    
+
+            if(Number(data[i].low_gas)==1){ 
+              this.imgBeacon='../../assets/lowgas.gif'; }
+            else{ 
+               this.imgBeacon='../../assets/offgaslow.jpg';}  
+            
             //set powr supply %
             this.powerSupply=Number(data[i].power_level);  
             this.meter1 = data[i].meter1.split(""); 
             this.meter2 = data[i].meter2.split(""); 
             this.meter3 = data[i].meter3.split(""); 
             this.meter4 = data[i].meter4.split(""); 
-            this.solenoidArray = data[i].solenoid.split("");
+
+            //check for intermediate state
+            if(Number(data[i].device_state_updated)==1){
+            this.solenoidArray = data[i].control_solenoid.split("");
             this.solenoid = this.solenoidArray.map(Number);
             console.log(this.solenoid[0]);
-
+            } else {
+            this.solenoidArray = data[i].log_solenoid.split("");
+            this.solenoid = this.solenoidArray.map(Number);
+            console.log(this.solenoid[0]);}
             var today = new Date();
             //converting the log date in date formate
             var date2 = new Date(data[i].log_time);
@@ -215,10 +228,8 @@ export class GaugecomponentComponent implements OnInit {
             else{
               this.imgConnect='../../assets/connected.jpg';
             }
-
             console.log(diffDays);
             this.cus_name = data[i].customer_name;
-
          } //for loop
         }, error => {
           console.log("Oooops!"+error);
@@ -236,91 +247,19 @@ export class GaugecomponentComponent implements OnInit {
     console.log("Val:  "+val);
     this.elements[index] = !val;
   }
-        //chart2.draw(data2, options1);
-        /*
-        drawGraph(chartOptions,chartType,chartData,ele) {
-          google.charts.setOnLoadCallback(drawChart);
-          function drawChart() {
-            var wrapper;
-            wrapper = new google.visualization.ChartWrapper({
-              chartType: chartType,
-              dataTable:chartData ,
-              options:chartOptions || {},
-              containerId: ele.id
-            });
-            wrapper.draw();
-          }
-        }*/
-      /* drawChart1(){
-          var data = google.visualization.arrayToDataTable([
-            ['Label', 'Value'],
-            ['Tank Pressure', 10.2]
-          ]);
 
-          var data1 = google.visualization.arrayToDataTable([
-            ['Label', 'Value'],
-            ['Tank Level', 68]
-          ]);
+   openModal(){
+       this.display='block'; 
+    }
+   onCloseHandled(){
+       this.display='none'; 
+    }
 
-          var data2 = google.visualization.arrayToDataTable([
-            ['Label', 'Value'],
-            ['Gas Leak', 45]
-          ]);
-          var data3 = google.visualization.arrayToDataTable([
-            ['Label', 'Value'],
-            ['Line Pressure', 12.7],
-          ]);
-
-          var options = {
-            width: 630, height: 230,
-            redFrom: 15, redTo: 20,
-            yellowFrom:10, yellowTo: 15,
-            minorTicks: 5,
-            max : 20
-          };
-
-          var options1 = {
-            width: 630, height: 230,
-            redFrom: 90, redTo: 100,
-            yellowFrom:75, yellowTo: 90,
-            minorTicks: 5
-          };
-
-          var chart = new google.visualization.Gauge(document.getElementById('chart_div'));
-          var chart1 = new google.visualization.Gauge(document.getElementById('chart_div1'));
-          var chart2 = new google.visualization.Gauge(document.getElementById('chart_div2'));
-          var chart3 = new google.visualization.Gauge(document.getElementById('chart_div3'));
-
-          chart.draw(data, options);
-          chart1.draw(data1, options1);
-          chart2.draw(data2, options1);
-          chart3.draw(data3, options1);
-
-          console.log("tank gas_pressureA");
-          console.log(this.tankPressure);
-
-          if (this.tankPressure==undefined) {
-         console.log("tank gas_pressureA undefine");
-
-          }
-
-
-          setInterval(function() {
-          data.setValue(0, 1,25);
-          chart.draw(data, options);
-          }, 100);
-
-          setInterval(function() {
-          data.setValue(1, 1, 40 + Math.round(60 * Math.random()));
-          chart1.draw(data, options);
-          }, 5000);
-
-          setInterval(function() {
-          data.setValue(2, 1, 60 + Math.round(20 * Math.random()));
-          chart2.draw(data, options);
-          }, 26000);
-      }*/
-
+  onSubmitPassword(){
+    console.log("Password is :"+ this.model.password);
+    this.display='none'; 
+    }
+      
 }
 
 

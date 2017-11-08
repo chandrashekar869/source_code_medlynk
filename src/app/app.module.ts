@@ -17,6 +17,7 @@ import { DashboardComponent } from './dashboard/index';
 import { FooterComponent } from './footer/footer.component';
 import { GaugecomponentComponent } from './gaugecomponent/gaugecomponent.component';
 import { GoogleGaugesComponent } from './google-gauges/google-gauges.component';
+
 @NgModule({
     imports: [
         BrowserModule,
