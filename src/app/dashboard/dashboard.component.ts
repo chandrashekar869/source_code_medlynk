@@ -20,6 +20,8 @@ export class DashboardComponent implements OnInit {
 	mapID: string = 'TERRAIN';
   User_Id:string;
   userId:string = '12345';
+  select:any;
+  selectUndefinedOptionValue:any;
 
 	ngOnInit(){
 		this.nav.show();

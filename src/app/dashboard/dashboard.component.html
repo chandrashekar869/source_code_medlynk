@@ -1,7 +1,7 @@
 <app-header></app-header>
 <div class="container">
 <div>
-    <select [(ngModel)]="selected" (ngModelChange)="onSelected(selected)">
+    <select [(ngModel)]="select" (ngModelChange)="onSelected(select)">
  <option disabled hidden [value]="selectUndefinedOptionValue">Select Device Id ---</option>
         <option *ngFor="let deviceId of someData"
                 [value]="deviceId.label"> 

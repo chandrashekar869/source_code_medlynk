@@ -9,20 +9,22 @@ export class addUserComponent {
   name:string;
   model:any={};
   results:any[]=[];
-  assigned:any[]=[];
+  assigned:any[];
   temp:any[]=[];
   tempassigned:any[]=[];
   title = 'Medlsys';
   roles:string[]=["User","Admin","Sub Admin"];
-  role:string="";
-
+  role:string;
+  errmsg:string;
+ select:any;
+ selecta:any;
   constructor(private http: HttpClient){
   }
 
   ngOnInit(): void {
     var tempObj={};
     // Make the HTTP request:
-    this.http.get('http://40.71.199.63:3200/getDevices').subscribe(data => {
+    this.http.get('http://localhost:3200/getDevices').subscribe(data => {
       // Read the result field from the JSON response.
       for(var key in data){
         if(Number.isInteger(Number(key))){
@@ -78,14 +80,34 @@ onSelectRole(val){
             this.assigned.splice(index,1);
           }
         }
+        this.assigned=this.tempassigned;
         this.tempassigned=[];
     }
-
     submit(){
-      console.log("hey");
-      this.model.devices=this.assigned;
-      this.model.role=this.role;
+   /*   this.model.role=this.role;
+      this.model.assigned=this.assigned;
+      var params=["username","email","phone","role","password","confirmpassword","assigned"];
+      for(var i=0;i<params.length;i++){
+        if(!this.model.hasOwnProperty(params[i])){
+          this.errmsg="Fill field "+params[i];
+          break;
+        }
+        else{
+          if(this.model[params[i]]==undefined){
+            this.errmsg="Fill field "+params[i];
+            break;
+          }
+          if(i==5){
+            if(this.model.password!=this.model.confirmpassword)
+              {
+                this.errmsg="Passwords do not match";
+                break;
+              }
+          }
+          if(i==2 && this.model.phone.le)     
+        }
+      }
       console.log(this.model);
-      
-    }
+    */
+}
 }
