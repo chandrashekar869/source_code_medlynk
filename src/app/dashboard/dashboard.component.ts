@@ -23,7 +23,12 @@ export class DashboardComponent implements OnInit {
 
 	ngOnInit(){
 		this.nav.show();
-		this.getTestAttributes(this.userId);
+		this.getDeviceAttributes(this.userId);
+
+
+  setInterval(() =>{
+          this.getDeviceAttributes(this.userId)
+        },15000);  
  	}  
 
 
@@ -82,7 +87,7 @@ export class DashboardComponent implements OnInit {
       }
     }
 
-    getTestAttributes(id:string){
+    getDeviceAttributes(id:string){
     var link = '/users/deviceList';
     var jsonObject =[];
     //var data = JSON.stringify();
@@ -191,4 +196,3 @@ interface marker {
 	draggable: boolean;
 	iconUrl?: string;
 }
-
