@@ -30,11 +30,15 @@ export class GaugecomponentComponent implements OnInit {
   meter3:any;
   meter4:any;
   solenoidArray:any;
+  solenoidtempArray:any;
+  backgroundstring:string="white";
   solenoid:any;
   log_date:any;
   cus_name:any;
   display='none';
+  disableSolenoid:boolean;
   model: any = {};
+
   
   constructor(private route:ActivatedRoute,public nav: NavbarService,public http: Http) { 
      //this._element = this.element.nativeElement;
@@ -56,7 +60,7 @@ export class GaugecomponentComponent implements OnInit {
       
       setInterval(() =>{
            this.getGaugeValue(this.deviceId)
-        },150000);  
+        },15000);  
     }
 
    // Gaues values in to put
@@ -204,15 +208,22 @@ export class GaugecomponentComponent implements OnInit {
             this.meter3 = data[i].meter3.split(""); 
             this.meter4 = data[i].meter4.split(""); 
 
+            this.solenoidtempArray = data[i].log_solenoid.split("");
+            
             //check for intermediate state
             if(Number(data[i].device_state_updated)==1){
-            this.solenoidArray = data[i].control_solenoid.split("");
-            this.solenoid = this.solenoidArray.map(Number);
-            console.log(this.solenoid[0]);
-            } else {
-            this.solenoidArray = data[i].log_solenoid.split("");
-            this.solenoid = this.solenoidArray.map(Number);
-            console.log(this.solenoid[0]);}
+              this.solenoidArray = data[i].control_solenoid.split("");
+              this.solenoid = this.solenoidArray.map(Number);
+              this.disableSolenoid=true;
+              this.backgroundstring="#f2f2f2";
+              //console.log(this.solenoid[0]);
+            } 
+            else {
+              this.solenoidArray = data[i].log_solenoid.split("");
+              this.solenoid = this.solenoidArray.map(Number);
+              this.disableSolenoid=false;
+              //console.log(this.solenoid[0]);
+            }
             var today = new Date();
             //converting the log date in date formate
             var date2 = new Date(data[i].log_time);
@@ -242,10 +253,11 @@ export class GaugecomponentComponent implements OnInit {
     false,
   ];
   
-  handleChange(val: boolean, index: number){
-    console.log("Index: "+index);
-    console.log("Val:  "+val);
-    this.elements[index] = !val;
+  handleChange(event ,index){
+  console.log("Index: "+index);
+  console.log('event.target.value ' + event.target.value);
+   if(event) { console.log("Val:  "+event.target.value);}
+    this.elements[index] = !event;
   }
 
    openModal(){
@@ -261,6 +273,3 @@ export class GaugecomponentComponent implements OnInit {
     }
       
 }
-
-
-
