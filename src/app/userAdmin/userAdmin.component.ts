@@ -16,7 +16,7 @@ export class userAdminComponent implements OnInit {
   ngOnInit(): void {
     var tempObj={};
     // Make the HTTP request:
-    this.http.get('http://localhost:3200/userAdmin').subscribe(data => {
+    this.http.get('http://40.71.199.63:3200/userAdmin').subscribe(data => {
       // Read the result field from the JSON response.
       for(var key in data){
         if(Number.isInteger(Number(key))){

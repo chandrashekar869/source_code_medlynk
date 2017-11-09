@@ -74,7 +74,7 @@
                           <option [value]="item" *ngFor="let item of results">{{item}}</option>
                         </select>  
                   </div>
-                  <img src="../../assets/leftarrow.jpg" (click)="deletelist()" name="deletelistbutton" style="margin:8% 1% 0% 0%;">
+                  <img src="assets/leftarrow.jpg" (click)="deletelist()" name="deletelistbutton" style="margin:8% 1% 0% 0%;">
                   <i (click)="insertlist()" name="insertlistbutton" style="margin:8% 0% 0% 1%;" class="fa fa-arrow-circle-right fa-3x" aria-hidden="true"></i>
                   <div class="col-xs-5">
                       <select name="devicesa" [(ngModel)]="selecta" (change)="onSelectassigned(selecta)" multiple="" size="8" style="min-width:70%;max-width:80%;overflow-x:scroll;overflow-y:scroll " class="form-control" id="alldevices" required>

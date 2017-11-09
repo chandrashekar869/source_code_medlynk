@@ -54,9 +54,9 @@ export class GaugecomponentComponent implements OnInit {
       //check user role and then alter the header
       this.nav.show();
       this.getGaugeValue(this.deviceId)
-      this.imgAlarm='../../assets/offRed.jpg';
-      this.imgBeacon='../../assets/offgaslow.jpg';
-      this.imgConnect='../../assets/connected.jpg';
+      this.imgAlarm='assets/offRed.jpg';
+      this.imgBeacon='assets/offgaslow.jpg';
+      this.imgConnect='assets/connected.jpg';
       
       setInterval(() =>{
            this.getGaugeValue(this.deviceId)
@@ -192,14 +192,14 @@ export class GaugecomponentComponent implements OnInit {
             //this.drawGraph(this.chartOptions,this.chartType,this.chartData,this._element)
             //check for alarm and becon values
             if(Number(data[i].gas_leak)==1){
-                this.imgAlarm = '../../assets/beaconflashing.gif';}
+                this.imgAlarm = 'assets/beaconflashing.gif';}
             else{ 
-                this.imgAlarm='../../assets/offRed.jpg';}    
+                this.imgAlarm='assets/offRed.jpg';}    
 
             if(Number(data[i].low_gas)==1){ 
-              this.imgBeacon='../../assets/lowgas.gif'; }
+              this.imgBeacon='assets/lowgas.gif'; }
             else{ 
-               this.imgBeacon='../../assets/offgaslow.jpg';}  
+               this.imgBeacon='assets/offgaslow.jpg';}  
             
             //set powr supply %
             this.powerSupply=Number(data[i].power_level);  
@@ -234,10 +234,10 @@ export class GaugecomponentComponent implements OnInit {
             var diffDays = Math.ceil(diff / (1000 * 3600 * 24)); 
             
             if(diffDays>2){
-            this.imgConnect='../../assets/disconnected.jpg';  
+            this.imgConnect='assets/disconnected.jpg';  
             }
             else{
-              this.imgConnect='../../assets/connected.jpg';
+              this.imgConnect='assets/connected.jpg';
             }
             console.log(diffDays);
             this.cus_name = data[i].customer_name;
