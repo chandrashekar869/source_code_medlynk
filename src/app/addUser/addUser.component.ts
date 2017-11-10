@@ -1,5 +1,8 @@
 import { Component,OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Http, Headers, Response, URLSearchParams } from '@angular/http';
+import { Router, ActivatedRoute } from '@angular/router';
+
 @Component({
   moduleId: module.id,
   templateUrl: './addUser.component.html',
@@ -9,7 +12,7 @@ export class addUserComponent {
   name:string;
   model:any={};
   results:any[]=[];
-  assigned:any[];
+  assigned:any[]=[];
   temp:any[]=[];
   tempassigned:any[]=[];
   title = 'Medlsys';
@@ -18,13 +21,13 @@ export class addUserComponent {
   errmsg:string;
  select:any;
  selecta:any;
-  constructor(private http: HttpClient){
+  constructor(private router: Router,private http: HttpClient,public httpcustom: Http){
   }
 
   ngOnInit(): void {
     var tempObj={};
     // Make the HTTP request:
-    this.http.get('http://40.71.199.63:3200/getDevices').subscribe(data => {
+    this.http.get('http://localhost:3200/getDevices').subscribe(data => {
       // Read the result field from the JSON response.
       for(var key in data){
         if(Number.isInteger(Number(key))){
@@ -58,6 +61,7 @@ onSelectRole(val){
   insertlist(){
     var i:any;
     var j:any;
+    console.log(this.temp);
     for(i=0;i<=this.temp.length;i++){
       if(this.temp[i]!=undefined && this.assigned.indexOf(this.temp[i])==-1){
         this.assigned.push(this.temp[i]);
@@ -80,12 +84,12 @@ onSelectRole(val){
             this.assigned.splice(index,1);
           }
         }
-        this.assigned=this.tempassigned;
         this.tempassigned=[];
     }
     submit(){
-   /*   this.model.role=this.role;
+   this.model.role=this.role;
       this.model.assigned=this.assigned;
+      this.errmsg="";
       var params=["username","email","phone","role","password","confirmpassword","assigned"];
       for(var i=0;i<params.length;i++){
         if(!this.model.hasOwnProperty(params[i])){
@@ -94,20 +98,26 @@ onSelectRole(val){
         }
         else{
           if(this.model[params[i]]==undefined){
-            this.errmsg="Fill field "+params[i];
+            this.errmsg="* Fill field "+params[i];
+            break;
+          }
+          if(i==2 && this.model.phone.length<10){
+            this.errmsg="* Enter a valid phone number";
             break;
           }
           if(i==5){
             if(this.model.password!=this.model.confirmpassword)
               {
-                this.errmsg="Passwords do not match";
+                this.errmsg="* Passwords do not match";
                 break;
               }
           }
-          if(i==2 && this.model.phone.le)     
+     
         }
       }
+      this.httpcustom.post("/addUsers", {data:this.model}).subscribe({ error: e => console.error(e) });
+      this.router.navigate(['./userAdmin']);
       console.log(this.model);
-    */
+   
 }
 }
