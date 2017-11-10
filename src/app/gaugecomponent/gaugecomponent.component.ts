@@ -36,13 +36,15 @@ export class GaugecomponentComponent implements OnInit {
   log_date:any;
   cus_name:any;
   display='none';
+  devicePassword:string;
   disableSolenoid:boolean;
+  controlButton:boolean;
   model: any = {};
 
   
   constructor(private route:ActivatedRoute,public nav: NavbarService,public http: Http) { 
      //this._element = this.element.nativeElement;
-    //  google.charts.load('current', {'packages':['corechart']});
+     //google.charts.load('current', {'packages':['corechart']});
      //this.drawGraph(this.chartOptions,this.chartType,this.chartData,this._element)
    }
 
@@ -54,13 +56,13 @@ export class GaugecomponentComponent implements OnInit {
       //check user role and then alter the header
       this.nav.show();
       this.getGaugeValue(this.deviceId)
-      this.imgAlarm='assets/offRed.jpg';
-      this.imgBeacon='assets/offgaslow.jpg';
-      this.imgConnect='assets/connected.jpg';
+      this.imgAlarm='../../assets/offRed.jpg';
+      this.imgBeacon='../../assets/offgaslow.jpg';
+      this.imgConnect='../../assets/connected.jpg';
       
       setInterval(() =>{
            this.getGaugeValue(this.deviceId)
-        },15000);  
+        },30000);  
     }
 
    // Gaues values in to put
@@ -192,14 +194,14 @@ export class GaugecomponentComponent implements OnInit {
             //this.drawGraph(this.chartOptions,this.chartType,this.chartData,this._element)
             //check for alarm and becon values
             if(Number(data[i].gas_leak)==1){
-                this.imgAlarm = 'assets/beaconflashing.gif';}
+                this.imgAlarm = '../../assets/beaconflashing.gif';}
             else{ 
-                this.imgAlarm='assets/offRed.jpg';}    
+                this.imgAlarm='../../assets/offRed.jpg';}    
 
             if(Number(data[i].low_gas)==1){ 
-              this.imgBeacon='assets/lowgas.gif'; }
+              this.imgBeacon='../../assets/lowgas.gif'; }
             else{ 
-               this.imgBeacon='assets/offgaslow.jpg';}  
+               this.imgBeacon='../../assets/offgaslow.jpg';}  
             
             //set powr supply %
             this.powerSupply=Number(data[i].power_level);  
@@ -209,20 +211,38 @@ export class GaugecomponentComponent implements OnInit {
             this.meter4 = data[i].meter4.split(""); 
 
             this.solenoidtempArray = data[i].log_solenoid.split("");
+            this.solenoidtempArray = this.solenoidtempArray.map(Number);
+            this.devicePassword=data[i].device_password;
             
             //check for intermediate state
             if(Number(data[i].device_state_updated)==1){
               this.solenoidArray = data[i].control_solenoid.split("");
               this.solenoid = this.solenoidArray.map(Number);
               this.disableSolenoid=true;
-              this.backgroundstring="#f2f2f2";
-              //console.log(this.solenoid[0]);
+              this.controlButton=true;
+              this.backgroundstring="#f4dabf";
+              this.solenoidtempArray[1] = this.solenoid[1];
+              this.solenoidtempArray[2] = this.solenoid[2];
+              this.solenoidtempArray[3] = this.solenoid[3];
+              this.solenoidtempArray[4] = this.solenoid[4];
+              this.solenoidtempArray[5] = this.solenoid[5];
+              this.solenoidtempArray[6] = this.solenoid[6];
+              console.log("solenoid"+this.solenoid[1]);
+              console.log("solenoidtempArray"+this.solenoidtempArray[1]);
             } 
             else {
               this.solenoidArray = data[i].log_solenoid.split("");
               this.solenoid = this.solenoidArray.map(Number);
-              this.disableSolenoid=false;
-              //console.log(this.solenoid[0]);
+              this.disableSolenoid=true;
+              this.controlButton = false; 
+              this.solenoidtempArray[1] = this.solenoid[1];
+              this.solenoidtempArray[2] = this.solenoid[2];
+              this.solenoidtempArray[3] = this.solenoid[3];
+              this.solenoidtempArray[4] = this.solenoid[4];
+              this.solenoidtempArray[5] = this.solenoid[5];
+              this.solenoidtempArray[6] = this.solenoid[6];
+              this.backgroundstring="white";
+              console.log("solenoid"+this.solenoid[1]);
             }
             var today = new Date();
             //converting the log date in date formate
@@ -234,10 +254,10 @@ export class GaugecomponentComponent implements OnInit {
             var diffDays = Math.ceil(diff / (1000 * 3600 * 24)); 
             
             if(diffDays>2){
-            this.imgConnect='assets/disconnected.jpg';  
+            this.imgConnect='../../assets/disconnected.jpg';  
             }
             else{
-              this.imgConnect='assets/connected.jpg';
+            this.imgConnect='../../assets/connected.jpg';
             }
             console.log(diffDays);
             this.cus_name = data[i].customer_name;
@@ -254,22 +274,51 @@ export class GaugecomponentComponent implements OnInit {
   ];
   
   handleChange(event ,index){
-  console.log("Index: "+index);
-  console.log('event.target.value ' + event.target.value);
-   if(event) { console.log("Val:  "+event.target.value);}
-    this.elements[index] = !event;
+    console.log("Index: "+index);
+    if(this.solenoidtempArray[index] == 0)
+       this.solenoidtempArray[index] = 1;
+    else
+       this.solenoidtempArray[index] = 0;
+
+    console.log('event.target.value ' + this.solenoidtempArray[index]);
+    console.log(this.solenoidtempArray[index]);
   }
 
-   openModal(){
+  openModal(){
        this.display='block'; 
     }
-   onCloseHandled(){
+  onCloseHandled(){
        this.display='none'; 
     }
 
   onSubmitPassword(){
     console.log("Password is :"+ this.model.password);
-    this.display='none'; 
+    if(this.devicePassword==this.model.password){
+      this.display='none';
+      this.disableSolenoid=false;
     }
-      
-}
+    else{
+      alert("Password is Invalid");
+    }
+  }  
+  changeControler(){
+      var solenoidArray = this.solenoidtempArray.join("").toString();
+      var link = '/device/updateSolenoid';
+      var jsonObject =[];
+    //var data = JSON.stringify();
+      this.http.post(link, {device_id:this.deviceId,solenoid:solenoidArray})
+      .map(res => res.json())
+      .subscribe(data => {
+      console.log(data); 
+      if(data=="1"){
+        this.solenoid=this.solenoidtempArray;
+        this.disableSolenoid=true;
+        this.controlButton=true;
+        this.backgroundstring="#f4dabf";
+        console.log(data); 
+      }
+      },error => {
+          console.log("Oooops!"+error);
+      });
+    }  
+ }
