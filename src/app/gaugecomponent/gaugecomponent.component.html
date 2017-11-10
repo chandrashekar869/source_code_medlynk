@@ -34,27 +34,27 @@
   <div class="col-sm-4" style="border-bottom:3px solid #4784ee;">
       <div class="row text-center center-block" style="margin-bottom: 5%;margin-top: 5%">
         <div class="col-sm-12 col-lg-offset-3">
-            <img class="navbar-brand" style="padding: 0%; max-width: 280px;max-height: 80px;" src="assets/alarms.jpg">
+            <img class="navbar-brand" style="padding: 0%; max-width: 280px;max-height: 80px;" src="../../assets/alarms.jpg">
         </div>
       </div>
       <div class="row text-center" style="margin-bottom: 3%;">
             <div class="col">
-                  <img class="navbar-brand page-scroll" style="max-width: 280px;max-height: 80px;" src="assets/gasLeak.png">
+                  <img class="navbar-brand page-scroll" style="max-width: 280px;max-height: 80px;" src="../../assets/gasLeak.png">
             </div>
             <div class="col">
-                <img [src]="imgAlarm" style="cursor:pointer">
+                <img [src]="imgAlarm" >
             </div>
         </div>
       <div class="row text-center" style="margin-bottom: 3%;">
           <div class="col">
-                <img class="navbar-brand page-scroll" style="max-width: 280px;max-height: 80px;" src="assets/lowgas.png">
+                <img class="navbar-brand page-scroll" style="max-width: 280px;max-height: 80px;" src="../../assets/lowgas.png">
           </div>
         <div class="col">
-              <img [src]="imgBeacon" style="cursor:pointer"></div>
+              <img [src]="imgBeacon" ></div>
       </div>
       <div class="row text-center" style="margin-bottom: 3%;">
             <div class="col">
-               <img class="navbar-brand page-scroll" style="max-width: 280px;max-height: 80px;" src="assets/supply.png">
+               <img class="navbar-brand page-scroll" style="max-width: 280px;max-height: 80px;" src="../../assets/supply.png">
             </div>
             <div class="col center-block">
               <meter min="0" low="30" high="60" max="100" optimum="90" value={{powerSupply}} style="width:150px;height:25px"> </meter><div style="position: absolute;margin-top: -11%;margin-left: 7%;"><b><h4>{{powerSupply}}%</h4></b></div>
@@ -62,10 +62,10 @@
         </div>
         <div class="row text-center" style="margin-bottom: 3%;">
             <div class="col">
-               <img class="navbar-brand page-scroll" style="max-width: 280px;max-height: 80px;" src="assets/connection.png">
+               <img class="navbar-brand page-scroll" style="max-width: 280px;max-height: 80px;" src="../../assets/connection.png">
             </div>
             <div class="col">
-               <img [src]="imgConnect" style="cursor:pointer">
+               <img [src]="imgConnect">
             </div>
         </div>
   </div>
@@ -261,20 +261,21 @@
        </div>   
       </div>
     </div>
-      <div class="col-sm-4" style="border-bottom:3px solid #4784ee;" [style.background-color]="backgroundstring">
+      <div class="col-sm-4" style="border-bottom:3px solid #4784ee;" [style.background-color]="backgroundstring" >
         <div class="row text-center center-block" style="margin-top: 3%;margin-bottom: 2%">
-          <div class="col-sm-12 col-lg-offset-3">
-           <img class="navbar-brand" style="padding: 0%; max-width: 280px;max-height: 80px; cursor: pointer;" src="assets/controls.jpg" (click)="openModal()">
+          <div class="col-sm-12">
+          <button style="background-color: transparent;border: transparent;" (click)="openModal()" [disabled]="controlButton">
+           <img class="navbar-brand" style="padding: 0%; max-width: 280px;max-height: 80px;" src="../../assets/controls.jpg"></button>
           </div>
         </div>
         <div class="row">
         <div class="col"> 
-          <img class="navbar-brand" style="width: 100%;height: 100%;"src="assets/solenoid1.jpg">
+          <img class="navbar-brand" style="width: 100%;height: 100%;"src="../../assets/solenoid1.jpg">
         </div>
          <div class="col">
               <div class="onoffswitch">
                 <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" [disabled]="disableSolenoid"
-              [checked]="solenoid[1]" (change)="handleChange($event, 0)" id="myonoffswitch1">
+              [checked]="solenoid[1]" (change)="handleChange($event, 1)" id="myonoffswitch1">
                 <label class="onoffswitch-label" for="myonoffswitch1">
                    <span class="onoffswitch-inner"></span>
                    <span class="onoffswitch-switch"></span>
@@ -284,12 +285,12 @@
       </div>
       <div class="row">
         <div class="col"> 
-          <img class="navbar-brand" style="width: 100%;height: 100%;" src="assets/solenoid2.jpg">
+          <img class="navbar-brand" style="width: 100%;height: 100%;" src="../../assets/solenoid2.jpg">
         </div>
          <div class="col center-block">
               <div class="onoffswitch">
                    <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" [disabled]="disableSolenoid"
-                    [checked]="solenoid[2]" (change)="handleChange($event, 1)" id="myonoffswitch2" >
+                    [checked]="solenoid[2]" (change)="handleChange($event, 2)" id="myonoffswitch2" >
                    <label class="onoffswitch-label" for="myonoffswitch2">
                        <span class="onoffswitch-inner"></span>
                        <span class="onoffswitch-switch"></span>
@@ -299,12 +300,12 @@
       </div>
       <div class="row">
         <div class="col"> 
-          <img class="navbar-brand" style="width: 100%;height: 100%;"src="assets/solenoid3.jpg">
+          <img class="navbar-brand" style="width: 100%;height: 100%;"src="../../assets/solenoid3.jpg">
         </div>
          <div class="col center-block">
               <div class="onoffswitch" >
                    <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox"  [disabled]="disableSolenoid"
-                    [checked]="solenoid[3]" (change)="handleChange($event, 2)"id="myonoffswitch3" >
+                    [checked]="solenoid[3]" (change)="handleChange($event, 3)"id="myonoffswitch3" >
                    <label class="onoffswitch-label" for="myonoffswitch3">
                        <span class="onoffswitch-inner"></span>
                        <span class="onoffswitch-switch"></span>
@@ -314,12 +315,12 @@
       </div>
       <div class="row">
         <div class="col"> 
-          <img class="navbar-brand" style="width: 100%;height: 100%;" src="assets/solenoid4.jpg">
+          <img class="navbar-brand" style="width: 100%;height: 100%;" src="../../assets/solenoid4.jpg">
         </div>
          <div class="col center-block">
               <div class="onoffswitch">
                    <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" [disabled]="disableSolenoid"
-                    [checked]="solenoid[4]" (change)="handleChange($event, 3)" id="myonoffswitch4" >
+                    [checked]="solenoid[4]" (change)="handleChange($event, 4)" id="myonoffswitch4" >
                    <label class="onoffswitch-label" for="myonoffswitch4">
                        <span class="onoffswitch-inner"></span>
                        <span class="onoffswitch-switch"></span>
@@ -329,12 +330,12 @@
       </div>
       <div class="row">
         <div class="col"> 
-          <img class="navbar-brand" style="width: 100%;height: 100%;"src="assets/vaporizer.jpg">
+          <img class="navbar-brand" style="width: 100%;height: 100%;"src="../../assets/vaporizer.jpg">
         </div>
          <div class="col center-block">
               <div class="onoffswitch">
                    <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" [disabled]="disableSolenoid"
-                    [checked]="solenoid[5]" (change)="handleChange($event, 4)"id="myonoffswitch5" >
+                    [checked]="solenoid[5]" (change)="handleChange($event, 5)"id="myonoffswitch5" >
                    <label class="onoffswitch-label" for="myonoffswitch5">
                        <span class="onoffswitch-inner"></span>
                        <span class="onoffswitch-switch"></span>
@@ -344,8 +345,8 @@
       </div>
       <div class="row text-center center-block" style="margin-top: 3%;margin-bottom: 2%">
           <div class="col-sm-12">
-          <button style="background-color: transparent;border: transparent;" [disabled]="disableSolenoid" >
-           <img class="navbar-brand" style="padding: 0%; max-width: 280px;max-height: 80px;" src="assets/submit.jpg"></button>
+          <button style="background-color: transparent;border: transparent;" (click)="changeControler()" [disabled]="disableSolenoid" >
+           <img class="navbar-brand" style="padding: 0%; max-width: 280px;max-height: 80px;" src="../../assets/submit.jpg"></button>
           </div>
         </div>
   </div> 
