@@ -1,0 +1,79 @@
+<app-header></app-header>
+  <div class="container">
+        <div>
+          <h1><b>Device Management - Add Device</b></h1>
+        </div>  
+<form style="border:1px solid black;" name="form" (ngSubmit)="submit()">
+  <p style="color:red;font-size:1.2em;margin:1% 0% 1% 28%;">{{errmsg}}</p>
+      <div class="row" style="margin:4% 0% 1% 28%;">
+        <div class="col-xs-3" align="left">
+        <label for="Name" >Name:</label>
+        </div>
+        <div class="col-xs-5" align="left">
+          <input name="username" [(ngModel)]="model.username" #username="ngModel" type="text" class="form-control" id="Name" required placeholder="Enter name"> 
+        </div>
+      </div>
+    
+      <div class="row" style="margin:1% 0% 1% 28%;">
+          <div class="col-xs-3" align="left">
+          <label for="device_id" >Device Id:</label>
+          </div>
+          <div class="col-xs-5" align="left">
+            <input name="device_id" [(ngModel)]="model.device_id" #device_id="ngModel" class="form-control" id="device_id" required placeholder="Enter device_id"> 
+          </div>
+        </div>
+
+        <div class="row" style="margin:1% 0% 1% 28%;">
+            <div class="col-xs-3" align="left">
+            <label for="address" >Address:</label>
+            </div>
+            <div class="col-xs-5" align="left">
+              <input name="address" [(ngModel)]="model.address" #address="ngModel" type="text" class="form-control" id="address" required placeholder="Enter address"> 
+            </div>
+          </div>
+
+          <div class="row" style="margin:1% 0% 1% 28%;">
+              <div class="col-xs-3" align="left">
+              <label for="coordinates" >Co-ordinates:</label>
+              </div>
+              <div class="col-xs-5" align="left">
+                <input name="coordinates" [(ngModel)]="model.coordinates" #coordinates="ngModel" type="text" class="form-control" id="coordinates" required placeholder="Enter co-ordinates"> 
+              </div>
+            </div>
+  
+          
+            <div class="row" style="margin:1% 0% 1% 28%;">
+              <div class="col-xs-3" align="left">
+              <label for="loginpassword" >Password:</label>
+              </div>
+              <div class="col-xs-5" align="left">
+                <input name="loginpassword" [(ngModel)]="model.loginpassword" #loginpassword="ngModel" type="password" class="form-control" id="loginpassword" required placeholder="Enter login password"> 
+              </div>
+            </div>
+
+            <div class="row" style="margin:1% 0% 1% 28%;">
+                <div class="col-xs-3" align="left">
+                <label for="configpassword" >Config Password:</label>
+                </div>
+                <div class="col-xs-5" align="left">
+                  <input name="configpassword" [(ngModel)]="model.configpassword" #configpassword="ngModel" type="password" class="form-control" id="configpassword" required placeholder="Enter config password"> 
+                </div>
+              </div>
+
+              <div class="row" style="margin:1% 0% 0% 28%;">
+                <div class="col-xs-3" align="left">
+                <label for="gsmmobilenumber" >GSM Mobile Number:</label>
+                </div>
+                <div class="col-xs-5" align="left">
+                  <input name="gsmmobilenumber" [(ngModel)]="model.gsmmobilenumber" #gsmmobilenumber="ngModel" type="tel" class="form-control" id="gsmmobilenumber" required placeholder="Enter gsmmobilenumber"> 
+                </div>
+              </div>
+
+             <div class="row" style="margin:0% 0% 1% 18%;">
+                <div class="col-xs-4 col-xs-offset-4" >
+              <p>     
+              <button type="submit" class="btn btn-primary" style="margin-top:12%;background-color:green;font-size:1.7em"><b>Submit</b></button>
+                </div>  
+            </div>
+</form>
+</div>

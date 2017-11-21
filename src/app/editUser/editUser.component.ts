@@ -2,13 +2,13 @@ import { Component,OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Http, Headers, Response, URLSearchParams } from '@angular/http';
 import { Router, ActivatedRoute } from '@angular/router';
-import { NavbarService } from '../_services/index';
+import {NavbarService } from '../_services/index';
 @Component({
   moduleId: module.id,
-  templateUrl: './addUser.component.html',
-  styleUrls: ['./addUser.component.css']
+  templateUrl: './editUser.component.html',
+  styleUrls: ['./editUser.component.css']
 })
-export class addUserComponent {
+export class editUserComponent {
   name:string;
   model:any={};
   results:any[]=[];
@@ -19,25 +19,34 @@ export class addUserComponent {
   roles:string[]=["User","Admin","Sub Admin"];
   role:string;
   errmsg:string;
- select:any;
+  user_details:any;
+  select:any;
  selecta:any;
   constructor(private router: Router,public nav: NavbarService,private http: HttpClient,public httpcustom: Http){
   }
 
   ngOnInit(): void {
     this.nav.show();
-    var tempObj={};
-    // Make the HTTP request:
-    this.http.get('http://40.71.199.63:3200/getDevices').subscribe(data => {
-      // Read the result field from the JSON response.
-      for(var key in data){
-        if(Number.isInteger(Number(key))){
-          console.log(data[key]);
-          tempObj=data[key];
-          this.results.push(tempObj["device_id"]);
-        }
-      }
+    console.log("from editUser");
+    this.http.post("http://40.71.199.63:3200/getUserData",{data:JSON.parse(localStorage.getItem("clickedItem"))}).subscribe(response =>{
+    this.user_details=response["user_details"];
+    this.model.username=this.user_details.user_name;
+      this.model.email=this.user_details.email_id;
+      this.model.phone=this.user_details.contact_no;
+      this.model.address=this.user_details.address;
+      this.role=this.user_details.role;
+      var non_assigned_device_list:any[]=[];
+      response["non_assigned_device_list"].map(function(val){
+          non_assigned_device_list.push(val.device_id);
+      });
+      this.results=non_assigned_device_list;
+      var assigned_device_list:any[]=[];
+      response["user_device_list"].map(function(val){
+          assigned_device_list.push(val.device_id);
+      });
+      this.assigned=assigned_device_list;
     });
+    var tempObj={};
   }
 
 onSelectRole(val){
@@ -45,17 +54,21 @@ onSelectRole(val){
 }
 
   onSelect(val){
+    this.temp=[];
     var i:any;
     for(i=0;i<=val.length;i++){
       if(val[i]!=undefined)
       this.temp[i]=val[i];
+      console.log(this.temp);
     }
   }
   onSelectassigned(val){
+    this.tempassigned=[];
     var i:any;
     for(i=0;i<=val.length;i++){
       if(val[i]!=undefined)
       this.tempassigned[i]=val[i];
+      console.log(this.tempassigned);
     }
   }
 
@@ -90,6 +103,7 @@ onSelectRole(val){
     submit(){
    this.model.role=this.role;
       this.model.assigned=this.assigned;
+      this.model.user_id=this.user_details.user_id;
       this.errmsg="";
       var params=["username","email","phone","role","address","password","confirmpassword","assigned"];
       for(var i=0;i<params.length;i++){
@@ -115,7 +129,8 @@ onSelectRole(val){
           }
         }
         if(i==params.length-1){
-            this.httpcustom.post("/addUsers", {data:this.model}).subscribe({ error: e => console.error(e) });
+          this.model.user_id=this.user_details.user_id;
+            this.httpcustom.post("/updateUsers", {data:this.model}).subscribe({ error: e => console.error(e) });
             this.router.navigate(['./userAdmin']);
           
         }

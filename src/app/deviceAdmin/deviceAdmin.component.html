@@ -1,0 +1,34 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<app-header></app-header>
+
+<div class="container">
+    <div>
+        <div class="col-xs-10 col-xs-offset-1"><h1><b>Device Management</b></h1></div>  
+        <div><button onclick="location.href='./addDevice'" class="btn btn-primary col-xs-1 " style="background-color:green;font-size:1.7em"><b>ADD</b></button>
+    </div>
+      <div class="table-responsive tableprop">
+          
+<table  style="width:100%" border="1" >
+  <tr>
+  <th class="col-xs-2">Name</th>
+  <th class="col-xs-1">Device Id</th>
+  <th class="col-xs-3">Address</th>
+  <th class="col-xs-2">Co-ordinates</th>
+  <th class="col-xs-2">Device Status</th>
+  <th class="col-xs-2">Actions</th>
+  </tr>
+  <tr  [class]="tablerow" *ngFor="let item of results;let i=index">
+    <td>{{item.customer_name}}</td>
+    <td style="padding:0% 1% 0% 1%">{{item.device_id}}</td>
+    <td>{{item.address}}</td>
+    <td>{{item.coordinates}}</td>
+    <td [style.color]="item.color">{{item.device_status}}<br />{{item.display_date}}</td>
+    <td>
+      <div class="col-xs-4" (click)=edit(i) style="text-align:right"><img style="min-width:20px" width="40%" src="./../../assets/edit.png"  alt="edit"></div>
+      <div class="col-xs-4" (click)=deletefromtable(i) style="text-align:right"><img style="min-width:20px" width="40%" src="./../../assets/delete.png" alt="delete"></div>
+      <div class="col-xs-4"  style="text-align:left"><img style="min-width:20px" width="80%" src="./../../assets/settings.png"  alt="Settings"></div>
+    </td>
+  </tr>
+</table>
+  </div>
+</div>

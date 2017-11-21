@@ -10,7 +10,7 @@
         <label for="Name" >Name:</label>
         </div>
         <div class="col-xs-5" align="left">
-          <input name="username" [(ngModel)]="model.username" #username="ngModel" type="text" class="form-control" id="Name" required placeholder="Enter name"> 
+          <input value="{{model.username}}" name="username" [(ngModel)]="model.username" #username="ngModel" type="text" class="form-control" id="Name" required placeholder="Enter name"> 
         </div>
       </div>
     
@@ -19,7 +19,7 @@
           <label for="emailid" >Emailid:</label>
           </div>
           <div class="col-xs-5" align="left">
-            <input name="email" [(ngModel)]="model.email" #email="ngModel" type="email" class="form-control" id="emailid" required placeholder="Enter email"> 
+            <input value="{{model.email}}"  name="email" [(ngModel)]="model.email" #email="ngModel" type="email" class="form-control" id="emailid" required placeholder="Enter email"> 
           </div>
         </div>
 
@@ -28,7 +28,7 @@
             <label for="phone" >Phone:</label>
             </div>
             <div class="col-xs-5" align="left">
-              <input name="phone" [(ngModel)]="model.phone" #phone="ngModel" type="tel"  class="form-control" id="phone" required placeholder="Enter phone"> 
+              <input value="{{model.phone}}"  name="phone" [(ngModel)]="model.phone" #phone="ngModel" type="tel"  class="form-control" id="phone" required placeholder="Enter phone"> 
             </div>
           </div>
 
@@ -39,7 +39,8 @@
               </div>
               <div class="col-xs-5" align="left">
                   <select name="roleelement" [(ngModel)]="role" (change)="onSelectRole(role)"  class="form-control" id="role" required>
-                      <option [value]="item" *ngFor="let item of roles">{{item}}</option>
+                    <option [selected]="role"  [disabled]="model.roledisabled" >{{role}}</option>  
+                    <option [value]="item" *ngFor="let item of roles">{{item}}</option>
                     </select>    
               </div>
             </div>
