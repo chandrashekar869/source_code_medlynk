@@ -3,8 +3,8 @@
         <div>
           <h1><b>User Management - Add User</b></h1>
         </div>  
-<form  name="form" (ngSubmit)="submit()">
-  <p style="color:red;font-size:1.2em;margin:1% 0% 1% 28%;">{{errmsg}}</p>
+<form  name="form" (ngSubmit)="f.form.valid && submit()" #f="ngForm" >
+    <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !username.valid }" style="border:1px solid black;margin:1% 0% 1% 0%">
       <div class="row" style="margin:1% 0% 1% 28%;">
         <div class="col-xs-3" align="left">
         <label for="Name" >Name:</label>
@@ -13,7 +13,7 @@
           <input name="username" [(ngModel)]="model.username" #username="ngModel" type="text" class="form-control" id="Name" required placeholder="Enter name"> 
         </div>
       </div>
-    
+    </div>
       <div class="row" style="margin:1% 0% 1% 28%;">
           <div class="col-xs-3" align="left">
           <label for="emailid" >Emailid:</label>
@@ -44,16 +44,7 @@
               </div>
             </div>
 
-            <div class="row" style="margin:1% 0% 1% 28%;">
-              <div class="col-xs-3" align="left">
-              <label for="address" >Address:</label>
-              </div>
-              <div class="col-xs-5" align="left">
-                <input name="address" [(ngModel)]="model.address" #address="ngModel" type="text" class="form-control" id="address" required placeholder="Enter password"> 
-              </div>
-            </div>
-
-            <div class="row" style="margin:1% 0% 1% 28%;">
+          <div class="row" style="margin:1% 0% 1% 28%;">
               <div class="col-xs-3" align="left">
               <label for="password" >Password:</label>
               </div>
@@ -67,7 +58,7 @@
                 <label for="confirmpassword" >Confirm Password:</label>
                 </div>
                 <div class="col-xs-5" align="left">
-                  <input name="confirmpassword" [(ngModel)]="model.confirmpassword" #confirmpassword="ngModel" type="password" class="form-control" id="confirmpassword" required placeholder="Enter password"> 
+                  <input name="cpassword" [(ngModel)]="model.cpassword" #cpassword="ngModel" type="password" class="form-control" id="confirmpassword" required placeholder="Enter password"> 
                 </div>
               </div>
             
@@ -79,22 +70,21 @@
 
               <div class="row" style="margin:0% 20% 0% 25%">
                   <div class="col-xs-5"  align="right">
-                      <select name="devices"  [(ngModel)]="select" (change)="onSelect(select)" size="8" multiple="" style="min-width:60%;max-width:80%;overflow-x:scroll;overflow-y:scroll" class="form-control" id="alldevices" required>
+                      <select name="devices" [(ngModel)]="select" (change)="onSelect(select)" size="8" multiple="" style="min-width:60%;max-width:80%;overflow-x:scroll;overflow-y:scroll" class="form-control" id="alldevices" required>
                           <option [value]="item" *ngFor="let item of results">{{item}}</option>
                         </select>  
                   </div>
-                  <img src="../../assets/leftarrow.jpg" (click)="deletelist()" name="deletelistbutton" style="margin:7% 1% 0% 0%;width:4%;height:4%">
-                  <img src="../../assets/rightarrow.jpg" (click)="insertlist()" name="insertlistbutton" style="margin:7% 0% 0% 1%;width:4%;height:4%">
+                  <i (click)="deletelist()" name="deletelistbutton" style="margin:8% 1% 0% 0%;" class="fa fa-arrow-circle-left fa-3x" aria-hidden="true"></i>
+                  <i (click)="insertlist()" name="insertlistbutton" style="margin:8% 0% 0% 1%;" class="fa fa-arrow-circle-right fa-3x" aria-hidden="true"></i>
                   <div class="col-xs-5">
-                      <select name="devicesa" [(ngModel)]="selecta" (change)="onSelectassigned(selecta)" multiple="" size="8" style="min-width:70%;max-width:80%;overflow-x:scroll;overflow-y:scroll " class="form-control" id="alldevices" required>  
-                        <option [value]="item" *ngFor="let item of assigned">{{item}}</option>
+                      <select name="devicesa" [(ngModel)]="selecta" (change)="onSelectassigned(selecta)" multiple="" size="8" style="min-width:70%;max-width:80%;overflow-x:scroll;overflow-y:scroll " class="form-control" id="alldevices" required>
+                          <option [value]="item" *ngFor="let item of assigned">{{item}}</option>
                         </select>  
                   </div>
               </div>
               <div class="row" style="margin:1% 0% 1% 18%;">
                 <div class="col-xs-4 col-xs-offset-4" >
-              <p>    
-              <button type="submit" class="btn btn-primary" style="margin-top:12%;background-color:green;font-size:1.7em">Submit</button>
+              <img src="../../assets/submit.jpg" (click)="submit()" style="max-width:80%;min-width:40%;max-height:50%;min-height:30%;margin-top:2%">
                 </div>  
             </div>
 </form>

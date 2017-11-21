@@ -1,37 +1,90 @@
 <div class="container">
-<nav class="navbar navbar-toggleable">
-<img class="navbar-brand page-scroll" style="height:0%;padding: 0%; max-width: 280px;max-height: 80px;" src="../../assets/logo.png"  href="" alt="logo">
-<!--<button class="navbar-toggler hidden-lg-up navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
- <span class="navbar-toggler-icon my-toggler"></span>
-</button>-->
-<button class="navbar-toggler hidden-md-up navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+  <nav class="navbar navbar-toggleable">
+    <img class="navbar-brand page-scroll" style="height:0%;padding: 0%; max-width: 280px;max-height: 80px;" src="../../assets/logo.png"  href="" alt="logo">
+      <button class="navbar-toggler hidden-md-up navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             ☰
-  </button>
-  <div class="collapse navbar-collapse" id="navbarNavDropdown">
-    <ul class="nav navbar-nav  mr-auto">
-    </ul>
-    <ul class="nav navbar-nav " style="margin-bottom: -5%;">
-      <li   class="nav-item">
-        <a class="nav-link" href="">Home</a>
-      </li>
-      <li  *ngIf="nav.visible" class="nav-item" >
-        <a class="nav-link" href="./userAdmin">User Admin</a>
-      </li>
-      <li  *ngIf="nav.visible" class="nav-item">
-        <a class="nav-link" href="">Device Admin</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="">Support</a>
-      </li>
-
-            <li *ngIf="nav.visible" class="nav-item dropdown">
-                <a style="color: green" class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Hello Sejal </a>
-                <div class="dropdown-menu dropdown-menu-right">
-                    <a  class="dropdown-item" href="#">Log Out </a>
-                </div>
-            </li>
-    </ul>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="nav navbar-nav  mr-auto"></ul>
+        <ul class="nav navbar-nav " style="margin-bottom: -5%;">
+          <li   class="nav-item">
+            <a class="nav-link" [routerLink]="['']">Home</a>
+          </li>
+          <li  *ngIf="nav.visible" class="nav-item" >
+            <a class="nav-link" href="./userAdmin">User Admin</a>
+          </li>
+          <li  *ngIf="nav.visible" class="nav-item">
+            <a class="nav-link" class="badge1" data-badge="2" href="" >
+              Device Admin  
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="">Support</a>
+          </li>
+          <li *ngIf="nav.userProfile" class="nav-item dropdown">
+            <a style="color: green" class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Hello Sejal </a>
+            <div class="dropdown-menu dropdown-menu-right">
+              <a  class="dropdown-item"  [routerLink]="['/login']">Logout</a>
+              <a  class="dropdown-item" href="#myModal" data-toggle="modal" data-target="#myModal">Change Password</a>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </nav>
   </div>
-
-</nav>
+<div class="modal fade" id="myModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Change Password</h4>
+      </div>
+      
+      <form style="font-size: medium;" (ngSubmit)="changePassword()" #f="ngForm">
+      <div class="modal-body">
+        <div class="form-group">
+          <label>Current password</label>
+           <input type="password" class="form-control" id="oldPassword"
+           required
+           [(ngModel)]="model.oldPassword" name="oldPassword"
+           #oldPassword="ngModel">
+           <small [hidden]="oldPassword.valid || oldPassword.pristine"
+              class="alert alert-danger">
+              Current_Password is required
+           </small>        
+        </div>
+        <div class="form-group">
+          <label >New password</label>
+           <input type="password" class="form-control" id="password"
+           required
+           [(ngModel)]="model.password" name="password"
+          pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[a-z]).*$"
+           #password="ngModel"> 
+          <small [hidden]="!password.hasError('pattern')">Password (Letters, Number/SpecialChar and min 8 Chars)</small>   
+          <small [hidden]="password.valid || password.pristine" class="alert alert-danger">
+              Password is required
+          </small>       
+        </div>
+        <div class="form-group">
+          <label >Confirm new password</label>
+           <input type="password" class="form-control" id="confirm_password"
+           required
+           [(ngModel)]="model.confirm_password" name="confirm_password"  validateEqual="password"
+           #confirm_password="ngModel">
+           <small [hidden]="confirm_password.valid || confirm_password.pristine"
+              class="alert alert-danger">
+              Passwords did not match
+           </small>           
+        </div>
+        <div class="form-group" id="wrapper">
+            <button [disabled]="loading" class="btn btn-success btn-lg" [disabled]="!f.form.valid"><h4>Confirm</h4></button></div>
+      </div>
+      </form>
+      <div class="modal-footer">
+        <a href="#" data-dismiss="modal" class="btn">Close</a>
+      </div>
+    </div>
+  </div>
 </div>
+  <!-- /.modal !-->
+
+

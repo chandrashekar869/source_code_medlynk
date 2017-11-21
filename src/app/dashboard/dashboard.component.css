@@ -1,2 +1,12 @@
 agm-map {
-  height: 580px;}
+	height: 580px;
+}
+select {
+	width:150px;
+	height: 30px;
+	border: 1px solid;
+}
+option {
+	width:200px;
+	height: 35px;	
+}

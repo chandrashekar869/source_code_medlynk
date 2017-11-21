@@ -1,7 +1,5 @@
 import { Component,OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Http, Headers, Response, URLSearchParams } from '@angular/http';
-import { Router, ActivatedRoute } from '@angular/router';
 @Component({
   moduleId:module.id,
   templateUrl: './userAdmin.component.html',
@@ -13,7 +11,7 @@ export class userAdminComponent implements OnInit {
   tablerow='tablerow';
   tableprop='tableprop';
   results:any[]=[];
-  constructor(private router: Router,private http: HttpClient,public httpcustom: Http){
+  constructor(private http: HttpClient){
   }
   ngOnInit(): void {
     var tempObj={};
@@ -29,10 +27,5 @@ export class userAdminComponent implements OnInit {
         }
       }
     });
-  }
-  deletefromtable(i){
-    console.log(this.results[i]);
-    this.httpcustom.post("/delete", {data:this.results[i]}).subscribe({ error: e => console.error(e) });
-    location.reload();
   }
 }

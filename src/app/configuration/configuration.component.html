@@ -1,0 +1,2199 @@
+<app-header></app-header>
+<div class="container-fluid">
+       <h1 align="center">Medlynk Configuration</h1>
+<div class="tab" style="text-align:center;width:60%;margin:auto;">
+  <button id="tl0" class="tablinks" (click)="openCity(event, 'home')">Home</button>
+  <button id="tl1" class="tablinks" (click)="openCity(event, 'network')">Network</button>
+  <button id="tl2" class="tablinks" (click)="openCity(event, 'serial')">Serial</button>
+  <button id="tl3" class="tablinks" (click)="openCity(event, 'server')">Server</button>
+  <button id="tl4" class="tablinks" (click)="openCity(event, 'slave')">Slave</button>
+  <button id="tl5" class="tablinks" (click)="openCity(event, 'analog')">Analog</button>  
+  <button id="tl6" class="tablinks" (click)="openCity(event, 'datetime')">Date Time</button>
+  <button id="tl7" class="tablinks" (click)="openCity(event, 'digitalcount')">Digital Count</button>
+  <button id="tl8" class="tablinks" (click)="openCity(event, 'ssl')">SSL</button>
+</div>
+<div id="home" class="tabcontent">
+  <form >
+    <table width="800" cellspacing="0" cellpadding="0" bordercolor="#999999" border="0" align="center">
+        <tbody>
+            <tr>
+                <td valign="top" align="center">
+                    <table border-collapse:="" collapse="" width="100%" cellspacing="0" cellpadding="0" bordercolor="#111111" border="0">
+                        <tbody>
+                        <tr bgcolor="#FFFFFF" align="center">
+                        <td>
+                        <table style="margin-top:5%;" width="800" height="128" cellspacing="5" cellpadding="2" border="0">
+                        <tbody >
+                            <tr>
+                                <td width="165" height="28"></td>
+                                <td width="171" height="28">
+                                    <font new="" roman="" face="Times">MAC Address:</font>
+                                </td>
+                                <td width="453" height="28" align="left">
+                                    <font new="" roman="" value="" face="Times">00-17-85-0A-05-15</font>
+                                </td>
+                                </tr>
+                                <tr>
+                                    <td width="165" height="30">&nbsp;</td>
+                                    <td width="171" height="30">
+                                        <font new="" roman="" face="Times">Firmware version:</font>
+                                    </td>
+                                    <td width="453" height="30" align="left">
+                                        <font new="" roman="" face="Times">1.02</font>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td width="165" height="27">&nbsp;</td>
+                                    <td width="171" height="27">
+                                       <font new="" roman="" face="Times">Product Model:</font>
+                                    </td>
+                                    <td width="453" height="27" align="left">
+                                       <font new="" roman="" face="Times">Medlynk</font>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td width="165" height="30">&nbsp;</td>
+                                    <td width="171" height="30">
+                                        <font new="" roman="" face="Times">Boot loader:</font>
+                                    </td>
+                                    <td width="453" height="30" align="left">
+                                        <font new="" roman="" face="Times">V2.8</font>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                </tr>
+                                <tr >
+                                    <td width="265">&nbsp;</td>
+                                    <td width="269" align="right">
+                                        <input style="margin-top:20%;" (click)="next()" value="Next" name="basicnext" type="button">
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <table>
+                        <tbody>
+                                <tr>
+                                <td width="265" height="32">&nbsp;</td>
+                                <td width="267" height="32" align="right"></td>
+                                <td width="254" height="32" align="left"></td>
+                                </tr>
+                                <tr></tr>
+                                <tr></tr>
+                        </tbody>
+                        </table>
+                        <table width="800" height="100px">
+                        <tbody>
+                                <tr></tr>
+                                <tr></tr>
+                                </tbody>
+                                </table>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    </form>
+</div>
+
+<div id="network" class="tabcontent">
+  <form name="form" (ngSubmit)="submitNetwork()">
+    <table width="800" cellspacing="0" cellpadding="0" bordercolor="#999999" border="0" align="center">
+    <tbody>
+    <tr bgcolor="#FFFFFF" align="center">
+    <td>
+    <table width="800" style="margin-top: 5%" height="200" cellspacing="5" cellpadding="2" border="0">
+    <tbody>
+    <tr>
+    <td width="167" height="23">&nbsp;</td>
+    <td width="176" height="23">IP Address:</td>
+    <td width="446" height="23" align="left">
+    <input name="network_ip1" [(ngModel)]="model.network.ip.nip1" #nip1="ngModel" maxlength="3" size="3"type="text">
+    <b>.
+    <input name="network_ip2" [(ngModel)]="model.network.ip.nip2" #nip2="ngModel" maxlength="3" size="3" type="text">
+    .
+    <input name="network_ip3" [(ngModel)]="model.network.ip.nip3" #nip3="ngModel" maxlength="3" size="3" type="text">
+    .
+    <input name="network_ip4" [(ngModel)]="model.network.ip.nip4" #nip4="ngModel" maxlength="3" size="3" type="text">
+    </b>
+    </td>
+    </tr>
+    <tr>
+    <td width="167" height="23">&nbsp;</td>
+    <td width="176" height="23">Subnet Mask:</td>
+    <td width="446" height="23" align="left">
+    <input name="network_snm1" [(ngModel)]="model.network.subnet.snm1" #snm1="ngModel" maxlength="3" size="3" type="text">
+    <b>.
+    <input name="network_snm1" [(ngModel)]="model.network.subnet.snm2" #snm2="ngModel" maxlength="3" size="3" type="text">
+    .
+    <input name="network_snm1" [(ngModel)]="model.network.subnet.snm3" #snm3="ngModel" maxlength="3" size="3" type="text">
+    .
+    <input name="network_snm1" [(ngModel)]="model.network.subnet.snm4" #snm4="ngModel" value="000" maxlength="3" size="3" type="text">
+    </b>
+    </td>
+    </tr>
+    <tr>
+    <td width="167" height="23">&nbsp;</td>
+    <td width="176" height="23">Gateway :</td>
+    <td width="446" height="23" align="left">
+    <input name="network_gw1" [(ngModel)]="model.network.gateway.gw1" #gw1="ngModel" maxlength="3" size="3" type="text">
+    <b>.
+    <input name="network_gw2" [(ngModel)]="model.network.gateway.gw2" #gw2="ngModel" maxlength="3" size="3" type="text">
+    .
+    <input name="network_gw3" [(ngModel)]="model.network.gateway.gw3" #gw3="ngModel" maxlength="3" size="3" type="text">
+    .
+    <input name="network_gw4" [(ngModel)]="model.network.gateway.gw4" #gw4="ngModel" maxlength="3" size="3" type="text">
+    </b>
+    </td>
+    </tr>
+    <tr>
+    <td width="167" height="23">&nbsp;</td>
+    <td width="176" height="23"> DNS IP Address:</td>
+    <td width="446" height="23" align="left"><b>
+    <input name="network_dns1" [(ngModel)]="model.network.dns.dns1" #dns1="ngModel" maxlength="3" size="3" type="text">
+    .
+    <input name="network_dns2" [(ngModel)]="model.network.dns.dns2" #dns2="ngModel" maxlength="3" size="3" type="text">
+    .
+    <input name="network_dns3" [(ngModel)]="model.network.dns.dns3" #dns3="ngModel" maxlength="3" size="3" type="text">
+    .
+    <input name="network_dns4" [(ngModel)]="model.network.dns.dns4" #dns4="ngModel" maxlength="3" size="3" type="text">
+  </b>  
+  </td>
+    </tr>
+    <tr>
+    <td width="167" height="16"></td>
+    <td width="176" height="16">Network Interface :</td>
+    <td width="446" height="16" align="left">
+        <select name="network_netInterface" [(ngModel)]="network_interface" (change)="onSelectNetwork(1,network_interface)"  class="form-control" id="role" required>
+            <option [value]="item" *ngFor="let item of netInterfaces">{{item}}</option>
+          </select>   
+    </td>
+    </tr>
+    <tr>
+    <td width="167" height="16"></td>
+    <td width="176" height="16">DHCP :</td>
+    <td width="446" height="16" align="left">
+        <select name="dhcp" [(ngModel)]="network_dhcp" (change)="onSelectNetwork(2,network_dhcp)"  class="form-control" id="role" required>
+            <option [value]="item" *ngFor="let item of switchoptions">{{item}}</option>
+          </select>   
+    </td>
+    </tr>
+    </tbody>
+    </table>
+    <table width="550" height="100px">
+    <tbody>
+    <tr>
+    <td width="70" align="right">
+    <input (click)="document.location='basic.html'" value="Prev" name="networkprev" type="button">
+    </td>
+    <td width="382" align="center">
+    <button  value="Submit" type="submit">Submit</button>
+    <input (click)="document.location='login.html'" value="Load Default" name="cancel" type="button">
+    </td>
+    <td width="84" align="left">
+    <input (click)="document.location='serial.html'" value="Next" name="networknext" type="button">
+    </td>
+    <input name="hidd" value="hidden1" type="hidden">
+    </tr>
+    </tbody>
+    </table>
+    <table>
+    <tbody>
+    <tr>
+    <td width="265" height="32">&nbsp;</td>
+    <td width="267" height="32" align="right"></td>
+    <td width="254" height="32" align="left"></td>
+    </tr>
+    <tr></tr>
+    </tbody>
+    </table>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+    
+    </form>    
+</div>
+
+<div id="serial" class="tabcontent">
+  
+	<form  method="post">
+	<table dercolor="#99999" width="800" cellspacing="0" cellpadding="0" border="0" align="center">
+	<tbody>
+	<tr bgcolor="#FFFFFF" align="center">
+	<td>
+	<div style="width:100%;overflow-x:hidden;font-size: 12px;">
+	<table width="800" height="100px" cellspacing="5" cellpadding="2" border="0">
+	<tbody>
+	<tr>
+	<td></td>
+	<td width="215" height="2">&nbsp;
+	<div style="font-size:20px;color:blue;">RS232</div>
+	</td>
+	</tr>
+	<tr>
+	<td width="167" height="27">&nbsp;</td>
+	<td width="176" height="27">Baud Rate: </td>
+	<td width="446" height="27" align="left">
+	<select name="param">
+	<option value="0">1200</option>
+	<option value="1">2400</option>
+	<option value="2">4800</option>
+	<option value="3" selected="">9600</option>
+	<option value="4">19200</option>
+	<option value="5">38400</option>
+	<option value="6">57600</option>
+	<option value="7">115200</option>
+	</select>
+	</td>
+	</tr>
+	<tr>
+	<td width="167" height="23">&nbsp;</td>
+	<td width="176" height="23">Data bits : </td>
+	<td width="446" height="23" align="left">
+	<select name="param">
+	<option value="0">7</option>
+	<option value="1" selected="">8</option>
+	</select>
+	</td>
+	</tr>
+	<tr>
+	<td width="167" height="23">&nbsp;</td>
+	<td width="176" height="23">Parity : </td>
+	<td width="446" height="23" align="left">
+	<select name="param">
+	<option value="0">Even</option>
+	<option value="1">Odd</option>
+	<option value="2" selected="">None</option>
+	<option value="3">Mark</option>
+	<option value="4">Space</option>
+	</select>
+	</td>
+	</tr>
+	<tr>
+	<td width="167" height="23">&nbsp;</td>
+	<td width="176" height="23">Stop bits : </td>
+	<td width="446" height="23" align="left">
+	<select name="param">
+	<option value="0" selected="">1</option>
+	<option value="1">2</option>
+	</select>
+	</td>
+	</tr>
+	<tr>
+	<td width="167" height="23">&nbsp;</td>
+	<td width="176" height="23">Flow control : </td>
+	<td width="446" height="23" align="left">
+	<select name="param">
+	<option value="1" selected="">NONE</option>
+	<option value="2">XON-XOFF</option>
+	<option value="3">RTS-CTS</option>
+	</select>
+	</td>
+	</tr>
+	<tr>
+	<td width="167" height="23">&nbsp;</td>
+	<td width="176" height="23">Character wait time out:</td>
+	<td width="446" height="23" align="left">
+	<input maxlength="5" size="15" value="10" name="param">
+	<label title="Value should multiple of 5">
+	</label> (Between 0 to 65535 msec)
+	</td>
+	</tr>
+	<tr>
+	<td></td>
+	<td width="215" height="2">&nbsp;
+	<div style="font-size:20px;color:blue;">RS485</div>
+	</td>
+	</tr>
+	<tr>
+	<td width="167" height="27">&nbsp;</td>
+	<td width="176" height="27">Baud Rate: </td>
+	<td width="446" height="27" align="left">
+	<select name="param">
+	<option value="0">1200</option>
+	<option value="1">2400</option>
+	<option value="2">4800</option>
+	<option value="3" selected="">9600</option>
+	<option value="4">19200</option>
+	<option value="5">38400</option>
+	<option value="6">57600</option>
+	<option value="7">115200</option>
+	</select>
+	</td>
+	</tr>
+	<tr>
+	<td width="167" height="23">&nbsp;</td>
+	<td width="176" height="23">Data bits : </td>
+	<td width="446" height="23" align="left">
+	<select name="param">
+	<option value="0">7</option>
+	<option value="1" selected="">8</option>
+	</select>
+	</td>
+	</tr>
+	<tr>
+	<td width="167" height="23">&nbsp;</td>
+	<td width="176" height="23">Parity : </td>
+	<td width="446" height="23" align="left">
+	<select name="param">
+	<option value="0">Even</option>
+	<option value="1">Odd</option>
+	<option value="2" selected="">None</option>
+	<option value="3">Mark</option>
+	<option value="4">Space</option>
+	</select>
+	</td>
+	</tr>
+	<tr>
+	<td width="167" height="23">&nbsp;</td>
+	<td width="176" height="23">Stop bits : </td>
+	<td width="446" height="23" align="left">
+	<select name="param">
+	<option value="0" selected="">1</option>
+	<option value="1">2</option>
+	</select>
+	</td>
+	</tr>
+	<tr>
+	<td width="167" height="23">&nbsp;</td>
+	<td width="176" height="23">Character wait time out:</td>
+	<td width="446" height="23" align="left">
+	<input maxlength="5" size="15" value="10" name="param">
+	<label title="Value should multiple of 5">
+	</label> (Between 0 to 65535 msec) 
+	</td>
+	</tr>
+	</tbody>
+	</table>
+	<table style="margin-top:3%;" width="481">
+	<tbody>
+	<tr>
+	<td width="42">
+	<input (click)="document.location='network.html'" value="Prev" name="serialprev" type="button">
+	</td>
+	<td width="382" align="center">
+	<input (click)="document.location='load_reboot.html'" value="Submit" name="savereboot" type="button">
+	<input (click)="document.location='default.html'" value="Reset" name="loaddefault" type="button">
+	</td>
+	<td width="43">
+	<input (click)="document.location='server.html'" value="Next" name="serialnext" type="button">
+	<input name="hidd" value="hidden1" type="hidden">
+	</td>
+	</tr>
+	</tbody>
+	</table>
+	<table>
+	<tbody>
+	<tr>
+	<td width="265" height="32">&nbsp;</td>
+	<td width="267" height="32" align="right"></td>
+	<td width="254" height="32" align="left"></td>
+	</tr>
+	<tr></tr>
+	</tbody>
+	</table>
+	</div>
+	</td>
+	</tr>
+	</tbody>
+	</table>
+	</form>
+</div>
+
+<div id="server" class="tabcontent">
+  
+  <form  method="post">
+    <table width="800" height="895px" cellspacing="0" cellpadding="0" bordercolor="#999999" border="0" align="center">
+    <tbody>
+    <tr>
+    <td valign="top">
+    <div align="center">
+    <tr  bgcolor="#FFFFFF" align="center">
+    <td>
+    <table style="margin-top:5%;" width="800" height="290" cellspacing="5" cellpadding="2" border="0">
+    <tbody>
+    <tr>
+    <td width="160" height="27">&nbsp;</td>
+    <td width="183" height="27">IP Filtering :</td>
+    <td width="446" height="27" align="left">
+    <input name="param" value="000" maxlength="3" size="3" id="default" type="text">
+    <b>.
+    <input name="param" value="000" maxlength="3" size="3" type="text">.
+    <input name="param" value="000" maxlength="3" size="3" type="text">.
+    <input name="param" value="000" maxlength="3" size="3" type="text">
+    <br>
+    <input name="param" value="000" maxlength="3" size="3" type="text">
+    <b>.
+    <input name="param" value="000" maxlength="3" size="3" type="text">.
+    <input name="param" value="000" maxlength="3" size="3" type="text">.
+    <input name="param" value="000" maxlength="3" size="3" type="text">
+    <br>
+    <input name="param" value="000" maxlength="3" size="3" type="text">
+    <b>.
+    <input name="param" value="000" maxlength="3" size="3" type="text">.
+    <input name="param" value="000" maxlength="3" size="3" type="text">.
+    <input name="param" value="000" maxlength="3" size="3" type="text">
+    <br>
+    <input name="param" value="000" maxlength="3" size="3" type="text">
+    <b>.
+    <input name="param" value="000" maxlength="3" size="3" type="text">.
+    <input name="param" value="000" maxlength="3" size="3" type="text">.
+    <input name="param" value="000" maxlength="3" size="3" type="text">
+    <br>
+    <input name="param" value="000" maxlength="3" size="3" type="text">
+    <b>.
+    <input name="param" value="000" maxlength="3" size="3" type="text">.
+    <input name="param" value="000" maxlength="3" size="3" type="text">.
+    <input name="param" value="000" maxlength="3" size="3" type="text">
+    
+    </b>
+    </b>
+    </b>
+    </b>
+    </b>
+    </td>
+    </tr>
+    <tr style="padding-top:5%;">
+    <td width="167" height="23">&nbsp;</td>
+    <td width="176" height="23">Server Connect wait time:</td>
+    <td width="446" height="23" align="left">
+    <input maxlength="5" size="15" value="1" name="param">
+    ( Between 0 to 999 Sec) 
+    </td>
+    </tr>
+    <tr>
+    <td width="167" height="23">&nbsp;</td>
+    <td width="176" height="23">Remote IP(or)Host Address:</td>
+    <td width="446" height="23" align="left">
+    <input name="param" value="162.62.006.079" maxlength="49" size="25" type="text">
+    </td>
+    </tr>
+    <tr>
+    <td width="160" height="23">&nbsp;</td>
+    <td width="183" height="23">Remote Port number:</td>
+    <td width="446" height="23" align="left">
+    <input name="param" size="19" value="80" maxlength="5" type="text">
+    </td>
+    </tr>
+    <tr>
+    <td width="160" height="22"></td>
+    <td width="183" height="22">Connection inactive timeout:</td>
+    <td width="446" height="22" align="left">
+    <input size="15" value="300" name="param" maxlength="5">
+    (1 - 65534 sec,65535 to Disable)
+    </td>
+    </tr>
+    <tr>
+    <td width="160" height="22">&nbsp;</td>
+    <td width="183" height="22">Defeat Long ACK:</td>
+    <td width="446" height="22" align="left">
+    <select name="param">
+    <option value="0">Disable</option>
+    <option value="1" selected="">Enable</option>
+    </select>
+    </td>
+    </tr>
+    <tr>
+    <td width="160" height="22">&nbsp;</td>
+    <td width="183" height="22">Restart on loss of link</td>
+    <td width="446" height="22" align="left">
+    <select name="param">
+    <option value="0">Disable</option>
+    <option value="1" selected="">Enable</option>
+    </select>
+    </td>
+    </tr>
+    <tr>
+    <td width="160" height="22">&nbsp;</td>
+    <td width="183" height="22">Telnet IAC</td>
+    <td width="446" height="22" align="left">
+    <select name="param">
+    <option value="0" selected="">Disable</option>
+    <option value="1">Enable</option>
+    </select>
+    </td>
+    </tr>
+    <tr>
+    <td width="160" height="22">&nbsp;</td>
+    <td width="183" height="22">Retain Relay Status</td>
+    <td width="446" height="22" align="left">
+    <select name="param">
+    <option value="0">Disable</option>
+    <option value="1" selected="">Enable</option>
+    </select>
+    </td>
+    </tr>
+    <tr>
+    <td width="160" height="22">&nbsp;</td>
+    <td width="183" height="22">Data Backup</td>
+    <td width="446" height="22" align="left">
+    <select name="param">
+    <option value="0" selected="">Disable</option>
+    <option value="1">Enable</option>
+    </select>
+    </td>
+    </tr>
+    <tr>
+    <td width="160" height="22">&nbsp;</td>
+    <td width="183" height="22">Time stamp</td>
+    <td width="446" height="22" align="left">
+    <select name="param">
+    <option value="0" selected="">Disable</option>
+    <option value="1">Enable</option>
+    </select>
+    </td>
+    </tr>
+    <tr>
+    <td width="160" height="22"></td>
+    <td width="183" height="22">Server Connectivity Timeout:</td>
+    <td width="446" height="22" align="left">
+    <input size="15" value="15" name="param" maxlength="5"> (1 - 254 Min, 255 to Disable)
+    </td>
+    </tr>
+    <tr>
+    <td width="167" height="27">&nbsp;</td>
+    <td width="176" height="27">Server Connectivity Timeout Related Relay </td>
+    <td width="446" height="27" align="left">
+    <select name="param">
+    <option value="1" selected="">Relay 1</option>
+    <option value="2">Relay 2</option>
+    <option value="3">Relay 3</option>
+    <option value="4">Relay 4</option>
+    <option value="5">Relay 5</option>
+    <option value="6">Relay 6</option>
+    <option value="7">Relay 7</option>
+    <option value="8">Relay 8</option>
+    </select>
+    </td>
+    </tr>
+    <tr>
+    <td width="160" height="22">&nbsp;</td>
+    <td width="183" height="22">Relay Initial State</td>
+    <td width="446" height="22" align="left">
+    <select name="param">
+    <option value="0" selected="">OFF</option>
+    <option value="1">ON</option>
+    </select>
+    </td>
+    </tr>
+    <tr>
+    <td width="160" height="22"></td>
+    <td width="183" height="22">Relay Next State Duration</td>
+    <td width="446" height="22" align="left">
+    <input size="15" value="60" name="param" maxlength="5"> (0 - 65535 Sec) 
+    </td>
+    </tr>
+    <tr>
+    <td width="167" height="23">&nbsp;</td>
+    <td width="176" height="23">Login User ID</td>
+    <td width="446" height="23" align="left">
+    <input name="param" value="userid" maxlength="16" size="25" type="text">
+    </td>
+    </tr>
+    <tr>
+    <td width="167" height="23">&nbsp;</td>
+    <td width="176" height="23">Login Password</td>
+    <td width="446" height="23" align="left">
+    <input name="param" value="password" maxlength="16" size="25" type="text">
+    </td>
+    </tr>
+    <tr>
+    <td width="167" height="23">&nbsp;</td>
+    <td width="176" height="23">SFD</td>
+    <td width="446" height="23" align="left">
+    <input name="param" value="++" maxlength="4" size="25" type="text">
+    </td>
+    </tr>
+    <tr>
+    <td width="167" height="23">&nbsp;</td>
+    <td width="176" height="23">DLM</td>
+    <td width="446" height="23" align="left">
+    <input name="param" value="&amp;&amp;" maxlength="4" size="25" type="text">
+    </td>
+    </tr>
+    <tr>
+    <td></td>
+    <td width="215" height="2">&nbsp;  
+    <div style="font-size:20px;color:blue;">GSM</div>
+    </td>
+    </tr>
+    <tr>
+    <td width="160" height="22">&nbsp;</td>
+    <td width="183" height="22">GSM</td>
+    <td width="446" height="22" align="left">
+    <select name="param">
+    <option value="0">Disable</option>
+    <option value="1" selected="">Enable</option>
+    </select>
+    </td>
+    </tr>
+    <tr>
+    <td width="167" height="23">&nbsp;</td>
+    <td width="176" height="23">APN</td>
+    <td width="446" height="23" align="left">
+    <input name="param" value="airtelgprs.com" maxlength="20" size="25" type="text">
+    </td>
+    </tr>
+    <tr>
+    <td width="167" height="23">&nbsp;</td>
+    <td width="176" height="23">User ID</td>
+    <td width="446" height="23" align="left">
+    <input name="param" value="" maxlength="10" size="25" type="text">
+    </td>
+    </tr>
+    <tr>
+    <td width="167" height="23">&nbsp;</td>
+    <td width="176" height="23">Password</td>
+    <td width="446" height="23" align="left">
+    <input name="param" value="" maxlength="10" size="25" type="text">
+    </td>
+    </tr>
+    </tbody>
+    </table>
+    <table height="100px">
+    <tbody>
+    <tr>
+    <td align="left">
+    <input (click)="document.location='serial.html'" value="Prev" name="serverprev" type="button">
+    </td>
+    <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+    <td align="center">
+    <input (click)="document.location='load_reboot.html'" value="Save" name="savereboot" type="button">
+    &nbsp;&nbsp;&nbsp;
+    <input (click)="document.location='default.html'" value="Load Default" name="loaddefault" type="button">
+    </td>
+    <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+    <td width="43">
+    <input (click)="document.location='slave.html'" value="Next" name="servernext" type="button">
+    <input name="hidd" value="hidden1" type="hidden">
+    </td>
+    <td></td>
+    </tr>
+    </tbody>
+    </table>
+    <table>
+    <tbody>
+    <tr>
+    <td width="265" height="32">&nbsp;</td>
+    <td width="267" height="32" align="right"></td>
+    <td width="254" height="32" align="left"></td>
+    </tr>
+    <tr></tr>
+    </tbody>
+    </table>
+    </td>
+    </tr>
+    </tbody>
+    
+    </div>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+    </form>
+</div>
+
+<div id="slave" class="tabcontent">
+  <form method="post">
+  <table dercolor="#99999" width="800" cellspacing="0" cellpadding="0" border="0" align="center">
+  <tbody>
+  <tr bgcolor="#FFFFFF" align="center">
+  <td>
+  <div style="margin-top:5%;width:100%;overflow-x:hidden;font-size: 12px;">
+  <table width="800" height="100px" cellspacing="5" cellpadding="2" border="0">
+  <tbody>
+  <tr>
+  <td width="160" height="22"></td>
+  <td width="183" height="22">Http Post Interval</td>
+  <td width="446" height="22" align="left">
+  <input size="15" value="60" name="param" maxlength="5"> 1 - 65535 Sec 
+  </td>
+  </tr>
+  <tr>
+  <td width="167" height="23">&nbsp;</td>
+  <td width="176" height="23">UNIT ID</td>
+  <td width="446" height="23" align="left">
+  <input name="param" value="LMLT000001" maxlength="10" size="25" type="text">
+  </td>
+  </tr>
+  <tr>
+  <td width="167" height="23">&nbsp;</td>
+  <td width="176" height="23">Remote Data Path</td>
+  <td width="446" height="23" align="left">
+  <input name="param" value="/" maxlength="20" size="25" type="text">
+  </td>
+  </tr>
+  <tr>
+  <td width="167" height="23">&nbsp;</td>
+  <td width="176" height="23">Server path</td>
+  <td width="446" height="23" align="left">
+  <input name="param" value="prayaanetworks.com/servlog" maxlength="50" size="25" type="text">
+  </td>
+  </tr>
+  <tr>
+  <td width="167" height="23">&nbsp;</td>
+  <td width="176" height="23">UPS Query</td>
+  <td width="446" height="23" align="left">
+  <input name="param" value="Q1&nbsp;0x0d" maxlength="100" size="25" type="text">
+  </td>
+  </tr>
+  <tr>
+  <td width="160" height="22">&nbsp;</td>
+  <td width="183" height="22">HTTP Method</td>
+  <td width="446" height="22" align="left">
+  <select name="param">
+  <option value="0" selected="">GET</option>
+  <option value="1">POST</option>
+  </select>
+  </td>
+  </tr>
+  <tr>
+  <td></td>
+  <td width="215" height="2">&nbsp;
+  <div style="font-size:20px;color:blue;">MODBUS SLAVE 1</div>
+  </td>
+  </tr>
+  <tr>
+  <td width="160" height="22"></td>
+  <td width="183" height="22">Slave ID</td>
+  <td width="446" height="22" align="left">
+  <input size="15" value="67" name="param" maxlength="5"> 0 - 255  
+  </td>
+  </tr>
+  <tr>
+  <td width="160" height="22"></td>
+  <td width="183" height="22">Function ID</td>
+  <td width="446" height="22" align="left">
+  <input size="15" value="4" name="param" maxlength="5"> 0 - 255  
+  </td>
+  </tr>
+  <tr>
+  <td width="160" height="22"></td>
+  <td width="183" height="22">Register Starting Address</td>
+  <td width="446" height="22" align="left">
+  <input size="15" value="0" name="param" maxlength="5">
+  </td>
+  </tr>
+  <tr>
+  <td width="160" height="22"></td>
+  <td width="183" height="22">No of Registers to Read</td>
+  <td width="446" height="22" align="left">
+  <input size="15" value="1" name="param" maxlength="5">
+  </td>
+  </tr>
+  <tr>
+  <td width="167" height="23">&nbsp;</td>
+  <td width="176" height="23">Modbus-file path</td>
+  <td width="446" height="23" align="left">
+  <input name="param" value="" maxlength="20" size="25" type="text">
+  </td>
+  </tr>
+  <tr>
+  <td></td>
+  <td width="215" height="2">&nbsp;
+  <div style="font-size:20px;color:blue;">MODBUS SLAVE 2</div>
+  </td>
+  </tr>
+  <tr>
+  <td width="160" height="22"></td>
+  <td width="183" height="22">Slave ID</td>
+  <td width="446" height="22" align="left">
+  <input size="15" value="1" name="param" maxlength="5"> 0 - 255  
+  </td>
+  </tr>
+  <tr>
+  <td width="160" height="22"></td>
+  <td width="183" height="22">Function ID</td>
+  <td width="446" height="22" align="left">
+  <input size="15" value="4" name="param" maxlength="5"> 0 - 255  
+  </td>
+  </tr>
+  <tr>
+  <td width="160" height="22"></td>
+  <td width="183" height="22">Register Starting Address</td>
+  <td width="446" height="22" align="left">
+  <input size="15" value="0" name="param" maxlength="5">
+  </td>
+  </tr>
+  <tr>
+  <td width="160" height="22"></td>
+  <td width="183" height="22">No of Registers to Read</td>
+  <td width="446" height="22" align="left">
+  <input size="15" value="2" name="param" maxlength="5">
+  </td>
+  </tr>
+  <tr>
+  <td width="167" height="23">&nbsp;</td>
+  <td width="176" height="23">Modbus-file path</td>
+  <td width="446" height="23" align="left">
+  <input name="param" value="" maxlength="20" size="25" type="text">
+  </td>
+  </tr>
+  <tr>
+  <td></td>
+  <td width="215" height="2">&nbsp;
+  <div style="font-size:20px;color:blue;">MODBUS SLAVE 3</div>
+  </td>
+  </tr>
+  <tr>
+  <td width="160" height="22"></td>
+  <td width="183" height="22">Slave ID</td>
+  <td width="446" height="22" align="left">
+  <input size="15" value="2" name="param" maxlength="5"> 0 - 255  
+  </td>
+  </tr>
+  <tr>
+  <td width="160" height="22"></td>
+  <td width="183" height="22">Function ID</td>
+  <td width="446" height="22" align="left">
+  <input size="15" value="3" name="param" maxlength="5"> 0 - 255  
+  </td>
+  </tr>
+  <tr>
+  <td width="160" height="22"></td>
+  <td width="183" height="22">Register Starting Address</td>
+  <td width="446" height="22" align="left">
+  <input size="15" value="265" name="param" maxlength="5">
+  </td>
+  </tr>
+  <tr>
+  <td width="160" height="22"></td>
+  <td width="183" height="22">No of Registers to Read</td>
+  <td width="446" height="22" align="left">
+  <input size="15" value="30" name="param" maxlength="5">
+  </td>
+  </tr>
+  <tr>
+  <td width="167" height="23">&nbsp;</td>
+  <td width="176" height="23">Modbus-file path</td>
+  <td width="446" height="23" align="left">
+  <input name="param" value="" maxlength="20" size="25" type="text">
+  </td>
+  </tr>
+  <tr>
+  <td></td>
+  <td width="215" height="2">&nbsp;
+  <div style="font-size:20px;color:blue;">MODBUS SLAVE 4</div>
+  </td>
+  </tr>
+  <tr>
+  <td width="160" height="22"></td>
+  <td width="183" height="22">Slave ID</td>
+  <td width="446" height="22" align="left">
+  <input size="15" value="4" name="param" maxlength="5"> 0 - 255  
+  </td>
+  </tr>
+  <tr>
+  <td width="160" height="22"></td>
+  <td width="183" height="22">Function ID</td>
+  <td width="446" height="22" align="left">
+  <input size="15" value="3" name="param" maxlength="5"> 0 - 255  
+  </td>
+  </tr>
+  <tr>
+  <td width="160" height="22"></td>
+  <td width="183" height="22">Register Starting Address</td>
+  <td width="446" height="22" align="left">
+  <input size="15" value="100" name="param" maxlength="5">
+  </td>
+  </tr>
+  <tr>
+  <td width="160" height="22"></td>
+  <td width="183" height="22">No of Registers to Read</td>
+  <td width="446" height="22" align="left">
+  <input size="15" value="30" name="param" maxlength="5">
+  </td>
+  </tr>
+  <tr>
+  <td width="167" height="23">&nbsp;</td>
+  <td width="176" height="23">Modbus-file path</td>
+  <td width="446" height="23" align="left">
+  <input name="param" value="" maxlength="20" size="25" type="text">
+  </td>
+  </tr>
+  <tr>
+  <td></td>
+  <td width="215" height="2">&nbsp;
+  <div style="font-size:20px;color:blue;">MODBUS SLAVE 5</div>
+  </td>
+  </tr>
+  <tr>
+  <td width="160" height="22"></td>
+  <td width="183" height="22">Slave ID</td>
+  <td width="446" height="22" align="left">
+  <input size="15" value="5" name="param" maxlength="5"> 0 - 255  
+  </td>
+  </tr>
+  <tr>
+  <td width="160" height="22"></td>
+  <td width="183" height="22">Function ID</td>
+  <td width="446" height="22" align="left">
+  <input size="15" value="3" name="param" maxlength="5"> 0 - 255  
+  </td>
+  </tr>
+  <tr>
+  <td width="160" height="22"></td>
+  <td width="183" height="22">Register Starting Address</td>
+  <td width="446" height="22" align="left">
+  <input size="15" value="100" name="param" maxlength="5">
+  </td>
+  </tr>
+  <tr>
+  <td width="160" height="22"></td>
+  <td width="183" height="22">No of Registers to Read</td>
+  <td width="446" height="22" align="left">
+  <input size="15" value="30" name="param" maxlength="5">
+  </td>
+  </tr>
+  <tr>
+  <td width="167" height="23">&nbsp;</td>
+  <td width="176" height="23">Modbus-file path</td>
+  <td width="446" height="23" align="left">
+  <input name="param" value="" maxlength="20" size="25" type="text">
+  </td>
+  </tr>
+  <tr>
+  <td></td>
+  <td width="215" height="2">&nbsp;
+  <div style="font-size:20px;color:blue;">MODBUS SLAVE 6</div>
+  </td>
+  </tr>
+  <tr>
+  <td width="160" height="22"></td>
+  <td width="183" height="22">Slave ID</td>
+  <td width="446" height="22" align="left">
+  <input size="15" value="6" name="param" maxlength="5"> 0 - 255  
+  </td>
+  </tr>
+  <tr>
+  <td width="160" height="22"></td>
+  <td width="183" height="22">Function ID</td>
+  <td width="446" height="22" align="left">
+  <input size="15" value="3" name="param" maxlength="5"> 0 - 255  
+  </td>
+  </tr>
+  <tr>
+  <td width="160" height="22"></td>
+  <td width="183" height="22">Register Starting Address</td>
+  <td width="446" height="22" align="left">
+  <input size="15" value="100" name="param" maxlength="5">
+  </td>
+  </tr>
+  <tr>
+  <td width="160" height="22"></td>
+  <td width="183" height="22">No of Registers to Read</td>
+  <td width="446" height="22" align="left">
+  <input size="15" value="30" name="param" maxlength="5">
+  </td>
+  </tr>
+  <tr>
+  <td width="167" height="23">&nbsp;</td>
+  <td width="176" height="23">Modbus-file path</td>
+  <td width="446" height="23" align="left">
+  <input name="param" value="" maxlength="20" size="25" type="text">
+  </td>
+  </tr>
+  </tbody>
+  </table>
+  <table height="100px">
+  <tbody>
+  <tr>
+  <td align="right">
+  <input (click)="document.location='server.html'" value="Prev" name="serverprev" type="button">
+  &nbsp;&nbsp;&nbsp;
+  </td>
+  <td></td>
+  <td align="center">
+  <input (click)="document.location='load_reboot.html'" value="Save" name="savereboot" type="button">
+  &nbsp;&nbsp;&nbsp;
+  <input (click)="document.location='default.html'" value="Load Default" name="loaddefault" type="button">
+  </td>
+  <td>
+      &nbsp;&nbsp;&nbsp;
+  </td>
+  <td width="43">
+  <input (click)="document.location='analog.html'" value="Next" name="servernext" type="button">
+  <input name="hidd" value="hidden1" type="hidden">
+  </td>
+  <td></td>
+  </tr>
+  </tbody>
+  </table>
+  <table>
+  <tbody>
+  <tr>
+  <td width="265" height="32">&nbsp;</td>
+  <td width="267" height="32" align="right"></td>
+  <td width="254" height="32" align="left"></td>
+  </tr>
+  <tr></tr>
+  </tbody>
+  </table>
+  </div>
+  </td>
+  </tr>
+  </tbody>
+  </table>
+  </form>
+</div>
+<div id="analog" class="tabcontent">
+<form name="form" (ngSubmit)="submitAnalog()">
+    <table dercolor="#99999" width="800" cellspacing="0" cellpadding="0" border="0" align="center">
+    <tbody>
+    <tr>
+    <td valign="top">
+    <table border-collapse:="" collapse="" width="200" cellspacing="0" cellpadding="0" bordercolor="#111111" border="0">
+    <tbody>
+    <tr bgcolor="#FFFFFF" align="center">
+    <td>
+    <div style="width:100%;overflow-x:hidden;font-size: 12px;">
+    <table width="800" height="100px" cellspacing="5" cellpadding="2" border="0">
+    <tbody>
+    <tr>
+        <td></td>
+        <td width="215" height="2">&nbsp;
+            <div style="font-size:20px;color:blue;">ANALOG 1</div>
+        </td>
+    </tr>
+    <tr>
+        <td width="167" height="23">&nbsp;</td>
+        <td width="176" height="23">Offset</td>
+        <td width="446" height="23" align="left">
+            <input name="param" [(ngModel)]="model.analog.analog1.offset" #offset1="ngModel" value="0" maxlength="5" size="25" type="text">+/-2000uA
+        </td>
+    </tr>
+    <tr>
+        <td width="160" height="22">&nbsp;</td>
+        <td width="183" height="22">Threshold</td>
+        <td width="446" height="22" align="left">
+            <select name="param">
+                <option value="0" selected="">Disable</option>
+                <option value="1">Enable</option>
+            </select>
+        </td>
+    </tr>
+    <tr>
+        <td width="160" height="22"></td>
+        <td width="183" height="22">Upper Limit</td>
+        <td width="446" height="22" align="left">
+            <input size="15" [(ngModel)]="model.analog.analog1.upperLimit" #upperLimit1="ngModel" value="8000" name="param" maxlength="5">4000 - 20000 uA
+        </td>
+    </tr>
+    <tr>
+        <td width="160" height="22"></td>
+        <td width="183" height="22">Lower Limit</td>
+        <td width="446" height="22" align="left">
+            <input size="15" [(ngModel)]="model.analog.analog1.lowerLimit" #lowerLimit1="ngModel" value="4000" name="param" maxlength="5">4000 - 20000 uA
+        </td>
+    </tr>
+    <tr>
+        <td width="167" height="23">&nbsp;</td>
+        <td width="176" height="23">Method</td>
+        <td width="446" height="23" align="left">
+            <input name="param" [(ngModel)]="model.analog.analog1.method" #method1="ngModel" value="1" maxlength="5" size="25" type="text">
+        </td>
+    </tr>
+    <tr>
+        <td width="167" height="23">&nbsp;</td>
+        <td width="176" height="23">Relay</td>
+        <td width="446" height="23" align="left">
+            <input name="param" [(ngModel)]="model.analog.analog1.relay" #relay1="ngModel" value="1,0" maxlength="3" size="25" type="text">
+        </td>
+    </tr>
+    <tr>
+        <td></td>
+        <td width="215" height="2">&nbsp;
+            <div style="font-size:20px;color:blue;">ANALOG 2</div>
+        </td>
+    </tr>
+    <tr>
+        <td width="167" height="23">&nbsp;</td>
+        <td width="176" height="23">Offset</td>
+        <td width="446" height="23" align="left">
+            <input name="param" [(ngModel)]="model.analog.analog2.offset" #offset2="ngModel" value="0" maxlength="5" size="25" type="text">+/-2000uA
+        </td>
+    </tr>
+    <tr>
+        <td width="160" height="22">&nbsp;</td>
+        <td width="183" height="22">Threshold</td>
+        <td width="446" height="22" align="left">
+            <select name="param">
+                <option value="0" selected="">Disable</option>
+                <option value="1">Enable</option>
+            </select>
+        </td>
+    </tr>
+    <tr>
+        <td width="160" height="22"></td>
+        <td width="183" height="22">Upper Limit</td>
+        <td width="446" height="22" align="left">
+            <input size="15" [(ngModel)]="model.analog.analog2.upperLimit" #upperLimit2="ngModel" value="8000" name="param" maxlength="5">4000 - 20000 uA
+        </td>
+    </tr>
+    <tr>
+        <td width="160" height="22"></td>
+        <td width="183" height="22">Lower Limit</td>
+        <td width="446" height="22" align="left">
+            <input size="15" [(ngModel)]="model.analog.analog2.lowerLimit" #lowerLimit2="ngModel" value="4000" name="param" maxlength="5">4000 - 20000 uA
+        </td>
+    </tr>
+    <tr>
+        <td width="167" height="23">&nbsp;</td>
+        <td width="176" height="23">Method</td>
+        <td width="446" height="23" align="left">
+            <input name="param" [(ngModel)]="model.analog.analog2.method" #method2="ngModel" value="1" maxlength="5" size="25" type="text">
+        </td>
+    </tr>
+    <tr>
+        <td width="167" height="23">&nbsp;</td>
+        <td width="176" height="23">Relay</td>
+        <td width="446" height="23" align="left">
+            <input name="param" [(ngModel)]="model.analog.analog2.relay" #relay2="ngModel" value="2,0" maxlength="3" size="25" type="text">
+        </td>
+    </tr>
+    <tr>
+        <td></td>
+        <td width="215" height="2">&nbsp;
+            <div style="font-size:20px;color:blue;">ANALOG 3</div>
+        </td>
+    </tr>
+    <tr>
+        <td width="167" height="23">&nbsp;</td>
+        <td width="176" height="23">Offset</td>
+        <td width="446" height="23" align="left">
+            <input name="param" [(ngModel)]="model.analog.analog3.offset" #offset3="ngModel" value="0" maxlength="5" size="25" type="text">+/-2000mV
+        </td>
+    </tr>
+    <tr>
+        <td width="160" height="22">&nbsp;</td>
+        <td width="183" height="22">Threshold</td>
+        <td width="446" height="22" align="left">
+            <select name="param">
+                <option value="0" selected="">Disable</option>
+                <option value="1">Enable</option>
+            </select>
+        </td>
+    </tr>
+    <tr>
+        <td width="160" height="22"></td>
+        <td width="183" height="22">Upper Limit</td>
+        <td width="446" height="22" align="left">
+            <input size="15"  [(ngModel)]="model.analog.analog3.upperLimit" #upperLimit3="ngModel" value="8000" name="param" maxlength="5">1 - 12000 mV
+        </td>
+    </tr>
+    <tr>
+        <td width="160" height="22"></td>
+        <td width="183" height="22">Lower Limit</td>
+        <td width="446" height="22" align="left">
+            <input size="15" [(ngModel)]="model.analog.analog3.lowerLimit" #lowerLimit3="ngModel" value="4000" name="param" maxlength="5">1 - 12000 mV
+        </td>
+    </tr>
+    <tr>
+        <td width="167" height="23">&nbsp;</td>
+        <td width="176" height="23">Method</td>
+        <td width="446" height="23" align="left">
+            <input name="param" [(ngModel)]="model.analog.analog3.method" #method3="ngModel" value="1" maxlength="5" size="25" type="text">
+        </td>
+    </tr>
+    <tr>
+        <td width="167" height="23">&nbsp;</td>
+        <td width="176" height="23">Relay</td>
+        <td width="446" height="23" align="left">
+            <input name="param" [(ngModel)]="model.analog.analog3.relay" #relay3="ngModel" value="3,0" maxlength="3" size="25" type="text">
+        </td>
+    </tr>
+    <tr>
+        <td></td>
+        <td width="215" height="2">&nbsp;
+            <div style="font-size:20px;color:blue;">ANALOG 4</div>
+        </td>
+    </tr>
+    <tr>
+        <td width="167" height="23">&nbsp;</td>
+        <td width="176" height="23">Offset</td>
+        <td width="446" height="23" align="left">
+            <input name="param" [(ngModel)]="model.analog.analog4.offset" #offset4="ngModel" value="0" maxlength="5" size="25" type="text">+/-2000mV
+        </td>
+    </tr>
+    <tr>
+        <td width="160" height="22">&nbsp;</td>
+        <td width="183" height="22">Threshold</td>
+        <td width="446" height="22" align="left">
+            <select name="param">
+                <option value="0" selected="">Disable</option>
+                <option value="1">Enable</option>
+            </select>
+        </td>
+    </tr>
+    <tr>
+        <td width="160" height="22"></td>
+        <td width="183" height="22">Upper Limit</td>
+        <td width="446" height="22" align="left">
+            <input size="15" [(ngModel)]="model.analog.analog4.upperLimit" #upperLimit4="ngModel" value="8000" name="param" maxlength="5">1 - 12000 mV
+        </td>
+    </tr>
+    <tr>
+        <td width="160" height="22"></td>
+        <td width="183" height="22">Lower Limit</td>
+        <td width="446" height="22" align="left">
+            <input size="15" [(ngModel)]="model.analog.analog4.lowerLimit" #lowerLimit4="ngModel" value="4000" name="param" maxlength="5">1 - 12000 mV
+        </td>
+    </tr>
+    <tr>
+        <td width="167" height="23">&nbsp;</td>
+        <td width="176" height="23">Method</td>
+        <td width="446" height="23" align="left">
+            <input name="param" [(ngModel)]="model.analog.analog4.method" #method4="ngModel" value="1" maxlength="5" size="25" type="text">
+        </td>
+    </tr>
+    <tr>
+        <td width="167" height="23">&nbsp;</td>
+        <td width="176" height="23">Relay</td>
+        <td width="446" height="23" align="left">
+            <input name="param" [(ngModel)]="model.analog.analog4.relay" #relay4="ngModel" value="4,0" maxlength="3" size="25" type="text">
+        </td>
+    </tr>
+    <tr>
+        <td></td>
+        <td width="215" height="2">&nbsp;
+            <div style="font-size:20px;color:blue;">ANALOG 5</div>
+        </td>
+    </tr>
+    <tr>
+        <td width="167" height="23">&nbsp;</td>
+        <td width="176" height="23">Offset</td>
+        <td width="446" height="23" align="left">
+            <input name="param" [(ngModel)]="model.analog.analog5.offset" #offset5="ngModel" value="0" maxlength="5" size="25" type="text">+/-2000mV
+        </td>
+    </tr>
+    <tr>
+        <td width="160" height="22">&nbsp;</td>
+        <td width="183" height="22">Threshold</td>
+        <td width="446" height="22" align="left">
+            <select name="param">
+                <option value="0" selected="">Disable</option>
+                <option value="1">Enable</option>
+            </select>
+        </td>
+    </tr>
+    <tr>
+        <td width="160" height="22"></td>
+        <td width="183" height="22">Upper Limit</td>
+        <td width="446" height="22" align="left">
+            <input size="15" [(ngModel)]="model.analog.analog5.upperLimit" #upperLimit5="ngModel" value="8000" name="param" maxlength="5">1 - 12000 mV
+        </td>
+    </tr>
+    <tr>
+        <td width="160" height="22"></td>
+        <td width="183" height="22">Lower Limit</td>
+        <td width="446" height="22" align="left">
+            <input size="15" [(ngModel)]="model.analog.analog5.lowerLimit" #lowerLimit5="ngModel" value="4000" name="param" maxlength="5">1 - 12000 mV
+        </td>
+    </tr>
+    <tr>
+        <td width="167" height="23">&nbsp;</td>
+        <td width="176" height="23">Method</td>
+        <td width="446" height="23" align="left">
+            <input name="param" [(ngModel)]="model.analog.analog5.method" #method5="ngModel" value="1" maxlength="5" size="25" type="text">
+        </td>
+    </tr>
+    <tr>
+        <td width="167" height="23">&nbsp;</td>
+        <td width="176" height="23">Relay</td>
+        <td width="446" height="23" align="left">
+            <input name="param" [(ngModel)]="model.analog.analog5.relay" #relay5="ngModel" value="5,0" maxlength="3" size="25" type="text">
+        </td>
+    </tr>
+    <tr>
+        <td></td>
+        <td width="215" height="2">&nbsp;
+            <div style="font-size:20px;color:blue;">ANALOG 6</div>
+        </td>
+    </tr>
+    <tr>
+        <td width="167" height="23">&nbsp;</td>
+        <td width="176" height="23">Offset</td>
+        <td width="446" height="23" align="left">
+            <input name="param" [(ngModel)]="model.analog.analog6.offset" #offset6="ngModel" value="0" maxlength="5" size="25" type="text">+/-2000mV
+        </td>
+    </tr>
+    <tr>
+        <td width="160" height="22">&nbsp;</td>
+        <td width="183" height="22">Threshold</td>
+        <td width="446" height="22" align="left">
+            <select name="param">
+                <option value="0" selected="">Disable</option>
+                <option value="1">Enable</option>
+            </select>
+        </td>
+    </tr>
+    <tr>
+        <td width="160" height="22"></td>
+        <td width="183" height="22">Upper Limit</td>
+        <td width="446" height="22" align="left">
+            <input size="15" [(ngModel)]="model.analog.analog6.upperLimit" #upperLimit6="ngModel" value="8000" name="param" maxlength="5">1 - 12000 mV
+        </td>
+    </tr>
+    <tr>
+        <td width="160" height="22"></td>
+        <td width="183" height="22">Lower Limit</td>
+        <td width="446" height="22" align="left">
+            <input size="15" [(ngModel)]="model.analog.analog6.lowerLimit" #lowerLimit6="ngModel" value="4000" name="param" maxlength="5">1 - 12000 mV
+        </td>
+    </tr>
+    <tr>
+        <td width="167" height="23">&nbsp;</td>
+        <td width="176" height="23">Method</td>
+        <td width="446" height="23" align="left">
+            <input name="param" [(ngModel)]="model.analog.analog6.method" #method6="ngModel" value="1" maxlength="5" size="25" type="text">
+        </td>
+    </tr>
+    <tr>
+        <td width="167" height="23">&nbsp;</td>
+        <td width="176" height="23">Relay</td>
+        <td width="446" height="23" align="left">
+            <input name="param" [(ngModel)]="model.analog.analog6.relay" #relay6="ngModel" value="6,0" maxlength="3" size="25" type="text">
+        </td>
+    </tr>
+    <tr>
+        <td></td>
+        <td width="215" height="2">&nbsp;
+            <div style="font-size:20px;color:blue;">ANALOG 7</div>
+        </td>
+    </tr>
+    <tr>
+        <td width="167" height="23">&nbsp;</td>
+        <td width="176" height="23">Offset</td>
+        <td width="446" height="23" align="left">
+            <input name="param" [(ngModel)]="model.analog.analog7.offset" #offset7="ngModel" value="0" maxlength="5" size="25" type="text">+/-2000mV
+        </td>
+    </tr>
+    <tr>
+        <td width="160" height="22">&nbsp;</td>
+        <td width="183" height="22">Threshold</td>
+        <td width="446" height="22" align="left">
+            <select name="param">
+                <option value="0" selected="">Disable</option>
+                <option value="1">Enable</option>
+            </select>
+        </td>
+    </tr>
+    <tr>
+        <td width="160" height="22"></td>
+        <td width="183" height="22">Upper Limit</td>
+        <td width="446" height="22" align="left">
+            <input size="15" [(ngModel)]="model.analog.analog7.upperLimit" #upperLimit7="ngModel" value="8000" name="param" maxlength="5">1 - 12000 mV
+        </td>
+    </tr>
+    <tr>
+        <td width="160" height="22"></td>
+        <td width="183" height="22">Lower Limit</td>
+        <td width="446" height="22" align="left">
+            <input size="15" [(ngModel)]="model.analog.analog7.lowerLimit" #lowerLimit7="ngModel" value="4000" name="param" maxlength="5">1 - 12000 mV
+        </td>
+    </tr>
+    <tr>
+        <td width="167" height="23">&nbsp;</td>
+        <td width="176" height="23">Method</td>
+        <td width="446" height="23" align="left">
+            <input name="param" [(ngModel)]="model.analog.analog7.method" #method7="ngModel" value="1" maxlength="5" size="25" type="text">
+        </td>
+    </tr>
+    <tr>
+        <td width="167" height="23">&nbsp;</td>
+        <td width="176" height="23">Relay</td>
+        <td width="446" height="23" align="left">
+            <input name="param" [(ngModel)]="model.analog.analog7.relay" #relay7="ngModel" value="7,0" maxlength="3" size="25" type="text">
+        </td>
+    </tr>
+    <tr>
+        <td></td>
+        <td width="215" height="2">&nbsp;
+            <div style="font-size:20px;color:blue;">ANALOG 8</div>
+        </td>
+    </tr>
+    <tr>
+        <td width="167" height="23">&nbsp;</td>
+        <td width="176" height="23">Offset</td>
+        <td width="446" height="23" align="left">
+            <input name="param" [(ngModel)]="model.analog.analog8.offset" #offset8="ngModel" value="0" maxlength="6" size="25" type="text">+/-10000mV
+        </td>
+    </tr>
+    <tr>
+        <td width="160" height="22">&nbsp;</td>
+        <td width="183" height="22">Threshold</td>
+        <td width="446" height="22" align="left">
+            <select name="param">
+                <option value="0" selected="">Disable</option>
+                <option value="1">Enable</option>
+            </select>
+        </td>
+    </tr>
+    <tr>
+        <td width="160" height="22"></td>
+        <td width="183" height="22">Upper Limit</td>
+        <td width="446" height="22" align="left">
+            <input size="15" [(ngModel)]="model.analog.analog8.upperLimit" #upperLimit8="ngModel" value="8000" name="param" maxlength="5">1 - 10000 *10mV
+        </td>
+    </tr>
+    <tr>
+        <td width="160" height="22"></td>
+        <td width="183" height="22">Lower Limit</td>
+        <td width="446" height="22" align="left">
+            <input size="15"[(ngModel)]="model.analog.analog8.lowerLimit" #lowerLimit8="ngModel" value="4000" name="param" maxlength="5">1 - 10000 *10mV
+        </td>
+    </tr>
+    <tr>
+        <td width="167" height="23">&nbsp;</td>
+        <td width="176" height="23">Method</td>
+        <td width="446" height="23" align="left">
+            <input name="param" [(ngModel)]="model.analog.analog8.method" #method8="ngModel" value="1" maxlength="5" size="25" type="text">
+        </td>
+    </tr>
+    <tr>
+        <td width="167" height="23">&nbsp;</td>
+        <td width="176" height="23">Relay</td>
+        <td width="446" height="23" align="left">
+            <input name="param" [(ngModel)]="model.analog.analog8.relay" #relay8="ngModel" value="8,0" maxlength="3" size="25" type="text">
+        </td>
+    </tr>
+    <tr>
+        <td></td>
+        <td width="215" height="2">&nbsp;
+            <div style="font-size:20px;color:blue;">SMS Numbers</div>
+        </td>
+    </tr>
+    <tr>
+        <td width="167" height="23">&nbsp;</td>
+        <td width="176" height="23">Master Phone Number</td>
+        <td width="446" height="23" align="left">
+            <input name="param" [(ngModel)]="model.analog.numbers.masterNum" #masterNum="ngModel" value="" maxlength="19" size="25" type="text">
+        </td>
+    </tr>
+    <tr>
+        <td width="167" height="23">&nbsp;</td>
+        <td width="176" height="23">Phone Number 1</td>
+        <td width="446" height="23" align="left">
+            <input name="param" [(ngModel)]="model.analog.numbers.num1" #num1="ngModel" value="" maxlength="19" size="25" type="text">
+        </td>
+    </tr>
+    <tr>
+        <td width="167" height="23">&nbsp;</td>
+        <td width="176" height="23">Phone Number 2</td>
+        <td width="446" height="23" align="left">
+            <input name="param" [(ngModel)]="model.analog.numbers.num2" #num2="ngModel" value="" maxlength="19" size="25" type="text">  
+        </td>
+    </tr>
+    <tr>
+        <td width="167" height="23">&nbsp;</td>
+        <td width="176" height="23">Phone Number 3</td>
+        <td width="446" height="23" align="left">
+            <input name="param" [(ngModel)]="model.analog.numbers.num3" #num3="ngModel" value="" maxlength="19" size="25" type="text">
+        </td>
+    </tr>
+    <tr>
+        <td width="167" height="23">&nbsp;</td>
+        <td width="176" height="23">Phone Number 4</td>
+        <td width="446" height="23" align="left">
+             <input name="param" [(ngModel)]="model.analog.numbers.num4" #num4="ngModel" value="" maxlength="19" size="25" type="text">
+        </td>
+    </tr>
+    <tr>
+        <td width="167" height="23">&nbsp;</td>
+        <td width="176" height="23">Phone Number 5</td>
+        <td width="446" height="23" align="left">
+            <input name="param" [(ngModel)]="model.analog.numbers.num5" #num5="ngModel" value="" maxlength="19" size="25" type="text">
+        </td>
+    </tr>
+    <tr>
+        <td width="167" height="23">&nbsp;</td>
+        <td width="176" height="23">Phone Number 6</td>
+        <td width="446" height="23" align="left">
+            <input name="param" [(ngModel)]="model.analog.numbers.num6" #num6="ngModel" value="" maxlength="19" size="25" type="text">
+        </td>
+    </tr>
+    <tr>
+        <td width="167" height="23">&nbsp;</td>
+        <td width="176" height="23">Phone Number 7</td>
+        <td width="446" height="23" align="left">
+            <input name="param" [(ngModel)]="model.analog.numbers.num7" #num7="ngModel" value="" maxlength="19" size="25" type="text">
+        </td>
+    </tr>
+    <tr>
+        <td width="167" height="23">&nbsp;</td>
+        <td width="176" height="23">Phone Number 8</td>
+        <td width="446" height="23" align="left">
+            <input name="param" [(ngModel)]="model.analog.numbers.num8" #num8="ngModel" value="" maxlength="19" size="25" type="text">
+
+        </td>
+    </tr>
+    <tr>
+        <td width="167" height="23">&nbsp;</td>
+        <td width="176" height="23">Phone Number 9</td>
+        <td width="446" height="23" align="left">
+            <input name="param" [(ngModel)]="model.analog.numbers.num9" #num9="ngModel" value="" maxlength="19" size="25" type="text">
+        </td>
+    </tr>
+    <tr>
+    <td width="167" height="23">&nbsp;</td>
+    <td width="176" height="23">Phone Number 10</td>
+    <td width="446" height="23" align="left">
+        <input name="param" [(ngModel)]="model.analog.numbers.num10" #num10="ngModel" value="" maxlength="19" size="25" type="text">
+    </td>
+    </tr>
+    </tbody>
+    </table>
+    <table height="100px">
+        <tbody>
+            <tr>
+                <td align="right">
+                    <input onclick="document.location='slave.html'" value="Prev" name="serverprev" type="button">
+                </td>
+                <td></td>
+                <td align="center">
+                    <input name="update" value="Update" type="submit">
+                    <input onclick="document.location='load_reboot.html'" value="Save &amp; Reboot" name="savereboot" type="button">
+                    <input onclick="document.location='default.html'" value="Load Default" name="loaddefault" type="button">
+                     <button  value="Submit" type="submit">Submit</button>
+                    <input onclick="document.location='login.html'" value="Cancel" name="cancel" type="button">
+                </td>
+                <td width="43">
+                    <input onclick="document.location='time_date_page.html'" value="Next" name="servernext" type="button">
+                    <input name="hidd" value="hidden1" type="hidden">
+                </td>
+                <td></td>
+            </tr>
+        </tbody>
+    </table>
+    <table>
+        <tbody>
+            <tr>
+                <td width="265" height="32">&nbsp;</td>
+                <td width="267" height="32" align="right"></td>
+                <td width="254" height="32" align="left"></td>
+            </tr>
+            <tr></tr>
+        </tbody>
+    </table>
+    </div>
+    </td>
+    </tr>
+
+    </tbody>
+    </table>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+</form>
+</div>
+
+
+<div id="datetime" class="tabcontent">
+    <form name="form" (ngSubmit)="submitDateTime()">
+        <table dercolor="#99999" width="800" cellspacing="0" cellpadding="0" border="0" align="center">
+        <tbody>
+        <tr>
+        <td valign="top">
+        <table border-collapse:="" collapse="" width="200" cellspacing="0" cellpadding="0" bordercolor="#111111" border="0">
+        <tbody>
+        <tr bgcolor="#FFFFFF" align="center">
+        <td>
+        <table style="margin-top:2%;" width="800" height="256" cellspacing="5" cellpadding="2" border="0">
+        <tbody>
+        <tr>
+            <td width="160" height="22">&nbsp;</td>
+            <td width="183" height="22">Enable NTP :</td>
+            <td width="446" height="22" align="left">
+        <select name="dhcp" [(ngModel)]="ntp_enable" (change)="onSelectNetwork(3,ntp_enable)"  class="form-control" id="role" required>
+            <option [value]="item" *ngFor="let item of switchoptions">{{item}}</option>
+          </select>  
+            </td>
+        </tr>
+        <tr>
+            <td width="160" height="27">&nbsp;</td>
+            <td width="183" height="27">NTP Server Ip :</td>
+            <td width="446" height="27" align="left">
+                    <input name="param" [(ngModel)]="model.date_time.ntpServerIP.ntp1[0]" #ntp1="ngModel" value="193" maxlength="3" size="3" id="default" type="text">
+                <b>.
+                    <input name="param" [(ngModel)]="model.date_time.ntpServerIP.ntp1[2]" #ntp2="ngModel" value="079" maxlength="3" size="3" type="text">.
+                    <input name="param" [(ngModel)]="model.date_time.ntpServerIP.ntp1[3]" #ntp3="ngModel" value="237" maxlength="3" size="3" type="text">.
+                    <input name="param" [(ngModel)]="model.date_time.ntpServerIP.ntp1[4]" #ntp4="ngModel" value="014" maxlength="3" size="3" type="text">
+                <br>
+                    <input name="param" [(ngModel)]="model.date_time.ntpServerIP.ntp2[0]" #ntp5="ngModel" value="064" maxlength="3" size="3" type="text">
+                <b>.
+                    <input name="param" [(ngModel)]="model.date_time.ntpServerIP.ntp2[1]" #ntp6="ngModel" value="090" maxlength="3" size="3" type="text">.
+                    <input name="param" [(ngModel)]="model.date_time.ntpServerIP.ntp2[2]" #ntp7="ngModel" value="182" maxlength="3" size="3" type="text">.
+                    <input name="param" [(ngModel)]="model.date_time.ntpServerIP.ntp2[3]" #ntp8="ngModel" value="055" maxlength="3" size="3" type="text">
+                <br>
+                    <input name="param" [(ngModel)]="model.date_time.ntpServerIP.ntp3[0]" #ntp9="ngModel" value="216" maxlength="3" size="3" type="text">
+                <b>.
+                    <input name="param" [(ngModel)]="model.date_time.ntpServerIP.ntp3[1]" #ntp10="ngModel" value="171" maxlength="3" size="3" type="text">.
+                    <input name="param" [(ngModel)]="model.date_time.ntpServerIP.ntp3[2]" #ntp11="ngModel" value="112" maxlength="3" size="3" type="text">.
+                    <input name="param" [(ngModel)]="model.date_time.ntpServerIP.ntp3[3]" #ntp12="ngModel" value="036" maxlength="3" size="3" type="text">
+                </b>
+                </b>
+                </b>
+            </td>
+        </tr>
+        <tr>
+            <td width="160" height="23">&nbsp;</td>
+            <td width="183" height="23">NTP Port number :</td>
+            <td width="446" height="23" align="left">
+                <input name="param" [(ngModel)]="model.date_time.ntpPortNum" #ntpPortNum="ngModel" size="19" value="123" maxlength="5" type="text">
+            </td>
+        </tr>
+        <tr>
+            <td width="167" height="23">&nbsp;</td>
+            <td width="176" height="23">Time Zone :</td>
+            <td width="446" height="23" align="left">
+                <input name="param" [(ngModel)]="model.date_time.timeZone" #timeZone="ngModel" value="+5:30" maxlength="49" size="25" type="text">
+            ( Eg: +5:30 )
+            </td>
+        </tr>
+        <tr>
+            <td width="167" height="23">&nbsp;</td>
+            <td width="176" height="23">NTP update time interval :</td>
+            <td width="446" height="23" align="left">
+                <input maxlength="5" [(ngModel)]="model.date_time.ntpInterval" #ntpInterval="ngModel" size="15" value="60" name="param">
+            ( Between 0 to 65535 min )
+            </td>
+        </tr>
+        <tr>
+            <td width="167" height="23">&nbsp;</td>
+            <td width="176" height="23">RTC Current Date  [dd/mm/yyyy] :</td>
+            <td width="446" height="23" align="left">
+                <input name="param" [(ngModel)]="model.date_time.rtcDate" #rtcDate="ngModel" value="28/10/2017" maxlength="10" size="25" type="text">
+            </td>
+        </tr>
+        <tr>
+            <td width="167" height="23">&nbsp;</td>
+            <td width="176" height="23">RTC Current Time [hh:mm:ss] :</td>
+            <td width="446" height="23" align="left">
+                <input name="param" [(ngModel)]="model.date_time.rtcTime" #rtcTime="ngModel" value="11:07:44" maxlength="8" size="25" type="text">
+            </td>
+        </tr>
+        </tbody>
+        </table>
+        <table height="100px">
+            <tbody>
+            <tr>
+                <td align="right">
+                    <input onclick="document.location='analog.html'" value="Prev" name="serverprev" type="button">
+                </td>
+                <td></td>
+                <td align="center">
+                    &nbsp;&nbsp;&nbsp;
+                    <input onclick="document.location='load_reboot.html'" value="Save" name="savereboot" type="button">
+                    <button  value="Submit" type="submit">Submit</button>
+                &nbsp;&nbsp;&nbsp;
+                    <input onclick="document.location='default.html'" value="Load Default" name="loaddefault" type="button">
+                &nbsp;&nbsp;&nbsp;
+                </td>
+                <td width="43">
+                    <input onclick="document.location='digital_count.html'" value="Next" name="servernext" type="button">
+                    <input name="hidd" value="hidden1" type="hidden">
+                </td>
+                <td></td>
+            </tr>
+            </tbody>
+        </table>
+        <table>
+            <tbody>
+                <tr>
+                    <td width="265" height="32">&nbsp;</td>
+                    <td width="267" height="32" align="right"></td>
+                    <td width="254" height="32" align="left"></td>
+                </tr>
+                <tr></tr>
+            </tbody>
+        </table>
+        </td>
+        </tr>
+        </tbody>
+        </table>
+        </td>
+        </tr>
+        </tbody>
+    </table>
+</form>
+</div>
+<div id="digitalcount" class="tabcontent">
+<form name="form" (ngSubmit)="submitDigitalcount()">
+<table dercolor="#99999" width="800" cellspacing="0" cellpadding="0" border="0" align="center">
+<tbody>
+<tr>
+<td valign="top">
+<table border-collapse:="" collapse="" width="200" cellspacing="0" cellpadding="0" bordercolor="#111111" border="0">
+<tbody>
+<tr bgcolor="#FFFFFF" align="center">
+<td>
+<div style="width:100%;overflow-x:hidden;font-size: 12px;">
+<table width="800" height="100px" cellspacing="5" cellpadding="2" border="0">
+<tbody>
+<tr>
+<td></td>
+    <td width="215" height="2">&nbsp;
+        <div style="font-size:20px;color:blue;">Digital 1</div>
+    </td>
+</tr>
+<tr>
+    <td width="160" height="22">&nbsp;</td>
+    <td width="183" height="22">Pulse Count</td>
+    <td width="446" height="22" align="left">
+        <select name="param">
+            <option value="0" selected="">Disable</option>
+            <option value="1">Enable</option>
+        </select>
+    </td>
+</tr>
+<tr>
+    <td width="167" height="23">&nbsp;</td>
+    <td width="176" height="23">Digital change</td>
+    <td width="446" height="23" align="left">
+        <select name="param">
+            <option value="0" selected="">Any change</option>
+            <option value="1">High to Low</option>
+            <option value="2">Low to High</option>
+        </select>
+    </td>
+</tr>
+<tr>
+    <td width="160" height="22"></td>
+    <td width="183" height="22">Pulse Count Number</td>
+    <td width="446" height="22" align="left">
+        <input size="15" value="10" name="param" maxlength="5"> 1 - 999 
+    </td>
+</tr>
+<tr>
+    <td></td>
+    <td width="215" height="2">&nbsp;
+        <div style="font-size:20px;color:blue;">Digital 2</div>
+    </td>
+</tr>
+<tr>
+    <td width="160" height="22">&nbsp;</td>
+    <td width="183" height="22">Pulse Count</td>
+    <td width="446" height="22" align="left">
+        <select name="param">
+            <option value="0" selected="">Disable</option>
+            <option value="1">Enable</option>
+        </select>
+    </td>
+</tr>
+<tr>
+    <td width="167" height="23">&nbsp;</td>
+    <td width="176" height="23">Digital change</td>
+    <td width="446" height="23" align="left">
+        <select name="param">
+            <option value="0" selected="">Any change</option>
+            <option value="1">High to Low</option>
+            <option value="2">Low to High</option>
+        </select>
+    </td>
+</tr>
+<tr>
+    <td width="160" height="22"></td>
+    <td width="183" height="22">Pulse Count Number</td>
+    <td width="446" height="22" align="left">
+        <input size="15" value="10" name="param" maxlength="5"> 1 - 999 
+    </td>
+</tr>
+<tr>
+    <td></td>
+    <td width="215" height="2">&nbsp;
+        <div style="font-size:20px;color:blue;">Digital 3</div>
+    </td>
+</tr>
+<tr>
+    <td width="160" height="22">&nbsp;</td>
+    <td width="183" height="22">Pulse Count</td>
+    <td width="446" height="22" align="left">
+        <select name="param">
+            <option value="0" selected="">Disable</option>
+            <option value="1">Enable</option>
+        </select>
+    </td>
+</tr>
+<tr>
+    <td width="167" height="23">&nbsp;</td>
+    <td width="176" height="23">Digital change</td>
+    <td width="446" height="23" align="left">
+        <select name="param">
+            <option value="0" selected="">Any change</option>
+            <option value="1">High to Low</option>
+            <option value="2">Low to High</option>
+        </select>
+    </td>
+</tr>
+<tr>
+    <td width="160" height="22"></td>
+    <td width="183" height="22">Pulse Count Number</td>
+    <td width="446" height="22" align="left">
+        <input size="15" value="10" name="param" maxlength="5"> 1 - 999 
+    </td>
+</tr>
+<tr>
+    <td></td>
+    <td width="215" height="2">&nbsp;
+        <div style="font-size:20px;color:blue;">Digital 4</div>
+    </td>
+</tr>
+<tr>
+    <td width="160" height="22">&nbsp;</td>
+    <td width="183" height="22">Pulse Count</td>
+    <td width="446" height="22" align="left">
+        <select name="param">
+            <option value="0" selected="">Disable</option>
+            <option value="1">Enable</option>
+        </select>
+    </td>
+</tr>
+<tr>
+    <td width="167" height="23">&nbsp;</td>
+    <td width="176" height="23">Digital change</td>
+    <td width="446" height="23" align="left">
+        <select name="param">
+            <option value="0" selected="">Any change</option>
+            <option value="1">High to Low</option>
+            <option value="2">Low to High</option>
+        </select>
+    </td>
+</tr>
+<tr>
+    <td width="160" height="22"></td>
+    <td width="183" height="22">Pulse Count Number</td>
+    <td width="446" height="22" align="left">
+        <input size="15" value="10" name="param" maxlength="5"> 1 - 999 
+    </td>
+</tr>
+<tr>
+    <td></td>
+    <td width="215" height="2">&nbsp;
+        <div style="font-size:20px;color:blue;">Digital 5</div>
+    </td>
+</tr>
+<tr>
+    <td width="160" height="22">&nbsp;</td>
+    <td width="183" height="22">Pulse Count</td>
+    <td width="446" height="22" align="left">
+        <select name="param">
+            <option value="0">Disable</option>
+            <option value="1" selected="">Enable</option>
+        </select>
+    </td>
+</tr>
+<tr>
+    <td width="167" height="23">&nbsp;</td>
+    <td width="176" height="23">Digital change</td>
+    <td width="446" height="23" align="left">
+        <select name="param">
+            <option value="0">Any change</option>
+            <option value="1">High to Low</option>
+            <option value="2" selected="">Low to High</option>
+        </select>
+    </td>
+</tr>
+<tr>
+    <td width="160" height="22"></td>
+    <td width="183" height="22">Pulse Count Number</td>
+    <td width="446" height="22" align="left">
+        <input size="15" value="999" name="param" maxlength="5"> 1 - 999 
+    </td>
+</tr>
+<tr>
+    <td></td>
+    <td width="215" height="2">&nbsp;
+        <div style="font-size:20px;color:blue;">Digital 6</div>
+    </td>
+</tr>
+<tr>
+    <td width="160" height="22">&nbsp;</td>
+    <td width="183" height="22">Pulse Count</td>
+    <td width="446" height="22" align="left">
+        <select name="param">
+            <option value="0">Disable</option>
+            <option value="1" selected="">Enable</option>
+        </select>
+    </td>
+</tr>
+<tr>
+    <td width="167" height="23">&nbsp;</td>
+    <td width="176" height="23">Digital change</td>
+    <td width="446" height="23" align="left">
+        <select name="param">
+            <option value="0">Any change</option>
+            <option value="1">High to Low</option>
+            <option value="2" selected="">Low to High</option>
+        </select>
+    </td>
+</tr>
+<tr>
+    <td width="160" height="22"></td>
+    <td width="183" height="22">Pulse Count Number</td>
+    <td width="446" height="22" align="left">
+        <input size="15" value="999" name="param" maxlength="5"> 1 - 999 
+    </td>
+</tr>
+<tr>
+    <td></td>
+    <td width="215" height="2">&nbsp;
+        <div style="font-size:20px;color:blue;">Digital 7</div>
+    </td>
+</tr>
+<tr>
+    <td width="160" height="22">&nbsp;</td>
+    <td width="183" height="22">Pulse Count</td>
+    <td width="446" height="22" align="left">
+        <select name="param">
+            <option value="0">Disable</option>
+            <option value="1" selected="">Enable</option>
+        </select>
+    </td>
+</tr>
+<tr>
+    <td width="167" height="23">&nbsp;</td>
+    <td width="176" height="23">Digital change</td>
+    <td width="446" height="23" align="left">
+        <select name="param">
+            <option value="0">Any change</option>
+            <option value="1">High to Low</option>
+            <option value="2" selected="">Low to High</option>
+        </select>
+    </td>
+</tr>
+<tr>
+    <td width="160" height="22"></td>
+    <td width="183" height="22">Pulse Count Number</td>
+    <td width="446" height="22" align="left">
+        <input size="15" value="999" name="param" maxlength="5"> 1 - 999 
+    </td>
+</tr>
+<tr>
+    <td></td>
+    <td width="215" height="2">&nbsp;
+        <div style="font-size:20px;color:blue;">Digital 8</div>
+    </td>
+</tr>
+<tr>
+    <td width="160" height="22">&nbsp;</td>
+    <td width="183" height="22">Pulse Count</td>
+    <td width="446" height="22" align="left">
+        <select name="param">
+            <option value="0">Disable</option>
+            <option value="1" selected="">Enable</option>
+        </select>
+    </td>
+</tr>
+<tr>
+    <td width="167" height="23">&nbsp;</td>
+    <td width="176" height="23">Digital change</td>
+    <td width="446" height="23" align="left">
+        <select name="param">
+            <option value="0">Any change</option>
+            <option value="1">High to Low</option>
+            <option value="2" selected="">Low to High</option>
+        </select>
+    </td>
+</tr>
+<tr>
+    <td width="160" height="22"></td>
+    <td width="183" height="22">Pulse Count Number</td>
+    <td width="446" height="22" align="left">
+        <input size="15" value="999" name="param" maxlength="5"> 1 - 999 
+    </td>
+</tr>
+<tr>
+    <td></td>
+    <td width="215" height="2">&nbsp;
+        <div style="font-size:20px;color:blue;">Digital 9</div>
+    </td>
+</tr>
+<tr>
+    <td width="160" height="22">&nbsp;</td>
+    <td width="183" height="22">Pulse Count</td>
+    <td width="446" height="22" align="left">
+        <select name="param">
+            <option value="0" selected="">Disable</option>
+            <option value="1">Enable</option>
+        </select>
+    </td>
+</tr>
+<tr>
+    <td width="167" height="23">&nbsp;</td>
+    <td width="176" height="23">Digital change</td>
+    <td width="446" height="23" align="left">
+        <select name="param">
+            <option value="0" selected="">Any change</option>
+            <option value="1">High to Low</option>
+            <option value="2">Low to High</option>
+        </select>
+    </td>
+</tr>
+<tr>
+    <td width="160" height="22"></td>
+    <td width="183" height="22">Pulse Count Number</td>
+    <td width="446" height="22" align="left">
+        <input size="15" value="10" name="param" maxlength="5"> 1 - 999 
+    </td>
+</tr>
+<tr>
+    <td></td>
+    <td width="215" height="2">&nbsp;
+        <div style="font-size:20px;color:blue;">Digital 10</div>
+    </td>
+</tr>
+<tr>
+    <td width="160" height="22">&nbsp;</td>
+    <td width="183" height="22">Pulse Count</td>
+    <td width="446" height="22" align="left">
+        <select name="param">
+            <option value="0" selected="">Disable</option>
+            <option value="1">Enable</option>
+        </select>
+    </td>
+</tr>
+<tr>
+    <td width="167" height="23">&nbsp;</td>
+    <td width="176" height="23">Digital change</td>
+    <td width="446" height="23" align="left">
+        <select name="param">
+            <option value="0" selected="">Any change</option>
+            <option value="1">High to Low</option>
+            <option value="2">Low to High</option>
+        </select>
+    </td>
+</tr>
+<tr>
+    <td width="160" height="22"></td>
+    <td width="183" height="22">Pulse Count Number</td>
+    <td width="446" height="22" align="left">
+        <input size="15" value="10" name="param" maxlength="5"> 1 - 999 
+    </td>
+</tr>
+<tr>
+    <td></td>
+    <td width="215" height="2">&nbsp;
+        <div style="font-size:20px;color:blue;">Digital 11</div>
+    </td>
+</tr>
+<tr>
+    <td width="160" height="22">&nbsp;</td>
+    <td width="183" height="22">Pulse Count</td>
+    <td width="446" height="22" align="left">
+        <select name="param">
+            <option value="0" selected="">Disable</option>
+            <option value="1">Enable</option>
+        </select>
+    </td>
+</tr>
+<tr>
+    <td width="167" height="23">&nbsp;</td>
+    <td width="176" height="23">Digital change</td>
+    <td width="446" height="23" align="left">
+        <select name="param">
+            <option value="0" selected="">Any change</option>
+            <option value="1">High to Low</option>
+            <option value="2">Low to High</option>
+        </select>
+    </td>
+</tr>
+<tr>
+    <td width="160" height="22"></td>
+    <td width="183" height="22">Pulse Count Number</td>
+    <td width="446" height="22" align="left">
+        <input size="15" value="10" name="param" maxlength="5"> 1 - 999 
+    </td>
+</tr>
+<tr>
+    <td></td>
+    <td width="215" height="2">&nbsp;
+        <div style="font-size:20px;color:blue;">Digital 12</div>
+    </td>
+</tr>
+<tr>
+    <td width="160" height="22">&nbsp;</td>
+    <td width="183" height="22">Pulse Count</td>
+    <td width="446" height="22" align="left">
+        <select name="param">
+            <option value="0" selected="">Disable</option>
+            <option value="1">Enable</option>
+        </select>
+    </td>
+</tr>
+<tr>
+    <td width="167" height="23">&nbsp;</td>
+    <td width="176" height="23">Digital change</td>
+    <td width="446" height="23" align="left">
+        <select name="param">
+            <option value="0" selected="">Any change</option>
+            <option value="1">High to Low</option>
+            <option value="2">Low to High</option>
+        </select>
+    </td>
+</tr>
+<tr>
+<td width="160" height="22"></td>
+<td width="183" height="22">Pulse Count Number</td>
+<td width="446" height="22" align="left">
+<input size="15" value="10" name="param" maxlength="5"> 1 - 999 
+</td>
+</tr>
+</tbody>
+</table>
+<table height="100px">
+<tbody>
+<tr>
+<td align="right">
+<input onclick="document.location='time_date_page.html'" value="Prev" name="serverprev" type="button">
+</td>
+<td></td>
+<td align="center">
+    &nbsp;&nbsp;&nbsp;
+<input onclick="document.location='load_reboot.html'" value="Save" name="savereboot" type="button">
+&nbsp;&nbsp;&nbsp;
+<input onclick="document.location='default.html'" value="Load Default" name="loaddefault" type="button">
+&nbsp;&nbsp;&nbsp;
+</td>
+<td width="43">
+<input onclick="document.location='ssl_cert_page.html'" value="Next" name="servernext" type="button">
+<input name="hidd" value="hidden1" type="hidden">
+</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<table>
+<tbody>
+<tr>
+<td width="265" height="32">&nbsp;</td>
+<td width="267" height="32" align="right"></td>
+<td width="254" height="32" align="left"></td>
+</tr>
+<tr></tr>
+</tbody>
+</table>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+</form>
+</div>
+
+
+</div>

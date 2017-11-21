@@ -15,12 +15,13 @@ public _element:any;
     console.log("containerId is :"+ this._element);
   }
   ngOnInit() {
+    this.drawGraph(this.chartOptions,this.chartType,this.chartData,this._element);
     setInterval(() =>{
       google.charts.load('current', {'packages':['corechart']});
         setInterval(() =>{
           this.drawGraph(this.chartOptions,this.chartType,this.chartData,this._element)
-        },0);
-      },0
+        },100000);
+      },1000000
     );
   }
   drawGraph (chartOptions,chartType,chartData,ele) {

@@ -1,6 +1,5 @@
 ﻿import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-
 import { AlertService, UserService } from '../_services/index';
 
 @Component({
@@ -23,8 +22,17 @@ export class RegisterComponent {
         this.userService.create(this.model)
             .subscribe(
                 data => {
+                    console.log();
+                    if(data.text()=='1'){
+                    this.alertService.error('Email id already registered');
+                    this.loading = false;
+                    this.router.navigate(['/register']);
+                    }
+                    else
+                    {   
                     this.alertService.success('Registration successful', true);
                     this.router.navigate(['/login']);
+                    }
                 },
                 error => {
                     this.alertService.error(error);

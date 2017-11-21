@@ -20,6 +20,8 @@ import { GoogleGaugesComponent } from './google-gauges/google-gauges.component';
 import { userAdminComponent } from './userAdmin/userAdmin.component';
 import { addUserComponent } from './addUser/addUser.component';
 import { HttpClientModule} from '@angular/common/http';
+import { EqualValidator } from './register/password.match.directive';
+import { ConfigurationComponent } from './configuration/configuration.component';
 
 @NgModule({
     imports: [
@@ -44,7 +46,9 @@ import { HttpClientModule} from '@angular/common/http';
         GaugecomponentComponent,
         GoogleGaugesComponent,
         userAdminComponent,
-        addUserComponent
+        addUserComponent,
+        EqualValidator,
+        ConfigurationComponent
     ],
     providers: [
         customHttpProvider,

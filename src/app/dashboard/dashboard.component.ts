@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { AlertService, AuthenticationService,NavbarService } from '../_services/index';
-import { Ng4DropdownModule } from 'ng4-material-dropdown';
+import { User } from '../_models/index';
 import { Http, Headers, Response, URLSearchParams } from '@angular/http';
 import 'rxjs/add/operator/map';
 
@@ -20,32 +19,33 @@ export class DashboardComponent implements OnInit {
 	mapID: string = 'TERRAIN';
   User_Id:string;
   userId:string = '12345';
-  select:any;
-  selectUndefinedOptionValue:any;
-
+  message:string='hi';
+  deviceName:string;
+  markerOpen:boolean = false;
+  currentUser: User;
 	ngOnInit(){
-		this.nav.show();
-		this.getDeviceAttributes(this.userId);
-
-
+	this.getDeviceAttributes(this.userId);
   setInterval(() =>{
           this.getDeviceAttributes(this.userId)
-        },15000);  
+        },1500000);  
  	}  
 
-
-  constructor(private router: Router,public nav: NavbarService,public http: Http){}
+  constructor(private router: Router,public http: Http){
+  this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+  }
   moduleName = 'Select'; 
-
 
 	clickedMarker(marker:marker, index:number){
 		//this functoin is called when marker is clicked 
 		console.log('Clicked Marker:'+ marker.label+' at index'+index);
-		 this.router.navigate(['./gauges/:'+marker.label]);
+		this.router.navigate(['./gauges/:'+marker.label]);
 	}//clickedMarker
 	mouseOver(infoWindow, gm) {
 		//on mouse over event , it opens up the info-window
+    this.deviceName = gm.label;
+    this.message = gm.message;
 		infoWindow.open();
+
 	}//mouseOver
 	mouseOut(infoWindow, gm) {
 		//on mouse out event , close info-window
@@ -65,7 +65,6 @@ export class DashboardComponent implements OnInit {
 	options =['Red', 'Yellow', 'Green','Disconnected','All']
 	selected;
 	selectedData;
-
 //onSelect whch map to be shown on map by default its All
   onSelect(val){
     console.log(val);
@@ -75,16 +74,18 @@ export class DashboardComponent implements OnInit {
      this.selectedData = this.someData;
     }
   }
-
 //on select of device , center the tip point and show the info window 
   onSelected(val){
     console.log(val);
     for (var i = 0; i < this.someData.length; i++){
     // look for the entry with a matching `code` value
     if (this.someData[i].label == val){
-       this.lat = this.someData[i].lat;
-       this.lng = this.someData[i].lng;
-       console.log(this.someData[i].label);
+        this.lat = this.someData[i].lat;
+        this.lng = this.someData[i].lng;
+        this.deviceName = this.someData[i].label;
+        this.message = this.someData[i].message;
+         this.markerOpen = true;
+        console.log(this.someData[i].label);
     	  }
       }
     }
@@ -116,11 +117,14 @@ export class DashboardComponent implements OnInit {
         var device_id = data[i].device_id;
         var value ;
         var iconUrl;
+        var message;
         //check all conditions if alarm is 1 set value as RED like vice  and for 
         //disconnected check with log_time and current date time
+        /*
         if(data[i].gas_leak == 1){
           value="Red";
           iconUrl='../../assets/red-pin.png';
+
         } 
         else if(data[i].low_gas == 1){
           value="Yellow";
@@ -135,7 +139,63 @@ export class DashboardComponent implements OnInit {
           value="Disconnected";
           iconUrl='../../assets/redcrossmarker.png'; 	
         }
-
+       */
+        if(data[i].gas_leak == 1){
+          value="Red";
+          message = "Gas Leak";
+          iconUrl='../../assets/redmarker.png';
+              if(diffDays>2){
+              value="Disconnected";
+               message = "Gas Leak and Disconnected";
+              iconUrl='../../assets/redmarkerdisconnected.png';  
+            }
+        } 
+        else if(data[i].low_gas == 1){
+          value="Yellow";
+          message = "Low Gas";
+          iconUrl='../../assets/yellow.png';
+              if(diffDays>2){
+              message = "Low Gas and Disconnected";
+              value="Disconnected";
+              iconUrl='../../assets/yellowmarkerdisconnected.png';  
+            }
+        }
+        else{
+          value="Green";
+          message = "All Good ";
+          iconUrl='../../assets/greenmarker.png';
+           if(data[i].power_level<30){
+            value="Red";
+            message = "Low Power Level";
+            iconUrl='../../assets/redmarker.png';
+            if(diffDays>2){
+              value="Disconnected";
+               message = "Low Power Level and Disconnected";
+              iconUrl='../../assets/redmarkerdisconnected.png';  
+            }
+           }
+           else if(data[i].power_level >30 && data[i].power_level <60)
+           {
+             value="Yellow";
+             iconUrl='../../assets/yellow.png';
+             if(diffDays>2){
+              message="Disconnected";
+              value="Disconnected";
+              iconUrl='../../assets/yellowmarkerdisconnected.png';  
+            }
+           }
+           if(data[i].power_level>60)
+           {
+             value="Green";
+             iconUrl='../../assets/greenmarker.png';
+              if(diffDays>2){
+              value="Disconnected";
+              message="Disconnected";
+              iconUrl='../../assets/greenmarkerdisconnected.png';  
+            }
+           } 
+        }
+        //if the diff of current date time and log time is more than 2 days set status as 
         var coordinates = data[i].coordinates;
         var coordinates = coordinates.split(",");
         var lat = coordinates[0];
@@ -146,6 +206,7 @@ export class DashboardComponent implements OnInit {
         item["label"] = device_id;
         item["value"] = value;
         item["iconUrl"] = iconUrl;
+        item["message"] = "Status: "+message;
         jsonObject.push(item);
 
         if(i==0){
@@ -172,7 +233,8 @@ export class DashboardComponent implements OnInit {
 		  label: 'Map A',
 		  draggable: true,
 		  value:'GREEN',
-		  iconUrl:"http://maps.google.com/mapfiles/ms/icons/green.png"
+		  iconUrl:"http://maps.google.com/mapfiles/ms/icons/green.png",
+      message:""
 	  },
 	  {
 		  lat: 51.373858,
@@ -180,7 +242,8 @@ export class DashboardComponent implements OnInit {
 		  label: 'Map B',
 		  draggable: false,
 		  value:'RED',
-		  iconUrl:"http://maps.google.com/mapfiles/ms/icons/red.png"
+		  iconUrl:"http://maps.google.com/mapfiles/ms/icons/red.png",
+      message:""
 	  },
 	  {
 		  lat: 51.723858,
@@ -188,7 +251,8 @@ export class DashboardComponent implements OnInit {
 		  label: 'Map C',
 		  draggable: true,
 		  value:'YELLOW',
-		  iconUrl:"http://maps.google.com/mapfiles/ms/icons/yellow.png"
+		  iconUrl:"http://maps.google.com/mapfiles/ms/icons/yellow.png",
+      message:""
 	  }] 
 }
 interface marker {
@@ -197,4 +261,6 @@ interface marker {
 	label?: string;
 	draggable: boolean;
 	iconUrl?: string;
+  message?:string;
 }
+

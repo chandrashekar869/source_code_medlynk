@@ -1,7 +1,7 @@
 <app-header></app-header>
 <div class="container">
 <div>
-    <select [(ngModel)]="select" (ngModelChange)="onSelected(select)">
+    <select [(ngModel)]="selected" (ngModelChange)="onSelected(selected)">
  <option disabled hidden [value]="selectUndefinedOptionValue">Select Device Id ---</option>
         <option *ngFor="let deviceId of someData"
                 [value]="deviceId.label"> 
@@ -25,7 +25,7 @@
           [iconUrl]="m.iconUrl"
           (mouseOver)="mouseOver(infoWindow,m)"
           (mouseOut)="mouseOut(infoWindow,m)">           
-          <agm-info-window #infoWindow>{{m.label}}
+          <agm-info-window #infoWindow [latitude]="lat" [longitude]="lng" [isOpen]="markerOpen" >{{deviceName}}<br> {{message}} 
           </agm-info-window>
   </agm-marker>
 </agm-map>

@@ -1,48 +1,59 @@
 ﻿<app-header></app-header>
 <div class="row">
-<div class="col-xs-12" style="margin-top: 5%">
-    <h1 style="text-align: center;"><b>Medlynk</b><br></h1>
-    <div style="text-align: center;font-size: initial;" ><i>The Link of Medleys</i></div>
-<div class="col-md-6 col-md-offset-3">
-
-    <br>
-    <h2 id="wrapper" ><b>LOGIN</b>(Existing User)</h2><br>
-
-    <form  style="font-size: medium;" name="form" (ngSubmit)="f.form.valid && login()" #f="ngForm" novalidat>
-        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !username.valid }">
-            <label for="username">Username</label>
-            <input type="text" class="form-control" name="username" [(ngModel)]="model.username" #username="ngModel" required />
-            <div *ngIf="f.submitted && !username.valid" class="help-block">Username is required</div>
-        </div>
-        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !password.valid }">
-            <label for="password">Password</label>
-            <input type="password" class="form-control" name="password" [(ngModel)]="model.password" #password="ngModel" required />
-            <div *ngIf="f.submitted && !password.valid" class="help-block">Password is required</div>
-        </div>
-
-        <div class="form-group">
-           <!--<button [disabled]="loading" class="btn  btn-lg btn-block btn-success">Login</button>-->
-           <div id="wrapper">
-            <button type="button" class="btn btn-success btn-lg" ><span [routerLink]="['/dashBoard']" ><h4>Login</h4></span></button>
+    <div class="col-xs-12" style="margin-top: 5%">
+        <h1 style="text-align: center;">
+            <b>Medlynk</b>
+            <br>
+            </h1>
+            <div style="text-align: center;font-size: initial;" >
+                <i>The Link of Medleys</i>
             </div>
-
-        </div>
-    </form>
-    </div>
-
- </div>   
-</div><br>
-<div class="row">
-<div class="col-xs-12">
-<div style="text-align: center;">
-  <h3> New User ? </h3> </div>
-     <div id="wrapper">
-           <button  type="button" class="btn btn-success btn-lg"><span [routerLink]="['/register']" [routerLink]="['/dashBoard']" ><h4>Register</h4></span></button>
-    </div>
-    <div id="wrapper" class="row" style="padding-top: 2rem">
-                    <a class="btn btn-link" href="/password/reset"><h3>Forgot Your Password?</h3></a>
+            <div class="col-md-6 col-md-offset-3">
+                <br>
+                    <h2 id="wrapper" >
+                        <b>LOGIN</b>(Existing User)
+                    </h2>
+                    <br>
+                        <form  style="font-size: medium;" name="form" (ngSubmit)="f.form.valid && login()" #f="ngForm" novalidat>
+                            <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !username.valid }">
+                                <label for="username">Username</label>
+                                <input type="text" class="form-control" name="username" [(ngModel)]="model.username" #username="ngModel" required />
+                                <div *ngIf="f.submitted && !username.valid" class="help-block">Username is required</div>
+                            </div>
+                            <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !password.valid }">
+                                <label for="password">Password</label>
+                                <input type="password" class="form-control" name="password" [(ngModel)]="model.password" #password="ngModel" required />
+                                <div *ngIf="f.submitted && !password.valid" class="help-block">Password is required</div>
+                            </div>
+                            <div class="form-group">
+                                <div id="wrapper">
+                                    <button [disabled]="loading" class="btn btn-success btn-lg">
+                                        <h4>Login</h4>
+                                    </button>
+                                    <button type="button" class="btn btn-success btn-lg" ><span [routerLink]="['/config']" ><h4>Configuration</h4></span></button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
             </div>
-</div>
-</div>
-
-
+            <br>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div style="text-align: center;">
+                            <h3> New User ? </h3>
+                        </div>
+                        <div id="wrapper">
+                            <button  type="button" class="btn btn-success btn-lg">
+                                <span [routerLink]="['/register']">
+                                    <h4>Register</h4>
+                                </span>
+                            </button>
+                        </div>
+                        <div id="wrapper" class="row" style="padding-top: 2rem">
+                            <a class="btn btn-link" href="/password/reset">
+                                <h3>Forgot Your Password?</h3>
+                            </a>
+                        </div>
+                    </div>
+                </div>

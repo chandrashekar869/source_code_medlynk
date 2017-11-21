@@ -1,8 +1,5 @@
 import { Component,OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Http, Headers, Response, URLSearchParams } from '@angular/http';
-import { Router, ActivatedRoute } from '@angular/router';
-
 @Component({
   moduleId: module.id,
   templateUrl: './addUser.component.html',
@@ -17,11 +14,9 @@ export class addUserComponent {
   tempassigned:any[]=[];
   title = 'Medlsys';
   roles:string[]=["User","Admin","Sub Admin"];
-  role:string;
-  errmsg:string;
- select:any;
- selecta:any;
-  constructor(private router: Router,private http: HttpClient,public httpcustom: Http){
+  role:string="";
+
+  constructor(private http: HttpClient){
   }
 
   ngOnInit(): void {
@@ -61,7 +56,6 @@ onSelectRole(val){
   insertlist(){
     var i:any;
     var j:any;
-    console.log(this.temp);
     for(i=0;i<=this.temp.length;i++){
       if(this.temp[i]!=undefined && this.assigned.indexOf(this.temp[i])==-1){
         this.assigned.push(this.temp[i]);
@@ -86,38 +80,12 @@ onSelectRole(val){
         }
         this.tempassigned=[];
     }
+
     submit(){
-   this.model.role=this.role;
-      this.model.assigned=this.assigned;
-      this.errmsg="";
-      var params=["username","email","phone","role","password","confirmpassword","assigned"];
-      for(var i=0;i<params.length;i++){
-        if(!this.model.hasOwnProperty(params[i])){
-          this.errmsg="Fill field "+params[i];
-          break;
-        }
-        else{
-          if(this.model[params[i]]==undefined){
-            this.errmsg="* Fill field "+params[i];
-            break;
-          }
-          if(i==2 && this.model.phone.length<10){
-            this.errmsg="* Enter a valid phone number";
-            break;
-          }
-          if(i==5){
-            if(this.model.password!=this.model.confirmpassword)
-              {
-                this.errmsg="* Passwords do not match";
-                break;
-              }
-          }
-     
-        }
-      }
-      this.httpcustom.post("/addUsers", {data:this.model}).subscribe({ error: e => console.error(e) });
-      this.router.navigate(['./userAdmin']);
+      console.log("hey");
+      this.model.devices=this.assigned;
+      this.model.role=this.role;
       console.log(this.model);
-   
-}
+      
+    }
 }
