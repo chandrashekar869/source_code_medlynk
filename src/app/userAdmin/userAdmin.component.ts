@@ -21,7 +21,7 @@ export class userAdminComponent implements OnInit {
     this.nav.show();
     var tempObj={};
     this.results=[]; 
-    this.http.post('http://localhost:4040/userAdmin',{data:localStorage.getItem("currentuser")}).subscribe(data => {
+    this.http.post('http://40.71.199.63:3200/userAdmin',{data:localStorage.getItem("currentuser")}).subscribe(data => {
       // Read the result field from the JSON response.
       console.log(data);
       for(var key in data){

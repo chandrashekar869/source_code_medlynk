@@ -5,10 +5,10 @@
 <div class="tab" style="text-align:center;width:60%;margin:auto;">
   <button id="tl0" class="tablinks" (click)="openCity(event, 'home')">Home</button>
   <button id="tl1" class="tablinks" (click)="openCity(event, 'network')">Network</button>
-  <button id="tl2"class="tablinks" (click)="openCity(event, 'serial')">Serial</button>
+  <button id="tl2" class="tablinks" (click)="openCity(event, 'serial')">Serial</button>
   <button id="tl3" class="tablinks" (click)="openCity(event, 'server')">Server</button>
   <button id="tl4" class="tablinks" (click)="openCity(event, 'slave')">Slave</button>
-  <button id="tl5"class="tablinks" (click)="openCity(event, 'analog')">Analog</button>  
+  <button id="tl5" class="tablinks" (click)="openCity(event, 'analog')">Analog</button>  
   <button id="tl6" class="tablinks" (click)="openCity(event, 'datetime')">Date Time</button>
   <button id="tl7" class="tablinks" (click)="openCity(event, 'digitalcount')">Digital Count</button>
   <button id="tl8" class="tablinks" (click)="openCity(event, 'ssl')">SSL</button>
@@ -73,7 +73,7 @@
     <tr >
     <td width="265">&nbsp;</td>
     <td width="269" align="right">
-    <input style="margin-top:20%;" (click)="next()" value="Next" name="basicnext" type="button">
+    <input style="margin-top:20%;" (click)="next('tl1')" value="Next" name="basicnext" type="button">
     </td>
     </tr>
     </tbody>
