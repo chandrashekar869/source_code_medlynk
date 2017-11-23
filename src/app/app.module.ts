@@ -22,6 +22,12 @@ import { addUserComponent } from './addUser/addUser.component';
 import { HttpClientModule} from '@angular/common/http';
 import { EqualValidator } from './register/password.match.directive';
 import { ConfigurationComponent } from './configuration/configuration.component';
+import { editUserComponent } from './editUser/editUser.component';
+import { deviceAdminComponent } from './deviceAdmin/deviceAdmin.component';
+import { addDeviceComponent } from './addDevice/addDevice.component';
+import { editDeviceComponent } from './editDevice/editDevice.component';
+
+
 
 @NgModule({
     imports: [
@@ -48,7 +54,11 @@ import { ConfigurationComponent } from './configuration/configuration.component'
         userAdminComponent,
         addUserComponent,
         EqualValidator,
-        ConfigurationComponent
+        ConfigurationComponent,
+        editUserComponent,
+        deviceAdminComponent,
+        addDeviceComponent,
+        editDeviceComponent
     ],
     providers: [
         customHttpProvider,

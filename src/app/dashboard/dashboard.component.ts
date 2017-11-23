@@ -23,7 +23,9 @@ export class DashboardComponent implements OnInit {
   deviceName:string;
   markerOpen:boolean = false;
   currentUser: User;
-	ngOnInit(){
+	ngOnInit()
+  {
+  this.userId = JSON.parse(localStorage.getItem('currentUser'));
 	this.getDeviceAttributes(this.userId);
   setInterval(() =>{
           this.getDeviceAttributes(this.userId)

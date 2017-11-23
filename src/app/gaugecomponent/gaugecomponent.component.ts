@@ -14,6 +14,7 @@ styleUrls: ['./gaugecomponent.component.css']
 export class GaugecomponentComponent implements OnInit {
   //default values
   deviceId ='';
+  userId:string;
   tankPressure:number = 4;
   linePressure:number = 3.9;
   tankLevel:number = 65;
@@ -50,6 +51,7 @@ export class GaugecomponentComponent implements OnInit {
     ngOnInit() {
      //  this.drawGraph(this.chartOptions,this.chartType,this.chartData,this._element)
      //get the device id from routing
+      this.userId = JSON.parse(localStorage.getItem('currentUser'));
       this.deviceId = this.route.snapshot.params.deviceId;
       console.log(this.deviceId);
       //check user role and then alter the header

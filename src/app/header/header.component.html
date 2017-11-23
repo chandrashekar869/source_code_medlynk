@@ -11,10 +11,10 @@
             <a class="nav-link" [routerLink]="['']">Home</a>
           </li>
           <li  *ngIf="nav.visible" class="nav-item" >
-            <a class="nav-link" href="./userAdmin">User Admin</a>
+            <a class="nav-link" [routerLink]="['/userAdmin']">User Admin</a>
           </li>
           <li  *ngIf="nav.visible" class="nav-item">
-            <a class="nav-link" class="badge1" data-badge="2" href="" >
+            <a class="nav-link" class="badge1" data-badge="2" [routerLink]="['/deviceAdmin']" >
               Device Admin  
             </a>
           </li>

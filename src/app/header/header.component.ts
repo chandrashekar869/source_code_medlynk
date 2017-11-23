@@ -13,6 +13,8 @@ import 'rxjs/add/operator/map';
 export class HeaderComponent implements OnInit {
   display='none';
   model: any = {};
+  userId:string;
+
   constructor( 
   	    private nav: NavbarService,   
         private router: Router,
@@ -20,6 +22,7 @@ export class HeaderComponent implements OnInit {
         public http: Http) {  }
 
 	ngOnInit() {
+		this.userId = JSON.parse(localStorage.getItem('currentUser'));
 	}
 
 	openModal(){
@@ -31,12 +34,20 @@ export class HeaderComponent implements OnInit {
 	}
 
 	changePassword(){
+		console.log("model : "+this.model.password);
 		var link = '/users/changePassword';
-	    this.http.post(link, {user_id:this.model})
+	    this.http.post(link, {user_id:this.userId,oldPassword:this.model.oldPassword,newPassword:this.model.password})
 	    .map(res => res.json())
-	    .subscribe(data => {                      
-	        this.alertService.success(' Password changed successfully', true);
-	        this.router.navigate(['/login']); 
+	    .subscribe(data => {  
+
+	     if(data=='1'){
+				this.alertService.success('Password changed successfully',true);
+				this.router.navigate(['/login']);
+	      }
+	      else if(data=='2') {
+                this.alertService.error('Your current password is incorrect');    
+           }
+	   
 	    }, error => {
 	     console.log("Oooops!"+error);
 	     this.alertService.error(error);

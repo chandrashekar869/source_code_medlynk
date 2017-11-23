@@ -22,7 +22,6 @@ export class RegisterComponent {
         this.userService.create(this.model)
             .subscribe(
                 data => {
-                    console.log();
                     if(data.text()=='1'){
                     this.alertService.error('Email id already registered');
                     this.loading = false;
