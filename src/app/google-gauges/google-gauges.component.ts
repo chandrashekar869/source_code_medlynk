@@ -20,8 +20,8 @@ public _element:any;
       google.charts.load('current', {'packages':['corechart']});
         setInterval(() =>{
           this.drawGraph(this.chartOptions,this.chartType,this.chartData,this._element)
-        },100000);
-      },1000000
+        },0);
+      },0
     );
   }
   drawGraph (chartOptions,chartType,chartData,ele) {

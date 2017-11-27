@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
+import { appConfig } from '../app.config';
 import { User } from '../_models/index';
 import { Http, Headers, Response, URLSearchParams } from '@angular/http';
 import 'rxjs/add/operator/map';
@@ -23,6 +24,8 @@ export class DashboardComponent implements OnInit {
   deviceName:string;
   markerOpen:boolean = false;
   currentUser: User;
+  select:any;
+  selectUndefinedOptionValue:any;
 	ngOnInit()
   {
   this.userId = JSON.parse(localStorage.getItem('currentUser'));
@@ -145,55 +148,55 @@ export class DashboardComponent implements OnInit {
         if(data[i].gas_leak == 1){
           value="Red";
           message = "Gas Leak";
-          iconUrl='../../assets/redmarker.png';
+          iconUrl=appConfig.imagePath+'redmarker.png';
               if(diffDays>2){
               value="Disconnected";
                message = "Gas Leak and Disconnected";
-              iconUrl='../../assets/redmarkerdisconnected.png';  
+              iconUrl=appConfig.imagePath+'redmarkerdisconnected.png';  
             }
         } 
         else if(data[i].low_gas == 1){
           value="Yellow";
           message = "Low Gas";
-          iconUrl='../../assets/yellow.png';
+          iconUrl=appConfig.imagePath+'assets/yellow.png';
               if(diffDays>2){
               message = "Low Gas and Disconnected";
               value="Disconnected";
-              iconUrl='../../assets/yellowmarkerdisconnected.png';  
+              iconUrl=appConfig.imagePath+'yellowmarkerdisconnected.png';  
             }
         }
         else{
           value="Green";
           message = "All Good ";
-          iconUrl='../../assets/greenmarker.png';
+          iconUrl=appConfig.imagePath+'assets/greenmarker.png';
            if(data[i].power_level<30){
             value="Red";
             message = "Low Power Level";
-            iconUrl='../../assets/redmarker.png';
+            iconUrl=appConfig.imagePath+'redmarker.png';
             if(diffDays>2){
               value="Disconnected";
                message = "Low Power Level and Disconnected";
-              iconUrl='../../assets/redmarkerdisconnected.png';  
+              iconUrl=appConfig.imagePath+'redmarkerdisconnected.png';  
             }
            }
            else if(data[i].power_level >30 && data[i].power_level <60)
            {
              value="Yellow";
-             iconUrl='../../assets/yellow.png';
+             iconUrl=appConfig.imagePath+'yellow.png';
              if(diffDays>2){
               message="Disconnected";
               value="Disconnected";
-              iconUrl='../../assets/yellowmarkerdisconnected.png';  
+              iconUrl=appConfig.imagePath+'yellowmarkerdisconnected.png';  
             }
            }
            if(data[i].power_level>60)
            {
              value="Green";
-             iconUrl='../../assets/greenmarker.png';
+             iconUrl=appConfig.imagePath+'greenmarker.png';
               if(diffDays>2){
               value="Disconnected";
               message="Disconnected";
-              iconUrl='../../assets/greenmarkerdisconnected.png';  
+              iconUrl=appConfig.imagePath+'greenmarkerdisconnected.png';  
             }
            } 
         }

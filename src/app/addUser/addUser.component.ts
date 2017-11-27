@@ -2,7 +2,8 @@ import { Component,OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Http, Headers, Response, URLSearchParams } from '@angular/http';
 import { Router, ActivatedRoute } from '@angular/router';
-import { NavbarService } from '../_services/index';
+import { appConfig } from '../app.config';
+
 @Component({
   moduleId: module.id,
   templateUrl: './addUser.component.html',
@@ -19,16 +20,21 @@ export class addUserComponent {
   roles:string[]=["User","Admin","Sub Admin"];
   role:string;
   errmsg:string;
- select:any;
- selecta:any;
-  constructor(private router: Router,public nav: NavbarService,private http: HttpClient,public httpcustom: Http){
+  select:any;
+  selecta:any;
+  leftarrow:string;
+  rightarrow:string;
+
+  constructor(private router: Router,private http: HttpClient,public httpcustom: Http){
+  
   }
 
   ngOnInit(): void {
-    this.nav.show();
+    this.leftarrow = appConfig.imagePath+'leftarrow.jpg';
+    this.rightarrow = appConfig.imagePath+'rightarrow.jpg';
     var tempObj={};
     // Make the HTTP request:
-    this.http.get('http://localhost:3200/getDevices').subscribe(data => {
+    this.http.get('http://localhost:4040/getDevices').subscribe(data => {
       // Read the result field from the JSON response.
       for(var key in data){
         if(Number.isInteger(Number(key))){

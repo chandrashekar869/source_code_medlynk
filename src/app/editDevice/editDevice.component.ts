@@ -2,7 +2,7 @@ import { Component,OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Http, Headers, Response, URLSearchParams } from '@angular/http';
 import { Router, ActivatedRoute } from '@angular/router';
-import {NavbarService } from '../_services/index';
+
 @Component({
   moduleId: module.id,
   templateUrl: './editDevice.component.html',
@@ -19,11 +19,11 @@ export class editDeviceComponent {
  select:any;
  selecta:any;
  user_details:any;
-  constructor(private router: Router,public nav: NavbarService,private http: HttpClient,public httpcustom: Http){
+  constructor(private router: Router,private http: HttpClient,public httpcustom: Http){
   }
 
   ngOnInit(): void {
-    this.nav.show();
+
     console.log("from editDevice");
     this.user_details=JSON.parse(localStorage.getItem("clickedDevice"));
     console.log(this.user_details);

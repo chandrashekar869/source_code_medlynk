@@ -2,7 +2,8 @@ import { Component,OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Http, Headers, Response, URLSearchParams } from '@angular/http';
 import { Router, ActivatedRoute } from '@angular/router';
-import {NavbarService } from '../_services/index';
+import { appConfig } from '../app.config';
+
 @Component({
   moduleId:module.id,
   templateUrl: './deviceAdmin.component.html',
@@ -16,10 +17,16 @@ export class deviceAdminComponent implements OnInit {
   tableprop='tableprop';
   results:any[]=[];
   status:string;
-  constructor(private router: Router,public nav: NavbarService,private http: HttpClient,public httpcustom: Http){
+  editimg:string;
+  delete:string;
+  setting:string;
+
+  constructor(private router: Router,private http: HttpClient,public httpcustom: Http){
   }
   ngOnInit(): void {
-    this.nav.show();
+    this.editimg = appConfig.imagePath+'edit.png';
+    this.delete = appConfig.imagePath+'delete.png';
+    this.setting = appConfig.imagePath+'setting.png';
     var user_id=1123;
     localStorage.setItem("currentuser","1");
     var tempObj={};

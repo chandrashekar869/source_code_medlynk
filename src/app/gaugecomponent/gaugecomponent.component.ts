@@ -3,6 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { GoogleGaugesComponent } from '../google-gauges/google-gauges.component';
 import { Http, Headers, Response, URLSearchParams } from '@angular/http';
 import 'rxjs/add/operator/map';
+import { appConfig } from '../app.config';
 
 @Component({
 selector: 'app-gaugecomponent',
@@ -41,7 +42,6 @@ export class GaugecomponentComponent implements OnInit {
   controlButton:boolean;
   model: any = {};
 
-  
   constructor(private route:ActivatedRoute,public http: Http) { 
      //this._element = this.element.nativeElement;
      //google.charts.load('current', {'packages':['corechart']});
@@ -56,14 +56,15 @@ export class GaugecomponentComponent implements OnInit {
       console.log(this.deviceId);
       //check user role and then alter the header
 
-      this.getGaugeValue(this.deviceId)
-      this.imgAlarm='../../assets/beacongreen.jpg';
-      this.imgBeacon='../../assets/beacongreen.jpg';
-      this.imgConnect='../../assets/connected.png';
+      this.getGaugeValue(this.deviceId);
+
+      this.imgAlarm=appConfig.imagePath+'beacongreen.jpg';
+      this.imgBeacon=appConfig.imagePath+'beacongreen.jpg';
+      this.imgConnect=appConfig.imagePath+'connected.png';
       
       setInterval(() =>{
            this.getGaugeValue(this.deviceId)
-        },30000);  
+        },3000);  
     }
 
    // Gaues values in to put
@@ -195,14 +196,14 @@ export class GaugecomponentComponent implements OnInit {
             //this.drawGraph(this.chartOptions,this.chartType,this.chartData,this._element)
             //check for alarm and becon values
             if(Number(data[i].gas_leak)==1){
-                this.imgAlarm = '../../assets/beaconred.png';}
+                this.imgAlarm = appConfig.imagePath+'beaconred.png';}
             else{ 
-                this.imgAlarm='../../assets/beacongreen.jpg';}    
+                this.imgAlarm= appConfig.imagePath+'beacongreen.jpg';}    
 
             if(Number(data[i].low_gas)==1){ 
-              this.imgBeacon='../../assets/beaconred.png'; }
+              this.imgBeacon=appConfig.imagePath+'beaconred.png'; }
             else{ 
-               this.imgBeacon='../../assets/beacongreen.jpg';}  
+               this.imgBeacon=appConfig.imagePath+'beacongreen.jpg';}  
             
             //set powr supply %
             this.powerSupply=Number(data[i].power_level);  
@@ -255,10 +256,10 @@ export class GaugecomponentComponent implements OnInit {
             var diffDays = Math.ceil(diff / (1000 * 3600 * 24)); 
             
             if(diffDays>2){
-            this.imgConnect='../../assets/disconnected.png';  
+            this.imgConnect=appConfig.imagePath+'disconnected.png';  
             }
             else{
-            this.imgConnect='../../assets/connected.png';
+            this.imgConnect=appConfig.imagePath+'connected.png';
             }
             console.log(diffDays);
             this.cus_name = data[i].customer_name;

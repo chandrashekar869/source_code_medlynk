@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { AlertService,NavbarService,UserService } from '../_services/index';
 import { Http, Headers, Response, URLSearchParams } from '@angular/http';
 import 'rxjs/add/operator/map';
+import { appConfig } from '../app.config';
 
 @Component({
   selector: 'app-header',
@@ -12,17 +13,19 @@ import 'rxjs/add/operator/map';
 })
 export class HeaderComponent implements OnInit {
   display='none';
-  model: any = {};
+  model:any = {};
+  imagePath:string;
   userId:string;
 
   constructor( 
-  	    private nav: NavbarService,   
+  	    public nav: NavbarService,   
         private router: Router,
         private alertService: AlertService,
         public http: Http) {  }
 
 	ngOnInit() {
 		this.userId = JSON.parse(localStorage.getItem('currentUser'));
+		this.imagePath = appConfig.imagePath+'logo.png';
 	}
 
 	openModal(){

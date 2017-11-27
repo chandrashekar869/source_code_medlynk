@@ -1,8 +1,9 @@
 import { Component,OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Http, Headers, Response, URLSearchParams } from '@angular/http';
-import {NavbarService } from '../_services/index';
 import { Router, ActivatedRoute } from '@angular/router';
+import { appConfig } from '../app.config';
+
 @Component({
   moduleId:module.id,
   templateUrl: './userAdmin.component.html',
@@ -14,11 +15,15 @@ export class userAdminComponent implements OnInit {
   tablerow='tablerow';
   tableprop='tableprop';
   results:any[]=[];
-  constructor(private router: Router,public nav: NavbarService,private http: HttpClient,public httpcustom: Http){
+  editimg:string;
+  delete:string;
+
+  constructor(private router: Router,private http: HttpClient,public httpcustom: Http){
   }
   ngOnInit(): void {
     // Make the HTTP request:
-    this.nav.show();
+    this.editimg = appConfig.imagePath+'edit.png';
+    this.delete = appConfig.imagePath+'delete.png';
     var tempObj={};
     this.results=[]; 
     this.http.post('http://localhost:4040/userAdmin',{data:localStorage.getItem("currentuser")}).subscribe(data => {

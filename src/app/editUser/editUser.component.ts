@@ -2,7 +2,8 @@ import { Component,OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Http, Headers, Response, URLSearchParams } from '@angular/http';
 import { Router, ActivatedRoute } from '@angular/router';
-import {NavbarService } from '../_services/index';
+import { appConfig } from '../app.config';
+
 @Component({
   moduleId: module.id,
   templateUrl: './editUser.component.html',
@@ -22,11 +23,14 @@ export class editUserComponent {
   user_details:any;
   select:any;
  selecta:any;
-  constructor(private router: Router,public nav: NavbarService,private http: HttpClient,public httpcustom: Http){
+   leftarrow:string;
+  rightarrow:string;
+  constructor(private router: Router,private http: HttpClient,public httpcustom: Http){
   }
 
   ngOnInit(): void {
-    this.nav.show();
+    this.leftarrow = appConfig.imagePath+'leftarrow.jpg';
+    this.rightarrow = appConfig.imagePath+'rightarrow.jpg';
     console.log("from editUser");
     this.http.post("http://40.71.199.63:3200/getUserData",{data:JSON.parse(localStorage.getItem("clickedItem"))}).subscribe(response =>{
     this.user_details=response["user_details"];

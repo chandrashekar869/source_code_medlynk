@@ -24,9 +24,9 @@
     <td>{{item.coordinates}}</td>
     <td [style.color]="item.color">{{item.device_status}}<br />{{item.display_date}}</td>
     <td>
-      <div class="col-xs-4" (click)=edit(i) style="text-align:right"><img style="min-width:20px" width="40%" src="./../../assets/edit.png"  alt="edit"></div>
-      <div class="col-xs-4" (click)=deletefromtable(i) style="text-align:right"><img style="min-width:20px" width="40%" src="./../../assets/delete.png" alt="delete"></div>
-      <div class="col-xs-4"  style="text-align:left"><img style="min-width:20px" width="80%" src="./../../assets/settings.png"  alt="Settings"></div>
+      <div class="col-xs-4" (click)=edit(i) style="text-align:right"><img style="min-width:20px" width="40%" src={{editimg}}   alt="edit"></div>
+      <div class="col-xs-4" (click)=deletefromtable(i) style="text-align:right"><img style="min-width:20px" width="40%" src={{delete}} alt="delete"></div>
+      <div class="col-xs-4"  style="text-align:left"><img style="min-width:20px" width="80%" src={{setting}}  alt="Settings"></div>
     </td>
   </tr>
 </table>
