@@ -138,7 +138,7 @@ export class GaugecomponentComponent implements OnInit {
             this.tankPressure= Number(tankPressureA)*4 ;
             this.linePressure = Number(linePressureA)*4;
             this.tankLevel = Number(tankLevelA);
-            this.GasLeak = Number(gasLeakA);
+            this.GasLeak = Number(gasLeakA)*5;
             //this.tankPressure= tankPressureA ;
             console.log("Tank pressure : "+this.tankPressure);
             this.isDataAvailable = true;
@@ -185,7 +185,7 @@ export class GaugecomponentComponent implements OnInit {
               ['Label', 'Value'],
               ['Gas Leak',this.GasLeak]];
           this.pie_ChartOptions3 = {
-               width: 400, 
+              width: 400, 
               height: 220,
               redFrom: 90,
               redTo: 100,
@@ -201,9 +201,9 @@ export class GaugecomponentComponent implements OnInit {
                 this.imgAlarm= appConfig.imagePath+'beacongreen.jpg';}    
 
             if(Number(data[i].low_gas)==1){ 
-              this.imgBeacon= appConfig.imagePath+'beaconred.png'; }
+              this.imgBeacon=appConfig.imagePath+'beaconred.png'; }
             else{ 
-               this.imgBeacon= appConfig.imagePath+'beacongreen.jpg';}  
+               this.imgBeacon=appConfig.imagePath+'beacongreen.jpg';}  
             
             //set powr supply %
             this.powerSupply=Number(data[i].power_level);  
