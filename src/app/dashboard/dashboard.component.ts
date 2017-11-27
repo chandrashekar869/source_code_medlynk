@@ -23,6 +23,8 @@ export class DashboardComponent implements OnInit {
   deviceName:string;
   markerOpen:boolean = false;
   currentUser: User;
+  select:any;
+  selectUndefinedOptionValue:any
 	ngOnInit()
   {
   this.userId = JSON.parse(localStorage.getItem('currentUser'));
