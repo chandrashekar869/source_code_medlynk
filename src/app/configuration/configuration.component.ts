@@ -11,11 +11,7 @@ export class ConfigurationComponent implements OnInit {
   constructor(public http: Http){
   
   } 
-  digitalchange1:any;digitalchange2:any;digitalchange3:any;digitalchange4:any;digitalchange5:any;digitalchange6:any;digitalchange7:any;digitalchange8:any;digitalchange9:any;digitalchange10:any;digitalchange11:any;digitalchange12:any;event:any;pulse_count7:any;network_interface:any;network_dhcp:any;document:any;defeat_long_ack:any;restart_on_loss_link:any;telnet_IAC:any;retain_relay_status:any;
-  pulse_count1:any;pulse_count2:any;pulse_count3:any;pulse_count4:any;pulse_count5:any;pulse_count6:any;pulse_count8:any;pulse_count9:any;pulse_count10:any;pulse_count11:any;pulse_count12:any;
-  threshold8:any;threshold7:any;threshold6:any;threshold5:any;threshold4:any;threshold3:any;threshold2:any;threshold1:any;
-  ntp_enable:any;data_backup:any;time_stamp:any;server_connectivity_timeout_related_relay:any;relay_initial_state:any;gsm:any;
-  http_method:any;onSelectSlave:any;
+
   title = 'app';
   switchoptions=["Enable","Disable"];
   switchoptions2=["on","off"];
@@ -365,7 +361,7 @@ export class ConfigurationComponent implements OnInit {
   submitSerial(){
     console.log(this.model.serial);
   }
-  submitServer(){
+  submitServer(val,data){
     console.log(this.model.server);
   }
   onSelectServer(val,data){

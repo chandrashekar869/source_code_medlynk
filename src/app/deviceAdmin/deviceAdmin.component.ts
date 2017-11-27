@@ -24,7 +24,7 @@ export class deviceAdminComponent implements OnInit {
     localStorage.setItem("currentuser","1");
     var tempObj={};
     // Make the HTTP request:
-    this.http.post('http://40.71.199.63:3200/deviceAdmin',{data:localStorage.getItem("currentuser")}).subscribe(data => {
+    this.http.post('http://localhost:4040/deviceAdmin',{data:localStorage.getItem("currentuser")}).subscribe(data => {
       // Read the result field from the JSON response.
       var currentdate=new Date();
       for(var i=0;i<data["length"];i++){

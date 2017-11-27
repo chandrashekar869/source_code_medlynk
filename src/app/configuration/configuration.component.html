@@ -2,7 +2,7 @@
 <app-header></app-header>
 <div class="container-fluid">
        <h1 align="center">Medlynk Configuration</h1>
-<div class="tab" style="text-align:center;width:60%;margin:auto;">
+<div class="tab" style="text-align:center;margin:auto;">
   <button id="tl0" class="tablinks" (click)="openCity(event, 'home')">Home</button>
   <button id="tl1" class="tablinks" (click)="openCity(event, 'network')">Network</button>
   <button id="tl2" class="tablinks" (click)="openCity(event, 'serial')">Serial</button>
@@ -15,15 +15,8 @@
 </div>
 <div id="home" class="tabcontent">
   <form >
-    <table width="800" cellspacing="0" cellpadding="0" bordercolor="#999999" border="0" align="center">
-    <tbody>
-    <tr>
-    <td valign="top" align="center">
-    <table border-collapse:="" collapse="" width="100%" cellspacing="0" cellpadding="0" bordercolor="#111111" border="0">
-    <tbody>
-    <tr bgcolor="#FFFFFF" align="center">
-    <td>
-    <table style="margin-top:5%;" width="800" height="128" cellspacing="5" cellpadding="2" border="0">
+
+    <table style="margin-top:5%;" width="100%">
     <tbody >
     <tr>
     <td width="165" height="28"></td>
@@ -72,37 +65,13 @@
     </tr>
     <tr >
     <td width="265">&nbsp;</td>
-    <td width="269" align="right">
+    <td  align="right">
     <input style="margin-top:20%;" (click)="next('tl1')" value="Next" name="basicnext" type="button">
     </td>
     </tr>
     </tbody>
     </table>
-    <table>
-    <tbody>
-    <tr>
-    <td width="265" height="32">&nbsp;</td>
-    <td width="267" height="32" align="right"></td>
-    <td width="254" height="32" align="left"></td>
-    </tr>
-    <tr></tr>
-    <tr></tr>
-    </tbody>
-    </table>
-    <table width="800" height="100px">
-    <tbody>
-    <tr></tr>
-    <tr></tr>
-    </tbody>
-    </table>
-    </td>
-    </tr>
-    </tbody>
-    </table>
-    </td>
-    </tr>
-    </tbody>
-    </table>
+
     </form>
 </div>
 
@@ -960,31 +929,26 @@
   </tr>
   </tbody>
   </table>
-  <table height="100px">
-  <tbody>
-  <tr>
-  <td align="right">
-  <input (click)="document.location='server.html'" value="Prev" name="serverprev" type="button">
-  &nbsp;&nbsp;&nbsp;
-  </td>
-  <td></td>
-  <td align="center">
-          <button  type="submit">Submit</button>
- <!-- <input (click)="document.location='load_reboot.html'" value="Save" name="savereboot" type="button"> -->
-  &nbsp;&nbsp;&nbsp;
-  <input (click)="document.location='default.html'" value="Load Default" name="loaddefault" type="button">
-  </td>
-  <td>
-      &nbsp;&nbsp;&nbsp;
-  </td>
-  <td width="43">
-  <input (click)="document.location='analog.html'" value="Next" name="servernext" type="button">
-  <input name="hidd" value="hidden1" type="hidden">
-  </td>
-  <td></td>
-  </tr>
-  </tbody>
-  </table>
+    <table height="100px">
+    <tbody>
+    <tr>
+    <td align="left">
+        <button (click)="prev('tl3')"  type="button">Previous</button>
+    </td>
+    <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+    <td align="center">
+        <button  type="submit">Submit</button>
+    &nbsp;&nbsp;&nbsp;
+    <input (click)="document.location='default.html'" value="Load Default" name="loaddefault" type="button">
+    </td>
+    <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+    <td width="43">
+        <button (click)="prev('tl5')"  type="button">Next</button>
+    </td>
+    <td></td>
+    </tr>
+    </tbody>
+    </table>
   <table>
   <tbody>
   <tr>
@@ -1503,26 +1467,24 @@
     </tbody>
     </table>
     <table height="100px">
-        <tbody>
-            <tr>
-                <td align="right">
-                    <input onclick="document.location='slave.html'" value="Prev" name="serverprev" type="button">
-                </td>
-                <td></td>
-                <td align="center">
-                    <input name="update" value="Update" type="submit">
-                    <input onclick="document.location='load_reboot.html'" value="Save &amp; Reboot" name="savereboot" type="button">
-                    <input onclick="document.location='default.html'" value="Load Default" name="loaddefault" type="button">
-                     <button  value="Submit" type="submit">Submit</button>
-                    <input onclick="document.location='login.html'" value="Cancel" name="cancel" type="button">
-                </td>
-                <td width="43">
-                    <input onclick="document.location='time_date_page.html'" value="Next" name="servernext" type="button">
-                    <input name="hidd" value="hidden1" type="hidden">
-                </td>
-                <td></td>
-            </tr>
-        </tbody>
+    <tbody>
+    <tr>
+    <td align="left">
+        <button (click)="prev('tl4')"  type="button">Previous</button>
+    </td>
+    <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+    <td align="center">
+        <button  type="submit">Submit</button>
+    &nbsp;&nbsp;&nbsp;
+    <input (click)="document.location='default.html'" value="Load Default" name="loaddefault" type="button">
+    </td>
+    <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+    <td width="43">
+        <button (click)="prev('tl6')"  type="button">Next</button>
+    </td>
+    <td></td>
+    </tr>
+    </tbody>
     </table>
     <table>
         <tbody>
@@ -1635,28 +1597,25 @@
         </tbody>
         </table>
         <table height="100px">
-            <tbody>
-            <tr>
-                <td align="right">
-                    <input onclick="document.location='analog.html'" value="Prev" name="serverprev" type="button">
-                </td>
-                <td></td>
-                <td align="center">
-                    &nbsp;&nbsp;&nbsp;
-                    <input onclick="document.location='load_reboot.html'" value="Save" name="savereboot" type="button">
-                    <button  value="Submit" type="submit">Submit</button>
-                &nbsp;&nbsp;&nbsp;
-                    <input onclick="document.location='default.html'" value="Load Default" name="loaddefault" type="button">
-                &nbsp;&nbsp;&nbsp;
-                </td>
-                <td width="43">
-                    <input onclick="document.location='digital_count.html'" value="Next" name="servernext" type="button">
-                    <input name="hidd" value="hidden1" type="hidden">
-                </td>
-                <td></td>
-            </tr>
-            </tbody>
-        </table>
+        <tbody>
+        <tr>
+        <td align="left">
+            <button (click)="prev('tl5')"  type="button">Previous</button>
+        </td>
+        <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+        <td align="center">
+            <button  type="submit">Submit</button>
+        &nbsp;&nbsp;&nbsp;
+        <input (click)="document.location='default.html'" value="Load Default" name="loaddefault" type="button">
+        </td>
+        <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+        <td width="43">
+            <button (click)="prev('tl7')"  type="button">Next</button>
+        </td>
+        <td></td>
+        </tr>
+        </tbody>
+    </table>
         <table>
             <tbody>
                 <tr>
@@ -2067,28 +2026,116 @@
 </tr>
 </tbody>
 </table>
-<table height="100px">
+    <table height="100px">
+    <tbody>
+    <tr>
+    <td align="left">
+    <button (click)="prev('tl6')"  type="button">Previous</button>
+    </td>
+    <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+    <td align="center">
+        <button  type="submit">Submit</button>
+    &nbsp;&nbsp;&nbsp;
+    <input (click)="document.location='default.html'" value="Load Default" name="loaddefault" type="button">
+    </td>
+    <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+    <td width="43">
+        <button (click)="prev('tl8')"  type="button">Next</button>
+    </td>
+    <td></td>
+    </tr>
+    </tbody>
+    </table>
+<table>
 <tbody>
 <tr>
-<td align="right">
-<input onclick="document.location='time_date_page.html'" value="Prev" name="serverprev" type="button">
+<td width="265" height="32">&nbsp;</td>
+<td width="267" height="32" align="right"></td>
+<td width="254" height="32" align="left"></td>
+</tr>
+<tr></tr>
+</tbody>
+</table>
+</div>
 </td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+</form>
+</div>
+<div id="ssl" class="tabcontent">
+    <form action="ssl_cert_page.html" enctype="multipart/form-data" method="post">
+<table dercolor="#99999" width="800" cellspacing="0" cellpadding="0" border="0" align="center">
+<tbody>
+<tr>
+<td valign="top">
+<table border-collapse:="" collapse="" width="200" cellspacing="0" cellpadding="0" bordercolor="#111111" border="0">
+<tbody>
+<tr>
+<tr bgcolor="#FFFFFF" align="center">
+<td>
+<div style="width:100%;overflow-x:hidden;font-size: 12px;">
+<table style="margin-top:3%;" width="800" height="100px" cellspacing="5" cellpadding="2" border="0">
+<tbody>
+<tr>
+<td width="160" height="22">&nbsp;</td>
+<td width="183" height="22">SSL mode</td>
+<td width="446" height="22" align="left">
+<select name="param">
+<option value="0" selected="">Disable</option>
+<option value="1">Enable</option>
+</select>
+</td>
+</tr>
+<tr>
+<td>
+<br>
+<br>
+</td>
+</tr>
+<tr>
 <td></td>
-<td align="center">
-    &nbsp;&nbsp;&nbsp;
-<input onclick="document.location='load_reboot.html'" value="Save" name="savereboot" type="button">
-&nbsp;&nbsp;&nbsp;
-<input onclick="document.location='default.html'" value="Load Default" name="loaddefault" type="button">
-&nbsp;&nbsp;&nbsp;
+<td align="left">Select File : </td>
+<td>
+<input name="fileup" type="file">
 </td>
-<td width="43">
-<input onclick="document.location='ssl_cert_page.html'" value="Next" name="servernext" type="button">
-<input name="hidd" value="hidden1" type="hidden">
+<td align="right"></td>
+<td></td>
+</tr>
+<tr>
+<td>
+<br>
+<br>
 </td>
+</tr>
+<tr>
+<td></td>
+<td align="left">Certificate : </td>
+<td align="center">No file</td>
 <td></td>
 </tr>
 </tbody>
 </table>
+    <table height="100px">
+    <tbody>
+    <tr>
+    <td align="left">
+    <button (click)="prev('tl7')"  type="button">Previous</button>
+    </td>
+    <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+    <td align="center">
+        <button  type="submit">Submit</button>
+    &nbsp;&nbsp;&nbsp;
+    <input (click)="document.location='default.html'" value="Load Default" name="loaddefault" type="button">
+    </td>
+
+    </tr>
+    </tbody>
+    </table>
 <table>
 <tbody>
 <tr>
