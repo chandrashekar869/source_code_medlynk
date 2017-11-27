@@ -58,9 +58,9 @@ export class GaugecomponentComponent implements OnInit {
 
       this.getGaugeValue(this.deviceId);
 
-      this.imgAlarm=appConfig.imagePath+'beacongreen.jpg';
-      this.imgBeacon=appConfig.imagePath+'beacongreen.jpg';
-      this.imgConnect=appConfig.imagePath+'connected.png';
+      this.imgAlarm= appConfig.imagePath+'beacongreen.jpg';
+      this.imgBeacon= appConfig.imagePath+'beacongreen.jpg';
+      this.imgConnect= appConfig.imagePath+'connected.png';
       
       setInterval(() =>{
            this.getGaugeValue(this.deviceId)
@@ -201,9 +201,9 @@ export class GaugecomponentComponent implements OnInit {
                 this.imgAlarm= appConfig.imagePath+'beacongreen.jpg';}    
 
             if(Number(data[i].low_gas)==1){ 
-              this.imgBeacon=appConfig.imagePath+'beaconred.png'; }
+              this.imgBeacon= appConfig.imagePath+'beaconred.png'; }
             else{ 
-               this.imgBeacon=appConfig.imagePath+'beacongreen.jpg';}  
+               this.imgBeacon= appConfig.imagePath+'beacongreen.jpg';}  
             
             //set powr supply %
             this.powerSupply=Number(data[i].power_level);  
