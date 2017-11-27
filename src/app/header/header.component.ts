@@ -16,7 +16,7 @@ export class HeaderComponent implements OnInit {
   userId:string;
 
   constructor( 
-  	    private nav: NavbarService,   
+  	    public nav: NavbarService,   
         private router: Router,
         private alertService: AlertService,
         public http: Http) {  }
