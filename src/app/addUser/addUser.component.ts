@@ -34,7 +34,7 @@ export class addUserComponent {
     this.rightarrow = appConfig.imagePath+'rightarrow.jpg';
     var tempObj={};
     // Make the HTTP request:
-    this.http.get('http://localhost:4040/getDevices').subscribe(data => {
+    this.http.get('http://40.71.199.63:3200/getDevices').subscribe(data => {
       // Read the result field from the JSON response.
       for(var key in data){
         if(Number.isInteger(Number(key))){
