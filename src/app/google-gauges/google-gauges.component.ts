@@ -1,10 +1,10 @@
-import {Directive,ElementRef,Input,OnInit} from '@angular/core';
+import {Directive,ElementRef,Input,OnInit,OnDestroy} from '@angular/core';
 declare var google:any;
-declare var googleLoaded:any;
+
 @Directive({
   selector: '[GoogleChart]'
 })
-export class GoogleGaugesComponent implements OnInit {
+export class GoogleGaugesComponent implements OnInit,OnDestroy {
 
 public _element:any;
   @Input('chartType') public chartType:string;
@@ -37,7 +37,9 @@ public _element:any;
       wrapper.draw();
     }
   }
+  
+  ngOnDestroy() { 
 
-
+    }
 
 }

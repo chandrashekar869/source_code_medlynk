@@ -32,7 +32,7 @@ export class DashboardComponent implements OnInit {
 	this.getDeviceAttributes(this.userId);
   setInterval(() =>{
           this.getDeviceAttributes(this.userId)
-        },1500000);  
+        },1500);  
  	}  
 
   constructor(private router: Router,public http: Http){
@@ -158,7 +158,7 @@ export class DashboardComponent implements OnInit {
         else if(data[i].low_gas == 1){
           value="Yellow";
           message = "Low Gas";
-          iconUrl=appConfig.imagePath+'assets/yellow.png';
+          iconUrl=appConfig.imagePath+'yellow.png';
               if(diffDays>2){
               message = "Low Gas and Disconnected";
               value="Disconnected";
@@ -168,7 +168,7 @@ export class DashboardComponent implements OnInit {
         else{
           value="Green";
           message = "All Good ";
-          iconUrl=appConfig.imagePath+'assets/greenmarker.png';
+          iconUrl=appConfig.imagePath+'greenmarker.png';
            if(data[i].power_level<30){
             value="Red";
             message = "Low Power Level";
@@ -232,7 +232,7 @@ export class DashboardComponent implements OnInit {
   }
 
    someData = 
-          [{
+      [{
 		  lat: 51.673858,
 		  lng: 7.615982,
 		  label: 'Map A',
