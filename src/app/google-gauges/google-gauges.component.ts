@@ -37,7 +37,4 @@ public _element:any;
       wrapper.draw();
     }
   }
-
-
-
 }
