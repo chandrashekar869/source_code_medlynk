@@ -110,7 +110,7 @@ export class GaugecomponentComponent implements OnInit{
     this.imgConnect= appConfig.imagePath+'connected.png';
     this.interval = setInterval(() =>{
          this.getGaugeValue(this.deviceId)
-      },30000);  
+      },10000);  
     }
 
   //OnDestroy
