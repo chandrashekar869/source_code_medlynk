@@ -1,9 +1,8 @@
-import { Component,Input, OnInit,Directive,ElementRef,OnDestroy } from '@angular/core';
+import { Component,Input, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Http, Headers, Response, URLSearchParams } from '@angular/http';
 import 'rxjs/add/operator/map';
 import { appConfig } from '../app.config';
-declare var google:any;
 
 @Component({
 selector: 'app-gaugecomponent',
@@ -11,11 +10,8 @@ templateUrl: './gaugecomponent.component.html',
 styleUrls: ['./gaugecomponent.component.css']
 })
 
-@Directive({
-  selector: '[GoogleChart]'
-})
 
-export class GaugecomponentComponent implements OnInit,OnDestroy{
+export class GaugecomponentComponent implements OnInit{
   //default values
   public _element:any;
   @Input('chartType') public chartType:string;
@@ -102,9 +98,8 @@ export class GaugecomponentComponent implements OnInit,OnDestroy{
         minorTicks: 5
     };
 
-  constructor(private route:ActivatedRoute,public http: Http,public element: ElementRef) {
-    this._element = this.element.nativeElement;
-    console.log("containerId is :"+ this._element);
+  constructor(private route:ActivatedRoute,public http: Http) {
+
   }
 
   ngOnInit() {
@@ -122,16 +117,6 @@ export class GaugecomponentComponent implements OnInit,OnDestroy{
     }
 
   //OnDestroy
-    ngOnDestroy(){
-       console.log("OnDestroy called in gaugecomponent")
-       this.view = false;
-       clearInterval(this.interval);
-        this.tankPressure;
-        this.linePressure;
-        this.tankLevel;
-        this.GasLeak;
-    }
-
    // Gauges values
     
     
@@ -213,7 +198,6 @@ export class GaugecomponentComponent implements OnInit,OnDestroy{
             yellowTo: 90,
             minorTicks: 10
         };
-        this.drawGraph(this.chartOptions,this.chartType,this.chartData,this._element);
         console.log("pie chartData 1 "+this.pie_ChartData+"pie chartData 2 "+this.pie_ChartData+"");
           //this.drawGraph(this.chartOptions,this.chartType,this.chartData,this._element)
           //check for alarm and becon values
@@ -288,7 +272,6 @@ export class GaugecomponentComponent implements OnInit,OnDestroy{
           this.cus_name = data[i].customer_name;
           this.view = true;
 
-          this.drawGraph(this.chartOptions,this.chartType,this.chartData,this._element);
        } //for loop
       }, error => {
         console.log("Oooops!"+error);
@@ -349,20 +332,7 @@ export class GaugecomponentComponent implements OnInit,OnDestroy{
       });
     } 
 
-    drawGraph(chartOptions,chartType,chartData,ele) {
-    google.charts.load('current');
-    google.charts.setOnLoadCallback(drawChart);
-    function drawChart() {
-      var wrapper;
-      wrapper = new google.visualization.ChartWrapper({
-        chartType: chartType,
-        dataTable:chartData ,
-        options:chartOptions || {},
-        containerId: ele.id
-      });
-      wrapper.draw();
-    }
-  } 
+
  }
 
 
