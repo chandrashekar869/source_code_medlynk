@@ -33,7 +33,7 @@ export class DashboardComponent implements OnInit,OnDestroy {
 	this.getDeviceAttributes(this.userId);
   this.interval = setInterval(() =>{
           this.getDeviceAttributes(this.userId)
-        },150000);  
+        },10000);  
  	}  
     //OnDestroy
   ngOnDestroy(){
