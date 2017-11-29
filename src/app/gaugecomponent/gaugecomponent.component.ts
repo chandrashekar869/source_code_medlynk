@@ -1,5 +1,6 @@
 import { Component,Input, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
+import { GoogleGaugesComponent } from '../google-gauges/google-gauges.component';
 import { Http, Headers, Response, URLSearchParams } from '@angular/http';
 import 'rxjs/add/operator/map';
 import { appConfig } from '../app.config';
@@ -13,10 +14,6 @@ styleUrls: ['./gaugecomponent.component.css']
 
 export class GaugecomponentComponent implements OnInit{
   //default values
-  public _element:any;
-  @Input('chartType') public chartType:string;
-  @Input('chartOptions') public chartOptions: Object;
-  @Input('chartData') public chartData: Object;
   deviceId ='';
   userId:string;
   tankPressure:number = 0;
@@ -331,9 +328,4 @@ export class GaugecomponentComponent implements OnInit{
           console.log("Oooops!"+error);
       });
     } 
-
-
  }
-
-
-
