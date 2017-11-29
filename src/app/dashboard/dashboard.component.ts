@@ -253,4 +253,3 @@ interface marker {
 	iconUrl?: string;
   message?:string;
 }
-
