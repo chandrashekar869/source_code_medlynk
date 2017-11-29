@@ -25,7 +25,7 @@
           [iconUrl]="m.iconUrl"
           (mouseOver)="mouseOver(infoWindow,m)"
           (mouseOut)="mouseOut(infoWindow,m)">           
-          <agm-info-window #infoWindow [latitude]="lat" [longitude]="lng" [isOpen]="markerOpen" >{{deviceName}}<br> {{message}} 
+          <agm-info-window #infoWindow  [latitude]="lat" [longitude]="lng" [isOpen]="markerOpen" >{{deviceName}}<br> {{message}} 
           </agm-info-window>
   </agm-marker>
 </agm-map>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,OnDestroy } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { appConfig } from '../app.config';
 import { User } from '../_models/index';
@@ -11,7 +11,7 @@ import 'rxjs/add/operator/map';
   styleUrls: ['./dashboard.component.css']
 })
 
-export class DashboardComponent implements OnInit {
+export class DashboardComponent implements OnInit,OnDestroy {
 	// initial map points or center point on the map and declare values
 	title: string = 'My first AGM project';  
 	lat: number = 12.98164225;
@@ -26,15 +26,21 @@ export class DashboardComponent implements OnInit {
   currentUser: User;
   select:any;
   selectUndefinedOptionValue:any;
+  interval:any;
 	ngOnInit()
   {
   this.userId = JSON.parse(localStorage.getItem('currentUser'));
 	this.getDeviceAttributes(this.userId);
-  setInterval(() =>{
+  this.interval = setInterval(() =>{
           this.getDeviceAttributes(this.userId)
-        },1500);  
+        },150000);  
  	}  
+    //OnDestroy
+  ngOnDestroy(){
 
+     console.log("OnDestroy called in DashboardComponent")
+     clearInterval(this.interval);
+  }
   constructor(private router: Router,public http: Http){
   this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
   }
@@ -81,7 +87,7 @@ export class DashboardComponent implements OnInit {
   }
 //on select of device , center the tip point and show the info window 
   onSelected(val){
-    console.log(val);
+    console.log("select data is :"+ val)
     for (var i = 0; i < this.someData.length; i++){
     // look for the entry with a matching `code` value
     if (this.someData[i].label == val){
@@ -89,11 +95,11 @@ export class DashboardComponent implements OnInit {
         this.lng = this.someData[i].lng;
         this.deviceName = this.someData[i].label;
         this.message = this.someData[i].message;
-         this.markerOpen = true;
+        this.markerOpen = true;
         console.log(this.someData[i].label);
     	  }
       }
-    }
+  }
 
     getDeviceAttributes(id:string){
     var link = '/users/deviceList';
@@ -123,28 +129,7 @@ export class DashboardComponent implements OnInit {
         var value ;
         var iconUrl;
         var message;
-        //check all conditions if alarm is 1 set value as RED like vice  and for 
-        //disconnected check with log_time and current date time
-        /*
-        if(data[i].gas_leak == 1){
-          value="Red";
-          iconUrl='../../assets/red-pin.png';
 
-        } 
-        else if(data[i].low_gas == 1){
-          value="Yellow";
-          iconUrl='../../assets/yellow-pin.png';
-        }
-        else{
-          value="Green";
-          iconUrl='../../assets/green-pin.png';
-        }
-        //if the diff of current date time and log time is more than 2 days set status as 
-        if(diffDays>2){
-          value="Disconnected";
-          iconUrl='../../assets/redcrossmarker.png'; 	
-        }
-       */
         if(data[i].gas_leak == 1){
           value="Red";
           message = "Gas Leak";

@@ -5,8 +5,10 @@ select {
 	width:150px;
 	height: 30px;
 	border: 1px solid;
+	font-size: 15px;
 }
 option {
 	width:200px;
 	height: 35px;	
+
 }

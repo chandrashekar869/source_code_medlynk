@@ -1,9 +1,9 @@
-import { Component,Input, OnInit,OnDestroy } from '@angular/core';
+import { Component,Input, OnInit,Directive,ElementRef,OnDestroy } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { GoogleGaugesComponent } from '../google-gauges/google-gauges.component';
 import { Http, Headers, Response, URLSearchParams } from '@angular/http';
 import 'rxjs/add/operator/map';
 import { appConfig } from '../app.config';
+declare var google:any;
 
 @Component({
 selector: 'app-gaugecomponent',
@@ -11,8 +11,16 @@ templateUrl: './gaugecomponent.component.html',
 styleUrls: ['./gaugecomponent.component.css']
 })
 
-export class GaugecomponentComponent implements OnInit, OnDestroy{
+@Directive({
+  selector: '[GoogleChart]'
+})
+
+export class GaugecomponentComponent implements OnInit,OnDestroy{
   //default values
+  public _element:any;
+  @Input('chartType') public chartType:string;
+  @Input('chartOptions') public chartOptions: Object;
+  @Input('chartData') public chartData: Object;
   deviceId ='';
   userId:string;
   tankPressure:number = 0;
@@ -21,56 +29,31 @@ export class GaugecomponentComponent implements OnInit, OnDestroy{
   GasLeak:number = 0;
   powerSupply:Number;
   isDataAvailable:boolean = false;
-  public _element:any;
   imgAlarm:string;
   imgBeacon:string;
   imgConnect:string;
-  meter1:any;
-  meter2:any;
-  meter3:any;
-  meter4:any;
-  solenoidArray:any;
-  solenoidtempArray:any;
+  meter1:string[] =["0","0","0","0","0","0","0","0"];
+  meter2:string[] =["0","0","0","0","0","0","0","0"];
+  meter3:string[] =["0","0","0","0","0","0","0","0"];
+  meter4:string[] =["0","0","0","0","0","0","0","0"];
+  solenoidArray:any[]=[1,1,1,1,1,1,1,1];
+  solenoidtempArray:any[]=[1,1,1,1,1,1,1,1];
   backgroundstring:string="white";
-  solenoid:any;
+  solenoid:any[]=[1,1,1,1,1,1,1,1];
   log_date:any;
   cus_name:any;
   display='none';
   devicePassword:string;
   disableSolenoid:boolean;
   controlButton:boolean;
+  interval:any;
   model: any = {};
-
-    constructor(private route:ActivatedRoute,public http: Http) { }
-
-    ngOnInit() {
-     //get the device id from routing
-      this.userId = JSON.parse(localStorage.getItem('currentUser'));
-      this.deviceId = this.route.snapshot.params.deviceId;
-      console.log(this.deviceId);
-      this.getGaugeValue(this.deviceId);
-      this.imgAlarm= appConfig.imagePath+'beacongreen.jpg';
-      this.imgBeacon= appConfig.imagePath+'beacongreen.jpg';
-      this.imgConnect= appConfig.imagePath+'connected.png';
-      
-      setInterval(() =>{
-           this.getGaugeValue(this.deviceId)
-        },30000);  
-      }
-
-    ngOnDestroy() { 
-      console.log("On destroy method called");
-      this.tankPressure=null;
-      this.linePressure=null;
-      this.tankLevel=null;
-      this.GasLeak=null;
-    }
-
-   // Gauges values
-    public pie_ChartData = [
+  view:boolean=false;
+  pie_ChartData = [
         ['Label', 'Value'],
         ['TP (bar)',this.tankPressure]];
-    public pie_ChartOptions = {
+  
+  pie_ChartOptions = {
         max:20,
         width: 400, 
         height: 220,
@@ -81,10 +64,10 @@ export class GaugecomponentComponent implements OnInit, OnDestroy{
         minorTicks: 5
     };
 
-    public pie_ChartData1 = [
+    pie_ChartData1 = [
         ['Label', 'Value'],
         ['LP (psig) ',this.linePressure]];
-    public pie_ChartOptions1 = {
+    pie_ChartOptions1 = {
         max:20,
         width: 400, 
         height: 220,
@@ -94,10 +77,10 @@ export class GaugecomponentComponent implements OnInit, OnDestroy{
         yellowTo: 15,
         minorTicks: 5
     };
-       public pie_ChartData2 = [
+    pie_ChartData2 = [
         ['Label', 'Value'],
         ['TL (%)',this.tankLevel]];
-    public pie_ChartOptions2 = {
+    pie_ChartOptions2 = {
         width: 400, 
         height: 220,
         redFrom: 90,
@@ -106,10 +89,10 @@ export class GaugecomponentComponent implements OnInit, OnDestroy{
         yellowTo: 90,
         minorTicks: 5
     };
-    public pie_ChartData3 = [
+    pie_ChartData3 = [
         ['Label', 'Value'],
         ['GL (%)',this.GasLeak]];
-    public pie_ChartOptions3 = {
+    pie_ChartOptions3 = {
          width: 400, 
         height: 220,
         redFrom: 90,
@@ -119,6 +102,39 @@ export class GaugecomponentComponent implements OnInit, OnDestroy{
         minorTicks: 5
     };
 
+  constructor(private route:ActivatedRoute,public http: Http,public element: ElementRef) {
+    this._element = this.element.nativeElement;
+    console.log("containerId is :"+ this._element);
+  }
+
+  ngOnInit() {
+   //get the device id from routing
+    this.userId = JSON.parse(localStorage.getItem('currentUser'));
+    this.deviceId = this.route.snapshot.params.deviceId;
+    console.log(this.deviceId);
+    this.getGaugeValue(this.deviceId);
+    this.imgAlarm= appConfig.imagePath+'beacongreen.jpg';
+    this.imgBeacon= appConfig.imagePath+'beacongreen.jpg';
+    this.imgConnect= appConfig.imagePath+'connected.png';
+    this.interval = setInterval(() =>{
+         this.getGaugeValue(this.deviceId)
+      },30000);  
+    }
+
+  //OnDestroy
+    ngOnDestroy(){
+       console.log("OnDestroy called in gaugecomponent")
+       this.view = false;
+       clearInterval(this.interval);
+        this.tankPressure;
+        this.linePressure;
+        this.tankLevel;
+        this.GasLeak;
+    }
+
+   // Gauges values
+    
+    
     getGaugeValue(id:string){
       var link = '/device/gaugesInfo';
       var jsonObject =[];
@@ -197,29 +213,30 @@ export class GaugecomponentComponent implements OnInit, OnDestroy{
             yellowTo: 90,
             minorTicks: 10
         };
+        this.drawGraph(this.chartOptions,this.chartType,this.chartData,this._element);
         console.log("pie chartData 1 "+this.pie_ChartData+"pie chartData 2 "+this.pie_ChartData+"");
           //this.drawGraph(this.chartOptions,this.chartType,this.chartData,this._element)
           //check for alarm and becon values
-          if(Number(data[i].gas_leak)==1){
-              this.imgAlarm = appConfig.imagePath+'beaconred.png';}
-          else{ 
-              this.imgAlarm= appConfig.imagePath+'beacongreen.jpg';}    
+            if(Number(data[i].gas_leak)==1){
+                this.imgAlarm = appConfig.imagePath+'beaconred.png';}
+            else{ 
+                this.imgAlarm= appConfig.imagePath+'beacongreen.jpg';}    
 
-          if(Number(data[i].low_gas)==1){ 
-            this.imgBeacon=appConfig.imagePath+'beaconred.png'; }
-          else{ 
-             this.imgBeacon=appConfig.imagePath+'beacongreen.jpg';}  
+            if(Number(data[i].low_gas)==1){ 
+              this.imgBeacon=appConfig.imagePath+'beaconred.png'; }
+            else{ 
+               this.imgBeacon=appConfig.imagePath+'beacongreen.jpg';}  
           
           //set powr supply %
-          this.powerSupply=Number(data[i].power_level);  
-          this.meter1 = data[i].meter1.split(""); 
-          this.meter2 = data[i].meter2.split(""); 
-          this.meter3 = data[i].meter3.split(""); 
-          this.meter4 = data[i].meter4.split(""); 
+            this.powerSupply=Number(data[i].power_level);  
+            this.meter1 = ("00000"+data[i].meter1).split(""); 
+            this.meter2 = ("00000"+data[i].meter2).split(""); 
+            this.meter3 = ("00000"+data[i].meter3).split(""); 
+            this.meter4 = ("00000"+data[i].meter4).split(""); 
 
-          this.solenoidtempArray = data[i].log_solenoid.split("");
-          this.solenoidtempArray = this.solenoidtempArray.map(Number);
-          this.devicePassword=data[i].device_password;
+            this.solenoidtempArray = data[i].log_solenoid.split("");
+            this.solenoidtempArray = this.solenoidtempArray.map(Number);
+            this.devicePassword=data[i].device_password;
           
           //check for intermediate state
           if(Number(data[i].device_state_updated)==1){
@@ -251,6 +268,7 @@ export class GaugecomponentComponent implements OnInit, OnDestroy{
             this.backgroundstring="white";
             console.log("solenoid"+this.solenoid[1]);
           }
+         
           var today = new Date();
           //converting the log date in date formate
           var date2 = new Date(data[i].log_time);
@@ -268,6 +286,9 @@ export class GaugecomponentComponent implements OnInit, OnDestroy{
           }
           console.log(diffDays);
           this.cus_name = data[i].customer_name;
+          this.view = true;
+
+          this.drawGraph(this.chartOptions,this.chartType,this.chartData,this._element);
        } //for loop
       }, error => {
         console.log("Oooops!"+error);
@@ -326,7 +347,22 @@ export class GaugecomponentComponent implements OnInit, OnDestroy{
       },error => {
           console.log("Oooops!"+error);
       });
-    }  
+    } 
+
+    drawGraph(chartOptions,chartType,chartData,ele) {
+    google.charts.load('current');
+    google.charts.setOnLoadCallback(drawChart);
+    function drawChart() {
+      var wrapper;
+      wrapper = new google.visualization.ChartWrapper({
+        chartType: chartType,
+        dataTable:chartData ,
+        options:chartOptions || {},
+        containerId: ele.id
+      });
+      wrapper.draw();
+    }
+  } 
  }
 
 

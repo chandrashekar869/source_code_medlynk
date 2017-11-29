@@ -1,5 +1,5 @@
 <app-header></app-header>
-<div class="container" style="border: 1px solid;">
+<div class="container" *ngIf="view" style="border: 1px solid;">
 <!--<google-chart [data]="pieChartData"></google-chart> -->
 <div class="row">
   <div class="col-sm-4 ">
@@ -7,12 +7,13 @@
        <div class="headercss"><h4 style="margin-left: 2%"><b> User Name:</b> Sejal kumari Das </h4></div><br>
        <div class="headercss"><h4 style="margin-left: 2%"><b> Customer Name:</b> {{cus_name}}</h4></div>
 
-        <div class="center-block" style="margin-top: 8%" >
+        <div class="center-block" style="margin-top: 6%" >
           <div id="gauge_chart" 
            [chartData]="pie_ChartData" 
            [chartOptions]= "pie_ChartOptions" 
            chartType="Gauge" GoogleChart>
           </div>
+          <div style="text-align: center;"><b><h3>Tank Pressure</h3></b></div>
         </div>
       </div>
   </div>
@@ -21,12 +22,13 @@
       <div class="row">
        <div class="headercss"><h4 style="margin-left: 2%"><b> Device Id</b> {{deviceId}} </h4></div><br>
        <div class="headercss"><h4 style="margin-left: 2%"><b> Date Updated:</b> {{log_date}} </h4></div>
-        <div class="center-block" style="margin-top: 8%">  
+        <div class="center-block" style="margin-top: 6%">  
           <div id="gauge_chart1" 
           [chartData]="pie_ChartData1" 
           [chartOptions]= "pie_ChartOptions1" 
           chartType="Gauge" GoogleChart>
           </div>
+          <div style="text-align: center;"><b><h3>Line Pressure</h3></b></div>
         </div>
       </div>
   </div>
@@ -79,6 +81,7 @@
                [chartOptions]= "pie_ChartOptions2" 
                chartType="Gauge" GoogleChart>
           </div>
+          <div style="text-align: center;"><b><h3>Tank Level</h3></b></div>
           </div>
        </div>
        <div class="row align-items-start">
@@ -172,6 +175,7 @@
                [chartOptions]= "pie_ChartOptions3" 
                chartType="Gauge" GoogleChart>
           </div>
+          <div style="text-align: center;"><b><h3>Gas Leak</h3></b></div>
         </div>
       </div>
 
