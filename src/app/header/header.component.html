@@ -1,6 +1,6 @@
 <div class="container">
   <nav class="navbar navbar-toggleable">
-    <img class="navbar-brand page-scroll" style="height:0%;padding: 0%; max-width: 280px;max-height: 80px;" src={{imagePath}}  href="" alt="logo">
+    <a [routerLink]="['']"><img class="navbar-brand page-scroll" style="height:0%;padding: 0%; max-width: 280px;max-height: 80px;" src={{imagePath}}  href="" alt="logo"></a>
       <button class="navbar-toggler hidden-md-up navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             ☰
       </button>
@@ -14,7 +14,7 @@
             <a class="nav-link" [routerLink]="['/userAdmin']">User Admin</a>
           </li>
           <li  *ngIf="nav.visible" class="nav-item">
-            <a class="nav-link" class="badge1" data-badge="2" [routerLink]="['/deviceAdmin']" >
+            <a class="nav-link" class="badge1" attr.data-badge="{{value}}" [routerLink]="['/deviceAdmin']" >
               Device Admin  
             </a>
           </li>
@@ -22,17 +22,17 @@
             <a class="nav-link" href="">Support</a>
           </li>
           <li *ngIf="nav.userProfile" class="nav-item dropdown">
-            <a style="color: green" class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Hello Sejal </a>
+            <a style="color: green" class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Hello {{user_name}}</a>
             <div class="dropdown-menu dropdown-menu-right">
               <a  class="dropdown-item"  [routerLink]="['/login']">Logout</a>
-              <a  class="dropdown-item" href="#myModal" data-toggle="modal" data-target="#myModal">Change Password</a>
+              <a  class="dropdown-item" (click)="openModal()" >Change Password</a>
             </div>
           </li>
         </ul>
       </div>
     </nav>
   </div>
-<div class="modal fade" id="myModal">
+<div class="modal" tabindex="-1" role="dialog"  [ngStyle]="{'display':display}">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -82,11 +82,10 @@
       </div>
       </form>
       <div class="modal-footer">
-        <a href="#" data-dismiss="modal" class="btn">Close</a>
+        <a (click)="onCloseHandled()" class="btn">Close</a>
       </div>
     </div>
   </div>
 </div>
   <!-- /.modal !-->
-
 

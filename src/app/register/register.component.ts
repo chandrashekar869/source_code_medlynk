@@ -1,6 +1,7 @@
 ﻿import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AlertService, UserService } from '../_services/index';
+import { EqualValidator } from '../register/password.match.directive';
 
 @Component({
     moduleId: module.id,
@@ -23,15 +24,21 @@ export class RegisterComponent {
             .subscribe(
                 data => {
                     if(data.text()=='1'){
-                    this.alertService.error('Email id already registered');
+                    this.alertService.error('The email address you have entered is already registered');
                     this.loading = false;
                     this.router.navigate(['/register']);
                     }
-                    else
+                    else if(data.text()=='0')
                     {   
-                    this.alertService.success('Registration successful', true);
+                    this.alertService.success('Registered successfully! Please Login', true);
                     this.router.navigate(['/login']);
                     }
+                    else
+                    {
+                    this.alertService.error('Something went wrong');
+                    this.loading = false;
+                    this.router.navigate(['/register']);
+                    }   
                 },
                 error => {
                     this.alertService.error(error);

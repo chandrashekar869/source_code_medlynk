@@ -1,34 +1,29 @@
 ﻿import { Routes, RouterModule } from '@angular/router';
-
-import { HomeComponent } from './home/index';
+import {ModuleWithProviders} from '@angular/core';
 import { LoginComponent } from './login/index';
-import { RegisterComponent } from './register/index';
 import { AuthGuard } from './_guards/index';
-import { DashboardComponent } from './dashboard/index';
-import { GaugecomponentComponent} from './gaugecomponent/gaugecomponent.component';
 import { userAdminComponent } from './userAdmin/index';
-import { addUserComponent } from './addUser/index';
 import { editUserComponent } from './editUser/index';
 import { deviceAdminComponent } from './deviceAdmin/index';
 import { addDeviceComponent } from './addDevice/index';
 import { editDeviceComponent } from './editDevice/index';
-import { ConfigurationComponent } from './configuration/configuration.component';
-
+import {ReportingComponent} from './reporting/reporting.component';
 const appRoutes: Routes = [
-    { path: '', component: DashboardComponent, canActivate: [AuthGuard] },
+    { path: '', loadChildren:'app/dashboard/dashboard.module#DashboardModule', canActivate: [AuthGuard] },
     { path: 'login', component: LoginComponent },
-    { path: 'register', component: RegisterComponent },
-    { path: 'dashBoard',component: DashboardComponent},
-    { path: 'gauges/:deviceId', component:GaugecomponentComponent},
-    { path: 'addUser' , component:addUserComponent },
-    { path: 'userAdmin', component:userAdminComponent},
-    { path: 'editUser', component:editUserComponent},
-    { path: 'deviceAdmin', component:deviceAdminComponent},
-    { path: 'addDevice', component:addDeviceComponent},
-    { path: 'editDevice', component:editDeviceComponent},
-    { path: 'config', component:ConfigurationComponent},
+    { path: 'register', loadChildren:'app/register/register.module#RegisterModule' },
+    { path: 'dashBoard',loadChildren:'app/dashboard/dashboard.module#DashboardModule',canActivate: [AuthGuard]},
+    { path: 'gauges/:deviceId', loadChildren:'app/gaugecomponent/gaugecomponent.module#GaugecomponentModule',canActivate: [AuthGuard]},
+    { path: 'addUser' , loadChildren:'app/addUser/addUser.module#addUserModule',canActivate: [AuthGuard] },
+    { path: 'userAdmin', loadChildren:'app/userAdmin/userAdmin.module#userAdminModule',canActivate: [AuthGuard]},
+    { path: 'editUser', loadChildren:'app/editUser/editUser.module#editUserModule',canActivate: [AuthGuard]},
+    { path: 'deviceAdmin', loadChildren:'app/deviceAdmin/deviceAdmin.module#deviceAdminModule',canActivate: [AuthGuard]},
+    { path: 'addDevice', loadChildren:'app/addDevice/addDevice.module#addDeviceModule',canActivate: [AuthGuard]},
+    { path: 'editDevice', loadChildren:'app/editDevice/editDevice.module#editDeviceModule',canActivate: [AuthGuard]},
+    { path: 'config',  loadChildren:'app/configuration/configuration.module#ConfigurationModule',canActivate: [AuthGuard]},
+    {path:  'reporting/:deviceId',loadChildren:'app/reporting/reporting.module#ReportingModule',canActivate: [AuthGuard]},
     // otherwise redirect to home
     { path: '**', redirectTo: '' }
 ];
 
-export const routing = RouterModule.forRoot(appRoutes);
+export const routing:ModuleWithProviders = RouterModule.forRoot(appRoutes,{useHash:true});

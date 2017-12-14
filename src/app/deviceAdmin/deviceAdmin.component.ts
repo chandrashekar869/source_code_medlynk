@@ -26,12 +26,10 @@ export class deviceAdminComponent implements OnInit {
   ngOnInit(): void {
     this.editimg = appConfig.imagePath+'edit.png';
     this.delete = appConfig.imagePath+'delete.png';
-    this.setting = appConfig.imagePath+'setting.png';
-    var user_id=1123;
-    localStorage.setItem("currentuser","1");
+    this.setting = appConfig.imagePath+'settings.png';
     var tempObj={};
     // Make the HTTP request:
-    this.http.post('http://40.71.199.63:3200/deviceAdmin',{data:localStorage.getItem("currentuser")}).subscribe(data => {
+    this.http.post('http://40.71.199.63:3200/deviceAdmin',{data:localStorage.getItem("currentUser")}).subscribe(data => {
       // Read the result field from the JSON response.
       var currentdate=new Date();
       for(var i=0;i<data["length"];i++){
@@ -47,11 +45,11 @@ export class deviceAdminComponent implements OnInit {
           status="Low gas";
           color="red";
         }
-        else if(data[i].power_level<20 && data[i].low_gas!=null){
+        else if(data[i].power_level<3.61 && data[i].low_gas!=null){
           status="Low power";
           color="red";
         }
-        else if(data[i].log_time!=null && (currentdate.getTime()-d.getTime())>=172800000){
+        else if(data[i].log_time!=null && (currentdate.getTime()-d.getTime())>=60000){
           status="Disconnected";
           color="red";
         }
@@ -76,14 +74,24 @@ export class deviceAdminComponent implements OnInit {
     });
   }
   deletefromtable(i){
-    alert("Are you sure you want to delete the device");
+    var delconfirm=confirm("Are you sure you want to delete:"+this.results[i]["device_id"]);
+    if(delconfirm)
+    {
+      console.log(this.results[i]);
+      this.httpcustom.post("/deletedevices", {data:this.results[i],user_id:localStorage.getItem("currentUser")}).subscribe({ error: e => console.error(e) });
+      location.reload();  
+    }
+    /*alert("Are you sure you want to delete the device");
     console.log(this.results[i]);
     this.httpcustom.post("/deletedevices", {data:this.results[i],user_id:localStorage.getItem("currentuser")}).subscribe({ error: e => console.error(e) });
-    location.reload();
+    location.reload();*/
   }
   edit(i){
-    console.log(this.results[i]);
-    window.localStorage.setItem("clickedDevice",JSON.stringify(this.results[i]));
-    this.router.navigate(['./editDevice']);
-  }
+   /* console.log(this.results[i]);
+    
+    
+  */
+  window.localStorage.setItem("clickedDevice",JSON.stringify(this.results[i]));
+  this.router.navigate(['./editDevice']);}
+
 }

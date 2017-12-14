@@ -25,7 +25,7 @@ img.navbar-brand {
 .badge1[data-badge]:after {
    content:attr(data-badge);
    position:absolute;
-   top:0px;
+   top:5px;
    right:10px;
    font-size:.7em;
    background:red;

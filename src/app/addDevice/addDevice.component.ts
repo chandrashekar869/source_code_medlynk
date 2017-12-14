@@ -1,5 +1,4 @@
 import { Component,OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { Http, Headers, Response, URLSearchParams } from '@angular/http';
 import { NavbarService } from '../_services/index';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -19,7 +18,7 @@ export class addDeviceComponent {
   errmsg:string;
  select:any;
  selecta:any;
-  constructor(private router: Router,public nav: NavbarService,private http: HttpClient,public httpcustom: Http){
+  constructor(private router: Router,public nav: NavbarService,public httpcustom: Http){
   }
 
   ngOnInit(): void {
@@ -33,7 +32,7 @@ export class addDeviceComponent {
       this.errmsg="";
       console.log(this.model);
       this.model.editDevice=false;
-      this.model.user_id=localStorage.getItem("currentuser");
+      this.model.user_id=localStorage.getItem("currentUser");
       var params=["username","device_id","address","coordinates","loginpassword","configpassword","gsmmobilenumber"];
       for(var i=0;i<params.length;i++){
         if(!this.model.hasOwnProperty(params[i])){

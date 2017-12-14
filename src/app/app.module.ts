@@ -4,29 +4,14 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 import { routing } from './app.routing';
-import { AgmCoreModule } from '@agm/core';
 import { customHttpProvider } from './_helpers/index';
 import { AlertComponent } from './_directives/index';
 import { AuthGuard } from './_guards/index';
 import { AlertService, AuthenticationService, UserService,NavbarService } from './_services/index';
-import { HomeComponent } from './home/index';
 import { LoginComponent } from './login/index';
-import { RegisterComponent } from './register/index';
 import { HeaderComponent } from './header/header.component';
-import { DashboardComponent } from './dashboard/index';
 import { FooterComponent } from './footer/footer.component';
-import { GaugecomponentComponent } from './gaugecomponent/gaugecomponent.component';
-import { GoogleGaugesComponent } from './google-gauges/google-gauges.component';
-import { userAdminComponent } from './userAdmin/userAdmin.component';
-import { addUserComponent } from './addUser/addUser.component';
-import { HttpClientModule} from '@angular/common/http';
 import { EqualValidator } from './register/password.match.directive';
-import { ConfigurationComponent } from './configuration/configuration.component';
-import { editUserComponent } from './editUser/editUser.component';
-import { deviceAdminComponent } from './deviceAdmin/deviceAdmin.component';
-import { addDeviceComponent } from './addDevice/addDevice.component';
-import { editDeviceComponent } from './editDevice/editDevice.component';
-
 
 
 @NgModule({
@@ -34,31 +19,16 @@ import { editDeviceComponent } from './editDevice/editDevice.component';
         BrowserModule,
         FormsModule,
         HttpModule,
-        HttpClientModule,
-        AgmCoreModule.forRoot({
-        apiKey: 'AIzaSyCJ8L3mMI-DQ_3xoh6DR78Os7qtUsVuT1k'
-        }),
         routing
     ],
     declarations: [
+
         AppComponent,
         AlertComponent,
-        HomeComponent,
         LoginComponent,
-        RegisterComponent,
         HeaderComponent,
-        DashboardComponent,
         FooterComponent,
-        GaugecomponentComponent,
-        GoogleGaugesComponent,
-        userAdminComponent,
-        addUserComponent,
-        EqualValidator,
-        ConfigurationComponent,
-        editUserComponent,
-        deviceAdminComponent,
-        addDeviceComponent,
-        editDeviceComponent
+        EqualValidator
     ],
     providers: [
         customHttpProvider,

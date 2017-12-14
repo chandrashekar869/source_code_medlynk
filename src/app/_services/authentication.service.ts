@@ -13,17 +13,18 @@ export class AuthenticationService {
             .map((response: Response) => {
                 // login successful if there's a jwt token in the response
                 let user = response.json();
-                console.log(" User :" +user[0].user_id);
+                console.log(" User :" +user[0].user_name);
                 console.log(" User details :" +user[0].role);
-                if(user[0].role == 'user')   
-                    this.nav.hide();
-                else
-                    this.nav.show();
-
-                if (user[0].user_id == username) {
+                if (user[0].user_name == username) {
                     // store user details and jwt token in local storage to keep user logged in between page refreshes
-                    
                     localStorage.setItem('currentUser', JSON.stringify(user[0].user_id));
+                    localStorage.setItem('userName',JSON.stringify(user[0].user_name));
+                    localStorage.setItem('userRole',JSON.stringify(user[0].role));
+
+                   if(user[0].role == 'user')   
+                     this.nav.hide();
+                  else
+                     this.nav.show();
                 }
 
                 return user;
@@ -33,5 +34,7 @@ export class AuthenticationService {
     logout() {
         // remove user from local storage to log user out
         localStorage.removeItem('currentUser');
+        localStorage.removeItem('userName');
+        localStorage.removeItem('userRole');
     }
 }

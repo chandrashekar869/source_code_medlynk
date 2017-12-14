@@ -1,5 +1,4 @@
 import { Component,OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { Http, Headers, Response, URLSearchParams } from '@angular/http';
 import { Router, ActivatedRoute } from '@angular/router';
 
@@ -19,7 +18,7 @@ export class editDeviceComponent {
  select:any;
  selecta:any;
  user_details:any;
-  constructor(private router: Router,private http: HttpClient,public httpcustom: Http){
+  constructor(private router: Router,public httpcustom: Http){
   }
 
   ngOnInit(): void {
@@ -51,8 +50,7 @@ export class editDeviceComponent {
         }
       }
       if(i==params.length-1){
-          this.httpcustom.post("/addDevice", {data:this.model}).subscribe({ error: e => console.error(e) });
-          this.router.navigate(['./deviceAdmin']);
+          this.httpcustom.post("/addDevice", {data:this.model}).subscribe(data =>{ if(data.text()=="DONE")this.router.navigate(['./deviceAdmin']); });
       }
     }
 

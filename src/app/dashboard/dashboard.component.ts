@@ -1,8 +1,10 @@
 import { Component, OnInit,OnDestroy } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { appConfig } from '../app.config';
+import { AlertService,NavbarService,UserService } from '../_services/index';
 import { User } from '../_models/index';
 import { Http, Headers, Response, URLSearchParams } from '@angular/http';
+import { HeaderComponent } from '../header/header.component';
 import 'rxjs/add/operator/map';
 
 @Component({
@@ -24,54 +26,51 @@ export class DashboardComponent implements OnInit,OnDestroy {
   deviceName:string;
   markerOpen:boolean = false;
   currentUser: User;
+  tankLevel:any;
+  GasLeak:any;
   select:any;
+  powerSupply:Number;
   selectUndefinedOptionValue:any;
   interval:any;
+  selectedVal:string='All';
 	ngOnInit()
   {
   this.userId = JSON.parse(localStorage.getItem('currentUser'));
 	this.getDeviceAttributes(this.userId);
+  //set interval 
   this.interval = setInterval(() =>{
           this.getDeviceAttributes(this.userId)
-        },10000);  
- 	}  
+        },15000);  
+  }  
     //OnDestroy
   ngOnDestroy(){
-
-     console.log("OnDestroy called in DashboardComponent")
-     clearInterval(this.interval);
+   console.log("OnDestroy called in DashboardComponent");
+   clearInterval(this.interval);
   }
-  constructor(private router: Router,public http: Http){
+
+  constructor(private router: Router,public http: Http,public nav:NavbarService){
+    //get the local user id
   this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
   }
-  moduleName = 'Select'; 
 
 	clickedMarker(marker:marker, index:number){
 		//this functoin is called when marker is clicked 
 		console.log('Clicked Marker:'+ marker.label+' at index'+index);
 		this.router.navigate(['./gauges/:'+marker.label]);
 	}//clickedMarker
+
 	mouseOver(infoWindow, gm) {
 		//on mouse over event , it opens up the info-window
     this.deviceName = gm.label;
     this.message = gm.message;
 		infoWindow.open();
-
 	}//mouseOver
+
+
 	mouseOut(infoWindow, gm) {
 		//on mouse out event , close info-window
 		infoWindow.close();
 	}//mouseOut
-
-  levels:Array<Object> = [
-      {num: 0, name: "AA"},
-      {num: 1, name: "BB"}
-  ];
-
-    toNumber(){
-    this.levelNum = +this.levelNum;
-    console.log(this.levelNum);
-  }
 
 	options =['Red', 'Yellow', 'Green','Disconnected','All']
 	selected;
@@ -79,24 +78,29 @@ export class DashboardComponent implements OnInit,OnDestroy {
 //onSelect whch map to be shown on map by default its All
   onSelect(val){
     console.log(val);
+    this.selectedVal = val;
     this.selectedData = this.someData.filter(x => x.value == val)
     if(val=='All')
     {
      this.selectedData = this.someData;
     }
   }
+
 //on select of device , center the tip point and show the info window 
   onSelected(val){
     console.log("select data is :"+ val)
     for (var i = 0; i < this.someData.length; i++){
-    // look for the entry with a matching `code` value
+        this.markerOpen = false;
+        this.someData[i].info = false;
+        // look for the entry with a matching `code` value
     if (this.someData[i].label == val){
         this.lat = this.someData[i].lat;
-        this.lng = this.someData[i].lng;
+        this.lng = this.someData[i].lng;/*
         this.deviceName = this.someData[i].label;
         this.message = this.someData[i].message;
         this.markerOpen = true;
-        console.log(this.someData[i].label);
+        console.log(this.someData[i].label);*/
+        this.someData[i].info = true;
     	  }
       }
   }
@@ -120,8 +124,8 @@ export class DashboardComponent implements OnInit,OnDestroy {
         //converting the log date in date formate
         var date2 = new Date(data[i].log_time);
         //get the difference between the date in days
-        var diff = today.valueOf() - date2.valueOf();
-        var diffDays = Math.ceil(diff / (1000 * 3600 * 24)); 
+        var diffDays = today.getTime() - date2.getTime();
+        // var diffDays = Math.ceil(diff / (60000)); 
         //comment the console.log after done with testing
         console.log("Differe in days is "+ diffDays);
         //deivce id
@@ -129,22 +133,31 @@ export class DashboardComponent implements OnInit,OnDestroy {
         var value ;
         var iconUrl;
         var message;
+        var tankLevelA = data[i].gas_level;
+        var gasLeakA = data[i].gas_detector; 
 
-        if(data[i].gas_leak == 1){
+        this.tankLevel = Math.round(Number(tankLevelA)*20);
+        if(Number(gasLeakA)>4){
+        this.GasLeak = Math.round((Number(gasLeakA)-4)*6.25);}
+        else
+        this.GasLeak = 0;
+        this.powerSupply=Math.round(Number(data[i].power_level)*8.33);  
+
+        if(data[i].gas_leak == 1 || this.GasLeak>10){
           value="Red";
           message = "Gas Leak";
           iconUrl=appConfig.imagePath+'redmarker.png';
-              if(diffDays>2){
+              if(diffDays>60000){
               value="Disconnected";
                message = "Gas Leak and Disconnected";
               iconUrl=appConfig.imagePath+'redmarkerdisconnected.png';  
             }
         } 
-        else if(data[i].low_gas == 1){
+        else if(data[i].low_gas == 1 || this.tankLevel < 20){
           value="Yellow";
           message = "Low Gas";
           iconUrl=appConfig.imagePath+'yellow.png';
-              if(diffDays>2){
+              if(diffDays>60000){
               message = "Low Gas and Disconnected";
               value="Disconnected";
               iconUrl=appConfig.imagePath+'yellowmarkerdisconnected.png';  
@@ -154,31 +167,32 @@ export class DashboardComponent implements OnInit,OnDestroy {
           value="Green";
           message = "All Good ";
           iconUrl=appConfig.imagePath+'greenmarker.png';
-           if(data[i].power_level<30){
+          
+           if(this.powerSupply<30){
             value="Red";
             message = "Low Power Level";
             iconUrl=appConfig.imagePath+'redmarker.png';
-            if(diffDays>2){
+            if(diffDays>60000){
               value="Disconnected";
                message = "Low Power Level and Disconnected";
               iconUrl=appConfig.imagePath+'redmarkerdisconnected.png';  
             }
            }
-           else if(data[i].power_level >30 && data[i].power_level <60)
+           else if(this.powerSupply>30 && this.powerSupply<60)
            {
              value="Yellow";
              iconUrl=appConfig.imagePath+'yellow.png';
-             if(diffDays>2){
+             if(diffDays>60000){
               message="Disconnected";
               value="Disconnected";
               iconUrl=appConfig.imagePath+'yellowmarkerdisconnected.png';  
             }
            }
-           if(data[i].power_level>60)
+           if(this.powerSupply>60)
            {
              value="Green";
              iconUrl=appConfig.imagePath+'greenmarker.png';
-              if(diffDays>2){
+              if(diffDays>60000){
               value="Disconnected";
               message="Disconnected";
               iconUrl=appConfig.imagePath+'greenmarkerdisconnected.png';  
@@ -197,6 +211,7 @@ export class DashboardComponent implements OnInit,OnDestroy {
         item["value"] = value;
         item["iconUrl"] = iconUrl;
         item["message"] = "Status: "+message;
+        item["info"]=false;
         jsonObject.push(item);
 
         if(i==0){
@@ -209,7 +224,13 @@ export class DashboardComponent implements OnInit,OnDestroy {
       console.log("JSON OBJECT:"+json);
       //set json for map loc
       this.someData =JSON.parse(JSON.stringify(jsonObject))
-      this.selectedData = this.someData;
+      //this.selectedData = this.someData;
+      console.log("select value :"+this.selectedVal);
+      this.selectedData = this.someData.filter(x => x.value == this.selectedVal);
+      if(this.selectedVal=='All')
+      {
+       this.selectedData = this.someData;
+      }
 
     }, error => {
      console.log("Oooops!"+error);
@@ -224,7 +245,8 @@ export class DashboardComponent implements OnInit,OnDestroy {
 		  draggable: true,
 		  value:'GREEN',
 		  iconUrl:"http://maps.google.com/mapfiles/ms/icons/green.png",
-      message:""
+      message:"",
+      info: false
 	  },
 	  {
 		  lat: 51.373858,
@@ -233,7 +255,8 @@ export class DashboardComponent implements OnInit,OnDestroy {
 		  draggable: false,
 		  value:'RED',
 		  iconUrl:"http://maps.google.com/mapfiles/ms/icons/red.png",
-      message:""
+      message:"",
+      info: false
 	  },
 	  {
 		  lat: 51.723858,
@@ -242,7 +265,8 @@ export class DashboardComponent implements OnInit,OnDestroy {
 		  draggable: true,
 		  value:'YELLOW',
 		  iconUrl:"http://maps.google.com/mapfiles/ms/icons/yellow.png",
-      message:""
+      message:"",
+      info: false
 	  }] 
 }
 interface marker {
@@ -252,4 +276,5 @@ interface marker {
 	draggable: boolean;
 	iconUrl?: string;
   message?:string;
+  info: boolean;
 }

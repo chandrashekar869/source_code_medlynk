@@ -93,3 +93,14 @@ left:0;
 width:100%;
 height:100vh;
 }
+.solenoid{
+    text-align: center;
+    font-size: 157%;
+    color: white;
+    background-color: #958b52;
+    padding: 2%;
+    width: 82%;
+    margin-left: 9%;
+    border: 3px solid black;
+    margin-bottom: 4%;
+}

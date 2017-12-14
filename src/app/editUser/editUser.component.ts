@@ -2,6 +2,7 @@ import { Component,OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Http, Headers, Response, URLSearchParams } from '@angular/http';
 import { Router, ActivatedRoute } from '@angular/router';
+import {AlertService} from '../_services/index';
 import { appConfig } from '../app.config';
 
 @Component({
@@ -25,7 +26,7 @@ export class editUserComponent {
  selecta:any;
    leftarrow:string;
   rightarrow:string;
-  constructor(private router: Router,private http: HttpClient,public httpcustom: Http){
+  constructor(private alertService:AlertService,private router: Router,private http: HttpClient,public httpcustom: Http){
   }
 
   ngOnInit(): void {
@@ -134,8 +135,17 @@ onSelectRole(val){
         }
         if(i==params.length-1){
           this.model.user_id=this.user_details.user_id;
-            this.httpcustom.post("/updateUsers", {data:this.model}).subscribe({ error: e => console.error(e) });
-            this.router.navigate(['./userAdmin']);
+            this.httpcustom.post("/updateUsers", {data:this.model}).subscribe(data => {
+              if(data.text()=='DUP_KEY')
+                this.alertService.error("User exists.")
+              else if(data.text()=='I_ERR')
+                this.alertService.error("Oops something went wrong");
+              else if(data.text()=='DONE'){
+                this.alertService.success("Updated Successfully");
+                this.router.navigate(['./userAdmin']);
+              }
+            });
+            
           
         }
       }

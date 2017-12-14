@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Http, Headers, Response, URLSearchParams } from '@angular/http';
 import { Router, ActivatedRoute } from '@angular/router';
 import { appConfig } from '../app.config';
+import {AlertService} from '../_services/index';
 
 @Component({
   moduleId: module.id,
@@ -25,7 +26,7 @@ export class addUserComponent {
   leftarrow:string;
   rightarrow:string;
 
-  constructor(private router: Router,private http: HttpClient,public httpcustom: Http){
+  constructor(private router: Router,private alertService:AlertService,private http: HttpClient,public httpcustom: Http){
   
   }
 
@@ -121,9 +122,17 @@ onSelectRole(val){
           }
         }
         if(i==params.length-1){
-            this.httpcustom.post("/addUsers", {data:this.model}).subscribe({ error: e => console.error(e) });
-            this.router.navigate(['./userAdmin']);
-          
+            this.httpcustom.post("/addUsers", {data:this.model}).subscribe(data => {
+              console.log(data.text());
+              if(data.text()=='DUP_KEY')
+                this.alertService.error("User exists.");
+              else if(data.text()=='I_ERR')
+                this.alertService.error("Oops something went wrong");
+              else if(data.text()=='DONE'){
+                this.alertService.success("Updated Successfully");
+                this.router.navigate(['./userAdmin']);
+              }
+            });
         }
       }
 
