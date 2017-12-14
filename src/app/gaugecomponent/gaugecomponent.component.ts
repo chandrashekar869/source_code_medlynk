@@ -53,6 +53,7 @@ export class GaugecomponentComponent implements OnInit,OnDestroy{
   interval:any;
   model: any = {};
   controlsValue:boolean=true;
+  cursorPointer:string='not-allowed';
 
   constructor(public router:Router,private route:ActivatedRoute,public http: Http,public element: ElementRef) {
   this._element = this.element.nativeElement;
@@ -131,6 +132,7 @@ export class GaugecomponentComponent implements OnInit,OnDestroy{
             this.controlButton=true;
             //this.backgroundstring="#f4dabf";
             this.controlsValue=true;
+            this.cursorPointer='not-allowed';
 
             this.solenoidtempArray[1] = this.solenoid[1];
             this.solenoidtempArray[2] = this.solenoid[2];
@@ -148,8 +150,9 @@ export class GaugecomponentComponent implements OnInit,OnDestroy{
             this.disableSolenoid=true;
             this.controlButton = false; 
             this.controlsValue=false;
+            this.cursorPointer='not-allowed';
             //check for role 
-            if(this.userRole=='user' || this.userRole=='User')  
+            if(this.userRole.toLowerCase()=='user')  
             this.controlButton=true;
 
             this.solenoidtempArray[1] = this.solenoid[1];
@@ -235,6 +238,7 @@ export class GaugecomponentComponent implements OnInit,OnDestroy{
     if(this.devicePassword==this.model.password){
       this.display='none';
       this.disableSolenoid=false;
+      this.cursorPointer='default';
     }
     else{
       alert("Password is Invalid");
