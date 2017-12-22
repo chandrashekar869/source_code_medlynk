@@ -2,12 +2,6 @@
 import {ModuleWithProviders} from '@angular/core';
 import { LoginComponent } from './login/index';
 import { AuthGuard } from './_guards/index';
-import { userAdminComponent } from './userAdmin/index';
-import { editUserComponent } from './editUser/index';
-import { deviceAdminComponent } from './deviceAdmin/index';
-import { addDeviceComponent } from './addDevice/index';
-import { editDeviceComponent } from './editDevice/index';
-import {ReportingComponent} from './reporting/reporting.component';
 const appRoutes: Routes = [
     { path: '', loadChildren:'app/dashboard/dashboard.module#DashboardModule', canActivate: [AuthGuard] },
     { path: 'login', component: LoginComponent },

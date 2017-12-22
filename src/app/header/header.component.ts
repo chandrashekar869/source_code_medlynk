@@ -40,7 +40,7 @@ export class HeaderComponent implements OnInit,DoCheck,OnDestroy {
 		this.imagePath = appConfig.imagePath+'logo.png';
 			if(this.userId ){
 			this.user_name = JSON.parse(localStorage.getItem('userName'));
-		    if(this.userRole == 'user')   
+		    if(this.userRole.toLowerCase() == 'user')   
 		        this.nav.hide();
 		    else
 		        this.nav.show();
@@ -89,7 +89,6 @@ export class HeaderComponent implements OnInit,DoCheck,OnDestroy {
 			this.value=this.count;
 			}, error => {
 	     console.log("Oooops!"+error);
-	     this.alertService.error(error);
 		});
 	}
 
@@ -124,7 +123,12 @@ export class HeaderComponent implements OnInit,DoCheck,OnDestroy {
 	       }
 	    }, error => {
 	     console.log("Oooops!"+error);
-	     this.alertService.error(error);
+	     this.alertService.error("Something went wrong");
 	    });
+	}
+	logOut(){
+		this.nav.logOut();
+		clearInterval(this.interval);
+		this.router.navigate(['/login']);
 	}
 }

@@ -14,8 +14,12 @@ margin: 1% 40% 0% 0%;
 }
 input{
     max-height: 80%;
+    font-size:15px; 
 }
 select{
     max-height: 100%;
     margin: 1% 0% 4% 0%;
+} 
+option{
+    font-size:15px; 
 }

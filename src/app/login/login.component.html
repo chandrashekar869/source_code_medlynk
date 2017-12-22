@@ -1,5 +1,4 @@
-﻿
-<div class="row">
+﻿<div class="row">
     <div class="col-xs-12" style="margin-top: 5%">
         <h1 style="text-align: center;">
             <b>Medlynk</b>
@@ -16,9 +15,11 @@
                     <br>
                         <form  style="font-size: medium;" name="form" (ngSubmit)="f.form.valid && login()" #f="ngForm" novalidat>
                             <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !username.valid }">
-                                <label for="username">Username</label>
-                                <input type="text" class="form-control" name="username" [(ngModel)]="model.username" #username="ngModel" required />
-                                <div *ngIf="f.submitted && !username.valid" class="help-block">Username is required</div>
+                                <label for="username">User Id(Email Id)</label>
+                                <input type="text" class="form-control" name="username" [(ngModel)]="model.username" #username="ngModel" required  pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"/>
+                                <div *ngIf="f.submitted && !username.valid" class="help-block">Username is required
+                                <small [hidden]="!username.hasError('pattern')">Email format should be, <small><b>joe@abc.com</b></small></small>
+                                  </div>
                             </div>
                             <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !password.valid }">
                                 <label for="password">Password</label>

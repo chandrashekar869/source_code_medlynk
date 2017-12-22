@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Http, Headers, Response, URLSearchParams } from '@angular/http';
 import { Router, ActivatedRoute } from '@angular/router';
 import { appConfig } from '../app.config';
+import {AlertService} from '../_services/index';
 
 @Component({
   moduleId:module.id,
@@ -20,8 +21,11 @@ export class deviceAdminComponent implements OnInit {
   editimg:string;
   delete:string;
   setting:string;
+  model: any = {};
+  display='none';
+  id:number;
 
-  constructor(private router: Router,private http: HttpClient,public httpcustom: Http){
+  constructor(private alert:AlertService,private router: Router,private http: HttpClient,public httpcustom: Http){
   }
   ngOnInit(): void {
     this.editimg = appConfig.imagePath+'edit.png';
@@ -93,5 +97,29 @@ export class deviceAdminComponent implements OnInit {
   */
   window.localStorage.setItem("clickedDevice",JSON.stringify(this.results[i]));
   this.router.navigate(['./editDevice']);}
+  openModal(id){
+     this.display='block'; 
+     this.id=id;
+  }
+  onSubmitModal(){
+    if(this.model.I_modalpassword==this.results[this.id].config_password){
+      this.model.I_modalpassword="";
+      this.onCloseHandled();
+      this.alert.success("Please wait");
+      this.gotoconfig(this.id);
+    }
+     else{
+      this.model.I_modalpassword="";
+      this.onCloseHandled();
+      this.alert.error("Invalid password");
+    }
+  }
+onCloseHandled(){
+     this.display='none'; 
+  }
+  gotoconfig(i){
+    window.localStorage.setItem("clickedDevice",JSON.stringify(this.results[i]));
+    this.router.navigate(['./config']);      
+  }
 
 }

@@ -7,7 +7,6 @@ import { appConfig } from '../app.config';
 declare var google:any;
 declare var googleLoaded:any;
 
-
 @Component({
 selector: 'app-gaugecomponent',
 templateUrl: './gaugecomponent.component.html',
@@ -52,8 +51,11 @@ export class GaugecomponentComponent implements OnInit,OnDestroy{
   controlButton:boolean;
   interval:any;
   model: any = {};
+  flag:boolean=true;
   controlsValue:boolean=true;
   cursorPointer:string='not-allowed';
+  solenoidtemp:any;
+  key_location:string;
 
   constructor(public router:Router,private route:ActivatedRoute,public http: Http,public element: ElementRef) {
   this._element = this.element.nativeElement;
@@ -74,7 +76,7 @@ export class GaugecomponentComponent implements OnInit,OnDestroy{
     //google.charts.load('current', {'packages':['corechart']});
     this.interval = setInterval(() =>{
          this.getGaugeValue(this.deviceId)
-      },30000); 
+      },10000); 
     }
   //OnDestroy
    ngOnDestroy(){
@@ -100,10 +102,19 @@ export class GaugecomponentComponent implements OnInit,OnDestroy{
           //var tankPressureA =9;
           console.log(tankPressureA);
           this.tankPressure= Math.round((Number(tankPressureA)*4)* 10)/10 ;
+          if(this.tankPressure>20)
+            this.tankPressure=20;
           this.linePressure = Math.round((Number(linePressureA)*4)* 10)/10 ;
+          if(this.linePressure>20)
+            this.linePressure=20;
           this.tankLevel = Math.round(Number(tankLevelA)*20);
+          if(this.tankLevel>100)
+            this.tankLevel=100;
           if(Number(gasLeakA)>4){
-          this.GasLeak = Math.round((Number(gasLeakA)-4)*6.25);}
+          this.GasLeak = Math.round((Number(gasLeakA)-4)*6.25);
+          if(this.GasLeak>100)
+            this.GasLeak=100;
+        }
           else
           this.GasLeak = 0;
           //this.tankPressure= tankPressureA ;
@@ -111,22 +122,27 @@ export class GaugecomponentComponent implements OnInit,OnDestroy{
 
           // remove this code once meter logic is added in backend side
           //set powr supply %
-            this.powerSupply=Math.round(Number(data[i].power_level)*8.33);  
+            this.powerSupply=Math.round(Number(data[i].power_level)*8.33); 
+            if(this.powerSupply >100)
+              this.powerSupply=100;
             this.meter1 = ("00000"+data[i].meter1).split(""); 
             this.meter2 = ("00000"+data[i].meter2).split(""); 
             this.meter3 = ("00000"+data[i].meter3).split(""); 
             this.meter4 = ("00000"+data[i].meter4).split(""); 
 
-            this.solenoidtempArray = data[i].log_solenoid.split("");
-            this.solenoidtempArray = this.solenoidtempArray.map(Number);
+            //this.solenoidtempArray = data[i].log_solenoid.split("");
+            //this.solenoidtempArray = this.solenoidtempArray.map(Number);
             this.devicePassword=data[i].device_password;
           
-			this.solenoidArray = data[i].log_solenoid.split("");
-            this.solenoid = this.solenoidArray.map(Number);
-          //check for intermediate state
+		
+
+  //check for intermediate state
           if(Number(data[i].device_state_updated)==1){
+
+            if(this.flag){
             this.solenoidArray = data[i].control_solenoid.split("");
             this.solenoid = this.solenoidArray.map(Number);
+            this.solenoidtemp = this.solenoidArray.map(Number);
 
             this.disableSolenoid=true;
             this.controlButton=true;
@@ -139,20 +155,22 @@ export class GaugecomponentComponent implements OnInit,OnDestroy{
             this.solenoidtempArray[3] = this.solenoid[3];
             this.solenoidtempArray[4] = this.solenoid[4];
             this.solenoidtempArray[5] = this.solenoid[5];
-            this.solenoidtempArray[6] = this.solenoid[6];
+            this.solenoidtempArray[6] = this.solenoid[6];}
             console.log("solenoid"+this.solenoid[1]);
             console.log("solenoidtempArray"+this.solenoidtempArray[1]);
           } 
           else {
+            if(this.flag){
             this.solenoidArray = data[i].log_solenoid.split("");
-            this.solenoid = this.solenoidArray.map(Number);            
+            this.solenoid = this.solenoidArray.map(Number);    
+            this.solenoidtemp = this.solenoidArray.map(Number);        
             this.solenoidColor=["white","white","white","white","white","white","white","white"];
             this.disableSolenoid=true;
             this.controlButton = false; 
             this.controlsValue=false;
             this.cursorPointer='not-allowed';
             //check for role 
-            if(this.userRole.toLowerCase()=='user')  
+            if(this.userRole.toLowerCase()=='user')
             this.controlButton=true;
 
             this.solenoidtempArray[1] = this.solenoid[1];
@@ -160,9 +178,9 @@ export class GaugecomponentComponent implements OnInit,OnDestroy{
             this.solenoidtempArray[3] = this.solenoid[3];
             this.solenoidtempArray[4] = this.solenoid[4];
             this.solenoidtempArray[5] = this.solenoid[5];
-            this.solenoidtempArray[6] = this.solenoid[6];
+            this.solenoidtempArray[6] = this.solenoid[6];}
             //this.backgroundstring="white";
-            console.log("solenoid"+this.solenoid[1]);
+            console.log("solenoid"+this.solenoidtempArray[1]); 
           }
           
           this.drawGraph(this.tankPressure,this.linePressure,this.tankLevel,this.GasLeak);
@@ -177,8 +195,7 @@ export class GaugecomponentComponent implements OnInit,OnDestroy{
           console.log("difference between the date in days: "+diff);
           // var diffDays = Math.ceil(diff / (60000)); 
           //console.log("difference between the date in days in minutes: "+diffDays);
-
-                    //check for alarm and becon values
+         //check for alarm and becon values
           if(Number(data[i].gas_leak)==1 || this.GasLeak>10 ){
               this.imgAlarm = appConfig.imagePath+'beaconred.png';}
           else{ 
@@ -198,7 +215,7 @@ export class GaugecomponentComponent implements OnInit,OnDestroy{
           // console.log(diffDays);
           this.cus_name = data[i].customer_name;
           this.gsm_mobile_number = data[i].gsm_mobile_number;
-
+          this.key_location=data[i].key_location;
 
        } //for loop
       }, error => {
@@ -206,51 +223,60 @@ export class GaugecomponentComponent implements OnInit,OnDestroy{
       });
   }   
   
-  //method called when Solenoid is changed
-  handleChange(event ,index){
-    console.log("Index: "+index);
-    if(this.solenoidtempArray[index] == 0)
-       this.solenoidtempArray[index] = 1;
-    else
-       this.solenoidtempArray[index] = 0;
+      //method called when Solenoid is changed
+      handleChange(event ,index){
+        console.log("Index: "+index);
+      if(this.solenoidtempArray[index] == 0)
+           this.solenoidtempArray[index] = 1;
+        else
+           this.solenoidtempArray[index] = 0;
 
-	if(this.solenoidtempArray[index]!=this.solenoid[index])
-    this.solenoidColor[index]="blue";
-    else
-    this.solenoidColor[index]="white";
+    	if(this.solenoidtempArray[index]!=this.solenoidtemp[index])
+        this.solenoidColor[index]="blue";
+        else
+        this.solenoidColor[index]="white";
 
-    console.log('event.target.value ' + this.solenoidtempArray[index]);
-    console.log(this.solenoidtempArray[index]);
-  }
+        console.log('event.target.value '+event.value+''+Number(this.solenoid[index]));
+        console.log(this.solenoidtempArray[index]);
+      }
  
- //function to call pop up for device password
-  openModal(){
-    	this.model= {};
-       this.display='block'; 
-    }
-  onCloseHandled(){
-       this.display='none'; 
-    }
+     //function to call pop up for device password
+      openModal(){
+        	this.model= {};
+           this.display='block'; 
+        }
+      onCloseHandled(){
+           this.display='none'; 
+        }
 
-//called on submit of device password
-  onSubmitPassword(){
-    console.log("Password is :"+ this.model.password);
-    if(this.devicePassword==this.model.password){
-      this.display='none';
-      this.disableSolenoid=false;
-      this.cursorPointer='default';
-    }
-    else{
-      alert("Password is Invalid");
-    }
-  }  
+      //called on submit of device password
+      onSubmitPassword(){
+        console.log("Password is :"+ this.model.password);
+        if(this.devicePassword==this.model.password){
+          this.display='none';
+          this.disableSolenoid=false;
+          this.flag = false;
+          //set time out for solenoid
+          setTimeout(()=>{    
+                this.flag=true;
+                this.disableSolenoid=true;
+                this.controlButton = false; 
+                this.controlsValue=false;
+                this.cursorPointer='not-allowed';
+           },30000);
+          this.cursorPointer='pointer';
+        }
+        else{
+          alert("Password is Invalid");
+        }
+      }  
 
-  //onClose 
-  onClose(){
-     this.smsMessage = 'none';
-  }
+      //onClose 
+      onClose(){
+         this.smsMessage = 'none';
+      }
 
-//get the changed data of solenoid 
+  //get the changed data of solenoid 
   changeControler(){
       var solenoidArray = this.solenoidtempArray.join("").toString();
       var link = '/device/updateSolenoid';

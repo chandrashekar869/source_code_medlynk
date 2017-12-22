@@ -15,7 +15,7 @@ export class AuthenticationService {
                 let user = response.json();
                 console.log(" User :" +user[0].user_name);
                 console.log(" User details :" +user[0].role);
-                if (user[0].user_name == username) {
+                if (user[0].email_id.toLowerCase() == username.toLowerCase()) {
                     // store user details and jwt token in local storage to keep user logged in between page refreshes
                     localStorage.setItem('currentUser', JSON.stringify(user[0].user_id));
                     localStorage.setItem('userName',JSON.stringify(user[0].user_name));
@@ -36,5 +36,7 @@ export class AuthenticationService {
         localStorage.removeItem('currentUser');
         localStorage.removeItem('userName');
         localStorage.removeItem('userRole');
+        localStorage.removeItem('clickedDevice');
+        localStorage.removeItem('clickedItem');
     }
 }

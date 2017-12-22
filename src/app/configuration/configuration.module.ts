@@ -5,11 +5,10 @@ import {ConfigurationRouter} from './configuration.router';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
 
 @NgModule({
     declarations:[ConfigurationComponent],
-    imports:[HttpModule,CommonModule,FormsModule,ConfigurationRouter]
+    imports:[CommonModule,FormsModule,ConfigurationRouter]
 })
 
 export class ConfigurationModule {}

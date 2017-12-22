@@ -10,3 +10,6 @@
   align-items: center;
   justify-content: center;
 }
+input{
+  font-size:100%;
+}

@@ -39,6 +39,8 @@ export class editUserComponent {
       this.model.email=this.user_details.email_id;
       this.model.phone=this.user_details.contact_no;
       this.model.address=this.user_details.address;
+      this.model.confirmpassword=this.user_details.password;
+      this.model.password=this.user_details.password;
       this.role=this.user_details.role;
       var non_assigned_device_list:any[]=[];
       response["non_assigned_device_list"].map(function(val){

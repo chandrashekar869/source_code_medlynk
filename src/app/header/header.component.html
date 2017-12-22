@@ -18,13 +18,14 @@
               Device Admin  
             </a>
           </li>
+			<!--
           <li class="nav-item">
             <a class="nav-link" href="">Support</a>
-          </li>
+          </li>-->
           <li *ngIf="nav.userProfile" class="nav-item dropdown">
             <a style="color: green" class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Hello {{user_name}}</a>
             <div class="dropdown-menu dropdown-menu-right">
-              <a  class="dropdown-item"  [routerLink]="['/login']">Logout</a>
+              <a  class="dropdown-item"  (click)="logOut()">Logout</a>
               <a  class="dropdown-item" (click)="openModal()" >Change Password</a>
             </div>
           </li>

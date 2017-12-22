@@ -10,3 +10,6 @@
     flex: 0 0 50%;
     border: 1px solid;
 }
+input{
+  font-size:100%;
+}

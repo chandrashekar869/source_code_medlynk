@@ -35,7 +35,7 @@ export class RegisterComponent {
                     }
                     else
                     {
-                    this.alertService.error('Something went wrong');
+                    this.alertService.error('Registration not successfull');
                     this.loading = false;
                     this.router.navigate(['/register']);
                     }   

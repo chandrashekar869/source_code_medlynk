@@ -42,3 +42,6 @@ h1{
 button{
 margin: 20px 0px 20px 0px;
 }
+img{
+    cursor: pointer;
+}

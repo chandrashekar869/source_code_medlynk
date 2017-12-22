@@ -37,9 +37,12 @@ th{
 h1{
     text-align:center;
     color: #000000;
-    font-size: 3em;
+    font-size: 1ems;
     padding: 20px 0px 18px 0px;
 }
 button{
 margin: 20px 0px 20px 0px;
+}
+img{
+    cursor: pointer;
 }
