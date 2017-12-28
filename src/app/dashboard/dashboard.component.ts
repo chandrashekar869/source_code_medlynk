@@ -108,6 +108,7 @@ export class DashboardComponent implements OnInit,OnDestroy {
     getDeviceAttributes(id:string){
     var link = '/users/deviceList';
     var jsonObject =[];
+    var timediff;
     //var data = JSON.stringify();
     console.log("id : "+id);
     this.http.post(link, {user_id:id})
@@ -116,10 +117,37 @@ export class DashboardComponent implements OnInit,OnDestroy {
     // this.data.response = data;
     console.log(data); 
     for (var i = 0; i < data.length; i++){
-        var item = {};
+      if(data[i].http_post_interval!='undefined'){
+        timediff=Number(data[i].http_post_interval);
+        console.log(data[i].device_id+' '+timediff);
+        if(timediff > 60 ){
+        timediff=timediff;
+        console.log(data[i].device_id+' '+timediff);}
+      else if(timediff<60 && timediff>=30){
+        timediff=3*timediff;
+      console.log(data[i].device_id+' '+timediff);}
+      else if(timediff>0 && timediff<30){
+        timediff=5*timediff;
+      console.log(data[i].device_id+' '+timediff);}
+      }
+      else{
+        data[i].http_post_interval=0;
+        timediff=5;
+        console.log("interval not found",timediff);
+      }
+      timediff*=1000;
+
+      if(data[i].ang2_threshold=='undefined' || data[i].ang3_threshold=='undefined'){
+        console.log("one of many analog not found");
+        data[i].ang2_threshold="DISABLE";
+        data[i].ang3_threshold="DISABLE";
+        data[i].ang2_lower_limit="20000";
+        data[i].ang3_lower_limit="0";
+      }
+      var item = {};
 
         console.log(data[i].alarm);
-        console.log(data[i].device_id);
+        console.log(data[i].device_id,timediff);
         var today = new Date();
         //converting the log date in date formate
         var date2 = new Date(data[i].log_time);
@@ -143,21 +171,21 @@ export class DashboardComponent implements OnInit,OnDestroy {
         this.GasLeak = 0;
         this.powerSupply=Math.round(Number(data[i].power_level)*8.33);  
 
-        if(data[i].gas_leak == 1 || this.GasLeak>10){
+        if(data[i].gas_leak == 1 || (data[i].ang2_threshold!=null && data[i].ang2_threshold=="ENABLE" && data[i].ang2_lower_limit!=null && Number(data[i].gas_detector)*1000>Number(data[i].ang2_lower_limit)  )){
           value="Red";
           message = "Gas Leak";
           iconUrl=appConfig.imagePath+'redmarker.png';
-              if(diffDays>60000){
+              if(diffDays>timediff){
               value="Disconnected";
                message = "Gas Leak and Disconnected";
               iconUrl=appConfig.imagePath+'redmarkerdisconnected.png';  
             }
         } 
-        else if(data[i].low_gas == 1 || this.tankLevel < 20){
+        else if(data[i].low_gas == 1 || (data[i].ang3_threshold!=null && data[i].ang3_threshold=="ENABLE" && data[i].ang3_lower_limit!=null && Number(data[i].gas_level)*1000<Number(data[i].ang3_lower_limit)  )){
           value="Yellow";
           message = "Low Gas";
           iconUrl=appConfig.imagePath+'yellow.png';
-              if(diffDays>60000){
+              if(diffDays>timediff){
               message = "Low Gas and Disconnected";
               value="Disconnected";
               iconUrl=appConfig.imagePath+'yellowmarkerdisconnected.png';  
@@ -172,7 +200,7 @@ export class DashboardComponent implements OnInit,OnDestroy {
             value="Red";
             message = "Low Power Level";
             iconUrl=appConfig.imagePath+'redmarker.png';
-            if(diffDays>60000){
+            if(diffDays>timediff){
               value="Disconnected";
                message = "Low Power Level and Disconnected";
               iconUrl=appConfig.imagePath+'redmarkerdisconnected.png';  
@@ -182,7 +210,7 @@ export class DashboardComponent implements OnInit,OnDestroy {
            {
              value="Yellow";
              iconUrl=appConfig.imagePath+'yellow.png';
-             if(diffDays>60000){
+             if(diffDays>timediff){
               message="Disconnected";
               value="Disconnected";
               iconUrl=appConfig.imagePath+'yellowmarkerdisconnected.png';  
@@ -192,7 +220,7 @@ export class DashboardComponent implements OnInit,OnDestroy {
            {
              value="Green";
              iconUrl=appConfig.imagePath+'greenmarker.png';
-              if(diffDays>60000){
+              if(diffDays>timediff){
               value="Disconnected";
               message="Disconnected";
               iconUrl=appConfig.imagePath+'greenmarkerdisconnected.png';  

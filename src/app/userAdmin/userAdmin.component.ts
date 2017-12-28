@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Http, Headers, Response, URLSearchParams } from '@angular/http';
 import { Router, ActivatedRoute } from '@angular/router';
 import { appConfig } from '../app.config';
+import * as CryptoJS from 'crypto-js';
 
 @Component({
   moduleId:module.id,
@@ -54,7 +55,8 @@ export class userAdminComponent implements OnInit {
 
   edit(i){
     console.log(this.results[i]);
-    window.localStorage.setItem("clickedItem",JSON.stringify(this.results[i]));
+    var encrypteddata=CryptoJS.AES.encrypt(JSON.stringify(this.results[i]),new Date().toLocaleDateString()+"AES128").toString();    
+    window.localStorage.setItem("clickedItem",encrypteddata);
     this.router.navigate(['./editUser']);
   }
 

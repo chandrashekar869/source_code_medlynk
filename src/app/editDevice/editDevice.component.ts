@@ -2,6 +2,7 @@ import { Component,OnInit } from '@angular/core';
 import { Http, Headers, Response, URLSearchParams } from '@angular/http';
 import { Router, ActivatedRoute } from '@angular/router';
 import {AlertService} from '../_services/index';
+import * as CryptoJS from 'crypto-js';
 @Component({
   moduleId: module.id,
   templateUrl: './editDevice.component.html',
@@ -24,7 +25,8 @@ export class editDeviceComponent {
   ngOnInit(): void {
 
     console.log("from editDevice");
-    this.user_details=JSON.parse(localStorage.getItem("clickedDevice"));
+    var decrypteddata=CryptoJS.AES.decrypt(localStorage.getItem("clickedDevice"),new Date().toLocaleDateString()+"AES128").toString(CryptoJS.enc.Utf8);
+    this.user_details=JSON.parse(decrypteddata);
     console.log(this.user_details);
     this.model.username=this.user_details.customer_name;
     this.model.device_id=this.user_details.device_id;

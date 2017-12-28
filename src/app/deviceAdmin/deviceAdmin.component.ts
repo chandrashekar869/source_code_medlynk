@@ -4,6 +4,7 @@ import { Http, Headers, Response, URLSearchParams } from '@angular/http';
 import { Router, ActivatedRoute } from '@angular/router';
 import { appConfig } from '../app.config';
 import {AlertService} from '../_services/index';
+import * as CryptoJS from 'crypto-js';
 
 @Component({
   moduleId:module.id,
@@ -36,16 +37,47 @@ export class deviceAdminComponent implements OnInit {
     this.http.post('http://40.71.199.63:3200/deviceAdmin',{data:localStorage.getItem("currentUser")}).subscribe(data => {
       // Read the result field from the JSON response.
       var currentdate=new Date();
+      var timediff;
+      
       for(var i=0;i<data["length"];i++){
+        if(data[i].http_post_interval!='undefined'){
+          timediff=Number(data[i].http_post_interval);
+          console.log(data[i].device_id+' '+timediff);
+          if(timediff > 60 ){
+          timediff=timediff;
+          console.log(data[i].device_id+' '+timediff);}
+        else if(timediff<60 && timediff>=30){
+          timediff=3*timediff;
+        console.log(data[i].device_id+' '+timediff);}
+        else if(timediff>0 && timediff<30){
+          timediff=5*timediff;
+        console.log(data[i].device_id+' '+timediff);}
+        }
+        else{
+          data[i].http_post_interval=0;
+          timediff=5;
+          console.log("interval not found",timediff);
+        }
+        timediff*=1000;
+
+        if(data[i].ang2_threshold=='undefined' || data[i].ang3_threshold=='undefined'){
+          console.log("one of many analog not found");
+          data[i].ang2_threshold="DISABLE";
+          data[i].ang3_threshold="DISABLE";
+          data[i].ang2_lower_limit="20000";
+          data[i].ang3_lower_limit="0";
+        }
+  
         var status="";
         var color="";
         var d=new Date(data[i].log_time);
         var display_date=d.toLocaleString();
-        if(data[i].gas_leak==1 && data[i].gas_leak!=null){
+        if((data[i].gas_leak==1 && data[i].gas_leak!=null) || (data[i].ang2_threshold!=null && data[i].ang2_threshold=="ENABLE" && data[i].ang2_lower_limit!=null && Number(data[i].gas_detector)*1000>Number(data[i].ang2_lower_limit)  ) ){
+
           status="Gas leak";
           color="red";
         }
-        else if(data[i].low_gas==1 && data[i].low_gas!=null){
+        else if(data[i].low_gas==1 && data[i].low_gas!=null  || (data[i].ang3_threshold!=null && data[i].ang3_threshold=="ENABLE" && data[i].ang3_lower_limit!=null && Number(data[i].gas_level)*1000<Number(data[i].ang3_lower_limit)  )){
           status="Low gas";
           color="red";
         }
@@ -53,7 +85,7 @@ export class deviceAdminComponent implements OnInit {
           status="Low power";
           color="red";
         }
-        else if(data[i].log_time!=null && (currentdate.getTime()-d.getTime())>=60000){
+        else if(data[i].log_time!=null && (currentdate.getTime()-d.getTime())>=timediff){
           status="Disconnected";
           color="red";
         }
@@ -95,7 +127,8 @@ export class deviceAdminComponent implements OnInit {
     
     
   */
-  window.localStorage.setItem("clickedDevice",JSON.stringify(this.results[i]));
+  var encrypteddata=CryptoJS.AES.encrypt(JSON.stringify(this.results[i]),new Date().toLocaleDateString()+"AES128").toString();  
+  window.localStorage.setItem("clickedDevice",encrypteddata);
   this.router.navigate(['./editDevice']);}
   openModal(id){
      this.display='block'; 
@@ -118,7 +151,8 @@ onCloseHandled(){
      this.display='none'; 
   }
   gotoconfig(i){
-    window.localStorage.setItem("clickedDevice",JSON.stringify(this.results[i]));
+    var encrypteddata=CryptoJS.AES.encrypt(JSON.stringify(this.results[i]),new Date().toLocaleDateString()+"AES128").toString();    
+    window.localStorage.setItem("clickedDevice",encrypteddata);
     this.router.navigate(['./config']);      
   }
 

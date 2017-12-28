@@ -4,6 +4,7 @@ import { Http, Headers, Response, URLSearchParams } from '@angular/http';
 import { Router, ActivatedRoute } from '@angular/router';
 import {AlertService} from '../_services/index';
 import { appConfig } from '../app.config';
+import * as CryptoJS from 'crypto-js';
 
 @Component({
   moduleId: module.id,
@@ -18,7 +19,7 @@ export class editUserComponent {
   temp:any[]=[];
   tempassigned:any[]=[];
   title = 'Medlsys';
-  roles:string[]=["User","Admin","Sub Admin"];
+  roles:{}=[{"name":"User","value":"user"},{"name":"Admin","value":"Admin"},{"name":"Sub Admin","value":"Sub Admin"}];
   role:string;
   errmsg:string;
   user_details:any;
@@ -33,7 +34,8 @@ export class editUserComponent {
     this.leftarrow = appConfig.imagePath+'leftarrow.jpg';
     this.rightarrow = appConfig.imagePath+'rightarrow.jpg';
     console.log("from editUser");
-    this.http.post("http://40.71.199.63:3200/getUserData",{data:JSON.parse(localStorage.getItem("clickedItem"))}).subscribe(response =>{
+    var decrypteddata=CryptoJS.AES.decrypt(localStorage.getItem("clickedItem"),new Date().toLocaleDateString()+"AES128").toString(CryptoJS.enc.Utf8);
+    this.http.post("http://40.71.199.63:3200/getUserData",{data:JSON.parse(decrypteddata)}).subscribe(response =>{
     this.user_details=response["user_details"];
     this.model.username=this.user_details.user_name;
       this.model.email=this.user_details.email_id;

@@ -18,7 +18,7 @@ export class addUserComponent {
   temp:any[]=[];
   tempassigned:any[]=[];
   title = 'Medlsys';
-  roles:string[]=["User","Admin","Sub Admin"];
+  roles:{}=[{"name":"User","value":"user"},{"name":"Admin","value":"Admin"},{"name":"Sub Admin","value":"Sub Admin"}];
   role:string;
   errmsg:string;
   select:any;

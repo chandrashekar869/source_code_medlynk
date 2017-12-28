@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Http, Headers, Response, URLSearchParams } from '@angular/http';
 import {AlertService} from '../_services/index';
 import 'rxjs/add/operator/map';
+import * as CryptoJS from 'crypto-js';
 @Component({
   selector: 'app-configuration',
   templateUrl: './configuration.component.html',
@@ -10,7 +11,8 @@ import 'rxjs/add/operator/map';
 export class ConfigurationComponent implements OnInit {
   device_id:any;
   constructor(public http: Http,private alertService:AlertService){
-  this.device_id=JSON.parse(localStorage.getItem("clickedDevice")).device_id;
+    var decrypteddata=CryptoJS.AES.decrypt(localStorage.getItem("clickedDevice"),new Date().toLocaleDateString()+"AES128").toString(CryptoJS.enc.Utf8);    
+  this.device_id=JSON.parse(decrypteddata).device_id;
   console.log(this.device_id);
   } 
   pages=["home","network","serial","server","slave","analog","datetime","digitalcount","ssl"];
@@ -19,7 +21,7 @@ export class ConfigurationComponent implements OnInit {
   switchoptions=["ENABLE","DISABLE"];
   selectUndefinedOptionValue:any;
   switchoptions2=["on","off"];
-  digitalChg=["Any Change","High to Low","Low to High"];
+  digitalChg=[{"name":"Any Change","value":"ANY"},{"name":"High to Low","value":"HL"},{"name":"Low to High","value":"LH"}];
   netInterfaces=["10 MBps Full Duplex","100 MBps Full Duplex","10 MBps Half Duplex","100 MBps Half Duplex"];
   baudrates=["1200","2400","4800","9600","19200","38400","57600","115200"];
   relay=["Relay 1","Relay 2","Relay 3","Relay 4","Relay 5","Relay 6","Relay 7","Relay 8"];

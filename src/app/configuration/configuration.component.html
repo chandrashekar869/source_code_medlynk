@@ -1457,7 +1457,7 @@
     <td width="446" height="23" align="left">
          <select name="digitalchange1" [(ngModel)]="digitalchange1" (change)="onSelectDigitalCount(1,digitalchange1)"    required>
             <option disabled hidden [value]="selectUndefinedOptionValue">{{model.digitalcount.digita1.digitalChange}}</option>
-            <option [value]="item" *ngFor="let item of digitalChg">{{item}}</option>
+            <option [value]="item.value" *ngFor="let item of digitalChg">{{item.name}}</option>
         </select> 
     </td>
 </tr>
@@ -1490,7 +1490,7 @@
     <td width="446" height="23" align="left">
          <select name="digitalchange2" [(ngModel)]="digitalchange2" (change)="onSelectDigitalCount(2,digitalchange2)"    required>
             <option disabled hidden [value]="selectUndefinedOptionValue">{{model.digitalcount.digita2.digitalChange}}</option>
-            <option [value]="item" *ngFor="let item of digitalChg">{{item}}</option>
+            <option [value]="item.value" *ngFor="let item of digitalChg">{{item.name}}</option>
         </select> 
     </td>
 </tr>
@@ -1523,7 +1523,7 @@
     <td width="446" height="23" align="left">
         <select name="digitalchange3" [(ngModel)]="digitalchange3" (change)="onSelectDigitalCount(3,digitalchange3)"    required>
             <option disabled hidden [value]="selectUndefinedOptionValue">{{model.digitalcount.digita3.digitalChange}}</option>
-            <option [value]="item" *ngFor="let item of digitalChg">{{item}}</option>
+            <option [value]="item.value" *ngFor="let item of digitalChg">{{item.name}}</option>
         </select> 
     </td>
 </tr>
@@ -1556,7 +1556,7 @@
     <td width="446" height="23" align="left">
         <select name="digitalchange4" [(ngModel)]="digitalchange4" (change)="onSelectDigitalCount(4,digitalchange4)"    required>
             <option disabled hidden [value]="selectUndefinedOptionValue">{{model.digitalcount.digita4.digitalChange}}</option>
-            <option [value]="item" *ngFor="let item of digitalChg">{{item}}</option>
+            <option [value]="item.value" *ngFor="let item of digitalChg">{{item.name}}</option>
         </select> 
     </td>
 </tr>
@@ -1589,7 +1589,7 @@
     <td width="446" height="23" align="left">
         <select name="digitalchange5" [(ngModel)]="digitalchange5" (change)="onSelectDigitalCount(5,digitalchange5)"    required>
             <option disabled hidden [value]="selectUndefinedOptionValue">{{model.digitalcount.digita5.digitalChange}}</option>
-            <option [value]="item" *ngFor="let item of digitalChg">{{item}}</option>
+            <option [value]="item.value" *ngFor="let item of digitalChg">{{item.name}}</option>
         </select> 
     </td>
 </tr>
@@ -1622,7 +1622,7 @@
     <td width="446" height="23" align="left">
         <select name="digitalchange6" [(ngModel)]="digitalchange6" (change)="onSelectDigitalCount(6,digitalchange6)"    required>
             <option disabled hidden [value]="selectUndefinedOptionValue">{{model.digitalcount.digita6.digitalChange}}</option>
-            <option [value]="item" *ngFor="let item of digitalChg">{{item}}</option>
+            <option [value]="item.value" *ngFor="let item of digitalChg">{{item.name}}</option>
         </select> 
     </td>
 </tr>
@@ -1655,7 +1655,7 @@
     <td width="446" height="23" align="left">
         <select name="digitalchange7" [(ngModel)]="digitalchange7" (change)="onSelectDigitalCount(7,digitalchange7)"    required>
             <option disabled hidden [value]="selectUndefinedOptionValue">{{model.digitalcount.digita7.digitalChange}}</option>
-            <option [value]="item" *ngFor="let item of digitalChg">{{item}}</option>
+            <option [value]="item.value" *ngFor="let item of digitalChg">{{item.name}}</option>
         </select> 
     </td>
 </tr>
@@ -1688,7 +1688,7 @@
     <td width="446" height="23" align="left">
         <select name="digitalchange8" [(ngModel)]="digitalchange8" (change)="onSelectDigitalCount(8,digitalchange8)"    required>
             <option disabled hidden [value]="selectUndefinedOptionValue">{{model.digitalcount.digita8.digitalChange}}</option>
-            <option [value]="item" *ngFor="let item of digitalChg">{{item}}</option>
+            <option [value]="item.value" *ngFor="let item of digitalChg">{{item.name}}</option>
         </select> 
     </td>
 </tr>
@@ -1721,7 +1721,7 @@
     <td width="446" height="23" align="left">
         <select name="digitalchange9" [(ngModel)]="digitalchange9" (change)="onSelectDigitalCount(9,digitalchange9)"    required>
             <option disabled hidden [value]="selectUndefinedOptionValue">{{model.digitalcount.digita9.digitalChange}}</option>
-            <option [value]="item" *ngFor="let item of digitalChg">{{item}}</option>
+            <option [value]="item.value" *ngFor="let item of digitalChg">{{item.name}}</option>
         </select> 
     </td>
 </tr>
@@ -1754,7 +1754,7 @@
     <td width="446" height="23" align="left">
         <select name="digitalchange10" [(ngModel)]="digitalchange10" (change)="onSelectDigitalCount(10,digitalchange10)"    required>
             <option disabled hidden [value]="selectUndefinedOptionValue">{{model.digitalcount.digita10.digitalChange}}</option>
-            <option [value]="item" *ngFor="let item of digitalChg">{{item}}</option>
+            <option [value]="item.value" *ngFor="let item of digitalChg">{{item.name}}</option>
         </select> 
     </td>
 </tr>
@@ -1787,7 +1787,7 @@
     <td width="446" height="23" align="left">
         <select name="digitalchange11" [(ngModel)]="digitalchange11" (change)="onSelectDigitalCount(11,digitalchange11)"    required>
             <option disabled hidden [value]="selectUndefinedOptionValue">{{model.digitalcount.digita11.digitalChange}}</option>
-            <option [value]="item" *ngFor="let item of digitalChg">{{item}}</option>
+            <option [value]="item.value" *ngFor="let item of digitalChg">{{item.name}}</option>
         </select> 
     </td>
 </tr>
@@ -1820,7 +1820,7 @@
     <td width="446" height="23" align="left">
         <select name="digitalchange12" [(ngModel)]="digitalchange12" (change)="onSelectDigitalCount(12,digitalchange12)"   required>
             <option disabled hidden [value]="selectUndefinedOptionValue">{{model.digitalcount.digita12.digitalChange}}</option>        
-            <option [value]="item" *ngFor="let item of digitalChg">{{item}}</option>
+            <option [value]="item.value" *ngFor="let item of digitalChg">{{item.name}}</option>
         </select> 
     </td>
 </tr>

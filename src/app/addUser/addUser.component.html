@@ -38,7 +38,7 @@
               </div>
               <div class="col-xs-5" align="left">
                   <select name="roleelement" [(ngModel)]="role" (change)="onSelectRole(role)"  class="form-control" id="role"  required>
-                      <option [value]="item" *ngFor="let item of roles">{{item}}</option>
+                      <option [value]="item.value" *ngFor="let item of roles">{{item.name}}</option>
                     </select>    
               </div>
             </div>

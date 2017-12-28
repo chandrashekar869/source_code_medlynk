@@ -88,7 +88,8 @@ export class GaugecomponentComponent implements OnInit,OnDestroy{
       getGaugeValue(id:string){
       var link = '/device/gaugesInfo';
       var jsonObject =[];
-    //var data = JSON.stringify();
+        var timediff;
+      //var data = JSON.stringify();
       this.http.post(link, {device_id:id,user_id:this.userId})
       .map(res => res.json())
       .subscribe(data => {
@@ -100,6 +101,34 @@ export class GaugecomponentComponent implements OnInit,OnDestroy{
           var tankLevelA = data[i].gas_level;
           var gasLeakA = data[i].gas_detector; 
           //var tankPressureA =9;
+          if(data[i].http_post_interval!='undefined'){
+            timediff=Number(data[i].http_post_interval);
+            console.log(data[i].device_id+' '+timediff);
+            if(timediff > 60 ){
+            timediff=timediff;
+            console.log(data[i].device_id+' '+timediff);}
+          else if(timediff<60 && timediff>=30){
+            timediff=3*timediff;
+          console.log(data[i].device_id+' '+timediff);}
+          else if(timediff>0 && timediff<30){
+            timediff=5*timediff;
+          console.log(data[i].device_id+' '+timediff);}
+          }
+          else{
+            data[i].http_post_interval=0;
+            timediff=5;
+            console.log("interval not found",timediff);
+          }
+          timediff*=1000;
+    
+          if(data[i].ang2_threshold=='undefined' || data[i].ang3_threshold=='undefined'){
+            console.log("one of many analog not found");
+            data[i].ang2_threshold="DISABLE";
+            data[i].ang3_threshold="DISABLE";
+            data[i].ang2_lower_limit="20000";
+            data[i].ang3_lower_limit="0";
+          }
+    
           console.log(tankPressureA);
           this.tankPressure= Math.round((Number(tankPressureA)*4)* 10)/10 ;
           if(this.tankPressure>20)
@@ -196,17 +225,17 @@ export class GaugecomponentComponent implements OnInit,OnDestroy{
           // var diffDays = Math.ceil(diff / (60000)); 
           //console.log("difference between the date in days in minutes: "+diffDays);
          //check for alarm and becon values
-          if(Number(data[i].gas_leak)==1 || this.GasLeak>10 ){
+          if(Number(data[i].gas_leak)==1 ||(data[i].ang2_threshold!=null && data[i].ang2_threshold=="ENABLE" && data[i].ang2_lower_limit!=null && Number(data[i].gas_detector)*1000>Number(data[i].ang2_lower_limit)  )){
               this.imgAlarm = appConfig.imagePath+'beaconred.png';}
           else{ 
               this.imgAlarm= appConfig.imagePath+'beacongreen.jpg';}    
 
-          if(Number(data[i].low_gas)==1 || this.tankLevel < 20){ 
+          if(Number(data[i].low_gas)==1 || (data[i].ang3_threshold!=null && data[i].ang3_threshold=="ENABLE" && data[i].ang3_lower_limit!=null && Number(data[i].gas_level)*1000<Number(data[i].ang3_lower_limit)  )){ 
             this.imgBeacon=appConfig.imagePath+'beaconred.png';}
           else{ 
              this.imgBeacon=appConfig.imagePath+'beacongreen.jpg';}  
           
-          if(diff>60000){
+          if(diff>timediff){
           this.imgConnect=appConfig.imagePath+'disconnected.png';  
           }
           else{
@@ -278,6 +307,8 @@ export class GaugecomponentComponent implements OnInit,OnDestroy{
 
   //get the changed data of solenoid 
   changeControler(){
+    this.solenoidtempArray[0]=0;//boundary check to prevent first value of 8 bit solenoid from becoming 1
+    this.solenoidtempArray[this.solenoidtempArray.length-1]=0;//boundary check to prevent last value of 8 bit solenoid from becoming 1
       var solenoidArray = this.solenoidtempArray.join("").toString();
       var link = '/device/updateSolenoid';
       var jsonObject =[];

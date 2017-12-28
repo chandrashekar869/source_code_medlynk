@@ -20,7 +20,8 @@ export class HeaderComponent implements OnInit,DoCheck,OnDestroy {
   value:any;	
 	count:number=0;
 	interval:any;
-  userRole:string;
+	userRole:string;
+	prevpage:any;
   constructor( 
   	    public nav: NavbarService,   
         private router: Router,
@@ -28,8 +29,17 @@ export class HeaderComponent implements OnInit,DoCheck,OnDestroy {
         public http: Http) {  }
 	ngDoCheck(){
 		this.user_name = JSON.parse(localStorage.getItem('userName'));
+		if(this.prevpage!=location.hash && location.hash.indexOf("login")==-1 ){
+			this.prevpage=location.hash;
+			clearInterval(this.interval);		
+			this.getBadgeValue();
+			this.interval = setInterval(() =>{
+				this.getBadgeValue();
+		 },10000);
+		}
 	}
 	ngOnInit(){
+		this.prevpage=location.hash;
 		console.log("header called");
 		this.getBadgeValue();
 		this.interval = setInterval(() =>{
@@ -59,20 +69,47 @@ export class HeaderComponent implements OnInit,DoCheck,OnDestroy {
 	    .map(res => res.json())
 	    .subscribe(data => {  
 			var currentdate=new Date();
-
+			var timediff;	
 			for(var i=0;i<data["length"];i++){
+				if(data[i].http_post_interval!='undefined'){
+          timediff=Number(data[i].http_post_interval);
+          console.log(data[i].device_id+' '+timediff);
+          if(timediff > 60 ){
+          timediff=timediff;
+          console.log(data[i].device_id+' '+timediff);}
+        else if(timediff<60 && timediff>=30){
+          timediff=3*timediff;
+        console.log(data[i].device_id+' '+timediff);}
+        else if(timediff>0 && timediff<30){
+          timediff=5*timediff;
+        console.log(data[i].device_id+' '+timediff);}
+        }
+        else{
+          data[i].http_post_interval=0;
+          timediff=5;
+          console.log("interval not found",timediff);
+        }
+        timediff*=1000;
+
+        if(data[i].ang2_threshold=='undefined' || data[i].ang3_threshold=='undefined'){
+          console.log("one of many analog not found");
+          data[i].ang2_threshold="DISABLE";
+          data[i].ang3_threshold="DISABLE";
+          data[i].ang2_lower_limit="20000";
+          data[i].ang3_lower_limit="0";
+        }
 				var d=new Date(data[i].log_time);
 				var flag=false;
-				if(((Number(data[i].gas_detector)-4)*6.25)>=10 || data[i].gas_leak==1 || data[i].gas_leak==null){
+				if((data[i].ang2_threshold!=null && data[i].ang2_threshold=="ENABLE" && data[i].ang2_lower_limit!=null && Number(data[i].gas_detector)*1000>Number(data[i].ang2_lower_limit)  ) || data[i].gas_leak==1 || data[i].gas_leak==null){
 			  flag=true;
 				}
-			  else if((Number(data[i].gas_level)*20)<20 || data[i].low_gas==1 || data[i].low_gas==null){
+			  else if((data[i].ang3_threshold!=null && data[i].ang3_threshold=="ENABLE" && data[i].ang3_lower_limit!=null && Number(data[i].gas_level)*1000<Number(data[i].ang3_lower_limit)  ) || data[i].low_gas==1 || data[i].low_gas==null){
 				flag=true;
 			}
 			  else if((Number(data[i].power_level)*8.33)<30 || data[i].low_gas==null){
 			flag=true;  
 			}
-			  else if(data[i].log_time==null || (currentdate.getTime()-d.getTime())>=60000){
+			  else if(data[i].log_time==null || (currentdate.getTime()-d.getTime())>timediff){
 			flag=true;  
 			}
 			  else{

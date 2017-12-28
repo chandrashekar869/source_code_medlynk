@@ -3,6 +3,8 @@ import { Http, Headers, Response, URLSearchParams } from '@angular/http';
 import { Router, ActivatedRoute } from '@angular/router';
 var mainarray:any=[];
 var type:any;
+var formatdata='d/M/yy';
+var xscalename="Months";
 
 declare var google:any;
 @Component({
@@ -16,6 +18,7 @@ export class ReportingComponent implements OnDestroy {
   dbdata:any;
   deviceId:any;
   currentDate=new Date();
+
   select:any;
   customdisabled:boolean=true;
   startDate=this.currentDate.getFullYear()+"-"+this.currentDate.getMonth()+"-"+this.currentDate.getDate();
@@ -84,7 +87,7 @@ export class ReportingComponent implements OnDestroy {
 
 drawChart(){
 var data=new google.visualization.DataTable();
-data.addColumn('date','Month');
+data.addColumn('date',xscalename);
 if(type=="true")
 data.addColumn('number','Gas Level');
 else
@@ -97,14 +100,20 @@ if(mainarray.length==undefined || mainarray.length==0){
 }
 else
 data.addRows(mainarray);
-
 var options={
+  
 /*chart:{
   title:"Historical Data",
   subtitle:"All values are in corresponding parameter units"
 },*/
 width:(window.innerWidth*60)/100,
 height:(window.innerHeight*70)/100,
+vAxis:{
+  minValue:0
+},
+hAxis: {
+  format: formatdata
+},
 };
 var chart=new google.charts.Line(document.getElementById('donutchart'));
 chart.draw(data,google.charts.Line.convertOptions(options));
@@ -114,7 +123,9 @@ var temp=[];
   var date:any=new Date();
   switch(Number(select)){
   case 0:for(var i=0;i<mainarray.length;i++){
-      //console.log(date-mainarray[i][0]);                        
+      //console.log(date-mainarray[i][0]);  
+      formatdata='hh:mm:ss a';
+      xscalename="Time"                      
     if((date-mainarray[i][0])<=86400000){
       temp.push([mainarray[i][0],mainarray[i][1]]);
     console.log(temp);
@@ -128,7 +139,9 @@ var temp=[];
     break;
   case 1:for(var i=0;i<mainarray.length;i++){
     //console.log(date-mainarray[i][0]);                        
-  if((date-mainarray[i][0])<=2592000000){
+    formatdata="d/M/yy"; 
+    xscalename="Date"            
+    if((date-mainarray[i][0])<=2592000000){
     temp.push([mainarray[i][0],mainarray[i][1]]);
   console.log(temp);
   }  
@@ -140,8 +153,10 @@ var temp=[];
   this.customdisabled=true;
   break;
   case 2:for(var i=0;i<mainarray.length;i++){
-    //console.log(date-mainarray[i][0]);                        
-  if((date-mainarray[i][0])<=31536000000){
+    //console.log(date-mainarray[i][0]);
+    formatdata="MMM dd";
+    xscalename="Month";             
+      if((date-mainarray[i][0])<=31536000000){
     temp.push([mainarray[i][0],mainarray[i][1]]);
   }  
   }
@@ -174,7 +189,19 @@ else{
   var temp=[];
   var endDatemilli=new Date(this.startDate).getTime();
   var startDatemilli=new Date(this.endDate).getTime();
-  console.log(endDatemilli+"-"+this.startDate);
+  if(startDatemilli-endDatemilli<86400000){
+    formatdata='hh:mm:ss a';
+    xscalename="Time";
+  }
+  else if(startDatemilli-endDatemilli>86400000 && startDatemilli-endDatemilli<2592000000){
+    formatdata='d/M/yy';
+    xscalename="Date";
+  }
+  else if(startDatemilli-endDatemilli>2592000000){
+    formatdata='MMM dd';
+    xscalename="Month";
+  }
+    console.log(endDatemilli+"-"+this.startDate);
   console.log(startDatemilli+"-"+this.endDate);
   for(var i=0;i<mainarray.length;i++){
     console.log(mainarray[i][0].getTime()+">"+startDatemilli+"&&"+mainarray[i][0].getTime()+"<"+endDatemilli);
