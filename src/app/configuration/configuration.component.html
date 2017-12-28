@@ -426,6 +426,13 @@
     </td>
     </tr>
     <tr>
+            <td width="167" height="23">&nbsp;</td>
+            <td width="176" height="23">Server path</td>
+            <td width="446" height="23" align="left">
+            <input name="server_path" value="{{model.server.server_path}}" [(ngModel)]="model.server.server_path" #server_path="ngModel"  size="25" type="text">
+            </td>
+            </tr>
+    <tr>
     <td width="160" height="22"></td>
     <td width="183" height="22">Connection inactive timeout:</td>
     <td width="446" height="22" align="left">
@@ -681,13 +688,6 @@
   </tr>
   <tr>
   <td width="167" height="23">&nbsp;</td>
-  <td width="176" height="23">Server path</td>
-  <td width="446" height="23" align="left">
-  <input name="server_path" value="{{model.slave.server_path}}" [(ngModel)]="model.slave.server_path" #server_path="ngModel"  size="25" type="text">
-  </td>
-  </tr>
-  <tr>
-  <td width="167" height="23">&nbsp;</td>
   <td width="176" height="23">UPS Query</td>
   <td width="446" height="23" align="left">
   <input name="ups_query" value="{{model.slave.ups_query}}" [(ngModel)]="model.slave.ups_query" #ups_query="ngModel"  size="25" type="text">
@@ -756,20 +756,20 @@
     <div style="width:100%;overflow-x:hidden;font-size: 12px;">
     <table width="800" height="100px" cellspacing="5" cellpadding="2" border="0">
     <tbody>
-    <tr>
+    <tr hidden>
         <td></td>
         <td width="215" height="2">&nbsp;
             <div style="font-size:20px;color:blue;">ANALOG 1</div>
         </td>
     </tr>
-    <tr>
+    <tr hidden>
         <td width="167" height="23">&nbsp;</td>
         <td width="176" height="23">Offset</td>
         <td width="446" height="23" align="left">
             <input name="offset1" [(ngModel)]="model.analog.analog1.offset" #offset1="ngModel" value="0"  size="25" type="text">+/-2000uA
         </td>
     </tr>
-    <tr>
+    <tr hidden>
         <td width="160" height="22">&nbsp;</td>
         <td width="183" height="22">Threshold</td>
         <td width="446" height="22" align="left">
@@ -779,28 +779,28 @@
         </select>  
         </td>
     </tr>
-    <tr>
+    <tr hidden>
         <td width="160" height="22"></td>
         <td width="183" height="22">Upper Limit</td>
         <td width="446" height="22" align="left">
             <input size="15" [(ngModel)]="model.analog.analog1.upperLimit" #upperLimit1="ngModel" value="8000" name="upperLimit1" >4000 - 20000 uA
         </td>
     </tr>
-    <tr>
+    <tr hidden>
         <td width="160" height="22"></td>
         <td width="183" height="22">Lower Limit</td>
         <td width="446" height="22" align="left">
             <input size="15" [(ngModel)]="model.analog.analog1.lowerLimit" #lowerLimit1="ngModel" value="4000" name="lowerLimit1" >4000 - 20000 uA
         </td>
     </tr>
-    <tr>
+    <tr hidden>
         <td width="167" height="23">&nbsp;</td>
         <td width="176" height="23">Method</td>
         <td width="446" height="23" align="left">
             <input name="method1" [(ngModel)]="model.analog.analog1.method" #method1="ngModel" value="1"  size="25" type="text"> HTTP,RELAY,SMS
         </td>
     </tr>
-    <tr>
+    <tr hidden>
         <td width="167" height="23">&nbsp;</td>
         <td width="176" height="23">Relay</td>
         <td width="446" height="23" align="left">
@@ -1062,20 +1062,20 @@
             <input name="relay6" [(ngModel)]="model.analog.analog6.relay" #relay6="ngModel" value="6,0"  size="25" type="text"> (1-8),ON/OFF
         </td>
     </tr>
-    <tr>
+    <tr hidden>
         <td></td>
         <td width="215" height="2">&nbsp;
             <div style="font-size:20px;color:blue;">ANALOG 7</div>
         </td>
     </tr>
-    <tr>
+    <tr hidden>
         <td width="167" height="23">&nbsp;</td>
         <td width="176" height="23">Offset</td>
         <td width="446" height="23" align="left">
             <input name="offset7" [(ngModel)]="model.analog.analog7.offset" #offset7="ngModel" value="0"  size="25" type="text">+/-2000mV
         </td>
     </tr>
-    <tr>
+    <tr hidden>
         <td width="160" height="22">&nbsp;</td>
         <td width="183" height="22">Threshold</td>
         <td width="446" height="22" align="left">
@@ -1085,48 +1085,48 @@
         </select> 
         </td>
     </tr>
-    <tr>
+    <tr hidden>
         <td width="160" height="22"></td>
         <td width="183" height="22">Upper Limit</td>
         <td width="446" height="22" align="left">
             <input size="15" [(ngModel)]="model.analog.analog7.upperLimit" #upperLimit7="ngModel" value="8000" name="upperLimit7" >1 - 12000 mV
         </td>
     </tr>
-    <tr>
+    <tr hidden>
         <td width="160" height="22"></td>
         <td width="183" height="22">Lower Limit</td>
         <td width="446" height="22" align="left">
             <input size="15" [(ngModel)]="model.analog.analog7.lowerLimit" #lowerLimit7="ngModel" value="4000" name="lowerLimit7" >1 - 12000 mV
         </td>
     </tr>
-    <tr>
+    <tr hidden>
         <td width="167" height="23">&nbsp;</td>
         <td width="176" height="23">Method</td>
         <td width="446" height="23" align="left">
             <input name="method7" [(ngModel)]="model.analog.analog7.method" #method7="ngModel" value="1"  size="25" type="text"> HTTP,RELAY,SMS
         </td>
     </tr>
-    <tr>
+    <tr hidden>
         <td width="167" height="23">&nbsp;</td>
         <td width="176" height="23">Relay</td>
         <td width="446" height="23" align="left">
             <input name="relay7" [(ngModel)]="model.analog.analog7.relay" #relay7="ngModel" value="7,0"  size="25" type="text"> (1-8),ON/OFF
         </td>
     </tr>
-    <tr>
+    <tr hidden>
         <td></td>
         <td width="215" height="2">&nbsp;
             <div style="font-size:20px;color:blue;">ANALOG 8</div>
         </td>
     </tr>
-    <tr>
+    <tr hidden>
         <td width="167" height="23">&nbsp;</td>
         <td width="176" height="23">Offset</td>
         <td width="446" height="23" align="left">
             <input name="offset8" [(ngModel)]="model.analog.analog8.offset" #offset8="ngModel" value="0"  size="25" type="text">+/-10000mV
         </td>
     </tr>
-    <tr>
+    <tr hidden>
         <td width="160" height="22">&nbsp;</td>
         <td width="183" height="22">Threshold</td>
         <td width="446" height="22" align="left">
@@ -1136,35 +1136,35 @@
         </select> 
         </td>
     </tr>
-    <tr>
+    <tr hidden>
         <td width="160" height="22"></td>
         <td width="183" height="22">Upper Limit</td>
         <td width="446" height="22" align="left">
             <input size="15" [(ngModel)]="model.analog.analog8.upperLimit" #upperLimit8="ngModel" value="8000" name="upperLimit8" >1 - 10000 *10mV
         </td>
     </tr>
-    <tr>
+    <tr hidden> 
         <td width="160" height="22"></td>
         <td width="183" height="22">Lower Limit</td>
         <td width="446" height="22" align="left">
             <input size="15"[(ngModel)]="model.analog.analog8.lowerLimit" #lowerLimit8="ngModel" value="4000" name="lowerLimit8" >1 - 10000 *10mV
         </td>
     </tr>
-    <tr>
+    <tr hidden>
         <td width="167" height="23">&nbsp;</td>
         <td width="176" height="23">Method</td>
         <td width="446" height="23" align="left">
             <input name="method8" [(ngModel)]="model.analog.analog8.method" #method8="ngModel" value="1"  size="25" type="text"> HTTP,RELAY,SMS
         </td>
     </tr>
-    <tr>
+    <tr hidden>
         <td width="167" height="23">&nbsp;</td>
         <td width="176" height="23">Relay</td>
         <td width="446" height="23" align="left">
             <input name="relay8" [(ngModel)]="model.analog.analog8.relay" #relay8="ngModel" value="8,0"  size="25" type="text"> (1-8),ON/OFF
         </td>
     </tr>
-    <tr>
+    <tr >
         <td></td>
         <td width="215" height="2">&nbsp;
             <div style="font-size:20px;color:blue;">SMS Numbers</div>

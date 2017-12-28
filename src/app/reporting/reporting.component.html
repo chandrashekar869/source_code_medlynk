@@ -8,17 +8,18 @@
                             <option [value]="i" *ngFor="let item of result;let i=index">{{item}}</option>
                     </select>   
                 </div>
-                <div *ngIf="customdisabled==false" class="col-xs-4" style="margin-top: 1%;" >
-                <label for="startdate">Start Date: </label><input [(ngModel)]="startDate" name="startDate" (change)="onDateChange(0,startDate)"  id="startdate" type="date" align='right' style="width:75%" >
+                <div *ngIf="customdisabled==false" class="col-xs-4" style="margin-top: 1%;font-size:84%;" >
+                <label for="startdate">Start Date:&nbsp;</label><input [(ngModel)]="startDate" name="startDate" (change)="onDateChange(0,startDate)"  id="startdate" type="date" align='right' style="width:75%" >
                 </div>
-                <div *ngIf="customdisabled==false" class="col-xs-offest-1 col-xs-4" style="margin-top: 1%;">
-                <label for="enddate">End Date: </label><input [(ngModel)]="endDate"  name="endDate" (change)="onDateChange(1,endDate)" type="date" id="enddate" align='right' style="width:75%" >
+                <div *ngIf="customdisabled==false" class="col-xs-offest-1 col-xs-4" style="margin-top: 1%;font-size:84%;">
+                <label for="enddate">End Date:&nbsp;</label><input [(ngModel)]="endDate"  name="endDate" (change)="onDateChange(1,endDate)" type="date" id="enddate" align='right' style="width:75%" >
                 </div>
 
             </div>
-            <p>{{err}}</p>  
-            <br />
-<div class="row" id="divc"  style="margin-left:2.5%;margin-right:2.5%">                
+            <p><b>{{err}}</b></p>  
+
+            <h1 align="center">{{heading}}</h1>
+<div class="row" id="divc"  style="margin-top:1%;margin-left:2.5%;margin-right:2.5%">                
         <div class="col-xs-12" id="donutchart"></div>  
 </div>    
 </div>

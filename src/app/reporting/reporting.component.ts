@@ -15,6 +15,7 @@ declare var google:any;
 
 export class ReportingComponent implements OnDestroy {
   title = 'app';
+  heading:any;
   dbdata:any;
   deviceId:any;
   currentDate=new Date();
@@ -37,7 +38,10 @@ export class ReportingComponent implements OnDestroy {
     this.deviceId=data.split("~")[0];
     this.deviceId = this.deviceId.replace( /:/g, "" );
     console.log(this.deviceId);
-
+    if(type=="true")
+      this.heading='Gas Level';
+      else
+      this.heading='Gas Leak';      
   /*  this.http.post('http://localhost:3200/reporting',{param:this.query}).subscribe(data => {
       console.log(data);
       console.log(typeof(data));
@@ -64,15 +68,21 @@ export class ReportingComponent implements OnDestroy {
     .subscribe(data => {
       console.log(data);
       console.log(typeof(data));
+      var temparray;
       if(type=="true"){
       for(var i=0;i<data["length"];i++){
-        var temparray=[new Date(data[i].log_time),Number(data[i].gas_level)*5];
+        temparray=[new Date(data[i].log_time),Number(data[i].gas_level)*20];
         mainarray.push(temparray);
       }
     }
     else if(type=="false"){
       for(var i=0;i<data["length"];i++){
-        var temparray=[new Date(data[i].log_time),Number(data[i].gas_detector)*6.25];
+        var gas_detector;
+        if(Number(data[i].gas_detector)>4)
+          gas_detector=(Number(data[i].gas_detector)-4)*6.25;
+        else
+          gas_detector=Number(data[i].gas_detector)*0;
+        temparray=[new Date(data[i].log_time),gas_detector];
         mainarray.push(temparray);
       }
     }
@@ -124,7 +134,7 @@ var temp=[];
   switch(Number(select)){
   case 0:for(var i=0;i<mainarray.length;i++){
       //console.log(date-mainarray[i][0]);  
-      formatdata='hh:mm:ss a';
+      formatdata='hh:mm a';
       xscalename="Time"                      
     if((date-mainarray[i][0])<=86400000){
       temp.push([mainarray[i][0],mainarray[i][1]]);
@@ -137,24 +147,36 @@ var temp=[];
     mainarray=tempmain;
     this.customdisabled=true;
     break;
-  case 1:for(var i=0;i<mainarray.length;i++){
+  case 1:this.http.post('/thirtydaydata', {param:type,deviceId:this.deviceId})
+  .map(res => res.json())
+  .subscribe(data => {
+    console.log(data);
+    for(var i=0;i<data.length;i++){
+      formatdata="d/M/yy"; 
+      xscalename="Date"            
+      if(type=="true")
+      temp.push([new Date(data[i].log_time),Number(data[i].gas_level)*5]);
+      if(type=="false")
+      temp.push([new Date(data[i].log_time),Number(data[i].gas_detector)*6.25]);
+   console.log(temp);
+    } 
+    var tempmain=mainarray;
+    mainarray=temp;
+    this.drawChart();
+    mainarray=tempmain;
+    this.customdisabled=true;   
+  });
+  /*for(var i=0;i<mainarray.length;i++){
     //console.log(date-mainarray[i][0]);                        
-    formatdata="d/M/yy"; 
-    xscalename="Date"            
-    if((date-mainarray[i][0])<=2592000000){
+     if((date-mainarray[i][0])<=2592000000){
     temp.push([mainarray[i][0],mainarray[i][1]]);
-  console.log(temp);
-  }  
-  }
-  var tempmain=mainarray;
-  mainarray=temp;
-  this.drawChart();
-  mainarray=tempmain;
-  this.customdisabled=true;
+  //console.log(temp);
+  } 
+  }*/
   break;
   case 2:for(var i=0;i<mainarray.length;i++){
     //console.log(date-mainarray[i][0]);
-    formatdata="MMM dd";
+    formatdata="MMM yy";
     xscalename="Month";             
       if((date-mainarray[i][0])<=31536000000){
     temp.push([mainarray[i][0],mainarray[i][1]]);

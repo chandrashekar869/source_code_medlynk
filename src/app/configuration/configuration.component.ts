@@ -124,6 +124,7 @@ export class ConfigurationComponent implements OnInit {
         server_connect_waittime:"",
         remote_ip:"",
         remote_port_no:"",
+        server_path:"",
         connection_inactive_timeout:"",
         defeat_long_ack:"",
         restart_on_loss_link:"",
@@ -152,7 +153,6 @@ export class ConfigurationComponent implements OnInit {
         http_post_interval:"",
         unit_id:"",
         remote_data_path:"",
-        server_path:"",
         ups_query:"",
         http_method:"",
       },
@@ -351,6 +351,7 @@ defaultmodel:any={
     server_connect_waittime:"",
     remote_ip:"",
     remote_port_no:"",
+    server_path:"",
     connection_inactive_timeout:"",
     defeat_long_ack:"",
     restart_on_loss_link:"",
@@ -379,7 +380,6 @@ defaultmodel:any={
     http_post_interval:"",
     unit_id:"",
     remote_data_path:"",
-    server_path:"",
     ups_query:"",
     http_method:"",
   },
@@ -810,6 +810,7 @@ defaultmodel:any={
         this.defaultmodel.server.server_connect_waittime=data.server_connect_wait_time;
         this.defaultmodel.server.remote_ip=data.remote_ip;
         this.defaultmodel.server.remote_port_no=data.remote_port_no;
+        this.defaultmodel.server.server_path=data.server_path;
         this.defaultmodel.server.connection_inactive_timeout=data.connection_inactive_timeout;
         this.defaultmodel.server.defeat_long_ack=data.defeat_long_ack;
         this.defaultmodel.server.restart_on_loss_link=data.restart_on_loss_of_link;
@@ -837,7 +838,6 @@ defaultmodel:any={
         this.defaultmodel.slave.http_post_interval=data.http_post_interval;
         this.defaultmodel.slave.unit_id=data.unit_id;
         this.defaultmodel.slave.remote_data_path=data.remote_data_path;
-        this.defaultmodel.slave.server_path=data.server_path;
         this.defaultmodel.slave.ups_query=data.ups_query;
         this.defaultmodel.slave.http_method=data.http_method;
         this.model.slave=this.defaultmodel.slave;

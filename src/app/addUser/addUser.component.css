@@ -20,3 +20,6 @@ select{
     max-height: 100%;
     margin: 1% 0% 4% 0%;
 }
+option{
+    font-size:14px; 
+}

@@ -421,16 +421,18 @@
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h4 class="modal-title">Enter Device config Password</h4>
+            <h3 class="modal-title">Enter Device config Password</h3>
           </div>
+          <form name="form" (ngSubmit)="onSubmitPassword()">            
               <div class="modal-body">
                 <div class="form-group">
                 <label for="exampleInputPassword1">Enter device config password</label>
                 <input type="password" class="form-control" name="password" [(ngModel)]="model.password" #password="ngModel" required />
                 </div>
-               <button type="submit" class="btn btn-primary" (click)="onSubmitPassword()" >Submit</button>
+               <button type="submit" class="btn btn-primary">Submit</button>
                <button type="button" style="float: right;" class="btn btn-primary" (click)="onCloseHandled()" >Close</button>
               </div>
+          </form>
           <div class="modal-footer">
           </div>
         </div><!-- /.modal-content -->

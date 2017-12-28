@@ -29,6 +29,8 @@ export class HeaderComponent implements OnInit,DoCheck,OnDestroy {
         public http: Http) {  }
 	ngDoCheck(){
 		this.user_name = JSON.parse(localStorage.getItem('userName'));
+		this.userId = JSON.parse(localStorage.getItem('currentUser'));
+		this.userRole = JSON.parse(localStorage.getItem('userRole'));
 		if(this.prevpage!=location.hash && location.hash.indexOf("login")==-1 ){
 			this.prevpage=location.hash;
 			clearInterval(this.interval);		
