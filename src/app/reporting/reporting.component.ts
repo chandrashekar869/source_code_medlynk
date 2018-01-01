@@ -1,10 +1,12 @@
 import { Component,OnInit,OnDestroy } from '@angular/core';
 import { Http, Headers, Response, URLSearchParams } from '@angular/http';
 import { Router, ActivatedRoute } from '@angular/router';
+import {AlertService} from '../_services/alert.service';
 var mainarray:any=[];
 var type:any;
 var formatdata='d/M/yy';
 var xscalename="Months";
+var thirtydaydata;
 
 declare var google:any;
 @Component({
@@ -24,6 +26,7 @@ export class ReportingComponent implements OnDestroy {
   customdisabled:boolean=true;
   startDate=this.currentDate.getFullYear()+"-"+this.currentDate.getMonth()+"-"+this.currentDate.getDate();
   endDate=this.currentDate.getFullYear()+"-"+this.currentDate.getMonth()+"-"+this.currentDate.getDate();
+  datethirty=new Date();
   err:string="";
   UndefinedOptionValue:any;
   result:any=["Last 24 hours","Last 30 days","Last 1 year","Custom"];
@@ -31,9 +34,10 @@ export class ReportingComponent implements OnDestroy {
     mainarray=[];
     console.log("OnDestroy called");
    }
-  constructor(public router:Router,private route:ActivatedRoute,public http: Http){
+  constructor(public alert:AlertService,public router:Router,private route:ActivatedRoute,public http: Http){
     var data=this.route.snapshot.params.deviceId;
     console.log(data);
+    this.datethirty.setDate(this.datethirty.getDate()-30);
     type=data.split("~")[1];
     this.deviceId=data.split("~")[0];
     this.deviceId = this.deviceId.replace( /:/g, "" );
@@ -69,29 +73,52 @@ export class ReportingComponent implements OnDestroy {
       console.log(data);
       console.log(typeof(data));
       var temparray;
-      if(type=="true"){
+
       for(var i=0;i<data["length"];i++){
+        if(type=="true"){
         temparray=[new Date(data[i].log_time),Number(data[i].gas_level)*20];
         mainarray.push(temparray);
       }
-    }
+    
     else if(type=="false"){
-      for(var i=0;i<data["length"];i++){
         var gas_detector;
-        if(Number(data[i].gas_detector)>4)
-          gas_detector=(Number(data[i].gas_detector)-4)*6.25;
-        else
-          gas_detector=Number(data[i].gas_detector)*0;
+        if(Number(data[i].gas_detector)>4){
+          if(new Date(data[i].log_time) >this.datethirty)
+          gas_detector=(Number(data[i].gas_detector)-4)*6.25;}
+        else{
+          gas_detector=Number(data[i].gas_detector)*0;}
         temparray=[new Date(data[i].log_time),gas_detector];
         mainarray.push(temparray);
-      }
-    }
+          }
+  }
       console.log(mainarray);
       this.dbdata=mainarray;
+      formatdata='d/M/yy';
       google.charts.load('current',{'packages':['line']});
       google.charts.setOnLoadCallback(this.drawChart);
     });
 
+    /*this.http.post('/thirtydaydata', {param:type,deviceId:this.deviceId})
+    .map(res => res.json())
+    .subscribe(data => {
+      var temp=[];
+      console.log(data);
+      for(var i=0;i<data.length;i++){
+        formatdata="d/M/yy"; 
+        xscalename="Date"            
+        if(type=="true")
+        temp.push([new Date(data[i].log_time),Number(data[i].gas_level)*5]);
+        if(type=="false"){
+        if(Number(data[i].gas_detector)>4)
+          temp.push([new Date(data[i].log_time),(Number(data[i].gas_detector)-4)*6.25]);
+        else
+          temp.push([new Date(data[i].log_time),0]);
+      }
+     console.log(temp);
+      } 
+      thirtydaydata=temp;
+      this.alert.success("Done");
+    });*/
 
   }
 
@@ -129,7 +156,8 @@ var chart=new google.charts.Line(document.getElementById('donutchart'));
 chart.draw(data,google.charts.Line.convertOptions(options));
 }
 onSelect(select){
-var temp=[];
+this.err="";
+  var temp=[];
   var date:any=new Date();
   switch(Number(select)){
   case 0:for(var i=0;i<mainarray.length;i++){
@@ -147,25 +175,36 @@ var temp=[];
     mainarray=tempmain;
     this.customdisabled=true;
     break;
-  case 1:this.http.post('/thirtydaydata', {param:type,deviceId:this.deviceId})
+  case 1:
+  formatdata="d/M/yy"; 
+  xscalename="Date";     
+  var temp=[];
+  this.http.post('/thirtydaydata', {param:type,deviceId:this.deviceId})
   .map(res => res.json())
   .subscribe(data => {
     console.log(data);
-    for(var i=0;i<data.length;i++){
-      formatdata="d/M/yy"; 
-      xscalename="Date"            
-      if(type=="true")
-      temp.push([new Date(data[i].log_time),Number(data[i].gas_level)*5]);
-      if(type=="false")
-      temp.push([new Date(data[i].log_time),Number(data[i].gas_detector)*6.25]);
-   console.log(temp);
+    console.log(typeof(data));
+    var temparray;
+    for(var i=0;i<data["length"];i++){
+    if(type=="true"){
+      temp.push([new Date(data[i].log_time),Number(data[i].gas_level)*20]);
     } 
-    var tempmain=mainarray;
-    mainarray=temp;
-    this.drawChart();
-    mainarray=tempmain;
-    this.customdisabled=true;   
-  });
+    else if(type=="false"){
+      var gas_detector;
+      if(Number(data[i].gas_detector)>4){
+        if(new Date(data[i].log_time) >this.datethirty)
+        gas_detector=(Number(data[i].gas_detector)-4)*6.25;}
+      else{
+        gas_detector=Number(data[i].gas_detector)*0;}
+      temp.push([new Date(data[i].log_time),gas_detector]);
+      }
+}
+var tempmain=mainarray;
+mainarray=temp;
+this.drawChart();
+mainarray=tempmain;
+this.customdisabled=true;   
+});
   /*for(var i=0;i<mainarray.length;i++){
     //console.log(date-mainarray[i][0]);                        
      if((date-mainarray[i][0])<=2592000000){
