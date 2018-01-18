@@ -11,7 +11,7 @@
   <th class="col-xs-2">Customer Name</th>
   <th class="col-xs-2">Device Id</th>
   <th class="col-xs-2">Address</th>
-  <th class="col-xs-2">Co-ordinates</th>
+  <th class="col-xs-2">Key Location</th>
   <th class="col-xs-2">Device Status</th>
   <th class="col-xs-2">Actions</th>
   </tr>
@@ -19,7 +19,7 @@
     <td>{{item.customer_name}}</td>
     <td style="padding:0% 1% 0% 1%">{{item.device_id}}</td>
     <td>{{item.address}}</td>
-    <td>{{item.coordinates}}</td>
+    <td>{{item.key_location}}</td>
     <td [style.color]="item.color">{{item.device_status}}<br />{{item.display_date}}</td>
     <td>
       <div class="col-xs-4" (click)=edit(i) style="text-align:right"><a><img style="min-width:20px" width="40%" src={{editimg}}   alt="edit"></a></div>
@@ -36,12 +36,12 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h3 class="modal-title">Enter Device config Password</h3>
+        <h3 class="modal-title">Enter Device Config Password</h3>
       </div>
       <form name="form" (ngSubmit)="onSubmitModal()">            
           <div class="modal-body">
             <div class="form-group">
-            <label for="exampleInputPassword1">Enter device config password</label>
+            <h5><label for="exampleInputPassword1">Enter password</label></h5>
             <input type="password" class="form-control" name="password" [(ngModel)]="model.I_modalpassword" #password="ngModel" required />
             </div>
            <button type="submit" class="btn btn-primary" >Submit</button>

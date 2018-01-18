@@ -5,7 +5,7 @@
             <br>
             </h1>
             <div style="text-align: center;font-size: initial;" >
-                <i>The Link of Medleys</i>
+                <i>The Linking Media</i>
             </div>
             <div class="col-md-6 col-md-offset-3">
                 <br>
@@ -21,13 +21,13 @@
                                 <small [hidden]="!username.hasError('pattern')">Email format should be, <small><b>joe@abc.com</b></small></small>
                                   </div>
                             </div>
-                            <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !password.valid }">
+                            <div class="form-group" >
                                 <label for="password">Password</label>
-                                <input type="password" class="form-control" name="password" [(ngModel)]="model.password" #password="ngModel" required />
-                                <div *ngIf="f.submitted && !password.valid" class="help-block">Password is required</div>
+                                <input type="password" class="form-control" name="password" [(ngModel)]="model.password" #password="ngModel" />
+                                <div *ngIf="valid" class="help-block text-danger">Password is required</div>
                             </div>
                             <div class="form-group">
-                                <div id="wrapper">
+                                <div id="wrapper"> 
                                     <button [disabled]="loading" class="btn btn-success btn-lg">
                                         <h4>Login</h4>
                                     </button>
@@ -52,9 +52,36 @@
                             </button>
                         </div>
                         <div id="wrapper" class="row" style="padding-top: 2rem">
-                            <a class="btn btn-link" href="/password/reset">
+                            <a class="btn" (click)="openModal()">
                                 <h3>Forgot Your Password?</h3>
                             </a>
                         </div>
                     </div>
                 </div>
+
+                <div class="backdrop" [ngStyle]="{'display':display}"></div>
+                <div class="modal" tabindex="-1" role="dialog"  [ngStyle]="{'display':display}">
+                  <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h3 class="modal-title">Password Reset</h3>
+                      </div>
+                      <form name="form" (ngSubmit)="onSubmitPassword()">            
+                          <div class="modal-body">
+                            <div class="form-group">
+                            <h5><label id='forgotplabel' for="exampleInputPassword1">Email Id</label></h5>
+                            <input id='forgotpinput' style="font-size:15px;" type="email" class="form-control" name="password" [(ngModel)]="model.forgotp_emailid" #password="ngModel" required />
+                           </div>
+                           <div>
+                            <h5 id='forgotpmessage'>Request for change of password has been submitted.Please contact admin for new password</h5>                        
+                            <button id='forgotpsubmit' type="submit" class="btn btn-primary">Submit</button>
+                            <button type="button" style="float: right;" class="btn btn-primary" (click)="onCloseHandled()" >Close</button>
+                            </div>
+                          </div>
+                      </form>
+                      <div class="modal-footer">
+                      </div>
+                    </div><!-- /.modal-content -->
+                  </div><!-- /.modal-dialog -->
+                </div><!-- /.modal !-->
+              

@@ -21,7 +21,7 @@ export class NavbarService {
 
   setbadgevalue(badge_value){
     this.badge_value=badge_value;
-    console.log("badge value recieved",badge_value);
+
   }
 
   getbadgevalue(){

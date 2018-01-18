@@ -85,6 +85,13 @@ background-color: #fecc01;
     margin-left: 5%;
     border: 1px solid black;
 }
+.labelheadercss{
+    background-color: #fecc01;
+        width: 86%;
+        margin-top: 2%;
+        margin-left: 5%;
+        border: 1px solid black;
+    }
 .backdrop{ 
 background-color:rgba(0,0,0,0.6);
 position:fixed;

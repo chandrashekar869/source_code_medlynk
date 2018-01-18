@@ -13,13 +13,14 @@ export class ConfigurationComponent implements OnInit {
   constructor(public http: Http,private alertService:AlertService){
     var decrypteddata=CryptoJS.AES.decrypt(localStorage.getItem("clickedDevice"),new Date().toLocaleDateString()+"AES128").toString(CryptoJS.enc.Utf8);    
   this.device_id=JSON.parse(decrypteddata).device_id;
-  console.log(this.device_id);
   } 
   pages=["home","network","serial","server","slave","analog","datetime","digitalcount","ssl"];
   currentpage="home";
   title = 'app';
+  smsMessage:any;
   switchoptions=["ENABLE","DISABLE"];
   selectUndefinedOptionValue:any;
+  gsm_mobile_number:any;
   switchoptions2=["on","off"];
   digitalChg=[{"name":"Any Change","value":"ANY"},{"name":"High to Low","value":"HL"},{"name":"Low to High","value":"LH"}];
   netInterfaces=["10 MBps Full Duplex","100 MBps Full Duplex","10 MBps Half Duplex","100 MBps Half Duplex"];
@@ -27,7 +28,7 @@ export class ConfigurationComponent implements OnInit {
   relay=["Relay 1","Relay 2","Relay 3","Relay 4","Relay 5","Relay 6","Relay 7","Relay 8"];
   databits=["7","8"];
   stopbits=["1","2  "];
-  flowcontrol=["None","XON-XOFF","RTS-CTS"];
+  flowcontrol=["NONE","XON-XOFF","RTS-CTS"];
   parity=["None","Even","Odd","Mark","Space"];  
   httpmethods=["GET","POST"];
   digitalChange:"";
@@ -38,11 +39,7 @@ export class ConfigurationComponent implements OnInit {
   digitalchange5:"";
   digitalchange6:"";
   digitalchange7:"";
-  digitalchange8:"";
-  digitalchange9:"";
-  digitalchange10:"";
-  digitalchange11:"";
-  digitalchange12:"";  
+  digitalchange8:"";  
   pulse_count1:any;
   pulse_count2:any;
   pulse_count3:any;
@@ -51,10 +48,6 @@ export class ConfigurationComponent implements OnInit {
   pulse_count6:any;
   pulse_count7:any;
   pulse_count8:any;
-  pulse_count9:any;
-  pulse_count10:any;
-  pulse_count11:any;
-  pulse_count12:any;
   threshold1:any;
   threshold2:any;
   threshold3:any;
@@ -252,62 +245,50 @@ export class ConfigurationComponent implements OnInit {
         digita1:{
           pluseCount:"",
         pluseCountNum:"",
+        setpulsecount:""
       },
       digita2:{
         pluseCount:"",
         digitalChange:"",
         pluseCountNum:"",
+        setpulsecount:""
       },
       digita3:{
         pluseCount:"",
         digitalChange:"",
         pluseCountNum:"",
+        setpulsecount:""
       },
       digita4:{
         pluseCount:"",
         digitalChange:"",
         pluseCountNum:"",
+        setpulsecount:""
       },
       digita5:{
         pluseCount:"",
         digitalChange:"",
         pluseCountNum:"",
+        setpulsecount:""
       },
       digita6:{
         pluseCount:"",
         digitalChange:"",
         pluseCountNum:"",
+        setpulsecount:""
       },
       digita7:{
         pluseCount:"",
         digitalChange:"",
         pluseCountNum:"",
+        setpulsecount:""
       },
       digita8:{
         pluseCount:"",
         digitalChange:"",
         pluseCountNum:"",
-      }, 
-       digita9:{
-        pluseCount:"",
-        digitalChange:"",
-        pluseCountNum:"",
-      }, 
-      digita10:{
-        pluseCount:"",
-        digitalChange:"",
-        pluseCountNum:"",
-      }, 
-      digita11:{
-        pluseCount:"",
-        digitalChange:"",
-        pluseCountNum:"",
-      },
-      digita12:{
-        pluseCount:"",
-        digitalChange:"",
-        pluseCountNum:"",
-      },                                                   
+        setpulsecount:""
+      }                                                   
     }
 };
 
@@ -479,62 +460,50 @@ defaultmodel:any={
     digita1:{
       pluseCount:"",
     pluseCountNum:"",
+    setpulsecount:""
   },
   digita2:{
     pluseCount:"",
     digitalChange:"",
     pluseCountNum:"",
+    setpulsecount:""
   },
   digita3:{
     pluseCount:"",
     digitalChange:"",
     pluseCountNum:"",
+    setpulsecount:""
   },
   digita4:{
     pluseCount:"",
     digitalChange:"",
     pluseCountNum:"",
+    setpulsecount:""
   },
   digita5:{
     pluseCount:"",
     digitalChange:"",
     pluseCountNum:"",
+    setpulsecount:""
   },
   digita6:{
     pluseCount:"",
     digitalChange:"",
     pluseCountNum:"",
+    setpulsecount:""
   },
   digita7:{
     pluseCount:"",
     digitalChange:"",
     pluseCountNum:"",
+    setpulsecount:""
   },
   digita8:{
     pluseCount:"",
     digitalChange:"",
     pluseCountNum:"",
-  }, 
-   digita9:{
-    pluseCount:"",
-    digitalChange:"",
-    pluseCountNum:"",
-  }, 
-  digita10:{
-    pluseCount:"",
-    digitalChange:"",
-    pluseCountNum:"",
-  }, 
-  digita11:{
-    pluseCount:"",
-    digitalChange:"",
-    pluseCountNum:"",
-  },
-  digita12:{
-    pluseCount:"",
-    digitalChange:"",
-    pluseCountNum:"",
-  },                                                   
+    setpulsecount:""
+  }                                                   
 }
 };
   ngOnInit(): void {
@@ -558,7 +527,6 @@ defaultmodel:any={
         this.currentpage=configName;
         
         this.loadDefault(this.pages.indexOf(this.currentpage));
-        console.log("from tab click",configName);
   try{
         evt.currentTarget.className += " active"; 
       }
@@ -581,14 +549,15 @@ defaultmodel:any={
     .subscribe(data => {
       if(data.text()=="ERR")
         this.alertService.error("Something went wrong.Try again");
-      else if(data.text()=="DONE")
-        this.alertService.success("Successfull");
-        
+      else if(data.text()=="DONE"){
+        this.alertService.success("Configuration updated successfully");
+        this.smsMessage = 'block';
+      }
     },
       error => {
      console.log("Oooops!"+error);
     });
-   console.log(this.model); 
+
   }
   
   submitNetwork(){
@@ -721,14 +690,6 @@ defaultmodel:any={
       break;
       case 8:this.model.digitalcount.digita8.digitalChange=data;
       break;
-      case 9:this.model.digitalcount.digita9.digitalChange=data;
-      break;
-      case 10:this.model.digitalcount.digita10.digitalChange=data;
-      break;
-      case 11:this.model.digitalcount.digita11.digitalChange=data;
-      break;
-      case 12:this.model.digitalcount.digita12.digitalChange=data;
-      break;
     }
   }
 
@@ -754,24 +715,27 @@ defaultmodel:any={
   prev(val){
     document.getElementById(val).click();
     this.currentpage=this.pages[Number(val.replace("tl",""))];
-    console.log(this.currentpage);
+
   }
   next(val){
     document.getElementById(val).click();
     this.currentpage=this.pages[Number(val.replace("tl",""))];
-    console.log(this.currentpage);
   }
   submitDigitalcount()
   {
     this.networkcall();
   }
+  onClose(){
+    this.smsMessage = 'none';
+ }
 
   loadDefault(val){
     this.http.post("/getconfig", {currentpage:this.currentpage,device_id:this.device_id})
     .map(res => res.json())
     .subscribe(data => {
-      console.log("data from db",data);
+
       data=data[0];
+      this.gsm_mobile_number=data.device_gsm_mobile_number;
       switch(val)
       {
         case 0:
@@ -798,7 +762,7 @@ defaultmodel:any={
         this.defaultmodel.serial.rs485.data_bits=data.rs485_data_bits;
         this.defaultmodel.serial.rs485.character_wait_timeout=data.rs485_c_timeout;        
         this.model.serial=this.defaultmodel.serial;
-        console.log(this.model.serial);
+
         break;
         case 3:
         var indip=data.ipfiltering.split(",");
@@ -872,18 +836,17 @@ defaultmodel:any={
 
         this.defaultmodel.datetime.rtcTime=data.rtc_current_time;
         this.model.datetime=this.defaultmodel.datetime;
-        console.log(this.model.datetime);
         break;
         case 7:
-        var params=["digitalChange","pluseCount","pluseCountNum"];
-        for(var i=1;i<=12;i++){
-          var dbparams=["digi"+i+"_digital_change","digi"+i+"_pulse_count","digi"+i+"_pulse_count_number"];
+        var params=["digitalChange","pluseCount","pluseCountNum","setpulsecount"];
+        for(var i=1;i<=8;i++){
+          var dbparams=["digi"+i+"_digital_change","digi"+i+"_pulse_count","digi"+i+"_pulse_count_number","digi"+i+"_set_pulse_count"];
           this.defaultmodel.digitalcount["digita"+i][params[0]]=data[dbparams[0]];
           this.defaultmodel.digitalcount["digita"+i][params[1]]=data[dbparams[1]];
           this.defaultmodel.digitalcount["digita"+i][params[2]]=data[dbparams[2]];
+          this.defaultmodel.digitalcount["digita"+i][params[3]]=data[dbparams[3]];
         }
         this.model.digitalcount=this.defaultmodel.digitalcount;
-        console.log(this.model.digitalcount);
         break;
       }
 
@@ -891,7 +854,6 @@ defaultmodel:any={
       error => {
      console.log("Oooops!"+error);
     });
-    console.log(this.model.serial);
   }
 
 }

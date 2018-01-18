@@ -42,26 +42,21 @@ export class deviceAdminComponent implements OnInit {
       for(var i=0;i<data["length"];i++){
         if(data[i].http_post_interval!='undefined'){
           timediff=Number(data[i].http_post_interval);
-          console.log(data[i].device_id+' '+timediff);
           if(timediff > 60 ){
-          timediff=timediff;
-          console.log(data[i].device_id+' '+timediff);}
+          timediff=timediff;}
         else if(timediff<60 && timediff>=30){
-          timediff=3*timediff;
-        console.log(data[i].device_id+' '+timediff);}
+          timediff=3*timediff;}
         else if(timediff>0 && timediff<30){
           timediff=5*timediff;
-        console.log(data[i].device_id+' '+timediff);}
+}
         }
         else{
           data[i].http_post_interval=0;
           timediff=5;
-          console.log("interval not found",timediff);
         }
         timediff*=1000;
 
         if(data[i].ang2_threshold=='undefined' || data[i].ang3_threshold=='undefined'){
-          console.log("one of many analog not found");
           data[i].ang2_threshold="DISABLE";
           data[i].ang3_threshold="DISABLE";
           data[i].ang2_lower_limit="20000";
@@ -70,20 +65,32 @@ export class deviceAdminComponent implements OnInit {
   
         var status="";
         var color="";
-        var d=new Date(data[i].log_time);
-        var display_date=d.toLocaleString();
+        var d=new Date(data[i].server_log_time);
+        var log_date_options = { year: '2-digit', month: '2-digit', day: 'numeric',hour:'2-digit',minute:'2-digit',second:'2-digit',hour12:true };
+        var display_date=d.toLocaleString("en-IN",log_date_options);
         if((data[i].gas_leak==1 && data[i].gas_leak!=null) || (data[i].ang2_threshold!=null && data[i].ang2_threshold=="ENABLE" && data[i].ang2_lower_limit!=null && Number(data[i].gas_detector)*1000>Number(data[i].ang2_lower_limit)  ) ){
-
           status="Gas leak";
           color="red";
+          if(data[i].log_time!=null && (currentdate.getTime()-d.getTime())>=timediff){
+            status="Gas Leak & Disconnected";
+            color="red";
+          }
         }
         else if(data[i].low_gas==1 && data[i].low_gas!=null  || (data[i].ang3_threshold!=null && data[i].ang3_threshold=="ENABLE" && data[i].ang3_lower_limit!=null && Number(data[i].gas_level)*1000<Number(data[i].ang3_lower_limit)  )){
           status="Low gas";
           color="red";
+          if(data[i].log_time!=null && (currentdate.getTime()-d.getTime())>=timediff){
+            status="Low gas & Disconnected";
+            color="red";
+          }
         }
         else if(data[i].power_level<3.61 && data[i].low_gas!=null){
           status="Low power";
           color="red";
+          if(data[i].log_time!=null && (currentdate.getTime()-d.getTime())>=timediff){
+            status="Low power & Disconnected";
+            color="red";
+          }
         }
         else if(data[i].log_time!=null && (currentdate.getTime()-d.getTime())>=timediff){
           status="Disconnected";
@@ -102,18 +109,15 @@ export class deviceAdminComponent implements OnInit {
         data[i].color=color;
         data[i].device_status=status;
         data[i].display_date=display_date;
-        console.log(status);
+
         this.results.push(data[i]);
       }
-      console.log(this.results);
-      console.log(data);
     });
   }
   deletefromtable(i){
     var delconfirm=confirm("Are you sure you want to delete:"+this.results[i]["device_id"]);
     if(delconfirm)
     {
-      console.log(this.results[i]);
       this.httpcustom.post("/deletedevices", {data:this.results[i],user_id:localStorage.getItem("currentUser")}).subscribe({ error: e => console.error(e) });
       location.reload();  
     }

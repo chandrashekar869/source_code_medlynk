@@ -7,7 +7,7 @@
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="nav navbar-nav  mr-auto"></ul>
         <ul class="nav navbar-nav " style="margin-bottom: -5%;">
-          <li   class="nav-item">
+          <li  *ngIf="nav.visible" class="nav-item">
             <a class="nav-link" [routerLink]="['']">Home</a>
           </li>
           <li  *ngIf="nav.visible" class="nav-item" >

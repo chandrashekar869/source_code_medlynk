@@ -38,11 +38,12 @@
               <label for="role" >Role:</label>
               </div>
               <div class="col-xs-5" align="left">
-                  <select name="roleelement" [(ngModel)]="role" (change)="onSelectRole(role)"  class="form-control" id="role"  maxlength="45" required>
-                    <option [selected]="role"  [disabled]="model.roledisabled" >{{role}}</option>  
-                    <option [value]="item.value" *ngFor="let item of roles">{{item.name}}</option>
-                    </select>    
-              </div>
+                <select name="roleelement" [(ngModel)]="role" (change)="onSelectRole(role)"  class="form-control" id="role"  maxlength="45" required>
+                   <option disabled hidden [value]="selectUndefinedOptionValue">{{role}}</option>
+                  <option [value]="item.value" *ngFor="let item of roles">{{item.name}}</option>
+                  </select>    
+            </div>
+            
             </div>
 
             <div class="row" style="margin:1% 0% 1% 28%;">

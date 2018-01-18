@@ -3,14 +3,18 @@
         <div class="row">
         <div class="col-sm-6" style="padding: 0px">
            <div class="row">
-           <div class="headercss"><h4 style="margin-left: 2%"><b> Customer Name:</b> {{cus_name}}</h4></div>
+           <div class="headercss"><h4 style="margin-left: 2%"><b> Name:</b> {{cus_name}}</h4></div>
            <div class="headercss"><h4 style="margin-left: 2%"><b> Key Location :</b> {{key_location}}</h4></div>
            </div>
         </div>
         <div class="col-sm-6" style="padding: 0px">
          <div class="row">
-           <div class="headercss"><h4 style="margin-left: 2%"><b> Device Id</b>{{deviceId}} <b>Ph:</b> {{gsm_mobile_number}}  </h4></div>
-           <div class="headercss"><h4 style="margin-left: 2%"><b> Date Updated:</b> {{log_date}} </h4></div>
+          <div class='row labelheadercss' > 
+          <div class="col-6 "><h4><b> Dev Id</b>{{deviceId}}</h4></div><div class=" col-6 "><h4 ><b>Ph:</b> {{gsm_mobile_number}}</h4></div>
+          </div>
+          <div class='row labelheadercss' > 
+            <div class="col-6 "><h4><b>ST:</b> {{server_log_date}}</h4></div><div class=" col-6 "><h4 ><b>DT:</b>{{log_date}}</h4></div>
+            </div>
         </div>
         </div>
         </div>
@@ -18,7 +22,7 @@
           <div class="col-sm-6" >
           <div class="row">
             <div class="center-block" style="margin-top: 6%" >
-            <div id="chart_div" ></div>
+            <div style='cursor: pointer;' (click)="goToHistorical('TP')" id="chart_div" ></div>
              <!-- <div id="gauge_chart" 
                [chartData]="pie_ChartData" 
                [chartOptions]= "pie_ChartOptions" 
@@ -33,7 +37,7 @@
           <div class="row">
   
             <div class="center-block" style="margin-top: 6%">  
-             <div id="chart_div1" ></div>
+             <div style='cursor: pointer;' (click)="goToHistorical('LP')" id="chart_div1" ></div>
               <!--<div id="gauge_chart1" 
               [chartData]="pie_ChartData1" 
               [chartOptions]= "pie_ChartOptions1" 
@@ -48,7 +52,7 @@
           <div class="col-sm-6" >
           <div class="row">
             <div class="center-block" style="margin-top: 6%" >
-           <div (click)="goToHistorical(true)" id="chart_div2"></div>
+           <div style='cursor: pointer;' (click)="goToHistorical('TL')" id="chart_div2"></div>
     
             <!--  <div id="gauge_chart2" 
                    [chartData]="pie_ChartData2" 
@@ -64,7 +68,7 @@
           <div class="row">
   
             <div class="center-block" style="margin-top: 6%">  
-             <div (click)="goToHistorical(false)" id="chart_div3" ></div>
+             <div style='cursor: pointer;' (click)="goToHistorical('GL')" id="chart_div3" ></div>
              <!-- <div id="gauge_chart3" 
                    [chartData]="pie_ChartData3" 
                    [chartOptions]= "pie_ChartOptions3" 
@@ -90,12 +94,12 @@
              <!-- <div class="metercss" style="text-align: center;"><h2><b>Tank Level</b></h2></div> -->
               </div>
            </div>
-           <div class="row align-items-start">
+           <div  class="row align-items-start">
               <div class="col-sm-6">
                   <div class='svg-container' style="width:125%">
                   <svg
                   xmlns="http://www.w3.org/2000/svg"
-                   xmlns:xlink="http://www.w3.org/1999/xlink"  viewBox="280 25 0850 300" preserveAspectRatio="xMidYMid meet"  >
+                   xmlns:xlink="http://www.w3.org/1999/xlink"  viewBox="280 25 0850 400" preserveAspectRatio="xMidYMid meet"  >
                    <defs id="svgEditorDefs"><linearGradient gradientUnits="objectBoundingBox" id="lgrd2-black-white" spreadMethod="pad" x1="0%" x2="100%" y1="0%" y2="100%">
                    <stop offset="0%" stop-color="black"/>
                    <stop offset="100%" stop-color="white"/>
@@ -110,7 +114,7 @@
                    </radialGradient>
                    </defs>
                     <rect id="svgEditorBackground" x="0" y="0" width="1140" height="500" style="fill: none; stroke: none;"/>
-                      <rect x="270" y="129" style="fill:#bbbbbb;stroke:black;stroke-width:2px;fill-opacity:1.0;" id="e1_rectangle" width="512" height="130" ry="0" rx="0" transform="matrix(1.35567 0 0 1 -80.3814 0)"/>
+                      <rect x="270" y="129" style="fill:#bbbbbb;stroke:black;stroke-width:2px;fill-opacity:1.0;" id="e1_rectangle" width="450" height="130" ry="0" rx="0" transform="matrix(1.35567 0 0 1 -80.3814 0)"/>
                       <rect x="298" y="139" style="fill:black;stroke:black;stroke-width:2px;fill-opacity:1.0;" id="e2_rectangle" width="76" height="110"/>
                       <rect x="383" y="139" style="fill:black;stroke:black;stroke-width:2px;fill-opacity:1.0;" id="e3_rectangle" width="76" height="110"/>
                       <rect x="468" y="139" style="fill:black;stroke:black;stroke-width:2px;fill-opacity:1.0;" id="e4_rectangle" width="76" height="110"/>
@@ -118,8 +122,7 @@
                       <rect x="638" y="139" style="fill:black;stroke:black;stroke-width:2px;fill-opacity:1.0;" id="e6_rectangle" width="76" height="110"/>
                       <rect x="723" y="139" style="fill:#dc3a13;stroke:black;stroke-width:2px;fill-opacity:1.0;" id="e7_rectangle" width="76" height="110"/>
                       <rect x="808" y="139" style="fill:#dc3a13;stroke:black;stroke-width:2px;fill-opacity:1.0;" id="e8_rectangle" width="76" height="110"/>
-                      <rect x="893" y="139" style="fill:#dc3a13;stroke:black;stroke-width:2px;fill-opacity:1.0;" id="e9_rectangle" width="76" height="110"/>
-                      <text style="fill:white;font-family:Comic Sans;font-size:82px;font-style:normal;font-weight:bold;" x="910" y="222" id="e6_texte" >{{meter1[7]}}</text>
+                      <rect x="285" y="300" style="fill:#99CC00;stroke:black;stroke-width:2px;fill-opacity:1.0;" id="e9_rectangle" width="615" height="100"/>
                       <text style="fill:white;font-family:Comic Sans;font-size:82px;font-style:normal;font-weight:bold;" x="825" y="222" id="e4_texte" >{{meter1[6]}}</text>
                       <text style="fill:white;font-family:Comic Sans;font-size:82px;font-style:normal;font-weight:bold;" x="740" y="222" id="e1_texte" >{{meter1[5]}}</text>
                       <text style="fill:white;font-family:Comic Sans;font-size:82px;font-style:normal;font-weight:bold;" x="655" y="222" id="e2_texte" >{{meter1[4]}}</text>
@@ -127,14 +130,15 @@
                       <text style="fill:white;font-family:Comic Sans;font-size:82px;font-style:normal;font-weight:bold;" x="485" y="222" id="e5_texte" >{{meter1[2]}}</text>
                       <text style="fill:white;font-family:Comic Sans;font-size:82px;font-style:normal;font-weight:bold;" x="400" y="222" id="e7_texte" >{{meter1[1]}}</text>
                       <text style="fill:white;font-family:Comic Sans;font-size:82px;font-style:normal;font-weight:bold;" x="317" y="222" id="e8_texte" >{{meter1[0]}}</text>
-                   </svg>
+                      <text style="fill:#292b2c;font-family:Arial, Helvetica, sans-serif;font-size:82px;font-style:normal;font-weight:bolder;" x="360" y="375" id="e9_texte" >Gas Meter 1</text>
+                    </svg>
                   </div>
-                  <div  class="metercss"><h2><b>Gas Meter 1</b></h2></div>
+
               </div>
-              <div class="col-sm-6">
+              <div  class="col-sm-6">
                   <div class='svg-container' style="width:125%">
                   <svg xmlns="http://www.w3.org/2000/svg"
-                   xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="280 30 0850 300" preserveAspectRatio="xMidYMid meet"  >
+                   xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="280 30 0850 400" preserveAspectRatio="xMidYMid meet"  >
                    <defs id="svgEditorDefs"><linearGradient gradientUnits="objectBoundingBox" id="lgrd2-black-white" spreadMethod="pad" x1="0%" x2="100%" y1="0%" y2="100%">
                    <stop offset="0%" stop-color="black"/>
                    <stop offset="100%" stop-color="white"/>
@@ -149,7 +153,7 @@
                    </radialGradient>
                    </defs>
                     <rect id="svgEditorBackground" x="0" y="0" width="1140" height="500" style="fill: none; stroke: none;"/>
-                      <rect x="270" y="129" style="fill:#bbbbbb;stroke:black;stroke-width:2px;fill-opacity:1.0;" id="e1_rectangle" width="512" height="130" ry="0" rx="0" transform="matrix(1.35567 0 0 1 -80.3814 0)"/>
+                      <rect x="270" y="129" style="fill:#bbbbbb;stroke:black;stroke-width:2px;fill-opacity:1.0;" id="e1_rectangle" width="450" height="130" ry="0" rx="0" transform="matrix(1.35567 0 0 1 -80.3814 0)"/>
                       <rect x="298" y="139" style="fill:black;stroke:black;stroke-width:2px;fill-opacity:1.0;" id="e2_rectangle" width="76" height="110"/>
                       <rect x="383" y="139" style="fill:black;stroke:black;stroke-width:2px;fill-opacity:1.0;" id="e3_rectangle" width="76" height="110"/>
                       <rect x="468" y="139" style="fill:black;stroke:black;stroke-width:2px;fill-opacity:1.0;" id="e4_rectangle" width="76" height="110"/>
@@ -157,8 +161,8 @@
                       <rect x="638" y="139" style="fill:black;stroke:black;stroke-width:2px;fill-opacity:1.0;" id="e6_rectangle" width="76" height="110"/>
                       <rect x="723" y="139" style="fill:#dc3a13;stroke:black;stroke-width:2px;fill-opacity:1.0;" id="e7_rectangle" width="76" height="110"/>
                       <rect x="808" y="139" style="fill:#dc3a13;stroke:black;stroke-width:2px;fill-opacity:1.0;" id="e8_rectangle" width="76" height="110"/>
-                      <rect x="893" y="139" style="fill:#dc3a13;stroke:black;stroke-width:2px;fill-opacity:1.0;" id="e9_rectangle" width="76" height="110"/>
-                      <text style="fill:white;font-family:Comic Sans;font-size:82px;font-style:normal;font-weight:bold;" x="910" y="222" id="e6_texte" >{{meter2[7]}}</text>
+                      <rect x="285" y="300" style="fill:#99CC00;stroke:black;stroke-width:2px;fill-opacity:1.0;" id="e9_rectangle" width="615" height="100"/>
+                      <text style="fill:#292b2c;font-family:Arial, Helvetica, sans-serif;font-size:82px;font-style:normal;font-weight:bolder;" x="360" y="375" id="e9_texte" >Gas Meter 2</text>    
                       <text style="fill:white;font-family:Comic Sans;font-size:82px;font-style:normal;font-weight:bold;" x="825" y="222" id="e4_texte" >{{meter2[6]}}</text>
                       <text style="fill:white;font-family:Comic Sans;font-size:82px;font-style:normal;font-weight:bold;" x="740" y="222" id="e1_texte" >{{meter2[5]}}</text>
                       <text style="fill:white;font-family:Comic Sans;font-size:82px;font-style:normal;font-weight:bold;" x="655" y="222" id="e2_texte" >{{meter2[4]}}</text>
@@ -168,7 +172,6 @@
                       <text style="fill:white;font-family:Comic Sans;font-size:82px;font-style:normal;font-weight:bold;" x="317" y="222" id="e8_texte" >{{meter2[0]}}</text>
                    </svg>
                   </div>
-                    <div  class="metercss"><h2><b>Gas Meter 2</b></h2></div>
               </div>
            </div>
           </div>
@@ -187,11 +190,11 @@
     
           <div class="row">
     
-           <div class="col-sm-6">
+           <div  class="col-sm-6">
                   <div class='svg-container' style="width:125%">
                   <svg
                   xmlns="http://www.w3.org/2000/svg"
-                   xmlns:xlink="http://www.w3.org/1999/xlink"  viewBox="280 30 0850 300" preserveAspectRatio="xMidYMid meet"  >
+                   xmlns:xlink="http://www.w3.org/1999/xlink"  viewBox="280 30 0850 400" preserveAspectRatio="xMidYMid meet"  >
                    <defs id="svgEditorDefs"><linearGradient gradientUnits="objectBoundingBox" id="lgrd2-black-white" spreadMethod="pad" x1="0%" x2="100%" y1="0%" y2="100%">
                    <stop offset="0%" stop-color="black"/>
                    <stop offset="100%" stop-color="white"/>
@@ -206,16 +209,16 @@
                    </radialGradient>
                    </defs>
                     <rect id="svgEditorBackground" x="0" y="0" width="1140" height="500" style="fill: none; stroke: none;"/>
-                      <rect x="270" y="129" style="fill:#bbbbbb;stroke:black;stroke-width:2px;fill-opacity:1.0;" id="e1_rectangle" width="512" height="130" ry="0" rx="0" transform="matrix(1.35567 0 0 1 -80.3814 0)"/>
+                      <rect x="270" y="129" style="fill:#bbbbbb;stroke:black;stroke-width:2px;fill-opacity:1.0;" id="e1_rectangle" width="450" height="130" ry="0" rx="0" transform="matrix(1.35567 0 0 1 -80.3814 0)"/>
                       <rect x="298" y="139" style="fill:black;stroke:black;stroke-width:2px;fill-opacity:1.0;" id="e2_rectangle" width="76" height="110"/>
                       <rect x="383" y="139" style="fill:black;stroke:black;stroke-width:2px;fill-opacity:1.0;" id="e3_rectangle" width="76" height="110"/>
                       <rect x="468" y="139" style="fill:black;stroke:black;stroke-width:2px;fill-opacity:1.0;" id="e4_rectangle" width="76" height="110"/>
                       <rect x="553" y="139" style="fill:black;stroke:black;stroke-width:2px;fill-opacity:1.0;" id="e5_rectangle" width="76" height="110"/>
                       <rect x="638" y="139" style="fill:black;stroke:black;stroke-width:2px;fill-opacity:1.0;" id="e6_rectangle" width="76" height="110"/>
                       <rect x="723" y="139" style="fill:#dc3a13;stroke:black;stroke-width:2px;fill-opacity:1.0;" id="e7_rectangle" width="76" height="110"/>
-                      <rect x="808" y="139" style="fill:#dc3a13;stroke:black;stroke-width:2px;fill-opacity:1.0;" id="e8_rectangle" width="76" height="110"/>
-                      <rect x="893" y="139" style="fill:#dc3a13;stroke:black;stroke-width:2px;fill-opacity:1.0;" id="e9_rectangle" width="76" height="110"/>
-                      <text style="fill:white;font-family:Comic Sans;font-size:82px;font-style:normal;font-weight:bold;" x="910" y="222" id="e6_texte" >{{meter3[7]}}</text>
+                      <rect x="808" y="139  " style="fill:#dc3a13;stroke:black;stroke-width:2px;fill-opacity:1.0;" id="e8_rectangle" width="76" height="110"/>
+                      <rect x="285" y="300" style="fill:#99CC00;stroke:black;stroke-width:2px;fill-opacity:1.0;" id="e9_rectangle" width="615" height="100"/>
+                      <text style="fill:#292b2c;font-family:Arial, Helvetica, sans-serif;font-size:82px;font-style:normal;font-weight:bolder;" x="360" y="375" id="e9_texte" >Gas Meter 3</text>       
                       <text style="fill:white;font-family:Comic Sans;font-size:82px;font-style:normal;font-weight:bold;" x="825" y="222" id="e4_texte" >{{meter3[6]}}</text>
                       <text style="fill:white;font-family:Comic Sans;font-size:82px;font-style:normal;font-weight:bold;" x="740" y="222" id="e1_texte" >{{meter3[5]}}</text>
                       <text style="fill:white;font-family:Comic Sans;font-size:82px;font-style:normal;font-weight:bold;" x="655" y="222" id="e2_texte" >{{meter3[4]}}</text>
@@ -225,14 +228,13 @@
                       <text style="fill:white;font-family:Comic Sans;font-size:82px;font-style:normal;font-weight:bold;" x="317" y="222" id="e8_texte" >{{meter3[0]}}</text>
                    </svg>
                   </div>   
-                    <div  class="metercss"><h2><b>Gas Meter 3</b></h2></div>
            </div>
     
-           <div class="col-sm-6 ">
+           <div  class="col-sm-6 ">
                   <div class='svg-container' style="width:125%">
                   <svg
                   xmlns="http://www.w3.org/2000/svg"
-                   xmlns:xlink="http://www.w3.org/1999/xlink"  viewBox="280 30 0850 300" preserveAspectRatio="xMidYMid meet"  >
+                   xmlns:xlink="http://www.w3.org/1999/xlink"  viewBox="280 30 0850 400" preserveAspectRatio="xMidYMid meet"  >
                    <defs id="svgEditorDefs"><linearGradient gradientUnits="objectBoundingBox" id="lgrd2-black-white" spreadMethod="pad" x1="0%" x2="100%" y1="0%" y2="100%">
                    <stop offset="0%" stop-color="black"/>
                    <stop offset="100%" stop-color="white"/>
@@ -247,7 +249,7 @@
                    </radialGradient>
                    </defs>
                     <rect id="svgEditorBackground" x="0" y="0" width="1140" height="500" style="fill: none; stroke: none;"/>
-                      <rect x="270" y="129" style="fill:#bbbbbb;stroke:black;stroke-width:2px;fill-opacity:1.0;" id="e1_rectangle" width="512" height="130" ry="0" rx="0" transform="matrix(1.35567 0 0 1 -80.3814 0)"/>
+                      <rect x="270" y="129" style="fill:#bbbbbb;stroke:black;stroke-width:2px;fill-opacity:1.0;" id="e1_rectangle" width="450" height="130" ry="0" rx="0" transform="matrix(1.35567 0 0 1 -80.3814 0)"/>
                       <rect x="298" y="139" style="fill:black;stroke:black;stroke-width:2px;fill-opacity:1.0;" id="e2_rectangle" width="76" height="110"/>
                       <rect x="383" y="139" style="fill:black;stroke:black;stroke-width:2px;fill-opacity:1.0;" id="e3_rectangle" width="76" height="110"/>
                       <rect x="468" y="139" style="fill:black;stroke:black;stroke-width:2px;fill-opacity:1.0;" id="e4_rectangle" width="76" height="110"/>
@@ -255,8 +257,8 @@
                       <rect x="638" y="139" style="fill:black;stroke:black;stroke-width:2px;fill-opacity:1.0;" id="e6_rectangle" width="76" height="110"/>
                       <rect x="723" y="139" style="fill:#dc3a13;stroke:black;stroke-width:2px;fill-opacity:1.0;" id="e7_rectangle" width="76" height="110"/>
                       <rect x="808" y="139" style="fill:#dc3a13;stroke:black;stroke-width:2px;fill-opacity:1.0;" id="e8_rectangle" width="76" height="110"/>
-                      <rect x="893" y="139" style="fill:#dc3a13;stroke:black;stroke-width:2px;fill-opacity:1.0;" id="e9_rectangle" width="76" height="110"/>
-                      <text style="fill:white;font-family:Comic Sans;font-size:82px;font-style:normal;font-weight:bold;" x="910" y="222" id="e6_texte" >{{meter4[7]}}</text>
+                      <rect x="285" y="300" style="fill:#99CC00;stroke:black;stroke-width:2px;fill-opacity:1.0;" id="e9_rectangle" width="615" height="100"/>
+                      <text style="fill:#292b2c;font-family:Arial, Helvetica, sans-serif;font-size:82px;font-style:normal;font-weight:bolder;" x="360" y="375" id="e9_texte" >Gas Meter 4</text>
                       <text style="fill:white;font-family:Comic Sans;font-size:82px;font-style:normal;font-weight:bold;" x="825" y="222" id="e4_texte" >{{meter4[6]}}</text>
                       <text style="fill:white;font-family:Comic Sans;font-size:82px;font-style:normal;font-weight:bold;" x="740" y="222" id="e1_texte" >{{meter4[5]}}</text>
                       <text style="fill:white;font-family:Comic Sans;font-size:82px;font-style:normal;font-weight:bold;" x="655" y="222" id="e2_texte" >{{meter4[4]}}</text>
@@ -266,7 +268,6 @@
                       <text style="fill:white;font-family:Comic Sans;font-size:82px;font-style:normal;font-weight:bold;" x="317" y="222" id="e8_texte" >{{meter4[0]}}</text>
                    </svg>
                   </div>   
-              <div  class="metercss"><h2><b>Gas Meter 4</b></h2></div>  
            </div>   
           </div>
         </div>
@@ -302,7 +303,7 @@
                    <img class="navbar-brand page-scroll" style="max-width: 280px;max-height: 80px;" src="assets/supply.png">
                 </div>
                 <div class="col center-block">
-                  <meter min="0" low="30" high="60" max="100" optimum="90" value={{powerSupply}} style="width:150px;height:25px"> </meter><div style="position: absolute;margin-top: -11%;margin-left: 7%;"><b><h4>{{powerSupply}}%</h4></b></div>
+                  <meter id='meterpower' min="0" low="75" high="90" max="100" optimum="93" value={{powerSupply}} style="width:150px;height:25px"> </meter><div style="position: absolute;margin-top: -11%;margin-left: 7%;"><b><h4>{{powerSupply}}%</h4></b></div>
                 </div>
             </div>
             <div class="row text-center" style="margin-bottom: 3%;">
@@ -421,12 +422,12 @@
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h3 class="modal-title">Enter Device config Password</h3>
+            <h3 class="modal-title">Enter your login password</h3>
           </div>
           <form name="form" (ngSubmit)="onSubmitPassword()">            
               <div class="modal-body">
                 <div class="form-group">
-                <label for="exampleInputPassword1">Enter device config password</label>
+                <h5><label for="exampleInputPassword1">Enter Password</label></h5>
                 <input type="password" class="form-control" name="password" [(ngModel)]="model.password" #password="ngModel" required />
                 </div>
                <button type="submit" class="btn btn-primary">Submit</button>

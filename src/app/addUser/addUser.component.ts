@@ -25,9 +25,12 @@ export class addUserComponent {
   selecta:any;
   leftarrow:string;
   rightarrow:string;
-
+  userRole:string;
   constructor(private router: Router,private alertService:AlertService,private http: HttpClient,public httpcustom: Http){
-  
+    this.userRole = JSON.parse(localStorage.getItem('userRole'));
+    if(this.userRole.toLowerCase().replace(" ","").trim()=="subadmin")
+      this.roles=[{"name":"User","value":"User"},{"name":"Sub Admin","value":"Sub Admin"}];
+
   }
 
   ngOnInit(): void {
@@ -39,7 +42,7 @@ export class addUserComponent {
       // Read the result field from the JSON response.
       for(var key in data){
         if(Number.isInteger(Number(key))){
-          console.log(data[key]);
+ 
           tempObj=data[key];
           this.results.push(tempObj["device_id"]);
         }
@@ -69,7 +72,7 @@ onSelectRole(val){
   insertlist(){
     var i:any;
     var j:any;
-    console.log(this.temp);
+
     for(i=0;i<=this.temp.length;i++){
       if(this.temp[i]!=undefined && this.assigned.indexOf(this.temp[i])==-1){
         this.assigned.push(this.temp[i]);
@@ -113,6 +116,10 @@ onSelectRole(val){
             this.errmsg="* Enter a valid phone number";
             break;
           }
+          else if(i==5 && !this.model.password.toString().match(/(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[a-z]).*$/)){
+            this.errmsg="Password should contain (Letters, Number/SpecialChar and min 8 Chars)";
+            break;
+          }
           else if(i==6){
             if(this.model.password!=this.model.confirmpassword)
               {
@@ -123,20 +130,20 @@ onSelectRole(val){
         }
         if(i==params.length-1){
             this.httpcustom.post("/addUsers", {data:this.model}).subscribe(data => {
-              console.log(data.text());
+             
               if(data.text()=='DUP_KEY')
                 this.alertService.error("User exists.");
               else if(data.text()=='I_ERR')
                 this.alertService.error("Oops something went wrong");
               else if(data.text()=='DONE'){
-                this.alertService.success("Updated Successfully");
+                this.alertService.success(" User registration successful");
                 this.router.navigate(['./userAdmin']);
               }
             });
         }
       }
 
-      console.log(this.model);
+
    
 }
 }

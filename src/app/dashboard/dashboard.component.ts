@@ -44,7 +44,7 @@ export class DashboardComponent implements OnInit,OnDestroy {
   }  
     //OnDestroy
   ngOnDestroy(){
-   console.log("OnDestroy called in DashboardComponent");
+
    clearInterval(this.interval);
   }
 
@@ -55,7 +55,7 @@ export class DashboardComponent implements OnInit,OnDestroy {
 
 	clickedMarker(marker:marker, index:number){
 		//this functoin is called when marker is clicked 
-		console.log('Clicked Marker:'+ marker.label+' at index'+index);
+
 		this.router.navigate(['./gauges/:'+marker.label]);
 	}//clickedMarker
 
@@ -77,7 +77,7 @@ export class DashboardComponent implements OnInit,OnDestroy {
 	selectedData;
 //onSelect whch map to be shown on map by default its All
   onSelect(val){
-    console.log(val);
+
     this.selectedVal = val;
     this.selectedData = this.someData.filter(x => x.value == val)
     if(val=='All')
@@ -88,7 +88,6 @@ export class DashboardComponent implements OnInit,OnDestroy {
 
 //on select of device , center the tip point and show the info window 
   onSelected(val){
-    console.log("select data is :"+ val)
     for (var i = 0; i < this.someData.length; i++){
         this.markerOpen = false;
         this.someData[i].info = false;
@@ -110,35 +109,28 @@ export class DashboardComponent implements OnInit,OnDestroy {
     var jsonObject =[];
     var timediff;
     //var data = JSON.stringify();
-    console.log("id : "+id);
     this.http.post(link, {user_id:id})
     .map(res => res.json())
     .subscribe(data => {
     // this.data.response = data;
-    console.log(data); 
     for (var i = 0; i < data.length; i++){
       if(data[i].http_post_interval!='undefined'){
         timediff=Number(data[i].http_post_interval);
-        console.log(data[i].device_id+' '+timediff);
-        if(timediff > 60 ){
-        timediff=timediff;
-        console.log(data[i].device_id+' '+timediff);}
+        if(timediff >= 60 ){
+        timediff=timediff+100;}
       else if(timediff<60 && timediff>=30){
-        timediff=3*timediff;
-      console.log(data[i].device_id+' '+timediff);}
+        timediff=3*timediff;}
       else if(timediff>0 && timediff<30){
-        timediff=5*timediff;
-      console.log(data[i].device_id+' '+timediff);}
+        timediff=5*timediff;}
       }
       else{
         data[i].http_post_interval=0;
         timediff=5;
-        console.log("interval not found",timediff);
       }
       timediff*=1000;
+      console.log(timediff);
 
       if(data[i].ang2_threshold=='undefined' || data[i].ang3_threshold=='undefined'){
-        console.log("one of many analog not found");
         data[i].ang2_threshold="DISABLE";
         data[i].ang3_threshold="DISABLE";
         data[i].ang2_lower_limit="20000";
@@ -146,16 +138,17 @@ export class DashboardComponent implements OnInit,OnDestroy {
       }
       var item = {};
 
-        console.log(data[i].alarm);
-        console.log(data[i].device_id,timediff);
         var today = new Date();
         //converting the log date in date formate
         var date2 = new Date(data[i].log_time);
         //get the difference between the date in days
         var diffDays = today.getTime() - date2.getTime();
+        diffDays+=20000;
+        if(timediff >= 60 ){
+          diffDays-=50000;}
+
         // var diffDays = Math.ceil(diff / (60000)); 
         //comment the console.log after done with testing
-        console.log("Differe in days is "+ diffDays);
         //deivce id
         var device_id = data[i].device_id;
         var value ;
@@ -185,10 +178,18 @@ export class DashboardComponent implements OnInit,OnDestroy {
           value="Yellow";
           message = "Low Gas";
           iconUrl=appConfig.imagePath+'yellow.png';
+          if(this.powerSupply<30){
+            value="Red";
+            message = "Low Power Level";
+            iconUrl=appConfig.imagePath+'redmarker.png';}
               if(diffDays>timediff){
               message = "Low Gas and Disconnected";
               value="Disconnected";
               iconUrl=appConfig.imagePath+'yellowmarkerdisconnected.png';  
+              if(this.powerSupply<30){
+                value="Red";
+                message = "Low Power Level";
+                iconUrl=appConfig.imagePath+'redmarkerdisconnected.png';}
             }
         }
         else{
@@ -232,7 +233,7 @@ export class DashboardComponent implements OnInit,OnDestroy {
         var coordinates = coordinates.split(",");
         var lat = coordinates[0];
         var lang = coordinates[1];
-        console.log("lat"+lat+"lang"+lang);
+
         item["lat"] = Number(lat);
         item["lng"] = Number(lang);
         item["label"] = device_id;
@@ -247,13 +248,13 @@ export class DashboardComponent implements OnInit,OnDestroy {
          this.lng = Number(lang);      
         }
       }
-      console.log("JSON OBJECT:"+jsonObject);
+
       var json = JSON.stringify(jsonObject);
-      console.log("JSON OBJECT:"+json);
+
       //set json for map loc
       this.someData =JSON.parse(JSON.stringify(jsonObject))
       //this.selectedData = this.someData;
-      console.log("select value :"+this.selectedVal);
+
       this.selectedData = this.someData.filter(x => x.value == this.selectedVal);
       if(this.selectedVal=='All')
       {

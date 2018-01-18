@@ -18,8 +18,11 @@ export class userAdminComponent implements OnInit {
   results:any[]=[];
   editimg:string;
   delete:string;
+  userRole:string;
 
   constructor(private router: Router,private http: HttpClient,public httpcustom: Http){
+  this.userRole=JSON.parse(localStorage.getItem("userRole"));
+  this.userRole=this.userRole.trim().replace(" ","").toLowerCase();
   }
   ngOnInit(): void {
     // Make the HTTP request:
@@ -29,35 +32,37 @@ export class userAdminComponent implements OnInit {
     this.results=[]; 
     this.http.post('http://40.71.199.63:3200/userAdmin',{data:localStorage.getItem("currentUser")}).subscribe(data => {
       // Read the result field from the JSON response.
-      console.log(data);
+ 
       for(var key in data){
         if(Number.isInteger(Number(key))){
-          console.log(data[key]);
           tempObj=data[key];
           this.results.push(tempObj);
-          console.log("results",this.results);
         }
       }});
   }
   deletefromtable(i){
+    if(this.userRole=='subadmin' && this.results[i].role=='Admin'){
+      alert("Sub Admins cannot modify or delete an Administrator");
+    }
+    else{
     var delconfirm=confirm("Are you sure you want to delete:"+this.results[i]["user_name"]);
     if(delconfirm){
-      console.log(this.results[i]);
       this.httpcustom.post("/delete", {data:this.results[i]}).subscribe(error =>{ console.error(error) });
         location.reload();  
     }
+  }
     /*alert("Are you sure");
-    console.log("after");
-    console.log(this.results[i]);
     this.httpcustom.post("/delete", {data:this.results[i]}).subscribe(error =>{ console.error(error) });
       location.reload();*/
   }
 
   edit(i){
-    console.log(this.results[i]);
+    if(this.userRole=='subadmin' && this.results[i].role=='Admin'){
+      alert("Sub Admins cannot modify or delete an Administrator");
+    }else{
     var encrypteddata=CryptoJS.AES.encrypt(JSON.stringify(this.results[i]),new Date().toLocaleDateString()+"AES128").toString();    
     window.localStorage.setItem("clickedItem",encrypteddata);
-    this.router.navigate(['./editUser']);
+    this.router.navigate(['./editUser']);}
   }
 
 }

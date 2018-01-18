@@ -19,21 +19,29 @@ export class editUserComponent {
   temp:any[]=[];
   tempassigned:any[]=[];
   title = 'Medlsys';
-  roles:{}=[{"name":"User","value":"user"},{"name":"Admin","value":"Admin"},{"name":"Sub Admin","value":"Sub Admin"}];
+  roles:{}=[{"name":"User","value":"User"},{"name":"Admin","value":"Admin"},{"name":"Sub Admin","value":"Sub Admin"}];
+  rolesub:{}=[{"name":"User","value":"User"},{"name":"Sub Admin","value":"Sub Admin"}];
+  
+  
   role:string;
   errmsg:string;
   user_details:any;
+  selectUndefinedOptionValue:any;
   select:any;
  selecta:any;
    leftarrow:string;
   rightarrow:string;
+  userRole:string;
   constructor(private alertService:AlertService,private router: Router,private http: HttpClient,public httpcustom: Http){
+    this.userRole = JSON.parse(localStorage.getItem('userRole'))
+    if(this.userRole.toLowerCase().trim().replace(" ","")=="subadmin")
+      this.roles=this.rolesub;
   }
 
   ngOnInit(): void {
     this.leftarrow = appConfig.imagePath+'leftarrow.jpg';
     this.rightarrow = appConfig.imagePath+'rightarrow.jpg';
-    console.log("from editUser");
+    
     var decrypteddata=CryptoJS.AES.decrypt(localStorage.getItem("clickedItem"),new Date().toLocaleDateString()+"AES128").toString(CryptoJS.enc.Utf8);
     this.http.post("http://40.71.199.63:3200/getUserData",{data:JSON.parse(decrypteddata)}).subscribe(response =>{
     this.user_details=response["user_details"];
@@ -68,7 +76,6 @@ onSelectRole(val){
     for(i=0;i<=val.length;i++){
       if(val[i]!=undefined)
       this.temp[i]=val[i];
-      console.log(this.temp);
     }
   }
   onSelectassigned(val){
@@ -77,14 +84,12 @@ onSelectRole(val){
     for(i=0;i<=val.length;i++){
       if(val[i]!=undefined)
       this.tempassigned[i]=val[i];
-      console.log(this.tempassigned);
     }
   }
 
   insertlist(){
     var i:any;
     var j:any;
-    console.log(this.temp);
     for(i=0;i<=this.temp.length;i++){
       if(this.temp[i]!=undefined && this.assigned.indexOf(this.temp[i])==-1){
         this.assigned.push(this.temp[i]);
@@ -129,6 +134,10 @@ onSelectRole(val){
             this.errmsg="* Enter a valid phone number";
             break;
           }
+          else if(i==5 && !this.model.password.toString().match(/(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[a-z]).*$/)){
+            this.errmsg="Password should contain (Letters, Number/SpecialChar and min 8 Chars)";
+            break;
+          }
           else if(i==6){
             if(this.model.password!=this.model.confirmpassword)
               {
@@ -145,7 +154,7 @@ onSelectRole(val){
               else if(data.text()=='I_ERR')
                 this.alertService.error("Oops something went wrong");
               else if(data.text()=='DONE'){
-                this.alertService.success("Updated Successfully");
+                this.alertService.success("User details successfully");
                 this.router.navigate(['./userAdmin']);
               }
             });
@@ -154,7 +163,6 @@ onSelectRole(val){
         }
       }
 
-      console.log(this.model);
    
 }
 }

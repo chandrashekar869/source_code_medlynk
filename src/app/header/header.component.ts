@@ -31,7 +31,9 @@ export class HeaderComponent implements OnInit,DoCheck,OnDestroy {
 		this.user_name = JSON.parse(localStorage.getItem('userName'));
 		this.userId = JSON.parse(localStorage.getItem('currentUser'));
 		this.userRole = JSON.parse(localStorage.getItem('userRole'));
-		if(this.prevpage!=location.hash && location.hash.indexOf("login")==-1 ){
+		if(this.userRole!=null && this.userRole.toLowerCase().replace(" ","").trim() == 'user')   
+			this.nav.hide();
+		if(this.prevpage!=location.hash && this.userId!=null ){
 			this.prevpage=location.hash;
 			clearInterval(this.interval);		
 			this.getBadgeValue();
@@ -42,7 +44,6 @@ export class HeaderComponent implements OnInit,DoCheck,OnDestroy {
 	}
 	ngOnInit(){
 		this.prevpage=location.hash;
-		console.log("header called");
 		this.getBadgeValue();
 		this.interval = setInterval(() =>{
 			this.getBadgeValue();
@@ -52,7 +53,7 @@ export class HeaderComponent implements OnInit,DoCheck,OnDestroy {
 		this.imagePath = appConfig.imagePath+'logo.png';
 			if(this.userId ){
 			this.user_name = JSON.parse(localStorage.getItem('userName'));
-		    if(this.userRole.toLowerCase() == 'user')   
+		    if(this.userRole.toLowerCase().replace(" ","").trim() == 'user')   
 		        this.nav.hide();
 		    else
 		        this.nav.show();
@@ -62,7 +63,6 @@ export class HeaderComponent implements OnInit,DoCheck,OnDestroy {
 	}
 	ngOnDestroy(){
     clearInterval(this.interval);
-    console.log("OnDestroy called");
    }
 
 	getBadgeValue(){
@@ -75,26 +75,22 @@ export class HeaderComponent implements OnInit,DoCheck,OnDestroy {
 			for(var i=0;i<data["length"];i++){
 				if(data[i].http_post_interval!='undefined'){
           timediff=Number(data[i].http_post_interval);
-          console.log(data[i].device_id+' '+timediff);
           if(timediff > 60 ){
-          timediff=timediff;
-          console.log(data[i].device_id+' '+timediff);}
+          timediff=timediff;}
         else if(timediff<60 && timediff>=30){
           timediff=3*timediff;
-        console.log(data[i].device_id+' '+timediff);}
+  }
         else if(timediff>0 && timediff<30){
           timediff=5*timediff;
-        console.log(data[i].device_id+' '+timediff);}
+  }
         }
         else{
           data[i].http_post_interval=0;
           timediff=5;
-          console.log("interval not found",timediff);
         }
         timediff*=1000;
 
         if(data[i].ang2_threshold=='undefined' || data[i].ang3_threshold=='undefined'){
-          console.log("one of many analog not found");
           data[i].ang2_threshold="DISABLE";
           data[i].ang3_threshold="DISABLE";
           data[i].ang2_lower_limit="20000";
@@ -140,11 +136,11 @@ export class HeaderComponent implements OnInit,DoCheck,OnDestroy {
 		this.display='none'; 
 	}
 	setName(){
-		console.log("name set");
+
 	}
 	changePassword(){
 		this.display='none';
-		console.log("model : "+this.model.password);
+
 		var link = '/users/changePassword';
 	    this.http.post(link, {user_id:this.userId,oldPassword:this.model.oldPassword,newPassword:this.model.password})
 	    .map(res => res.json())
@@ -161,7 +157,6 @@ export class HeaderComponent implements OnInit,DoCheck,OnDestroy {
                 this.alertService.error('Something went wrong'); 
 	       }
 	    }, error => {
-	     console.log("Oooops!"+error);
 	     this.alertService.error("Something went wrong");
 	    });
 	}

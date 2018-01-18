@@ -1,2 +1,4 @@
-﻿<div style="    text-align: center;
-    font-size: medium;" *ngIf="message" [ngClass]="{ 'alert': message, 'alert-success': message.type === 'success', 'alert-danger': message.type === 'error' }">{{message.text}}</div>
+﻿<div style="text-align: center;
+    font-size: medium;" *ngIf="message" [ngClass]="{ 'alert': message, 'alert-success': message.type === 'success', 'alert-danger': message.type === 'error' }">{{message.text}}<button type="button" style="font-size: 20px;" class="close" (click)='close()' aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button></div>

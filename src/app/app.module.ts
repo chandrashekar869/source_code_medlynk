@@ -12,8 +12,6 @@ import { LoginComponent } from './login/index';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { EqualValidator } from './register/password.match.directive';
-
-
 @NgModule({
     imports: [
         BrowserModule,
@@ -22,7 +20,7 @@ import { EqualValidator } from './register/password.match.directive';
         routing
     ],
     declarations: [
-
+        
         AppComponent,
         AlertComponent,
         LoginComponent,

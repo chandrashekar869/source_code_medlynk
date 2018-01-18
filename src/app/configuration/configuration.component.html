@@ -1,7 +1,7 @@
 <div class="container-fluid">
        <h1 align="center">Medlynk Configuration</h1>
 <div class="row">
-       <div class="tab col-xs-offset-2 col-xs-8 col-xs-offset-right-2" >
+       <div class="tab col-xs-offset-2 col-xs-10 col-xs-offset-right-2" style="width:max-content;" >
   <button id="tl0" class="tablinks" (click)="openCity(event, 'home','tl0')"><b>Home</b></button>
   <button id="tl1" class="tablinks" (click)="openCity(event, 'network','tl1')"><b>Network</b></button>
   <button id="tl2" class="tablinks" (click)="openCity(event, 'serial','tl2')"><b>Serial</b></button>
@@ -11,6 +11,7 @@
   <button id="tl6" class="tablinks" (click)="openCity(event, 'datetime','tl6')"><b>Date Time</b></button>
   <button id="tl7" class="tablinks" (click)="openCity(event, 'digitalcount','tl7')"><b>Digital Count</b></button>
   <button id="tl8" class="tablinks" (click)="openCity(event, 'ssl','tl8')"><b>SSL</b></button>
+  <button id="tl9" class="tablinks" (click)="openCity(event, 'firmware','tl9')"><b>Firmware</b></button>  
 </div>
 </div>
 <div id="home" align="center" class="tabcontent">
@@ -512,9 +513,9 @@
     </tr>
     <tr>
     <td width="167" height="27">&nbsp;</td>
-    <td width="176" height="27">Server Connectivity Timeout Related Relay and Initial state </td>
+    <td width="176" height="27">Server Connectivity Timeout Related Relay and Initial State </td>
     <td width="446" height="27" align="left">
-        <input size="15" name="serverconnectivitytimeoutrelatedrelay" value="{{model.server.server_connectivity_timeout_related_relay}}" [(ngModel)]="model.server.server_connectivity_timeout_related_relay" #server_connectivity_timeout_related_relay="ngModel" > Any relay (1-8), ON/OFF      
+        <input size="15" name="serverconnectivitytimeoutrelatedrelay" value="{{model.server.server_connectivity_timeout_related_relay}}" [(ngModel)]="model.server.server_connectivity_timeout_related_relay" #server_connectivity_timeout_related_relay="ngModel" > Any relay (1-8),Initial State ON/OFF      
         </td>
     </tr>
     <tr hidden>
@@ -804,7 +805,7 @@
         <td width="167" height="23">&nbsp;</td>
         <td width="176" height="23">Relay</td>
         <td width="446" height="23" align="left">
-            <input name="relay1" [(ngModel)]="model.analog.analog1.relay" #relay1="ngModel" value="1,0"  size="25" type="text"> (1-8),ON/OFF
+            <input name="relay1" [(ngModel)]="model.analog.analog1.relay" #relay1="ngModel" value="1,0"  size="25" type="text"> (1-8),Initial State ON/OFF
         </td>
     </tr>
     <tr>
@@ -855,7 +856,7 @@
         <td width="167" height="23">&nbsp;</td>
         <td width="176" height="23">Relay</td>
         <td width="446" height="23" align="left">
-            <input name="relay2" [(ngModel)]="model.analog.analog2.relay" #relay2="ngModel" value="2,0"  size="25" type="text"> (1-8),ON/OFF
+            <input name="relay2" [(ngModel)]="model.analog.analog2.relay" #relay2="ngModel" value="2,0"  size="25" type="text"> (1-8),Initial State ON/OFF
         </td>
     </tr>
     <tr>
@@ -906,7 +907,7 @@
         <td width="167" height="23">&nbsp;</td>
         <td width="176" height="23">Relay</td>
         <td width="446" height="23" align="left">
-            <input name="relay3" [(ngModel)]="model.analog.analog3.relay" #relay3="ngModel" value="3,0"  size="25" type="text"> (1-8),ON/OFF
+            <input name="relay3" [(ngModel)]="model.analog.analog3.relay" #relay3="ngModel" value="3,0"  size="25" type="text"> (1-8),Initial State ON/OFF
         </td>
     </tr>
     <tr>
@@ -957,7 +958,7 @@
         <td width="167" height="23">&nbsp;</td>
         <td width="176" height="23">Relay</td>
         <td width="446" height="23" align="left">
-            <input name="relay4" [(ngModel)]="model.analog.analog4.relay" #relay4="ngModel" value="4,0"  size="25" type="text"> (1-8),ON/OFF
+            <input name="relay4" [(ngModel)]="model.analog.analog4.relay" #relay4="ngModel" value="4,0"  size="25" type="text"> (1-8),Initial State ON/OFF
         </td>
     </tr>
     <tr>
@@ -1008,7 +1009,7 @@
         <td width="167" height="23">&nbsp;</td>
         <td width="176" height="23">Relay</td>
         <td width="446" height="23" align="left">
-            <input name="relay5" [(ngModel)]="model.analog.analog5.relay" #relay5="ngModel" value="5,0"  size="25" type="text"> (1-8),ON/OFF
+            <input name="relay5" [(ngModel)]="model.analog.analog5.relay" #relay5="ngModel" value="5,0"  size="25" type="text"> (1-8),Initial State ON/OFF
         </td>
     </tr>
     <tr>
@@ -1059,7 +1060,7 @@
         <td width="167" height="23">&nbsp;</td>
         <td width="176" height="23">Relay</td>
         <td width="446" height="23" align="left">
-            <input name="relay6" [(ngModel)]="model.analog.analog6.relay" #relay6="ngModel" value="6,0"  size="25" type="text"> (1-8),ON/OFF
+            <input name="relay6" [(ngModel)]="model.analog.analog6.relay" #relay6="ngModel" value="6,0"  size="25" type="text"> (1-8),Initial State ON/OFF
         </td>
     </tr>
     <tr hidden>
@@ -1110,7 +1111,7 @@
         <td width="167" height="23">&nbsp;</td>
         <td width="176" height="23">Relay</td>
         <td width="446" height="23" align="left">
-            <input name="relay7" [(ngModel)]="model.analog.analog7.relay" #relay7="ngModel" value="7,0"  size="25" type="text"> (1-8),ON/OFF
+            <input name="relay7" [(ngModel)]="model.analog.analog7.relay" #relay7="ngModel" value="7,0"  size="25" type="text"> (1-8),Initial State ON/OFF
         </td>
     </tr>
     <tr hidden>
@@ -1161,7 +1162,7 @@
         <td width="167" height="23">&nbsp;</td>
         <td width="176" height="23">Relay</td>
         <td width="446" height="23" align="left">
-            <input name="relay8" [(ngModel)]="model.analog.analog8.relay" #relay8="ngModel" value="8,0"  size="25" type="text"> (1-8),ON/OFF
+            <input name="relay8" [(ngModel)]="model.analog.analog8.relay" #relay8="ngModel" value="8,0"  size="25" type="text"> (1-8),Initial State ON/OFF
         </td>
     </tr>
     <tr >
@@ -1465,7 +1466,14 @@
     <td width="160" height="22"></td>
     <td width="183" height="22">Pulse Count Number</td>
     <td width="446" height="22" align="left">
-        <input size="15" [(ngModel)]="model.digitalcount.digita1.pluseCountNum" #pluseCountNum1="ngModel" value="10" name="pluseCountNum1" > 1 - 999 
+        <input size="15" [(ngModel)]="model.digitalcount.digita1.pluseCountNum" #pluseCountNum1="ngModel" value="10" name="pluseCountNum1" > 1 - 9999999 
+    </td>
+</tr>
+<tr>
+    <td width="160" height="22"></td>
+    <td width="183" height="22">Set Pulse Count</td>
+    <td width="446" height="22" align="left">
+        <input size="15" [(ngModel)]="model.digitalcount.digita1.setpulsecount" #setpulsecount1="ngModel" value="10" name="setpulsecount1" > 0 - 9999999
     </td>
 </tr>
 <tr>
@@ -1498,7 +1506,14 @@
     <td width="160" height="22"></td>
     <td width="183" height="22">Pulse Count Number</td>
     <td width="446" height="22" align="left">
-        <input size="15" [(ngModel)]="model.digitalcount.digita2.pluseCountNum" #pluseCountNum2="ngModel" value="10" name="pluseCountNum2" > 1 - 999 
+        <input size="15" [(ngModel)]="model.digitalcount.digita2.pluseCountNum" #pluseCountNum2="ngModel" value="10" name="pluseCountNum2" > 1 - 9999999 
+    </td>
+</tr>
+<tr>
+    <td width="160" height="22"></td>
+    <td width="183" height="22">Set Pulse Count</td>
+    <td width="446" height="22" align="left">
+        <input size="15" [(ngModel)]="model.digitalcount.digita2.setpulsecount" #setpulsecount2="ngModel" value="10" name="setpulsecount2" > 0 - 9999999
     </td>
 </tr>
 <tr>
@@ -1531,7 +1546,14 @@
     <td width="160" height="22"></td>
     <td width="183" height="22">Pulse Count Number</td>
     <td width="446" height="22" align="left">
-        <input size="15" [(ngModel)]="model.digitalcount.digita3.pluseCountNum" #pluseCountNum3="ngModel" value="10" name="pluseCountNum3" > 1 - 999 
+        <input size="15" [(ngModel)]="model.digitalcount.digita3.pluseCountNum" #pluseCountNum3="ngModel" value="10" name="pluseCountNum3" > 1 - 9999999 
+    </td>
+</tr>
+<tr>
+    <td width="160" height="22"></td>
+    <td width="183" height="22">Set Pulse Count</td>
+    <td width="446" height="22" align="left">
+        <input size="15" [(ngModel)]="model.digitalcount.digita3.setpulsecount" #setpulsecount3="ngModel" value="10" name="setpulsecount3" > 0 - 9999999
     </td>
 </tr>
 <tr>
@@ -1564,7 +1586,14 @@
     <td width="160" height="22"></td>
     <td width="183" height="22">Pulse Count Number</td>
     <td width="446" height="22" align="left">
-        <input size="15" [(ngModel)]="model.digitalcount.digita4.pluseCountNum" #pluseCountNum4="ngModel" value="10" name="pluseCountNum4" > 1 - 999 
+        <input size="15" [(ngModel)]="model.digitalcount.digita4.pluseCountNum" #pluseCountNum4="ngModel" value="10" name="pluseCountNum4" > 1 - 9999999 
+    </td>
+</tr>
+<tr>
+    <td width="160" height="22"></td>
+    <td width="183" height="22">Set Pulse Count</td>
+    <td width="446" height="22" align="left">
+        <input size="15" [(ngModel)]="model.digitalcount.digita4.setpulsecount" #setpulsecount4="ngModel" value="10" name="setpulsecount4" > 0 - 9999999
     </td>
 </tr>
 <tr>
@@ -1597,7 +1626,14 @@
     <td width="160" height="22"></td>
     <td width="183" height="22">Pulse Count Number</td>
     <td width="446" height="22" align="left">
-        <input size="15" [(ngModel)]="model.digitalcount.digita5.pluseCountNum" #pluseCountNum5="ngModel" value="999" name="pluseCountNum5" > 1 - 999 
+        <input size="15" [(ngModel)]="model.digitalcount.digita5.pluseCountNum" #pluseCountNum5="ngModel" value="999" name="pluseCountNum5" > 1 - 9999999 
+    </td>
+</tr>
+<tr>
+    <td width="160" height="22"></td>
+    <td width="183" height="22">Set Pulse Count</td>
+    <td width="446" height="22" align="left">
+        <input size="15" [(ngModel)]="model.digitalcount.digita5.setpulsecount" #setpulsecount5="ngModel" value="10" name="setpulsecount5" > 0 - 9999999 
     </td>
 </tr>
 <tr>
@@ -1630,7 +1666,14 @@
     <td width="160" height="22"></td>
     <td width="183" height="22">Pulse Count Number</td>
     <td width="446" height="22" align="left">
-        <input size="15" [(ngModel)]="model.digitalcount.digita6.pluseCountNum" #pluseCountNum6="ngModel" value="999" name="pluseCountNum6" > 1 - 999 
+        <input size="15" [(ngModel)]="model.digitalcount.digita6.pluseCountNum" #pluseCountNum6="ngModel" value="999" name="pluseCountNum6" > 1 - 9999999 
+    </td>
+</tr>
+<tr>
+    <td width="160" height="22"></td>
+    <td width="183" height="22">Set Pulse Count</td>
+    <td width="446" height="22" align="left">
+        <input size="15" [(ngModel)]="model.digitalcount.digita6.setpulsecount" #setpulsecount6="ngModel" value="10" name="setpulsecount6" > 0 - 9999999 
     </td>
 </tr>
 <tr>
@@ -1663,7 +1706,14 @@
     <td width="160" height="22"></td>
     <td width="183" height="22">Pulse Count Number</td>
     <td width="446" height="22" align="left">
-        <input size="15" [(ngModel)]="model.digitalcount.digita7.pluseCountNum" #pluseCountNum7="ngModel"  value="999" name="pluseCountNum7" > 1 - 999 
+        <input size="15" [(ngModel)]="model.digitalcount.digita7.pluseCountNum" #pluseCountNum7="ngModel"  value="999" name="pluseCountNum7" > 1 - 9999999 
+    </td>
+</tr>
+<tr>
+    <td width="160" height="22"></td>
+    <td width="183" height="22">Set Pulse Count</td>
+    <td width="446" height="22" align="left">
+        <input size="15" [(ngModel)]="model.digitalcount.digita7.setpulsecount" #setpulsecount7="ngModel" value="10" name="setpulsecount7" > 0 - 9999999 
     </td>
 </tr>
 <tr>
@@ -1696,141 +1746,17 @@
     <td width="160" height="22"></td>
     <td width="183" height="22">Pulse Count Number</td>
     <td width="446" height="22" align="left">
-        <input size="15" [(ngModel)]="model.digitalcount.digita8.pluseCountNum" #pluseCountNum8="ngModel"  value="999" name="pluseCountNum8" > 1 - 999 
-    </td>
-</tr>
-<tr>
-    <td></td>
-    <td width="215" height="2">&nbsp;
-        <div style="font-size:20px;color:blue;">Digital 9</div>
-    </td>
-</tr>
-<tr>
-    <td width="160" height="22">&nbsp;</td>
-    <td width="183" height="22">Pulse Count</td>
-    <td width="446" height="22" align="left">
-        <select name="pulse_count9" [(ngModel)]="pulse_count9" (change)="onSelectPluseCount(9,pulse_count9)"    required>
-            <option disabled hidden [value]="selectUndefinedOptionValue">{{model.digitalcount.digita9.pluseCount}}</option>        
-            <option [value]="item" *ngFor="let item of switchoptions">{{item}}</option>
-        </select>  
-    </td>
-</tr>
-<tr>
-    <td width="167" height="23">&nbsp;</td>
-    <td width="176" height="23">Digital change</td>
-    <td width="446" height="23" align="left">
-        <select name="digitalchange9" [(ngModel)]="digitalchange9" (change)="onSelectDigitalCount(9,digitalchange9)"    required>
-            <option disabled hidden [value]="selectUndefinedOptionValue">{{model.digitalcount.digita9.digitalChange}}</option>
-            <option [value]="item.value" *ngFor="let item of digitalChg">{{item.name}}</option>
-        </select> 
+        <input size="15" [(ngModel)]="model.digitalcount.digita8.pluseCountNum" #pluseCountNum8="ngModel"  value="999" name="pluseCountNum8" > 1 - 9999999 
     </td>
 </tr>
 <tr>
     <td width="160" height="22"></td>
-    <td width="183" height="22">Pulse Count Number</td>
+    <td width="183" height="22">Set Pulse Count</td>
     <td width="446" height="22" align="left">
-        <input size="15" [(ngModel)]="model.digitalcount.digita9.pluseCountNum" #pluseCountNum9="ngModel"  value="10" name="pluseCountNum9" > 1 - 999 
+        <input size="15" [(ngModel)]="model.digitalcount.digita8.setpulsecount" #setpulsecount8="ngModel" value="10" name="setpulsecount8" > 0 - 9999999 
     </td>
 </tr>
-<tr>
-    <td></td>
-    <td width="215" height="2">&nbsp;
-        <div style="font-size:20px;color:blue;">Digital 10</div>
-    </td>
-</tr>
-<tr>
-    <td width="160" height="22">&nbsp;</td>
-    <td width="183" height="22">Pulse Count</td>
-    <td width="446" height="22" align="left">
-        <select name="pulse_count10" [(ngModel)]="pulse_count10" (change)="onSelectPluseCount(10,pulse_count10)"    required>
-            <option disabled hidden [value]="selectUndefinedOptionValue">{{model.digitalcount.digita10.pluseCount}}</option>        
-            <option [value]="item" *ngFor="let item of switchoptions">{{item}}</option>
-        </select>  
-    </td>
-</tr>
-<tr>
-    <td width="167" height="23">&nbsp;</td>
-    <td width="176" height="23">Digital change</td>
-    <td width="446" height="23" align="left">
-        <select name="digitalchange10" [(ngModel)]="digitalchange10" (change)="onSelectDigitalCount(10,digitalchange10)"    required>
-            <option disabled hidden [value]="selectUndefinedOptionValue">{{model.digitalcount.digita10.digitalChange}}</option>
-            <option [value]="item.value" *ngFor="let item of digitalChg">{{item.name}}</option>
-        </select> 
-    </td>
-</tr>
-<tr>
-    <td width="160" height="22"></td>
-    <td width="183" height="22">Pulse Count Number</td>
-    <td width="446" height="22" align="left">
-        <input size="15" [(ngModel)]="model.digitalcount.digita10.pluseCountNum" #pluseCountNum10="ngModel"  value="10" name="pluseCountNum10" > 1 - 999 
-    </td>
-</tr>
-<tr>
-    <td></td>
-    <td width="215" height="2">&nbsp;
-        <div style="font-size:20px;color:blue;">Digital 11</div>
-    </td>
-</tr>
-<tr>
-    <td width="160" height="22">&nbsp;</td>
-    <td width="183" height="22">Pulse Count</td>
-    <td width="446" height="22" align="left">
-        <select name="pulse_count11" [(ngModel)]="pulse_count11" (change)="onSelectPluseCount(11,pulse_count11)"    required>
-            <option disabled hidden [value]="selectUndefinedOptionValue">{{model.digitalcount.digita11.pluseCount}}</option>        
-            <option [value]="item" *ngFor="let item of switchoptions">{{item}}</option>
-        </select>  
-    </td>
-</tr>
-<tr>
-    <td width="167" height="23">&nbsp;</td>
-    <td width="176" height="23">Digital change</td>
-    <td width="446" height="23" align="left">
-        <select name="digitalchange11" [(ngModel)]="digitalchange11" (change)="onSelectDigitalCount(11,digitalchange11)"    required>
-            <option disabled hidden [value]="selectUndefinedOptionValue">{{model.digitalcount.digita11.digitalChange}}</option>
-            <option [value]="item.value" *ngFor="let item of digitalChg">{{item.name}}</option>
-        </select> 
-    </td>
-</tr>
-<tr>
-    <td width="160" height="22"></td>
-    <td width="183" height="22">Pulse Count Number</td>
-    <td width="446" height="22" align="left">
-        <input size="15" [(ngModel)]="model.digitalcount.digita11.pluseCountNum" #pluseCountNum11="ngModel" value="10" name="pluseCountNum11" > 1 - 999 
-    </td>
-</tr>
-<tr>
-    <td></td>
-    <td width="215" height="2">&nbsp;
-        <div style="font-size:20px;color:blue;">Digital 12</div>
-    </td>
-</tr>
-<tr>
-    <td width="160" height="22">&nbsp;</td>
-    <td width="183" height="22">Pulse Count</td>
-    <td width="446" height="22" align="left">
-        <select name="pulse_count12" [(ngModel)]="pulse_count12" (change)="onSelectPluseCount(12,pulse_count12)"    required>
-            <option disabled hidden [value]="selectUndefinedOptionValue">{{model.digitalcount.digita12.pluseCount}}</option>        
-            <option [value]="item" *ngFor="let item of switchoptions">{{item}}</option>
-        </select>  
-    </td>
-</tr>
-<tr>
-    <td width="167" height="23">&nbsp;</td>
-    <td width="176" height="23">Digital change</td>
-    <td width="446" height="23" align="left">
-        <select name="digitalchange12" [(ngModel)]="digitalchange12" (change)="onSelectDigitalCount(12,digitalchange12)"   required>
-            <option disabled hidden [value]="selectUndefinedOptionValue">{{model.digitalcount.digita12.digitalChange}}</option>        
-            <option [value]="item.value" *ngFor="let item of digitalChg">{{item.name}}</option>
-        </select> 
-    </td>
-</tr>
-<tr>
-<td width="160" height="22"></td>
-<td width="183" height="22">Pulse Count Number</td>
-<td width="446" height="22" align="left">
-<input size="15" [(ngModel)]="model.digitalcount.digita12.pluseCountNum" #pluseCountNum12="ngModel"  value="10" name="pluseCountNum12" > 1 - 999 
-</td>
-</tr>
+
 </tbody>
 </table>
     <table height="100px">
@@ -1938,7 +1864,9 @@
         <button  type="submit">Submit</button>
     &nbsp;&nbsp;&nbsp;
     <button (click)="loadDefault(8)" type="button">Load Default</button>
-    </td>
+    &nbsp;&nbsp;&nbsp;
+    <button (click)="next('tl9')"  type="button">Next</button>    
+</td>
 
     </tr>
     </tbody>
@@ -1964,5 +1892,68 @@
 </table>
 </form>
 </div>
+<div id="firmware" class="tabcontent">
+<form action=firmware.html enctype='multipart/form-data' method=post>
+   <div class="row">
+       
+       <div class="col-xs-offset-4 col-xs-2 ">
+            <br />
+            <br />
+            <br />
+            <br />
+            <h4 style="margin-top: 1%;" align="right">Select File:</h4>
+        </div>
+            <div class='col-xs-2' align="left">
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                <input  id='firmware'type="file" name="fileup">
+            </div>
+        
+   </div>
+   <br />
+   <br />
+   <br />
+   <div class="row">
+        <div class="col-xs-offset-3 col-xs-6 col-xs-offsetright-3 ">
+    <h5 style="text-align:center;color:green">After updation all parameters except network parameters to reset to factory defaults</h5>            
+    </div>
+   </div>
+<br />
+<div class="row">
+        <div class="col-xs-offset-3 col-xs-6 col-xs-offsetright-3 ">
+    <h5 style="text-align:center;color:red">Warning: After Click Update Button Just Wait Upto Error or Success Message. 
+            It will take Maximum 2-minute</h5>            
+    </div>
+   </div>
+   <br />
+   <div class="row">
+        <div  class="col-xs-offset-5 col-xs-1">
+                <button style="width:100%;"  class="text-center" (click)="prev('tl8')"  type="button">Prev</button>    
+            </div>
+        <div  class=" col-xs-1 col-xs-offsetright-5 ">
+            <button style="width:100%;"  class="text-center" style="margin:inherit;">Update</button>    
+        </div>
+   </div>
+            </form>
+</div>
 </div> 
+<div class="modal" tabindex="-1" role="dialog"  [ngStyle]="{'display':smsMessage}">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Message </h4>
+         </div>
+            <div class="modal-body">
+               <div class="form-group"><h4>
+                  For quick response send SMS "SET < space > CHANGES" to < {{gsm_mobile_number}} > from Master mobile number </h4>
+              </div>
+            </div>
+          <div class="modal-footer">
+          <button type="button" style="float: right;" class="btn btn-primary" (click)="onClose()" >Ok</button>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal !-->
 
