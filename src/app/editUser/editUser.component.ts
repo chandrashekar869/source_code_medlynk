@@ -43,7 +43,7 @@ export class editUserComponent {
     this.rightarrow = appConfig.imagePath+'rightarrow.jpg';
     
     var decrypteddata=CryptoJS.AES.decrypt(localStorage.getItem("clickedItem"),new Date().toLocaleDateString()+"AES128").toString(CryptoJS.enc.Utf8);
-    this.http.post("http://40.71.199.63:3200/getUserData",{data:JSON.parse(decrypteddata)}).subscribe(response =>{
+    this.http.post(appConfig.apiUrl+"/getUserData",{data:JSON.parse(decrypteddata)}).subscribe(response =>{
     this.user_details=response["user_details"];
     this.model.username=this.user_details.user_name;
       this.model.email=this.user_details.email_id;

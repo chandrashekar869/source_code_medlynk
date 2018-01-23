@@ -34,7 +34,7 @@ export class deviceAdminComponent implements OnInit {
     this.setting = appConfig.imagePath+'settings.png';
     var tempObj={};
     // Make the HTTP request:
-    this.http.post('http://40.71.199.63:3200/deviceAdmin',{data:localStorage.getItem("currentUser")}).subscribe(data => {
+    this.http.post(appConfig.apiUrl+'/deviceAdmin',{data:localStorage.getItem("currentUser")}).subscribe(data => {
       // Read the result field from the JSON response.
       var currentdate=new Date();
       var timediff;
@@ -84,7 +84,7 @@ export class deviceAdminComponent implements OnInit {
             color="red";
           }
         }
-        else if(data[i].power_level<3.61 && data[i].low_gas!=null){
+        else if(data[i].power_level<6.25 && data[i].low_gas!=null){
           status="Low power";
           color="red";
           if(data[i].log_time!=null && (currentdate.getTime()-d.getTime())>=timediff){

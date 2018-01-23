@@ -5,6 +5,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { appConfig } from '../app.config';
 import {AlertService} from '../_services/index';
 
+
 @Component({
   moduleId: module.id,
   templateUrl: './addUser.component.html',
@@ -38,7 +39,7 @@ export class addUserComponent {
     this.rightarrow = appConfig.imagePath+'rightarrow.jpg';
     var tempObj={};
     // Make the HTTP request:
-    this.http.get('http://40.71.199.63:3200/getDevices').subscribe(data => {
+    this.http.get(appConfig.apiUrl+'/getDevices').subscribe(data => {
       // Read the result field from the JSON response.
       for(var key in data){
         if(Number.isInteger(Number(key))){

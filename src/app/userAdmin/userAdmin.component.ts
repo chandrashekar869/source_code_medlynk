@@ -30,7 +30,7 @@ export class userAdminComponent implements OnInit {
     this.delete = appConfig.imagePath+'delete.png';
     var tempObj={};
     this.results=[]; 
-    this.http.post('http://40.71.199.63:3200/userAdmin',{data:localStorage.getItem("currentUser")}).subscribe(data => {
+    this.http.post(appConfig.apiUrl+'/userAdmin',{data:localStorage.getItem("currentUser")}).subscribe(data => {
       // Read the result field from the JSON response.
  
       for(var key in data){

@@ -145,7 +145,7 @@ export class DashboardComponent implements OnInit,OnDestroy {
         var diffDays = today.getTime() - date2.getTime();
         diffDays+=20000;
         if(timediff >= 60 ){
-          diffDays-=50000;}
+          diffDays-=70000;}
 
         // var diffDays = Math.ceil(diff / (60000)); 
         //comment the console.log after done with testing
@@ -178,7 +178,7 @@ export class DashboardComponent implements OnInit,OnDestroy {
           value="Yellow";
           message = "Low Gas";
           iconUrl=appConfig.imagePath+'yellow.png';
-          if(this.powerSupply<30){
+          if(this.powerSupply<75){
             value="Red";
             message = "Low Power Level";
             iconUrl=appConfig.imagePath+'redmarker.png';}
@@ -186,7 +186,7 @@ export class DashboardComponent implements OnInit,OnDestroy {
               message = "Low Gas and Disconnected";
               value="Disconnected";
               iconUrl=appConfig.imagePath+'yellowmarkerdisconnected.png';  
-              if(this.powerSupply<30){
+              if(this.powerSupply<75){
                 value="Red";
                 message = "Low Power Level";
                 iconUrl=appConfig.imagePath+'redmarkerdisconnected.png';}
@@ -197,7 +197,7 @@ export class DashboardComponent implements OnInit,OnDestroy {
           message = "All Good ";
           iconUrl=appConfig.imagePath+'greenmarker.png';
           
-           if(this.powerSupply<30){
+           if(this.powerSupply<75){
             value="Red";
             message = "Low Power Level";
             iconUrl=appConfig.imagePath+'redmarker.png';
@@ -207,7 +207,7 @@ export class DashboardComponent implements OnInit,OnDestroy {
               iconUrl=appConfig.imagePath+'redmarkerdisconnected.png';  
             }
            }
-           else if(this.powerSupply>30 && this.powerSupply<60)
+           else if(this.powerSupply>75 && this.powerSupply<90)
            {
              value="Yellow";
              iconUrl=appConfig.imagePath+'yellow.png';
