@@ -17,7 +17,7 @@
   </tr>
   <tr  [class]="tablerow" *ngFor="let item of results;let i=index">
     <td>{{item.customer_name}}</td>
-    <td style="padding:0% 1% 0% 1%">{{item.device_id}}</td>
+    <td (click)="navToGauge(i)" style="cursor: pointer;padding:0% 1% 0% 1%">{{item.device_id}}</td>
     <td>{{item.address}}</td>
     <td>{{item.key_location}}</td>
     <td [style.color]="item.color">{{item.device_status}}<br />{{item.display_date}}</td>

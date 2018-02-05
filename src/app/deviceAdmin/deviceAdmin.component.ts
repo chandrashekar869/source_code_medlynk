@@ -69,36 +69,36 @@ export class deviceAdminComponent implements OnInit {
         var log_date_options = { year: '2-digit', month: '2-digit', day: 'numeric',hour:'2-digit',minute:'2-digit',second:'2-digit',hour12:true };
         var display_date=d.toLocaleString("en-IN",log_date_options);
         if((data[i].gas_leak==1 && data[i].gas_leak!=null) || (data[i].ang2_threshold!=null && data[i].ang2_threshold=="ENABLE" && data[i].ang2_lower_limit!=null && Number(data[i].gas_detector)*1000>Number(data[i].ang2_lower_limit)  ) ){
-          status="Gas leak";
+          status="LEAK";
           color="red";
           if(data[i].log_time!=null && (currentdate.getTime()-d.getTime())>=timediff){
-            status="Gas Leak & Disconnected";
+            status="LEAK & GSM";
             color="red";
           }
         }
         else if(data[i].low_gas==1 && data[i].low_gas!=null  || (data[i].ang3_threshold!=null && data[i].ang3_threshold=="ENABLE" && data[i].ang3_lower_limit!=null && Number(data[i].gas_level)*1000<Number(data[i].ang3_lower_limit)  )){
-          status="Low gas";
+          status="GAS";
           color="red";
           if(data[i].log_time!=null && (currentdate.getTime()-d.getTime())>=timediff){
-            status="Low gas & Disconnected";
+            status="GAS & GSM";
             color="red";
           }
         }
         else if(data[i].power_level<6.25 && data[i].low_gas!=null){
-          status="Low power";
+          status="POWER";
           color="red";
           if(data[i].log_time!=null && (currentdate.getTime()-d.getTime())>=timediff){
-            status="Low power & Disconnected";
+            status="POWER & GSM";
             color="red";
           }
         }
         else if(data[i].log_time!=null && (currentdate.getTime()-d.getTime())>=timediff){
-          status="Disconnected";
+          status="GSM";
           color="red";
         }
         else{
           if(data[i].log_time==null){
-            status="No data recieved.";
+            status="No Data";
             color="red";
             display_date="";
           }
@@ -159,5 +159,11 @@ onCloseHandled(){
     window.localStorage.setItem("clickedDevice",encrypteddata);
     this.router.navigate(['./config']);      
   }
-
+  navToGauge(i){
+    if(this.results[i].log_time==null){
+      this.alert.error('No data to display');
+    }
+    else
+    this.router.navigate(['./gauges/:'+this.results[i].device_id]);
+  }
 }

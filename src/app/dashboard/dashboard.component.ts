@@ -33,6 +33,7 @@ export class DashboardComponent implements OnInit,OnDestroy {
   selectUndefinedOptionValue:any;
   interval:any;
   selectedVal:string='All';
+  zoomLevel:any;
 	ngOnInit()
   {
   this.userId = JSON.parse(localStorage.getItem('currentUser'));
@@ -51,6 +52,9 @@ export class DashboardComponent implements OnInit,OnDestroy {
   constructor(private router: Router,public http: Http,public nav:NavbarService){
     //get the local user id
   this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+  if(Number(JSON.parse(localStorage.getItem('zoomLevel')))==undefined || Number(JSON.parse(localStorage.getItem('zoomLevel')))==0)
+  localStorage.setItem('zoomLevel', JSON.stringify(10));
+  this.zoomLevel= Number(JSON.parse(localStorage.getItem('zoomLevel')));
   }
 
 	clickedMarker(marker:marker, index:number){
@@ -58,6 +62,12 @@ export class DashboardComponent implements OnInit,OnDestroy {
 
 		this.router.navigate(['./gauges/:'+marker.label]);
 	}//clickedMarker
+
+  zoomChange(m){
+    console.log("hi");
+    localStorage.setItem('zoomLevel', JSON.stringify(m));
+    this.zoomLevel= Number(JSON.parse(localStorage.getItem('zoomLevel')));
+  }
 
 	mouseOver(infoWindow, gm) {
 		//on mouse over event , it opens up the info-window
