@@ -89,7 +89,7 @@ export class DashboardComponent implements OnInit,OnDestroy {
   onSelect(val){
 
     this.selectedVal = val;
-    this.selectedData = this.someData.filter(x => x.value == val)
+    this.selectedData = this.someData.filter(x => x.value == val || x.value.indexOf(val)!=-1)
     if(val=='All')
     {
      this.selectedData = this.someData;
@@ -150,12 +150,12 @@ export class DashboardComponent implements OnInit,OnDestroy {
 
         var today = new Date();
         //converting the log date in date formate
-        var date2 = new Date(data[i].log_time);
+        var date2 = new Date(data[i].server_log_time);
         //get the difference between the date in days
         var diffDays = today.getTime() - date2.getTime();
-        diffDays+=20000;
+        
         if(timediff >= 60 ){
-          diffDays-=70000;}
+          diffDays=diffDays-50000;}
 
         // var diffDays = Math.ceil(diff / (60000)); 
         //comment the console.log after done with testing
@@ -179,7 +179,7 @@ export class DashboardComponent implements OnInit,OnDestroy {
           message = "Gas Leak";
           iconUrl=appConfig.imagePath+'redmarker.png';
               if(diffDays>timediff){
-              value="Disconnected";
+              value="Disconnected,Red";
                message = "Gas Leak and Disconnected";
               iconUrl=appConfig.imagePath+'redmarkerdisconnected.png';  
             }
@@ -194,10 +194,10 @@ export class DashboardComponent implements OnInit,OnDestroy {
             iconUrl=appConfig.imagePath+'redmarker.png';}
               if(diffDays>timediff){
               message = "Low Gas and Disconnected";
-              value="Disconnected";
+              value="Disconnected,Yellow";
               iconUrl=appConfig.imagePath+'yellowmarkerdisconnected.png';  
               if(this.powerSupply<75){
-                value="Red";
+                value="Disconnected,Red";
                 message = "Low Power Level";
                 iconUrl=appConfig.imagePath+'redmarkerdisconnected.png';}
             }
@@ -212,7 +212,7 @@ export class DashboardComponent implements OnInit,OnDestroy {
             message = "Low Power Level";
             iconUrl=appConfig.imagePath+'redmarker.png';
             if(diffDays>timediff){
-              value="Disconnected";
+              value="Disconnected,Red";
                message = "Low Power Level and Disconnected";
               iconUrl=appConfig.imagePath+'redmarkerdisconnected.png';  
             }
@@ -223,7 +223,7 @@ export class DashboardComponent implements OnInit,OnDestroy {
              iconUrl=appConfig.imagePath+'yellow.png';
              if(diffDays>timediff){
               message="Disconnected";
-              value="Disconnected";
+              value="Yellow,Disconnected";
               iconUrl=appConfig.imagePath+'yellowmarkerdisconnected.png';  
             }
            }
@@ -232,7 +232,7 @@ export class DashboardComponent implements OnInit,OnDestroy {
              value="Green";
              iconUrl=appConfig.imagePath+'greenmarker.png';
               if(diffDays>timediff){
-              value="Disconnected";
+              value="Green,Disconnected";
               message="Disconnected";
               iconUrl=appConfig.imagePath+'greenmarkerdisconnected.png';  
             }

@@ -88,7 +88,8 @@ export class HeaderComponent implements OnInit,DoCheck,OnDestroy {
           data[i].http_post_interval=0;
           timediff=5;
         }
-        timediff*=1000;
+				timediff*=1000;
+
 
         if(data[i].ang2_threshold=='undefined' || data[i].ang3_threshold=='undefined'){
           data[i].ang2_threshold="DISABLE";
@@ -96,7 +97,11 @@ export class HeaderComponent implements OnInit,DoCheck,OnDestroy {
           data[i].ang2_lower_limit="20000";
           data[i].ang3_lower_limit="0";
         }
-				var d=new Date(data[i].log_time);
+				var d=new Date(data[i].server_log_time);
+				var diff=currentdate.getTime()-d.getTime();
+        if(timediff >= 60 ){
+          diff=diff-50000;
+        }
 				var flag=false;
 				if((data[i].ang2_threshold!=null && data[i].ang2_threshold=="ENABLE" && data[i].ang2_lower_limit!=null && Number(data[i].gas_detector)*1000>Number(data[i].ang2_lower_limit)  ) || data[i].gas_leak==1 || data[i].gas_leak==null){
 			  flag=true;
@@ -104,10 +109,10 @@ export class HeaderComponent implements OnInit,DoCheck,OnDestroy {
 			  else if((data[i].ang3_threshold!=null && data[i].ang3_threshold=="ENABLE" && data[i].ang3_lower_limit!=null && Number(data[i].gas_level)*1000<Number(data[i].ang3_lower_limit)  ) || data[i].low_gas==1 || data[i].low_gas==null){
 				flag=true;
 			}
-			  else if((Number(data[i].power_level)*8.33)<30 || data[i].low_gas==null){
+			  else if((Number(data[i].power_level)*8.33)<75 || data[i].low_gas==null){
 			flag=true;  
 			}
-			  else if(data[i].log_time==null || (currentdate.getTime()-d.getTime())>timediff){
+			  else if(data[i].log_time==null || diff>timediff){
 			flag=true;  
 			}
 			  else{

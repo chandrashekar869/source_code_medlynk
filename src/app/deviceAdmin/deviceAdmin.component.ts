@@ -54,7 +54,6 @@ export class deviceAdminComponent implements OnInit {
           data[i].http_post_interval=0;
           timediff=5;
         }
-        timediff*=1000;
 
         if(data[i].ang2_threshold=='undefined' || data[i].ang3_threshold=='undefined'){
           data[i].ang2_threshold="DISABLE";
@@ -68,10 +67,14 @@ export class deviceAdminComponent implements OnInit {
         var d=new Date(data[i].server_log_time);
         var log_date_options = { year: '2-digit', month: '2-digit', day: 'numeric',hour:'2-digit',minute:'2-digit',second:'2-digit',hour12:true };
         var display_date=d.toLocaleString("en-IN",log_date_options);
+        var diff=currentdate.getTime()-d.getTime();
+        if(timediff >= 60 ){
+          diff=diff-50000;
+        }
         if((data[i].gas_leak==1 && data[i].gas_leak!=null) || (data[i].ang2_threshold!=null && data[i].ang2_threshold=="ENABLE" && data[i].ang2_lower_limit!=null && Number(data[i].gas_detector)*1000>Number(data[i].ang2_lower_limit)  ) ){
           status="LEAK";
           color="red";
-          if(data[i].log_time!=null && (currentdate.getTime()-d.getTime())>=timediff){
+          if(data[i].log_time!=null && diff>=timediff){
             status="LEAK & GSM";
             color="red";
           }
@@ -79,20 +82,20 @@ export class deviceAdminComponent implements OnInit {
         else if(data[i].low_gas==1 && data[i].low_gas!=null  || (data[i].ang3_threshold!=null && data[i].ang3_threshold=="ENABLE" && data[i].ang3_lower_limit!=null && Number(data[i].gas_level)*1000<Number(data[i].ang3_lower_limit)  )){
           status="GAS";
           color="red";
-          if(data[i].log_time!=null && (currentdate.getTime()-d.getTime())>=timediff){
+          if(data[i].log_time!=null && diff>=timediff){
             status="GAS & GSM";
             color="red";
           }
         }
-        else if(data[i].power_level<6.25 && data[i].low_gas!=null){
+        else if(data[i].power_level<9 && data[i].low_gas!=null){
           status="POWER";
           color="red";
-          if(data[i].log_time!=null && (currentdate.getTime()-d.getTime())>=timediff){
+          if(data[i].log_time!=null && diff>=timediff){
             status="POWER & GSM";
             color="red";
           }
         }
-        else if(data[i].log_time!=null && (currentdate.getTime()-d.getTime())>=timediff){
+        else if(data[i].log_time!=null && diff>=timediff){
           status="GSM";
           color="red";
         }
