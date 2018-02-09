@@ -123,11 +123,12 @@ export class DashboardComponent implements OnInit,OnDestroy {
     .map(res => res.json())
     .subscribe(data => {
     // this.data.response = data;
+    console.log(data);
     for (var i = 0; i < data.length; i++){
       if(data[i].http_post_interval!='undefined'){
         timediff=Number(data[i].http_post_interval);
         if(timediff >= 60 ){
-        timediff=timediff+100;}
+        timediff=timediff;}
       else if(timediff<60 && timediff>=30){
         timediff=3*timediff;}
       else if(timediff>0 && timediff<30){
@@ -138,8 +139,7 @@ export class DashboardComponent implements OnInit,OnDestroy {
         timediff=5;
       }
       timediff*=1000;
-      console.log(timediff);
-
+      console.log("dashboard",timediff);
       if(data[i].ang2_threshold=='undefined' || data[i].ang3_threshold=='undefined'){
         data[i].ang2_threshold="DISABLE";
         data[i].ang3_threshold="DISABLE";
@@ -154,7 +154,7 @@ export class DashboardComponent implements OnInit,OnDestroy {
         //get the difference between the date in days
         var diffDays = today.getTime() - date2.getTime();
         
-        if(timediff >= 60 ){
+        if(timediff >= 60000 ){
           diffDays=diffDays-50000;}
 
         // var diffDays = Math.ceil(diff / (60000)); 
@@ -191,7 +191,13 @@ export class DashboardComponent implements OnInit,OnDestroy {
           if(this.powerSupply<75){
             value="Red";
             message = "Low Power Level";
-            iconUrl=appConfig.imagePath+'redmarker.png';}
+            iconUrl=appConfig.imagePath+'redmarker.png';
+            if(diffDays>timediff){
+              message = "Low Gas,Low Power and Disconnected";
+              value="Disconnected,Red";
+              iconUrl=appConfig.imagePath+'redmarkerdisconnected.png';                
+            }
+          }else{
               if(diffDays>timediff){
               message = "Low Gas and Disconnected";
               value="Disconnected,Yellow";
@@ -201,9 +207,10 @@ export class DashboardComponent implements OnInit,OnDestroy {
                 message = "Low Power Level";
                 iconUrl=appConfig.imagePath+'redmarkerdisconnected.png';}
             }
+          }
         }
         else{
-          value="Green";
+          value="Green";  
           message = "All Good ";
           iconUrl=appConfig.imagePath+'greenmarker.png';
           
@@ -211,23 +218,13 @@ export class DashboardComponent implements OnInit,OnDestroy {
             value="Red";
             message = "Low Power Level";
             iconUrl=appConfig.imagePath+'redmarker.png';
-            if(diffDays>timediff){
+            if(diffDays>=timediff){
               value="Disconnected,Red";
                message = "Low Power Level and Disconnected";
               iconUrl=appConfig.imagePath+'redmarkerdisconnected.png';  
             }
            }
-           else if(this.powerSupply>75 && this.powerSupply<90)
-           {
-             value="Yellow";
-             iconUrl=appConfig.imagePath+'yellow.png';
-             if(diffDays>timediff){
-              message="Disconnected";
-              value="Yellow,Disconnected";
-              iconUrl=appConfig.imagePath+'yellowmarkerdisconnected.png';  
-            }
-           }
-           if(this.powerSupply>60)
+           else if(this.powerSupply>=75)
            {
              value="Green";
              iconUrl=appConfig.imagePath+'greenmarker.png';
@@ -236,7 +233,14 @@ export class DashboardComponent implements OnInit,OnDestroy {
               message="Disconnected";
               iconUrl=appConfig.imagePath+'greenmarkerdisconnected.png';  
             }
-           } 
+           }
+           else{
+             if(diffDays>timediff){
+            value="Green,Disconnected";
+            message="Disconnected";
+            iconUrl=appConfig.imagePath+'greenmarkerdisconnected.png';  
+          }
+        } 
         }
         //if the diff of current date time and log time is more than 2 days set status as 
         var coordinates = data[i].coordinates;
@@ -265,7 +269,7 @@ export class DashboardComponent implements OnInit,OnDestroy {
       this.someData =JSON.parse(JSON.stringify(jsonObject))
       //this.selectedData = this.someData;
 
-      this.selectedData = this.someData.filter(x => x.value == this.selectedVal);
+      this.selectedData = this.someData.filter(x => x.value == this.selectedVal || x.value.indexOf(this.selectedVal)!=-1);
       if(this.selectedVal=='All')
       {
        this.selectedData = this.someData;

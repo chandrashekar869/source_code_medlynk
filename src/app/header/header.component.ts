@@ -75,7 +75,7 @@ export class HeaderComponent implements OnInit,DoCheck,OnDestroy {
 			for(var i=0;i<data["length"];i++){
 				if(data[i].http_post_interval!='undefined'){
           timediff=Number(data[i].http_post_interval);
-          if(timediff > 60 ){
+          if(timediff >=60 ){
           timediff=timediff;}
         else if(timediff<60 && timediff>=30){
           timediff=3*timediff;
@@ -89,8 +89,8 @@ export class HeaderComponent implements OnInit,DoCheck,OnDestroy {
           timediff=5;
         }
 				timediff*=1000;
-
-
+				console.log("header",data[i]);
+				console.log("header",timediff);
         if(data[i].ang2_threshold=='undefined' || data[i].ang3_threshold=='undefined'){
           data[i].ang2_threshold="DISABLE";
           data[i].ang3_threshold="DISABLE";
@@ -99,7 +99,7 @@ export class HeaderComponent implements OnInit,DoCheck,OnDestroy {
         }
 				var d=new Date(data[i].server_log_time);
 				var diff=currentdate.getTime()-d.getTime();
-        if(timediff >= 60 ){
+        if(timediff >= 60000 ){
           diff=diff-50000;
         }
 				var flag=false;
@@ -109,7 +109,7 @@ export class HeaderComponent implements OnInit,DoCheck,OnDestroy {
 			  else if((data[i].ang3_threshold!=null && data[i].ang3_threshold=="ENABLE" && data[i].ang3_lower_limit!=null && Number(data[i].gas_level)*1000<Number(data[i].ang3_lower_limit)  ) || data[i].low_gas==1 || data[i].low_gas==null){
 				flag=true;
 			}
-			  else if((Number(data[i].power_level)*8.33)<75 || data[i].low_gas==null){
+			  else if( Number(data[i].power_level)<9 || data[i].low_gas==null){
 			flag=true;  
 			}
 			  else if(data[i].log_time==null || diff>timediff){

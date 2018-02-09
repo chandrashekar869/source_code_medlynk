@@ -116,6 +116,7 @@ export class GaugecomponentComponent implements OnInit,OnDestroy{
     
           }
           timediff*=1000;
+          console.log("gaugecomponent",timediff);
     
           if(data[i].ang2_threshold=='undefined' || data[i].ang3_threshold=='undefined'){
             data[i].ang2_threshold="DISABLE";
@@ -214,7 +215,7 @@ export class GaugecomponentComponent implements OnInit,OnDestroy{
           this.server_log_date=date3.toLocaleString("en-IN",log_date_options);
           //get the difference between the date in days
           var diff = today.getTime() - date3.getTime();
-          if(timediff >= 60 ){
+          if(timediff >= 60000 ){
             diff=diff-50000;
           }
            //var diff = today.getTime() - date2.getTime();
